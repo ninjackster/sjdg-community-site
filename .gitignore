@@ -4,3 +4,4 @@ data/runtime-events.json
 __pycache__/
 *.pyc
 .DS_Store
+data/facebook-session.json
