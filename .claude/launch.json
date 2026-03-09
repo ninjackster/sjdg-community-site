@@ -9,8 +9,9 @@
     },
     {
       "name": "SJDG Webpage",
-      "runtimeExecutable": "/bin/bash",
-      "runtimeArgs": ["/Users/jaimemurillo/Desktop/SJDG Webpage/.claude/start-dev.sh"],
+      "runtimeExecutable": "/tmp/node-v22.14.0-darwin-arm64/bin/node",
+      "runtimeArgs": ["/tmp/node-v22.14.0-darwin-arm64/bin/vercel", "dev", "--listen", "3030", "--yes"],
+      "cwd": "/Users/jaimemurillo/Desktop/SJDG Webpage",
       "port": 3030
     }
   ]

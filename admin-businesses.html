@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Directory Admin — San José de Gracia</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --clay:#C4785A; --dark:#1C1309; --cream:#F5EFE6; --mist:#EDE8DF; --gold:#D4A843; --red:#c0392b; --green:#27ae60; }
+    body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--dark); min-height:100vh; }
+
+    /* LOGIN */
+    #login-screen {
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      min-height:100vh; gap:1rem;
+    }
+    #login-screen h1 { font-size:1.3rem; font-weight:500; }
+    #login-screen input {
+      padding:.65rem 1rem; border:1px solid #c9bfb3; border-radius:6px;
+      font-size:1rem; width:260px; font-family:inherit;
+    }
+    #login-screen button {
+      padding:.65rem 1.8rem; background:var(--clay); color:#fff;
+      border:none; border-radius:6px; font-size:.9rem; cursor:pointer;
+    }
+    #login-error { color:var(--red); font-size:.85rem; display:none; }
+
+    /* APP */
+    #app { display:none; }
+
+    header {
+      background:var(--dark); color:var(--cream);
+      padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between;
+    }
+    header h1 { font-size:1rem; font-weight:500; letter-spacing:.05em; }
+    #logout-btn {
+      background:none; border:1px solid rgba(245,239,230,.3); color:var(--cream);
+      padding:.35rem .9rem; border-radius:4px; cursor:pointer; font-size:.8rem;
+    }
+
+    .toolbar {
+      padding:1rem 2rem; background:#fff; border-bottom:1px solid #e4ddd5;
+      display:flex; align-items:center; gap:.75rem; flex-wrap:wrap;
+    }
+    .tab-btn {
+      padding:.35rem .85rem; border-radius:99px; border:1px solid #c9bfb3;
+      background:#fff; font-size:.82rem; cursor:pointer; color:var(--dark);
+    }
+    .tab-btn.active { background:var(--dark); color:var(--cream); border-color:var(--dark); }
+
+    .blocklist-bar {
+      padding:.75rem 2rem; background:var(--mist); border-bottom:1px solid #d8d0c6;
+      display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
+    }
+    .blocklist-bar label { font-size:.82rem; font-weight:500; }
+    #blocked-chips { display:flex; flex-wrap:wrap; gap:.4rem; flex:1; }
+    .chip {
+      display:inline-flex; align-items:center; gap:.3rem;
+      background:#fff; border:1px solid #c9bfb3; border-radius:99px;
+      padding:.2rem .6rem; font-size:.75rem;
+    }
+    .chip button {
+      background:none; border:none; cursor:pointer; color:var(--red);
+      font-size:.85rem; line-height:1; padding:0;
+    }
+
+    #status-msg {
+      padding:.5rem 2rem; font-size:.8rem;
+      background:#d4edda; color:#155724; display:none;
+    }
+    #status-msg.error { background:#f8d7da; color:#721c24; }
+
+    .grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:1rem; padding:1.5rem 2rem;
+    }
+    .card {
+      background:#fff; border-radius:10px; overflow:hidden;
+      box-shadow:0 1px 4px rgba(0,0,0,.07);
+      border:2px solid transparent; transition:border-color .2s;
+    }
+    .card.is-blocked { border-color:var(--red); opacity:.65; }
+
+    .card-img {
+      width:100%; height:140px; object-fit:cover; display:block; background:#e0d8ce;
+    }
+    .card-body { padding:.85rem 1rem .75rem; }
+    .card-type { font-size:.7rem; font-weight:600; letter-spacing:.06em; color:#9a8a78; margin-bottom:.3rem; }
+    .card-name { font-size:.95rem; font-weight:500; margin-bottom:.4rem; }
+    .card-addr { font-size:.78rem; color:#6a5a48; margin-bottom:.7rem; }
+    .card-foot { display:flex; align-items:center; justify-content:space-between; }
+    .block-btn {
+      padding:.28rem .8rem; border-radius:6px; font-size:.78rem;
+      cursor:pointer; font-family:inherit; font-weight:500; border:1px solid;
+      transition:background .15s;
+    }
+    .block-btn.block   { background:#fff; border-color:var(--red); color:var(--red); }
+    .block-btn.block:hover { background:#fde8e6; }
+    .block-btn.unblock { background:#fff; border-color:var(--green); color:var(--green); }
+    .block-btn.unblock:hover { background:#e8f8ee; }
+
+    .place-id { font-size:.65rem; color:#aaa; font-family:monospace; max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+    .loading { text-align:center; padding:3rem; color:#9a8a78; }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <h1>Directory Admin</h1>
+  <input id="pw-input" type="password" placeholder="Password" autofocus />
+  <button onclick="tryLogin()">Sign in</button>
+  <span id="login-error">Incorrect password.</span>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header>
+    <h1>DIRECTORY ADMIN — San José de Gracia</h1>
+    <button id="logout-btn" onclick="logout()">Sign out</button>
+  </header>
+
+  <div class="toolbar" id="tabs"></div>
+
+  <div class="blocklist-bar">
+    <label>Blocked:</label>
+    <div id="blocked-chips"><em style="font-size:.8rem;color:#9a8a78">None</em></div>
+  </div>
+
+  <div id="status-msg"></div>
+  <div class="grid" id="grid"><div class="loading">Loading…</div></div>
+</div>
+
+<script>
+  const TYPES = [
+    { type:'restaurant', icon:'🥘', label:'Restaurants' },
+    { type:'bar',        icon:'🍹', label:'Bars' },
+    { type:'cafe',       icon:'☕', label:'Coffee' },
+    { type:'store',      icon:'🛍️', label:'Shops' },
+    { type:'tourist_attraction', icon:'🌄', label:'Attractions' },
+    { type:'gym',        icon:'🏋️', label:'Sports' },
+    { type:'beauty_salon',icon:'✂️', label:'Services' },
+    { type:'church',     icon:'⛪', label:'Churches' },
+    { type:'establishment',icon:'🏪', label:'Businesses' },
+  ];
+
+  const TOWN_LAT = 20.6741, TOWN_LNG = -102.5717, RADIUS = 5000;
+  let password = '', blockedIds = new Set(), currentType = 'restaurant';
+  let service, allResults = {};
+
+  /* ── AUTH ── */
+  function tryLogin() {
+    const val = document.getElementById('pw-input').value;
+    fetch('/api/blocked-places', {
+      headers: { Authorization: `Bearer ${val}` }
+    }).then(async r => {
+      if (r.status === 401) {
+        // Try GET (public) to see if server is up, then verify with a dummy write
+        // Actually verify by trying a no-op POST and checking response
+        const testRes = await fetch('/api/blocked-places', {
+          method: 'POST',
+          headers: { 'Content-Type':'application/json', Authorization: `Bearer ${val}` },
+          body: JSON.stringify({ place_id: '__test__' })
+        });
+        if (testRes.status === 401) {
+          document.getElementById('login-error').style.display = 'block';
+          return;
+        }
+        // Cleanup test entry
+        await fetch('/api/blocked-places', {
+          method: 'DELETE',
+          headers: { 'Content-Type':'application/json', Authorization: `Bearer ${val}` },
+          body: JSON.stringify({ place_id: '__test__' })
+        });
+      }
+      password = val;
+      sessionStorage.setItem('dir_admin_pw', val);
+      boot();
+    });
+  }
+
+  document.getElementById('pw-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') tryLogin();
+  });
+
+  function logout() {
+    sessionStorage.removeItem('dir_admin_pw');
+    location.reload();
+  }
+
+  /* ── BOOT ── */
+  async function boot() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    buildTabs();
+    await loadBlocked();
+    loadGoogleMaps();
+  }
+
+  function buildTabs() {
+    const el = document.getElementById('tabs');
+    el.innerHTML = TYPES.map(t =>
+      `<button class="tab-btn ${t.type === currentType ? 'active' : ''}"
+        onclick="switchType('${t.type}',this)">${t.icon} ${t.label}</button>`
+    ).join('');
+  }
+
+  async function loadBlocked() {
+    const r = await fetch('/api/blocked-places');
+    const data = await r.json();
+    blockedIds = new Set(data.blocked || []);
+    renderChips();
+  }
+
+  function renderChips() {
+    const el = document.getElementById('blocked-chips');
+    if (blockedIds.size === 0) {
+      el.innerHTML = '<em style="font-size:.8rem;color:#9a8a78">None</em>';
+      return;
+    }
+    el.innerHTML = [...blockedIds].map(id =>
+      `<span class="chip">${id.slice(0,16)}… <button onclick="unblockId('${id}')" title="Unblock">✕</button></span>`
+    ).join('');
+  }
+
+  function showStatus(msg, isError = false) {
+    const el = document.getElementById('status-msg');
+    el.textContent = msg;
+    el.className = isError ? 'error' : '';
+    el.style.display = 'block';
+    setTimeout(() => el.style.display = 'none', 3000);
+  }
+
+  async function blockId(place_id) {
+    const r = await fetch('/api/blocked-places', {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json', Authorization: `Bearer ${password}` },
+      body: JSON.stringify({ place_id }),
+    });
+    if (r.ok) {
+      blockedIds.add(place_id);
+      renderChips();
+      renderGrid();
+      showStatus('Blocked.');
+    } else {
+      showStatus('Error blocking.', true);
+    }
+  }
+
+  async function unblockId(place_id) {
+    const r = await fetch('/api/blocked-places', {
+      method: 'DELETE',
+      headers: { 'Content-Type':'application/json', Authorization: `Bearer ${password}` },
+      body: JSON.stringify({ place_id }),
+    });
+    if (r.ok) {
+      blockedIds.delete(place_id);
+      renderChips();
+      renderGrid();
+      showStatus('Unblocked.');
+    } else {
+      showStatus('Error unblocking.', true);
+    }
+  }
+
+  /* ── MAPS ── */
+  function loadGoogleMaps() {
+    const s = document.createElement('script');
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyANDAxggsq6pL3Jdgav2PxIk4KvoQmu8m4&libraries=places&callback=initMap';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+
+  function initMap() {
+    const mapEl = document.createElement('div');
+    mapEl.style.display = 'none';
+    document.body.appendChild(mapEl);
+    const map = new google.maps.Map(mapEl, { center: { lat: TOWN_LAT, lng: TOWN_LNG }, zoom: 14 });
+    service = new google.maps.places.PlacesService(map);
+    fetchType(currentType);
+  }
+
+  function fetchType(type) {
+    document.getElementById('grid').innerHTML = '<div class="loading">Loading…</div>';
+    if (allResults[type]) { renderGrid(); return; }
+    service.nearbySearch({ location: new google.maps.LatLng(TOWN_LAT, TOWN_LNG), radius: RADIUS, type },
+      (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          allResults[type] = results;
+        } else {
+          allResults[type] = [];
+        }
+        renderGrid();
+      }
+    );
+  }
+
+  function switchType(type, btn) {
+    currentType = type;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    fetchType(type);
+  }
+
+  function renderGrid() {
+    const places = allResults[currentType] || [];
+    const grid = document.getElementById('grid');
+    if (!places.length) { grid.innerHTML = '<div class="loading">No results.</div>'; return; }
+
+    grid.innerHTML = places.map(p => {
+      const blocked = blockedIds.has(p.place_id);
+      const img = p.photos?.[0]
+        ? `<img class="card-img" src="${p.photos[0].getUrl({maxWidth:400,maxHeight:200})}" alt="">`
+        : `<div class="card-img"></div>`;
+      const typeName = (p.types?.[0] || '').replace(/_/g,' ').toUpperCase();
+      return `<div class="card ${blocked ? 'is-blocked' : ''}" id="card-${p.place_id}">
+        ${img}
+        <div class="card-body">
+          <div class="card-type">${typeName}</div>
+          <div class="card-name">${p.name}</div>
+          <div class="card-addr">${p.vicinity || ''}</div>
+          <div class="card-foot">
+            <span class="place-id" title="${p.place_id}">${p.place_id}</span>
+            ${blocked
+              ? `<button class="block-btn unblock" onclick="unblockId('${p.place_id}')">✓ Unblock</button>`
+              : `<button class="block-btn block" onclick="blockId('${p.place_id}')">Block</button>`
+            }
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Resume session
+  const saved = sessionStorage.getItem('dir_admin_pw');
+  if (saved) { password = saved; boot(); }
+</script>
+</body>
+</html>

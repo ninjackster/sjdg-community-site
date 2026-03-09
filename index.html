@@ -353,6 +353,19 @@
       color: rgba(245,239,230,.6);
     }
     .transport-detail strong { color: var(--gold); font-weight: 500; }
+    .maps-link {
+      display: inline-block;
+      margin-top: 2.5rem;
+      padding: .7rem 1.6rem;
+      border: 1px solid rgba(245,239,230,.25);
+      border-radius: 4px;
+      color: var(--cream);
+      font-size: .85rem;
+      letter-spacing: .04em;
+      text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .maps-link:hover { border-color: var(--gold); background: rgba(196,120,90,.1); }
 
     /* ── STAY SECTION ── */
     .stay {
@@ -718,6 +731,7 @@
           <p class="transport-detail" data-i18n="t3-detail">From <strong>Aeropuerto Internacional de Guadalajara (GDL)</strong>, head northeast via Highway 80. The drive is approximately <strong>~110 km · ~1h 45 min</strong>. Rental cars are available at the airport.</p>
         </div>
       </div>
+      <a class="maps-link" href="https://www.google.com/maps/place/San+Jos%C3%A9+de+Gracia,+Jalisco/@21.3617,-102.4158,13z" target="_blank" rel="noreferrer" data-i18n="maps-link">📍 Ver en Google Maps</a>
     </div>
   </section>
 
@@ -893,6 +907,7 @@
         't2-detail':       'From <strong>Central de Autobuses Guadalajara (Nueva Central)</strong>, take a bus to Tepatitlán (~1h). From there, take a local colectivo or taxi to San José de Gracia (~20 min).',
         't3-title':        'From GDL Airport',
         't3-detail':       'From <strong>Aeropuerto Internacional de Guadalajara (GDL)</strong>, head northeast via Highway 80. The drive is approximately <strong>~110 km · ~1h 45 min</strong>. Rental cars are available at the airport.',
+        'maps-link':       '📍 View on Google Maps',
         'dir-label':       'Local Directory',
         'dir-h2':          'Every business<br>in <em style="font-style:italic;color:var(--gold)">town</em>',
         'dir-intro':       'From family-run fondas to artisan shops, bars to local churches — browse the full local directory powered by Google Maps.',
@@ -972,6 +987,7 @@
         't2-detail':       'Desde la <strong>Central de Autobuses de Guadalajara (Nueva Central)</strong>, toma un autobús a Tepatitlán (~1h). De ahí, un colectivo o taxi a San José de Gracia (~20 min).',
         't3-title':        'Desde el Aeropuerto GDL',
         't3-detail':       'Desde el <strong>Aeropuerto Internacional de Guadalajara (GDL)</strong>, dirígete al noreste por la Carretera 80. El trayecto es de aproximadamente <strong>~110 km · ~1h 45 min</strong>. Hay autos en renta en el aeropuerto.',
+        'maps-link':       '📍 Ver en Google Maps',
         'dir-label':       'Directorio Local',
         'dir-h2':          'Cada negocio<br>del <em style="font-style:italic;color:var(--gold)">pueblo</em>',
         'dir-intro':       'Desde fondas familiares hasta tiendas de artesanías, bares e iglesias locales — explora el directorio completo con Google Maps.',
