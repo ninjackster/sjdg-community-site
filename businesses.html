@@ -382,6 +382,15 @@
   const TOWN_LNG  = -102.5717;
   const RADIUS    = 5000;
 
+  const BLOCKED_PLACE_IDS = new Set([
+    'ChIJTSyIjZIzKYQRe3ZylqQUV1w', // PUNTO FIT
+  ]);
+
+  // Some tabs query multiple Google Places types and merge results
+  const MULTI_TYPE_MAP = {
+    store: ['store', 'grocery_or_supermarket', 'pharmacy', 'bakery']
+  };
+
   const urlType = new URLSearchParams(window.location.search).get('type');
   let map, service, currentType = urlType || 'restaurant';
 
@@ -416,27 +425,44 @@
     searchPlaces(currentType);
   }
 
+  function nearbySearchPromise(type) {
+    return new Promise(resolve => {
+      service.nearbySearch({
+        location: new google.maps.LatLng(TOWN_LAT, TOWN_LNG),
+        radius: RADIUS, type
+      }, (results, status) => {
+        resolve(status === google.maps.places.PlacesServiceStatus.OK ? results : []);
+      });
+    });
+  }
+
   function searchPlaces(type) {
     const grid = document.getElementById('places-grid');
     window._lastResults = null;
     grid.innerHTML = `<div class="loading-state"><div class="spinner"></div><p>${T[currentLang]['loading-short']}</p></div>`;
 
-    service.nearbySearch({
-      location: new google.maps.LatLng(TOWN_LAT, TOWN_LNG),
-      radius: RADIUS, type
-    }, (results, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
-        window._lastResults = results;
-        renderCards(results);
-      } else if (status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+    const types = MULTI_TYPE_MAP[type] || [type];
+
+    Promise.all(types.map(t => nearbySearchPromise(t))).then(allResults => {
+      const seen = new Set();
+      const merged = allResults.flat().filter(p => {
+        if (seen.has(p.place_id)) return false;
+        seen.add(p.place_id);
+        return true;
+      }).sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+      if (merged.length > 0) {
+        window._lastResults = merged;
+        renderCards(merged);
+      } else {
         const label = TYPE_LABELS[currentLang][type] || TYPE_LABELS[currentLang].default;
         grid.innerHTML = `<div class="empty-state">
           <p style="font-size:2rem;margin-bottom:.8rem">${TYPE_ICONS[type] || '📍'}</p>
           <p>${T[currentLang]['no-results'](label)}</p>
         </div>`;
-      } else {
-        grid.innerHTML = `<div class="error-state"><p>${T[currentLang]['error']}</p></div>`;
       }
+    }).catch(() => {
+      grid.innerHTML = `<div class="error-state"><p>${T[currentLang]['error']}</p></div>`;
     });
   }
 
@@ -446,9 +472,9 @@
     const lang = currentLang;
     const labels = TYPE_LABELS[lang];
 
-    const visible = filterOpen
-      ? places.filter(p => p.opening_hours?.open_now === true)
-      : places;
+    const visible = places
+      .filter(p => !BLOCKED_PLACE_IDS.has(p.place_id))
+      .filter(p => !filterOpen || p.opening_hours?.open_now === true);
 
     if (visible.length === 0 && filterOpen) {
       const label = TYPE_LABELS[lang][currentType] || TYPE_LABELS[lang].default;
