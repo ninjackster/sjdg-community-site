@@ -399,6 +399,15 @@
       line-height: 1.55;
     }
 
+    .card-qa-link {
+      margin-left: auto;
+      font-size: .75rem;
+      color: #1877f2;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .card-qa-link:hover { text-decoration: underline; }
+
     .editor-form {
       display: grid;
       gap: 1rem;
@@ -1151,15 +1160,25 @@
         return;
       }
 
-      list.innerHTML = events.map((event) => `
+      list.innerHTML = events.map((event) => {
+        const postUrl = EVENT_LINKS.resolvePostingUrl(event, REGISTRY);
+        const hasPostUrl = postUrl && postUrl !== '#';
+        const sourceUrl = event.source_url || (REGISTRY.find((s) => s.id === event.source_id) || {}).url || '';
+        const isSourcePage = hasPostUrl && postUrl === sourceUrl;
+        const qaLink = hasPostUrl && !isSourcePage
+          ? `<a class="card-qa-link" href="${esc(postUrl)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">View post ↗</a>`
+          : '';
+        return `
         <button class="item-card ${event.candidate_id === selectedId ? 'active' : ''}" type="button" data-id="${esc(event.candidate_id)}">
           <div class="item-meta">
             <span class="status-chip status-${event.review_status}">${t(`status-${event.review_status}`)}</span>
+            ${qaLink}
           </div>
           <h3>${esc(event.title) || t('unknown')}</h3>
           <p class="item-copy">${esc(event.start_date) || t('unknown')} · ${esc(event.venue_name) || t('unknown')}<br>${sourceName(event.source_id)}</p>
         </button>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function renderSelectOptions() {

@@ -185,13 +185,6 @@ def discover_website_urls(source, max_items):
         if len(candidates) >= max_items:
             break
 
-    if not candidates:
-        candidates.append({
-            "posting_url": source["url"],
-            "caption_text": "",
-            "image_url": "",
-        })
-
     return candidates[:max_items]
 
 
