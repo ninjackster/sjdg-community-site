@@ -1,0 +1,21 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/businesses", "destination": "/businesses.html" },
+    { "source": "/events", "destination": "/events.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/events-prototype", "destination": "/events-prototype.html" },
+    { "source": "/api/import-flyer", "destination": "/api/import_flyer" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    }
+  ]
+}

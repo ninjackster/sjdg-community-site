@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events - San Jose de Gracia</title>
+  <meta name="description" content="Verified upcoming community events in San Jose de Gracia, Jalisco." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clay: #c4785a;
+      --earth: #8b5e3c;
+      --cream: #f5efe6;
+      --dark: #1c1309;
+      --sage: #748564;
+      --gold: #d4a843;
+      --mist: #ede8df;
+      --paper: #fffdf9;
+      --rose: #b85e66;
+      --pine: #53604b;
+      --sand: #ead9c1;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(212,168,67,.2), transparent 28%),
+        radial-gradient(circle at 88% 10%, rgba(196,120,90,.14), transparent 20%),
+        linear-gradient(180deg, #f7f2ea 0%, #f4ecdf 100%);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.15rem 3rem;
+      background: rgba(245,239,230,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(196,120,90,.16);
+    }
+
+    .nav-logo {
+      color: var(--dark);
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      letter-spacing: .06em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--earth);
+      text-decoration: none;
+      font-size: .8rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links .nav-active { color: var(--clay); }
+
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .25rem .4rem;
+    }
+
+    .lang-opt {
+      color: rgba(139,94,60,.42);
+      font-weight: 300;
+      transition: color .2s, font-weight .2s;
+    }
+
+    .lang-opt.active {
+      color: var(--clay);
+      font-weight: 700;
+    }
+
+    .lang-sep { color: rgba(139,94,60,.2); }
+
+    main {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .section-label {
+      color: var(--clay);
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .9rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+      gap: 1.15rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .panel {
+      background: rgba(255,253,249,.86);
+      border: 1px solid rgba(139,94,60,.12);
+      border-radius: 22px;
+      box-shadow: 0 18px 48px rgba(28,19,9,.06);
+    }
+
+    .hero-copy {
+      padding: 2.4rem;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.66), rgba(255,248,239,.8)),
+        radial-gradient(circle at bottom right, rgba(196,120,90,.2), transparent 38%);
+    }
+
+    .hero-copy::after {
+      content: '';
+      position: absolute;
+      right: -60px;
+      bottom: -60px;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,168,67,.18), transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      line-height: 1.02;
+      font-weight: 400;
+      max-width: 10ch;
+    }
+
+    .hero-title em {
+      color: var(--clay);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      max-width: 58ch;
+      margin-top: 1.1rem;
+      color: rgba(28,19,9,.68);
+      line-height: 1.8;
+      font-size: .98rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin-top: 1.5rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .9rem 1.5rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-size: .76rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: transform .2s, background .2s, color .2s, border-color .2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--clay);
+      color: var(--paper);
+      border-color: var(--clay);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--earth);
+      border-color: rgba(139,94,60,.22);
+    }
+
+    .hero-updated {
+      color: rgba(139,94,60,.62);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin-top: 1.2rem;
+    }
+
+    .hero-chip {
+      padding: .5rem .72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(139,94,60,.16);
+      background: rgba(245,239,230,.9);
+      color: var(--earth);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .feature-card {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      background:
+        linear-gradient(180deg, rgba(28,19,9,.96), rgba(49,34,21,.94)),
+        radial-gradient(circle at top right, rgba(212,168,67,.24), transparent 26%);
+      color: var(--cream);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    .feature-head,
+    .feature-body,
+    .feature-footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .feature-badge {
+      color: var(--gold);
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .feature-date {
+      width: 92px;
+      min-width: 92px;
+      border-radius: 18px;
+      background: rgba(245,239,230,.08);
+      border: 1px solid rgba(245,239,230,.12);
+      padding: .9rem .7rem;
+      text-align: center;
+    }
+
+    .feature-month {
+      display: block;
+      color: rgba(245,239,230,.66);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .feature-day {
+      display: block;
+      margin-top: .3rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      line-height: 1;
+      color: var(--paper);
+    }
+
+    .feature-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.08;
+      font-weight: 400;
+      max-width: 14ch;
+      margin-bottom: .8rem;
+    }
+
+    .feature-copy {
+      color: rgba(245,239,230,.76);
+      font-size: .96rem;
+      line-height: 1.75;
+      max-width: 48ch;
+    }
+
+    .feature-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin-top: 1rem;
+    }
+
+    .feature-pill {
+      padding: .45rem .65rem;
+      border-radius: 999px;
+      background: rgba(245,239,230,.08);
+      border: 1px solid rgba(245,239,230,.12);
+      color: rgba(245,239,230,.88);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .feature-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+      margin-top: auto;
+      padding-top: .9rem;
+      border-top: 1px solid rgba(245,239,230,.12);
+    }
+
+    .feature-source {
+      color: rgba(245,239,230,.68);
+      font-size: .82rem;
+      line-height: 1.45;
+    }
+
+    .feature-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .8rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(245,239,230,.2);
+      color: var(--paper);
+      text-decoration: none;
+      font-size: .74rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .85rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-card {
+      padding: 1rem 1.1rem;
+      background: rgba(255,253,249,.92);
+    }
+
+    .stat-label {
+      color: rgba(139,94,60,.66);
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: .35rem;
+    }
+
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      line-height: 1;
+      margin-bottom: .32rem;
+    }
+
+    .stat-copy {
+      color: rgba(28,19,9,.58);
+      font-size: .84rem;
+      line-height: 1.55;
+    }
+
+    .filter-panel {
+      padding: 1.15rem;
+      margin-bottom: 1rem;
+    }
+
+    .filter-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .filter-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .filter-copy {
+      color: rgba(28,19,9,.62);
+      font-size: .9rem;
+      line-height: 1.65;
+      max-width: 48ch;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+    }
+
+    .filter-btn {
+      padding: .68rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(139,94,60,.18);
+      background: #fff;
+      color: var(--earth);
+      font-size: .74rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .filter-btn.active {
+      background: var(--clay);
+      border-color: var(--clay);
+      color: var(--paper);
+    }
+
+    .content-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) 320px;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: .95rem;
+    }
+
+    .event-card {
+      display: grid;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: .9rem;
+      padding: 1rem;
+    }
+
+    .event-date {
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(234,217,193,.62), rgba(245,239,230,.9));
+      border: 1px solid rgba(139,94,60,.1);
+      padding: .85rem .4rem;
+      text-align: center;
+      align-self: start;
+    }
+
+    .event-month {
+      display: block;
+      color: rgba(139,94,60,.7);
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .event-day {
+      display: block;
+      margin-top: .28rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+
+    .event-meta-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .42rem;
+      margin-bottom: .65rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .34rem .56rem;
+      border-radius: 999px;
+      font-size: .66rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .badge-verified {
+      background: rgba(83,96,75,.12);
+      color: var(--pine);
+      border-color: rgba(83,96,75,.18);
+    }
+
+    .badge-radar {
+      background: rgba(212,168,67,.16);
+      color: #9d7519;
+      border-color: rgba(212,168,67,.22);
+    }
+
+    .badge-category {
+      background: rgba(196,120,90,.12);
+      color: var(--earth);
+      border-color: rgba(196,120,90,.16);
+    }
+
+    .event-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.24rem;
+      line-height: 1.18;
+      font-weight: 400;
+      margin-bottom: .55rem;
+    }
+
+    .event-copy {
+      color: rgba(28,19,9,.64);
+      font-size: .9rem;
+      line-height: 1.65;
+      margin-bottom: .85rem;
+    }
+
+    .event-details {
+      display: grid;
+      gap: .42rem;
+      color: rgba(28,19,9,.72);
+      font-size: .82rem;
+      margin-bottom: .85rem;
+    }
+
+    .event-details strong {
+      color: var(--earth);
+      font-weight: 500;
+      margin-right: .28rem;
+    }
+
+    .event-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+      padding-top: .85rem;
+      border-top: 1px solid rgba(139,94,60,.1);
+    }
+
+    .event-source {
+      color: rgba(139,94,60,.72);
+      font-size: .8rem;
+      line-height: 1.45;
+    }
+
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(139,94,60,.2);
+      color: var(--earth);
+      text-decoration: none;
+      padding: .72rem .92rem;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .source-link:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .empty-card {
+      padding: 1.4rem;
+      color: rgba(28,19,9,.58);
+      line-height: 1.7;
+    }
+
+    .sidebar {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .sidebar-panel {
+      padding: 1rem;
+    }
+
+    .sidebar-panel h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      margin-bottom: .45rem;
+    }
+
+    .sidebar-copy {
+      color: rgba(28,19,9,.62);
+      font-size: .88rem;
+      line-height: 1.6;
+      margin-bottom: .9rem;
+    }
+
+    .timeline-list,
+    .trust-list {
+      display: grid;
+      gap: .78rem;
+    }
+
+    .timeline-item,
+    .trust-item {
+      padding-top: .78rem;
+      border-top: 1px solid rgba(139,94,60,.12);
+    }
+
+    .timeline-date,
+    .trust-step {
+      color: var(--clay);
+      font-size: .68rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: .22rem;
+    }
+
+    .timeline-name,
+    .trust-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.02rem;
+      margin-bottom: .2rem;
+    }
+
+    .timeline-item p,
+    .trust-item p {
+      color: rgba(28,19,9,.6);
+      font-size: .82rem;
+      line-height: 1.5;
+    }
+
+    .radar-panel {
+      margin-top: 1rem;
+      padding: 1.1rem;
+      background:
+        linear-gradient(180deg, rgba(255,249,239,.94), rgba(255,253,249,.86)),
+        radial-gradient(circle at top right, rgba(212,168,67,.14), transparent 30%);
+    }
+
+    .radar-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: .95rem;
+    }
+
+    .radar-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 400;
+      line-height: 1.12;
+    }
+
+    .radar-copy {
+      color: rgba(28,19,9,.6);
+      font-size: .9rem;
+      line-height: 1.65;
+      max-width: 48ch;
+    }
+
+    .radar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: .85rem;
+    }
+
+    .footer-note {
+      margin-top: 1.3rem;
+      color: rgba(139,94,60,.66);
+      font-size: .82rem;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    @media (max-width: 1020px) {
+      .hero,
+      .content-layout,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 780px) {
+      nav {
+        padding: 1rem 1.25rem;
+      }
+
+      .nav-links {
+        gap: .95rem;
+      }
+
+      main {
+        padding: 1.5rem 1rem 3rem;
+      }
+
+      .hero-copy {
+        padding: 1.6rem;
+      }
+
+      .filter-head,
+      .radar-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav-links a { font-size: .74rem; }
+      .event-card { grid-template-columns: 1fr; }
+      .event-date { width: 88px; }
+      .feature-footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">San Jose de Gracia</a>
+    <ul class="nav-links">
+      <li><a href="/" data-i18n="nav-home">Home</a></li>
+      <li><a href="/businesses" data-i18n="nav-directory">Directory</a></li>
+      <li><a href="/events" class="nav-active" data-i18n="nav-events">Events</a></li>
+    </ul>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
+      <span class="lang-opt active" data-lang="en">EN</span>
+      <span class="lang-sep">·</span>
+      <span class="lang-opt" data-lang="es">ES</span>
+    </button>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="panel hero-copy">
+        <p class="section-label" data-i18n="hero-label">Community Calendar</p>
+        <h1 class="hero-title" data-i18n="hero-title">What is happening <em>in town</em></h1>
+        <p class="hero-sub" data-i18n="hero-copy">Upcoming events in San Jose de Gracia, gathered from public town sources and shown here once they are verified for the local feed.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#upcoming" data-i18n="hero-cta-primary">See upcoming events</a>
+          <a class="btn btn-secondary" href="/businesses" data-i18n="hero-cta-secondary">Explore the directory</a>
+          <span class="hero-updated" id="hero-updated"></span>
+        </div>
+        <div class="hero-chips" id="hero-chips"></div>
+      </div>
+      <aside class="panel feature-card" id="featured-card"></aside>
+    </section>
+
+    <section class="stats" id="stats"></section>
+
+    <section class="panel filter-panel" id="upcoming">
+      <div class="filter-head">
+        <div>
+          <p class="section-label" data-i18n="upcoming-label">Verified Events</p>
+          <h2 data-i18n="upcoming-title">Upcoming in San Jose</h2>
+        </div>
+        <p class="filter-copy" data-i18n="filter-copy">Only approved events appear here. Community sightings without enough details stay in the radar section below until they can be confirmed.</p>
+      </div>
+      <div class="filters" id="filters"></div>
+    </section>
+
+    <section class="content-layout">
+      <div class="events-grid" id="events-grid"></div>
+      <aside class="sidebar">
+        <section class="panel sidebar-panel">
+          <p class="section-label" data-i18n="timeline-label">Season Snapshot</p>
+          <h3 data-i18n="timeline-title">This season at a glance</h3>
+          <p class="sidebar-copy" data-i18n="timeline-copy">A quick look at the next verified events coming to the plaza and other familiar town spots.</p>
+          <div class="timeline-list" id="timeline-list"></div>
+        </section>
+        <section class="panel sidebar-panel">
+          <p class="section-label" data-i18n="trust-label">How We Verify</p>
+          <h3 data-i18n="trust-title">Before an event appears</h3>
+          <div class="trust-list">
+            <div class="trust-item">
+              <div class="trust-step" data-i18n="trust-step-1">Step 1</div>
+              <div class="trust-name" data-i18n="trust-name-1">Watch public local sources</div>
+              <p data-i18n="trust-copy-1">The system monitors public town pages, fiestas pages, culture pages, and other known local sources.</p>
+            </div>
+            <div class="trust-item">
+              <div class="trust-step" data-i18n="trust-step-2">Step 2</div>
+              <div class="trust-name" data-i18n="trust-name-2">Check town relevance</div>
+              <p data-i18n="trust-copy-2">Posts must clearly point to San Jose de Gracia or a known venue in town before they make the public feed.</p>
+            </div>
+            <div class="trust-item">
+              <div class="trust-step" data-i18n="trust-step-3">Step 3</div>
+              <div class="trust-name" data-i18n="trust-name-3">Publish only confirmed details</div>
+              <p data-i18n="trust-copy-3">Events missing a clear date, place, or source stay out of the main calendar until they can be verified.</p>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </section>
+
+    <section class="panel radar-panel" id="radar-panel">
+      <div class="radar-head">
+        <div>
+          <p class="section-label" data-i18n="radar-label">Community Radar</p>
+          <h2 data-i18n="radar-title">Still being confirmed</h2>
+        </div>
+        <p class="radar-copy" data-i18n="radar-copy">These posts look local and useful, but something important is still missing. They stay here until a date, place, or source detail becomes clear.</p>
+      </div>
+      <div class="radar-grid" id="radar-grid"></div>
+    </section>
+
+    <p class="footer-note" data-i18n="footer-note">Events are shown with their original source so neighbors can double-check details and planners can see where each listing came from.</p>
+  </main>
+
+  <script src="data/source-registry.js"></script>
+  <script src="data/event-candidates.js"></script>
+  <script src="data/event-store.js"></script>
+  <script src="data/event-links.js"></script>
+  <script src="data/live-events-api.js"></script>
+  <script>
+    const T = {
+      en: {
+        'nav-home': 'Home',
+        'nav-directory': 'Directory',
+        'nav-events': 'Events',
+        'hero-label': 'Community Calendar',
+        'hero-title': 'What is happening <em>in town</em>',
+        'hero-copy': 'Upcoming events in San Jose de Gracia, gathered from public town sources and shown here once they are verified for the local feed.',
+        'hero-cta-primary': 'See upcoming events',
+        'hero-cta-secondary': 'Explore the directory',
+        'hero-chip-1': 'Verified from public sources',
+        'hero-chip-2': 'Town-first filtering',
+        'hero-chip-3': 'Original source attached',
+        'updated-prefix': 'Updated',
+        'feature-label': 'Next Up',
+        'feature-empty-title': 'More events are on the way',
+        'feature-empty-copy': 'Once upcoming events are verified, the next confirmed one will appear here.',
+        'feature-source': 'Published from',
+        'feature-open': 'View post',
+        'verified': 'Verified',
+        'radar': 'Unconfirmed',
+        'stat-verified-label': 'Verified Upcoming',
+        'stat-verified-copy': 'Approved town events currently on the calendar.',
+        'stat-sources-label': 'Sources Monitored',
+        'stat-sources-copy': 'Public pages and websites watched for event activity.',
+        'stat-radar-label': 'Still Confirming',
+        'stat-radar-copy': 'Leads waiting on missing date or venue details.',
+        'upcoming-label': 'Verified Events',
+        'upcoming-title': 'Upcoming in San Jose',
+        'filter-copy': 'Only approved events appear here. Community sightings without enough details stay in the radar section below until they can be confirmed.',
+        'filter-all': 'All events',
+        'timeline-label': 'Season Snapshot',
+        'timeline-title': 'This season at a glance',
+        'timeline-copy': 'A quick look at the next verified events coming to the plaza and other familiar town spots.',
+        'trust-label': 'How We Verify',
+        'trust-title': 'Before an event appears',
+        'trust-step-1': 'Step 1',
+        'trust-step-2': 'Step 2',
+        'trust-step-3': 'Step 3',
+        'trust-name-1': 'Watch public local sources',
+        'trust-name-2': 'Check town relevance',
+        'trust-name-3': 'Publish only confirmed details',
+        'trust-copy-1': 'The system monitors public town pages, fiestas pages, culture pages, and other known local sources.',
+        'trust-copy-2': 'Posts must clearly point to San Jose de Gracia or a known venue in town before they make the public feed.',
+        'trust-copy-3': 'Events missing a clear date, place, or source stay out of the main calendar until they can be verified.',
+        'radar-label': 'Community Radar',
+        'radar-title': 'Still being confirmed',
+        'radar-copy': 'These posts look local and useful, but something important is still missing. They stay here until a date, place, or source detail becomes clear.',
+        'footer-note': 'Events are shown with their original source so neighbors can double-check details and planners can see where each listing came from.',
+        'meta-time': 'Time',
+        'meta-venue': 'Venue',
+        'meta-organizer': 'Organizer',
+        'source-prefix': 'Source',
+        'open-source': 'Open source',
+        'open-post': 'View post',
+        'unknown': 'Unknown',
+        'no-events-title': 'No verified events yet',
+        'no-events-copy': 'As soon as public town posts are confirmed, they will appear here.',
+        'cat-culture': 'Culture',
+        'cat-sports': 'Sports',
+        'cat-music': 'Music',
+        'cat-fundraiser': 'Fundraiser',
+        'cat-civic': 'Civic',
+        'cat-religious': 'Religious',
+        'cat-market': 'Market',
+        'cat-default': 'Community'
+      },
+      es: {
+        'nav-home': 'Inicio',
+        'nav-directory': 'Directorio',
+        'nav-events': 'Eventos',
+        'hero-label': 'Agenda del Pueblo',
+        'hero-title': 'Lo que esta pasando <em>en el pueblo</em>',
+        'hero-copy': 'Proximos eventos en San Jose de Gracia, reunidos desde fuentes publicas del pueblo y publicados aqui cuando quedan verificados para el feed local.',
+        'hero-cta-primary': 'Ver proximos eventos',
+        'hero-cta-secondary': 'Explorar directorio',
+        'hero-chip-1': 'Verificados desde fuentes publicas',
+        'hero-chip-2': 'Filtro del pueblo primero',
+        'hero-chip-3': 'Fuente original incluida',
+        'updated-prefix': 'Actualizado',
+        'feature-label': 'Lo siguiente',
+        'feature-empty-title': 'Vienen mas eventos',
+        'feature-empty-copy': 'En cuanto se verifiquen mas eventos proximos, aqui aparecera el siguiente confirmado.',
+        'feature-source': 'Publicado desde',
+        'feature-open': 'Ver publicacion',
+        'verified': 'Verificado',
+        'radar': 'Por confirmar',
+        'stat-verified-label': 'Verificados',
+        'stat-verified-copy': 'Eventos del pueblo aprobados y visibles en el calendario.',
+        'stat-sources-label': 'Fuentes Monitoreadas',
+        'stat-sources-copy': 'Paginas y sitios publicos revisados por actividad de eventos.',
+        'stat-radar-label': 'Por Confirmar',
+        'stat-radar-copy': 'Pistas locales que todavia esperan fecha o detalle clave.',
+        'upcoming-label': 'Eventos Verificados',
+        'upcoming-title': 'Lo que viene en San Jose',
+        'filter-copy': 'Solo aparecen aqui los eventos aprobados. Los avisos comunitarios sin suficientes detalles se quedan abajo en radar hasta poder confirmarlos.',
+        'filter-all': 'Todos',
+        'timeline-label': 'Panorama',
+        'timeline-title': 'La temporada de un vistazo',
+        'timeline-copy': 'Un vistazo rapido a los siguientes eventos verificados que vienen para la plaza y otros puntos del pueblo.',
+        'trust-label': 'Como se verifica',
+        'trust-title': 'Antes de que aparezca un evento',
+        'trust-step-1': 'Paso 1',
+        'trust-step-2': 'Paso 2',
+        'trust-step-3': 'Paso 3',
+        'trust-name-1': 'Vigilar fuentes publicas locales',
+        'trust-name-2': 'Confirmar que si es del pueblo',
+        'trust-name-3': 'Publicar solo detalles confirmados',
+        'trust-copy-1': 'El sistema monitorea paginas publicas del pueblo, fiestas, cultura y otras fuentes locales conocidas.',
+        'trust-copy-2': 'Los posts deben apuntar claramente a San Jose de Gracia o a un venue conocido del pueblo antes de entrar al feed publico.',
+        'trust-copy-3': 'Los eventos sin fecha, lugar o fuente clara no entran al calendario principal hasta verificarse.',
+        'radar-label': 'Radar Comunitario',
+        'radar-title': 'Todavia en confirmacion',
+        'radar-copy': 'Estos posts se ven locales y utiles, pero todavia les falta un dato importante. Se quedan aqui hasta que quede clara la fecha, el lugar o algun detalle de origen.',
+        'footer-note': 'Cada evento se muestra con su fuente original para que la gente pueda revisar detalles y ver de donde salio cada listado.',
+        'meta-time': 'Hora',
+        'meta-venue': 'Lugar',
+        'meta-organizer': 'Organiza',
+        'source-prefix': 'Fuente',
+        'open-source': 'Abrir fuente',
+        'open-post': 'Ver publicacion',
+        'unknown': 'Sin dato',
+        'no-events-title': 'Todavia no hay eventos verificados',
+        'no-events-copy': 'En cuanto se confirmen publicaciones publicas del pueblo, apareceran aqui.',
+        'cat-culture': 'Cultura',
+        'cat-sports': 'Deporte',
+        'cat-music': 'Musica',
+        'cat-fundraiser': 'Beneficencia',
+        'cat-civic': 'Civico',
+        'cat-religious': 'Religioso',
+        'cat-market': 'Mercado',
+        'cat-default': 'Comunidad'
+      }
+    };
+
+    const REGISTRY = window.SJDG_SOURCE_REGISTRY || [];
+    const EVENT_STORE = window.SJDG_EVENT_STORE;
+    const EVENT_LINKS = window.SJDG_EVENT_LINKS;
+    const LIVE_API = window.SJDG_LIVE_EVENTS_API;
+    const SOURCE_MAP = new Map(REGISTRY.map((source) => [source.id, source]));
+
+    let currentLang = 'en';
+    let currentFilter = 'all';
+    let eventRecords = EVENT_STORE.getEvents();
+    let eventsMeta = EVENT_STORE.getMeta();
+
+    function t(key) {
+      return T[currentLang][key];
+    }
+
+    function esc(str) {
+      return String(str == null ? '' : str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;');
+    }
+
+    function localeCode() {
+      return currentLang === 'es' ? 'es-MX' : 'en-US';
+    }
+
+    function parseEventDate(dateString) {
+      return dateString ? new Date(`${dateString}T12:00:00`) : null;
+    }
+
+    function formatMonth(dateString) {
+      const date = parseEventDate(dateString);
+      return date ? new Intl.DateTimeFormat(localeCode(), { month: 'short' }).format(date) : '--';
+    }
+
+    function formatDay(dateString) {
+      const date = parseEventDate(dateString);
+      return date ? new Intl.DateTimeFormat(localeCode(), { day: '2-digit' }).format(date) : '--';
+    }
+
+    function formatLongDate(dateString) {
+      const date = parseEventDate(dateString);
+      return date ? new Intl.DateTimeFormat(localeCode(), { month: 'long', day: 'numeric', weekday: 'long' }).format(date) : t('unknown');
+    }
+
+    function categoryLabel(category) {
+      return t(`cat-${category}`) || t('cat-default');
+    }
+
+    function sourceName(sourceId) {
+      const source = SOURCE_MAP.get(sourceId);
+      return source ? source.name : sourceId;
+    }
+
+    function approvedEvents() {
+      return eventRecords
+        .filter((event) => event.review_status === 'approved' && event.location_scope === 'town')
+        .sort((a, b) => {
+          const aDate = parseEventDate(a.start_date);
+          const bDate = parseEventDate(b.start_date);
+          if (!aDate && !bDate) return a.title.localeCompare(b.title);
+          if (!aDate) return 1;
+          if (!bDate) return -1;
+          return aDate - bDate;
+        });
+    }
+
+    function radarEvents() {
+      return eventRecords
+        .filter((event) => ['pending', 'needs_more_info'].includes(event.review_status) && event.location_scope === 'town')
+        .sort((a, b) => {
+          const aDate = parseEventDate(a.start_date);
+          const bDate = parseEventDate(b.start_date);
+          if (!aDate && !bDate) return a.title.localeCompare(b.title);
+          if (!aDate) return 1;
+          if (!bDate) return -1;
+          return aDate - bDate;
+        });
+    }
+
+    function categoriesForFilters() {
+      const categories = Array.from(new Set(approvedEvents().map((event) => event.category).filter(Boolean)));
+      return ['all', ...categories];
+    }
+
+    function filteredApprovedEvents() {
+      const events = approvedEvents();
+      return currentFilter === 'all' ? events : events.filter((event) => event.category === currentFilter);
+    }
+
+    function applyLang(lang, save) {
+      currentLang = lang;
+      document.documentElement.lang = lang === 'es' ? 'es-MX' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach((node) => {
+        const value = t(node.dataset.i18n);
+        if (typeof value === 'string') node.innerHTML = value;
+      });
+      document.querySelectorAll('.lang-opt').forEach((node) => {
+        node.classList.toggle('active', node.dataset.lang === lang);
+      });
+      if (save) localStorage.setItem('lang', lang);
+      renderHero();
+      renderStats();
+      renderFilters();
+      renderEvents();
+      renderTimeline();
+      renderRadar();
+      renderUpdated();
+    }
+
+    function renderUpdated() {
+      if (!eventsMeta.savedAt) {
+        document.getElementById('hero-updated').textContent = '';
+        return;
+      }
+      const formatted = new Intl.DateTimeFormat(localeCode(), {
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      }).format(new Date(eventsMeta.savedAt));
+      document.getElementById('hero-updated').textContent = `${t('updated-prefix')} ${formatted}`;
+    }
+
+    function renderHero() {
+      document.getElementById('hero-chips').innerHTML = [
+        t('hero-chip-1'),
+        t('hero-chip-2'),
+        t('hero-chip-3')
+      ].map((label) => `<span class="hero-chip">${label}</span>`).join('');
+
+      const featured = approvedEvents()[0];
+      const card = document.getElementById('featured-card');
+
+      if (!featured) {
+        card.innerHTML = `
+          <div class="feature-head">
+            <div class="feature-badge">${t('feature-label')}</div>
+          </div>
+          <div class="feature-body">
+            <h2>${t('feature-empty-title')}</h2>
+            <p class="feature-copy">${t('feature-empty-copy')}</p>
+          </div>
+        `;
+        return;
+      }
+
+      card.innerHTML = `
+        <div class="feature-head">
+          <div class="feature-badge">${t('feature-label')}</div>
+          <div class="feature-date">
+            <span class="feature-month">${formatMonth(featured.start_date)}</span>
+            <span class="feature-day">${formatDay(featured.start_date)}</span>
+          </div>
+        </div>
+        <div class="feature-body">
+          <h2>${esc(featured.title)}</h2>
+          <p class="feature-copy">${esc(featured.summary)}</p>
+          <div class="feature-meta">
+            <span class="feature-pill">${categoryLabel(featured.category)}</span>
+            <span class="feature-pill">${esc(featured.start_time_text) || t('unknown')}</span>
+            <span class="feature-pill">${esc(featured.venue_name) || t('unknown')}</span>
+          </div>
+        </div>
+        <div class="feature-footer">
+          <div class="feature-source">${t('feature-source')}<br>${sourceName(featured.source_id)}</div>
+          <a class="feature-link" href="${EVENT_LINKS.resolvePostingUrl(featured, REGISTRY)}" target="_blank" rel="noreferrer">${t('feature-open')}</a>
+        </div>
+      `;
+    }
+
+    function renderStats() {
+      const verifiedCount = approvedEvents().length;
+      const radarCount = radarEvents().length;
+      const cards = [
+        {
+          label: t('stat-verified-label'),
+          value: verifiedCount,
+          copy: t('stat-verified-copy')
+        },
+        {
+          label: t('stat-sources-label'),
+          value: REGISTRY.length,
+          copy: t('stat-sources-copy')
+        },
+        {
+          label: t('stat-radar-label'),
+          value: radarCount,
+          copy: t('stat-radar-copy')
+        }
+      ];
+
+      document.getElementById('stats').innerHTML = cards.map((card) => `
+        <article class="panel stat-card">
+          <div class="stat-label">${card.label}</div>
+          <div class="stat-value">${card.value}</div>
+          <div class="stat-copy">${card.copy}</div>
+        </article>
+      `).join('');
+    }
+
+    function renderFilters() {
+      document.getElementById('filters').innerHTML = categoriesForFilters().map((category) => `
+        <button class="filter-btn ${currentFilter === category ? 'active' : ''}" data-filter="${category}">
+          ${category === 'all' ? t('filter-all') : categoryLabel(category)}
+        </button>
+      `).join('');
+    }
+
+    function renderEvents() {
+      const events = filteredApprovedEvents();
+      const grid = document.getElementById('events-grid');
+
+      if (!events.length) {
+        grid.innerHTML = `
+          <article class="panel empty-card">
+            <h3 class="event-title">${t('no-events-title')}</h3>
+            <p class="event-copy">${t('no-events-copy')}</p>
+          </article>
+        `;
+        return;
+      }
+
+      grid.innerHTML = events.map((event) => `
+        <article class="panel event-card">
+          <div class="event-date">
+            <span class="event-month">${formatMonth(event.start_date)}</span>
+            <span class="event-day">${formatDay(event.start_date)}</span>
+          </div>
+          <div>
+            <div class="event-meta-top">
+              <span class="badge badge-verified">${t('verified')}</span>
+              <span class="badge badge-category">${categoryLabel(event.category)}</span>
+            </div>
+            <h3 class="event-title">${esc(event.title)}</h3>
+            <p class="event-copy">${esc(event.summary)}</p>
+            <div class="event-details">
+              <div><strong>${t('meta-time')}:</strong>${esc(event.start_time_text) || t('unknown')}</div>
+              <div><strong>${t('meta-venue')}:</strong>${esc(event.venue_name) || t('unknown')}</div>
+              <div><strong>${t('meta-organizer')}:</strong>${esc(event.organizer_name) || t('unknown')}</div>
+            </div>
+            <div class="event-footer">
+              <div class="event-source">${t('source-prefix')}: ${sourceName(event.source_id)}<br>${formatLongDate(event.start_date)}</div>
+              <a class="source-link" href="${EVENT_LINKS.resolvePostingUrl(event, REGISTRY)}" target="_blank" rel="noreferrer">${t('open-post')}</a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderTimeline() {
+      const items = approvedEvents().slice(0, 5);
+      document.getElementById('timeline-list').innerHTML = items.map((event) => `
+        <div class="timeline-item">
+          <div class="timeline-date">${formatLongDate(event.start_date)}</div>
+          <div class="timeline-name">${esc(event.title)}</div>
+          <p>${esc(event.venue_name) || t('unknown')} · ${esc(event.start_time_text) || t('unknown')}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderRadar() {
+      const events = radarEvents();
+      const panel = document.getElementById('radar-panel');
+      const grid = document.getElementById('radar-grid');
+
+      if (!events.length) {
+        panel.style.display = 'none';
+        return;
+      }
+
+      panel.style.display = '';
+      grid.innerHTML = events.map((event) => `
+        <article class="panel event-card">
+          <div class="event-date">
+            <span class="event-month">${formatMonth(event.start_date)}</span>
+            <span class="event-day">${formatDay(event.start_date)}</span>
+          </div>
+          <div>
+            <div class="event-meta-top">
+              <span class="badge badge-radar">${t('radar')}</span>
+              <span class="badge badge-category">${categoryLabel(event.category)}</span>
+            </div>
+            <h3 class="event-title">${esc(event.title)}</h3>
+            <p class="event-copy">${esc(event.summary)}</p>
+            <div class="event-details">
+              <div><strong>${t('meta-time')}:</strong>${esc(event.start_time_text) || t('unknown')}</div>
+              <div><strong>${t('meta-venue')}:</strong>${esc(event.venue_name) || t('unknown')}</div>
+              <div><strong>${t('meta-organizer')}:</strong>${esc(event.organizer_name) || t('unknown')}</div>
+            </div>
+            <div class="event-footer">
+              <div class="event-source">${t('source-prefix')}: ${sourceName(event.source_id)}</div>
+              <a class="source-link" href="${EVENT_LINKS.resolvePostingUrl(event, REGISTRY)}" target="_blank" rel="noreferrer">${t('open-post')}</a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    document.getElementById('lang-toggle').addEventListener('click', (event) => {
+      const button = event.target.closest('.lang-opt');
+      if (!button) return;
+      applyLang(button.dataset.lang, true);
+    });
+
+    document.getElementById('filters').addEventListener('click', (event) => {
+      const button = event.target.closest('.filter-btn');
+      if (!button) return;
+      currentFilter = button.dataset.filter;
+      renderFilters();
+      renderEvents();
+    });
+
+    async function loadEvents() {
+      try {
+        const result = await LIVE_API.fetchEvents();
+        eventRecords = Array.isArray(result.events)
+          ? result.events.map((event, index) => EVENT_STORE.normalizeEvent(event, index))
+          : EVENT_STORE.getEvents();
+        eventsMeta = {
+          mode: result.mode || 'seed',
+          savedAt: result.updated_at || null
+        };
+      } catch (error) {
+        eventRecords = EVENT_STORE.getEvents();
+        const meta = EVENT_STORE.getMeta();
+        eventsMeta = {
+          mode: meta.mode,
+          savedAt: meta.savedAt
+        };
+      }
+
+      renderHero();
+      renderStats();
+      renderFilters();
+      renderEvents();
+      renderTimeline();
+      renderRadar();
+      renderUpdated();
+    }
+
+    async function boot() {
+      const stored = localStorage.getItem('lang');
+      if (stored === 'en' || stored === 'es') {
+        applyLang(stored, false);
+      } else {
+        const locale = (navigator.language || '').toLowerCase();
+        applyLang(locale.startsWith('es') ? 'es' : 'en', false);
+      }
+      await loadEvents();
+    }
+
+    boot();
+  </script>
+</body>
+</html>

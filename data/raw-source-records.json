@@ -1,0 +1,66 @@
+[
+  {
+    "record_id": "raw_001",
+    "source_id": "official-town-facebook",
+    "source_url": "https://www.facebook.com/profile.php?id=100064799226675",
+    "source_type": "facebook_post",
+    "collected_at": "2026-03-09T08:10:00-06:00",
+    "media_urls": [
+      "https://example.com/posters/cine-plaza.jpg"
+    ],
+    "raw_text": "TITLE: Cine bajo las estrellas\nDATE: 2026-04-18\nTIME: 20:30\nVENUE: Plaza Principal\nORGANIZER: Delegacion San Jose de Gracia\nCATEGORY: culture\nLOCATION_SCOPE: town\nDETAILS: Proyeccion familiar al aire libre con sillas en la plaza."
+  },
+  {
+    "record_id": "raw_002",
+    "source_id": "casa-cultura-facebook",
+    "source_url": "https://www.facebook.com/casadelacultura.d.sanjosedegracia",
+    "source_type": "facebook_post",
+    "collected_at": "2026-03-09T08:35:00-06:00",
+    "media_urls": [
+      "https://example.com/posters/danza-folklorica.jpg"
+    ],
+    "raw_text": "TITLE: Taller de danza folklorica\nDATE: 2026-03-17\nTIME: 17:00\nVENUE: Casa de Cultura\nORGANIZER: Casa de Cultura\nCATEGORY: culture\nLOCATION_SCOPE: town\nDETAILS: Clase abierta para ninos y jovenes, cupo limitado."
+  },
+  {
+    "record_id": "raw_003",
+    "source_id": "mayor-facebook",
+    "source_url": "https://www.facebook.com/profile.php?id=61572577994207",
+    "source_type": "facebook_post",
+    "collected_at": "2026-03-09T09:00:00-06:00",
+    "media_urls": [
+      "https://example.com/posters/carrera-5k.jpg"
+    ],
+    "raw_text": "TITLE: Carrera 5K San Jose de Gracia\nDATE: 2026-05-03\nTIME: 07:00\nVENUE: Plaza Principal\nORGANIZER: Gobierno Municipal\nCATEGORY: sports\nLOCATION_SCOPE: town\nDETAILS: Salida y meta en la plaza principal con inscripcion gratuita."
+  },
+  {
+    "record_id": "raw_004",
+    "source_id": "fiestas-patronales-facebook",
+    "source_url": "https://www.facebook.com/profile.php?id=61583626465539",
+    "source_type": "facebook_post",
+    "collected_at": "2026-03-09T09:20:00-06:00",
+    "media_urls": [
+      "https://example.com/posters/noche-banda.jpg"
+    ],
+    "raw_text": "TITLE: Noche de banda\nDATE: 2026-05-09\nTIME: 22:00\nVENUE: Plaza Principal\nORGANIZER: Fiestas Patronales\nCATEGORY: music\nLOCATION_SCOPE: town\nDETAILS: Presentacion estelar durante las fiestas patronales."
+  },
+  {
+    "record_id": "raw_005",
+    "source_id": "ayuntamiento-tepatitlan",
+    "source_url": "https://www.tepatitlan.gob.mx/",
+    "source_type": "website_article",
+    "collected_at": "2026-03-09T10:05:00-06:00",
+    "media_urls": [],
+    "raw_text": "TITLE: Jornada de servicios municipales\nDATE: 2026-03-20\nTIME: 09:00\nVENUE: Tepatitlan Centro\nORGANIZER: Ayuntamiento de Tepatitlan\nCATEGORY: civic\nLOCATION_SCOPE: municipality\nDETAILS: Evento municipal en cabecera sin referencia al pueblo."
+  },
+  {
+    "record_id": "raw_006",
+    "source_id": "for-sale-group",
+    "source_url": "https://www.facebook.com/groups/315972362846384",
+    "source_type": "facebook_post",
+    "collected_at": "2026-03-09T10:35:00-06:00",
+    "media_urls": [
+      "https://example.com/posters/rodeo-beneficencia.jpg"
+    ],
+    "raw_text": "TITLE: Rodeo de beneficencia\nTIME: Por confirmar\nVENUE: Lienzo Charro\nORGANIZER: Vecinos de San Jose\nCATEGORY: fundraiser\nLOCATION_SCOPE: town\nDETAILS: Se comenta en el grupo que habra rodeo y comida, falta confirmar fecha exacta."
+  }
+]

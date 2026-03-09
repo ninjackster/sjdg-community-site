@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Taqueria Los Potrillos",
+      "runtimeExecutable": "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3",
+      "runtimeArgs": ["-m", "http.server", "8181", "--directory", "/Users/jaimemurillo/Desktop/Taqueria Webpage"],
+      "port": 8181
+    },
+    {
+      "name": "SJDG Webpage",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["/Users/jaimemurillo/Desktop/SJDG Webpage/.claude/start-dev.sh"],
+      "port": 3030
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+.vercel
+data/runtime-events.json
+.worker-artifacts/
+__pycache__/
+*.pyc
+.DS_Store
