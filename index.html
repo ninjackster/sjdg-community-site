@@ -12,7 +12,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>San José de Gracia — Jalisco, México</title>
-  <link rel="icon" type="image/png" href="/temple.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -768,6 +769,204 @@
       .events-grid { grid-template-columns: 1fr; }
       .listings { grid-template-columns: 1fr; }
     }
+
+    /* ── RENTAL POPUP ── */
+    .rental-popup {
+      position: fixed;
+      bottom: 1.5rem; left: 1.5rem;
+      z-index: 90;
+      width: 300px;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 8px 32px rgba(28,19,9,.15);
+      border: 1px solid rgba(28,19,9,.08);
+      overflow: hidden;
+      transform: translateX(-120%);
+      opacity: 0;
+      transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .4s;
+    }
+    .rental-popup.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .rental-popup-header {
+      background: var(--dark);
+      color: var(--cream);
+      padding: .55rem .9rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .rental-popup-header span {
+      font-size: .6rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .rental-popup-close {
+      background: none; border: none; cursor: pointer;
+      color: rgba(245,239,230,.5);
+      font-size: 1.1rem; line-height: 1;
+      transition: color .2s;
+      padding: 0 0 0 .5rem;
+    }
+    .rental-popup-close:hover { color: var(--gold); }
+    .rental-popup-img {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+      background: var(--dark);
+      display: block;
+    }
+    .rental-popup-body {
+      padding: 1rem 1.1rem;
+    }
+    .rental-popup-avail {
+      display: inline-block;
+      font-size: .58rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #2a9d4a;
+      background: rgba(42,157,74,.08);
+      padding: .2rem .5rem;
+      border-radius: 2px;
+      margin-bottom: .6rem;
+    }
+    .rental-popup-avail::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: #2a9d4a;
+      border-radius: 50%;
+      margin-right: .35rem;
+      vertical-align: middle;
+    }
+    .rental-popup-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: .1rem;
+    }
+    .rental-popup-title em {
+      font-weight: 400;
+      font-style: italic;
+      color: var(--clay);
+    }
+    .rental-popup-addr {
+      font-size: .72rem;
+      color: rgba(28,19,9,.4);
+      margin-bottom: .8rem;
+    }
+    .rental-popup-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .4rem;
+      margin-bottom: .8rem;
+    }
+    .rental-popup-stat {
+      background: rgba(28,19,9,.025);
+      border: 1px solid rgba(28,19,9,.05);
+      border-radius: 2px;
+      padding: .45rem .55rem;
+    }
+    .rental-popup-stat strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 700;
+    }
+    .rental-popup-stat small {
+      font-size: .58rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(28,19,9,.4);
+    }
+    .rental-popup-includes {
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(28,19,9,.35);
+      margin-bottom: .4rem;
+    }
+    .rental-popup-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem;
+      margin-bottom: .9rem;
+    }
+    .rental-popup-tag {
+      font-size: .65rem;
+      padding: .2rem .5rem;
+      border: 1px solid rgba(28,19,9,.1);
+      border-radius: 2px;
+      color: rgba(28,19,9,.55);
+    }
+    .rental-popup-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      width: 100%;
+      padding: .6rem;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .rental-popup-wa:hover { background: #1da851; }
+    .rental-popup-wa svg {
+      width: .9rem; height: .9rem;
+      fill: none; stroke: #fff;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .rental-popup-note {
+      font-size: .62rem;
+      color: rgba(28,19,9,.35);
+      text-align: center;
+      margin-top: .5rem;
+    }
+    /* minimized tab */
+    .rental-tab {
+      position: fixed;
+      bottom: 1.5rem; left: 0;
+      z-index: 90;
+      background: var(--dark);
+      color: var(--gold);
+      padding: .6rem .7rem .6rem .55rem;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      font-size: .6rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      box-shadow: 2px 0 12px rgba(28,19,9,.15);
+      transition: background .2s, transform .3s, opacity .3s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .rental-tab.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .rental-tab:hover {
+      background: var(--earth);
+    }
+
+    @media (max-width: 480px) {
+      .rental-popup {
+        left: .75rem; right: .75rem;
+        bottom: .75rem;
+        width: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -786,6 +985,7 @@
       <li><a href="#events" data-i18n="nav-events">Events</a></li>
       <li><a href="#getting-here" data-i18n="nav-getting-here">Getting Here</a></li>
       <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+      <li><a href="/advertise" data-i18n="nav-advertise">Advertise</a></li>
     </ul>
     <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
       <span class="lang-opt active" data-lang="en">EN</span>
@@ -804,6 +1004,7 @@
     <a href="#events" data-i18n="nav-events" onclick="closeMobileMenu()">Events</a>
     <a href="#getting-here" data-i18n="nav-getting-here" onclick="closeMobileMenu()">Getting Here</a>
     <a href="#contact" data-i18n="nav-contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="/advertise" data-i18n="nav-advertise" onclick="closeMobileMenu()">Advertise</a>
     <div class="mobile-lang">
       <button class="lang-opt active" data-lang="en" id="ml-en">EN</button>
       <button class="lang-opt" data-lang="es" id="ml-es">ES</button>
@@ -1058,11 +1259,58 @@
 
   </main>
 
+  <!-- RENTAL TAB (minimized) -->
+  <div class="rental-tab" id="rentalTab" data-i18n="rental-tab">Se Renta</div>
+
+  <!-- RENTAL POPUP -->
+  <div class="rental-popup" id="rentalPopup">
+    <div class="rental-popup-header">
+      <span data-i18n="rental-header">Se Renta · San Jose de Gracia</span>
+      <button class="rental-popup-close" id="rentalClose" aria-label="Close">&times;</button>
+    </div>
+    <img src="/local.jpg" alt="Local Comercial — Independencia 31" class="rental-popup-img" />
+    <div class="rental-popup-body">
+      <span class="rental-popup-avail" data-i18n="rental-avail">Disponible</span>
+      <div class="rental-popup-title">Local <em>Comercial</em></div>
+      <a href="https://maps.google.com/?q=Independencia+31,+San+Jose+de+Gracia,+Jalisco" target="_blank" rel="noopener" class="rental-popup-addr" style="display:flex;align-items:center;gap:.3rem;text-decoration:none;color:rgba(28,19,9,.4);transition:color .2s;" onmouseover="this.style.color='var(--clay)'" onmouseout="this.style.color='rgba(28,19,9,.4)'"><svg style="width:.7rem;height:.7rem;flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Independencia 31, San Jose de Gracia, Jal.</a>
+      <div class="rental-popup-stats">
+        <div class="rental-popup-stat">
+          <strong>25m&sup2;</strong>
+          <small data-i18n="rental-area">Area principal</small>
+        </div>
+        <div class="rental-popup-stat">
+          <strong>5.5&times;3.5</strong>
+          <small data-i18n="rental-dims">Metros (L&times;A)</small>
+        </div>
+        <div class="rental-popup-stat">
+          <strong>+Almacen</strong>
+          <small data-i18n="rental-storage">Espacio de bodega</small>
+        </div>
+        <div class="rental-popup-stat">
+          <strong>+Patio</strong>
+          <small data-i18n="rental-patio">Con toma de agua</small>
+        </div>
+      </div>
+      <p class="rental-popup-includes" data-i18n="rental-includes">Incluido en la renta</p>
+      <div class="rental-popup-tags">
+        <span class="rental-popup-tag">Internet</span>
+        <span class="rental-popup-tag" data-i18n="rental-cameras">Camaras</span>
+        <span class="rental-popup-tag" data-i18n="rental-bath">Medio bano</span>
+      </div>
+      <a href="https://wa.me/523316963003?text=Hola%2C%20me%20interesa%20el%20local%20comercial%20en%20Independencia%2031" target="_blank" rel="noopener" class="rental-popup-wa">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        <span data-i18n="rental-wa">Informes: 331 696 3003</span>
+      </a>
+      <p class="rental-popup-note" data-i18n="rental-note">Contrato minimo 1 ano · Luz y agua aparte</p>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer id="contact">
     <a href="#" class="footer-logo">San José de Gracia</a>
     <div class="footer-links">
       <a href="https://jaimem.com" target="_blank" rel="noopener" data-i18n="footer-contact">Contact</a>
+      <a href="/advertise" data-i18n="nav-advertise">Advertise</a>
     </div>
     <p class="footer-a11y" data-i18n="footer-a11y">We are committed to making this website accessible to all visitors. If you experience any difficulty, please <a href="https://jaimem.com" target="_blank" rel="noopener">contact us</a>.</p>
     <p class="footer-copy">
@@ -1086,6 +1334,7 @@
         'nav-events':      'Events',
         'nav-getting-here':'Getting Here',
         'nav-contact':     'Contact',
+        'nav-advertise':   'Advertise',
         'hero-eyebrow':    'Jalisco, México · Est. 1793',
         'hero-sub':        'A quiet jewel in the Altos de Jalisco highlands — 95 km northeast of Guadalajara, a world away from the ordinary.',
         'hero-btn1':       'Find a Place to Stay',
@@ -1163,6 +1412,18 @@
         'cta-btn':         'See Available Stays',
         'footer-a11y':     'We are committed to making this website accessible to all visitors. If you experience any difficulty, please <a href="https://jaimem.com" target="_blank" rel="noopener">contact us</a>.',
         'footer-contact':  'Contact',
+        'rental-header':   'For Rent · San Jose de Gracia',
+        'rental-avail':    'Available',
+        'rental-area':     'Main area',
+        'rental-dims':     'Meters (L&times;W)',
+        'rental-storage':  'Storage space',
+        'rental-patio':    'With water hookup',
+        'rental-includes': 'Included in rent',
+        'rental-cameras':  'Cameras',
+        'rental-bath':     'Half bath',
+        'rental-wa':       'Inquire: 331 696 3003',
+        'rental-note':     'Min. 1 year contract · Utilities separate',
+        'rental-tab':      'For Rent',
       },
       es: {
         'skip-link':       'Ir al contenido principal',
@@ -1171,6 +1432,7 @@
         'nav-events':      'Eventos',
         'nav-getting-here':'Cómo Llegar',
         'nav-contact':     'Contacto',
+        'nav-advertise':   'Anúnciate',
         'hero-eyebrow':    'Jalisco, México · Fund. 1793',
         'hero-sub':        'Una joya tranquila en los Altos de Jalisco — a 95 km al noreste de Guadalajara, a un mundo de lo cotidiano.',
         'hero-btn1':       'Encuentra dónde quedarte',
@@ -1248,6 +1510,18 @@
         'cta-btn':         'Ver alojamientos disponibles',
         'footer-a11y':     'Nos comprometemos a hacer este sitio accesible para todos los visitantes. Si tienes alguna dificultad, por favor <a href="https://jaimem.com" target="_blank" rel="noopener">contáctanos</a>.',
         'footer-contact':  'Contacto',
+        'rental-header':   'Se Renta · San Jose de Gracia',
+        'rental-avail':    'Disponible',
+        'rental-area':     'Area principal',
+        'rental-dims':     'Metros (L&times;A)',
+        'rental-storage':  'Espacio de bodega',
+        'rental-patio':    'Con toma de agua',
+        'rental-includes': 'Incluido en la renta',
+        'rental-cameras':  'Camaras',
+        'rental-bath':     'Medio bano',
+        'rental-wa':       'Informes: 331 696 3003',
+        'rental-note':     'Contrato minimo 1 ano · Luz y agua aparte',
+        'rental-tab':      'Se Renta',
       }
     };
 
@@ -1303,6 +1577,27 @@
           applyLang(lang.startsWith('es') ? 'es' : 'en', false);
         });
     }
+
+    // ── RENTAL POPUP ──
+    const rentalPopup = document.getElementById('rentalPopup');
+    const rentalClose = document.getElementById('rentalClose');
+    const rentalTab = document.getElementById('rentalTab');
+    const rentalMinimized = sessionStorage.getItem('rental_minimized');
+    if (rentalMinimized) {
+      rentalTab.classList.add('visible');
+    } else {
+      setTimeout(() => { rentalPopup.classList.add('visible'); }, 1500);
+    }
+    rentalClose.addEventListener('click', () => {
+      rentalPopup.classList.remove('visible');
+      sessionStorage.setItem('rental_minimized', '1');
+      setTimeout(() => { rentalTab.classList.add('visible'); }, 300);
+    });
+    rentalTab.addEventListener('click', () => {
+      rentalTab.classList.remove('visible');
+      rentalPopup.classList.add('visible');
+      sessionStorage.removeItem('rental_minimized');
+    });
   </script>
 
 </body>

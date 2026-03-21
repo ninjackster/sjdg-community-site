@@ -12,7 +12,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Local Businesses — San José de Gracia</title>
-  <link rel="icon" type="image/png" href="/temple.png" />
+  <meta name="description" content="Browse every local business in San Jose de Gracia, Jalisco — restaurants, bars, coffee shops, stores, and services. Powered by Google Maps, updated automatically." />
+  <link rel="canonical" href="https://sanjosedegracia.net/businesses" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sanjosedegracia.net/businesses" />
+  <meta property="og:title" content="Local Businesses — San Jose de Gracia" />
+  <meta property="og:description" content="Browse every local business in San Jose de Gracia, Jalisco — restaurants, bars, shops, and services." />
+  <meta property="og:image" content="https://sanjosedegracia.net/pueblo-1.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Local Businesses — San Jose de Gracia" />
+  <meta name="twitter:description" content="Browse every local business in San Jose de Gracia, Jalisco." />
+  <meta name="twitter:image" content="https://sanjosedegracia.net/pueblo-1.webp" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -346,6 +358,7 @@
       <li><a href="/#stay" data-i18n="nav-stay">Stay</a></li>
       <li><a class="nav-active" href="/businesses" data-i18n="nav-directory" aria-current="page">Directory</a></li>
       <li><a href="/#contact" data-i18n="nav-contact">Contact</a></li>
+      <li><a href="/advertise" data-i18n="nav-advertise">Advertise</a></li>
     </ul>
     <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
       <span class="lang-opt active" data-lang="en">EN</span>
@@ -363,6 +376,7 @@
     <a href="/#stay" data-i18n="nav-stay" onclick="closeMobileMenu()">Stay</a>
     <a href="/businesses" data-i18n="nav-directory" onclick="closeMobileMenu()">Directory</a>
     <a href="/#contact" data-i18n="nav-contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="/advertise" data-i18n="nav-advertise" onclick="closeMobileMenu()">Advertise</a>
     <div class="mobile-lang">
       <button class="lang-opt active" data-lang="en" id="ml-en">EN</button>
       <button class="lang-opt" data-lang="es" id="ml-es">ES</button>
@@ -404,8 +418,8 @@
     </div>
 
     <div class="feature-cta">
-      <p class="feature-cta-text" data-i18n="feature-cta-text">Put your business <em>in front of more local visitors.</em> Ask us about featured placement.</p>
-      <a href="mailto:sanjosedegraciajalisco@gmail.com?subject=Featured%20Listing" class="feature-cta-btn" data-i18n="feature-cta-btn">Get Featured</a>
+      <p class="feature-cta-text" data-i18n="feature-cta-text">Put your business <em>in front of more local visitors.</em> See our advertising options.</p>
+      <a href="/advertise" class="feature-cta-btn" data-i18n="feature-cta-btn">Advertise With Us</a>
     </div>
 
     <p class="powered" data-i18n="powered">Business data provided by <a href="https://maps.google.com" target="_blank">Google Maps</a> · Updates automatically as listings change.</p>
@@ -421,6 +435,7 @@
       'nav-stay':        'Stay',
       'nav-directory':   'Directory',
       'nav-contact':     'Contact',
+      'nav-advertise':   'Advertise',
       'dir-label':       'Local Directory',
       'dir-h2':          'Businesses in Town',
       'dir-p':           'Restaurants, shops, and services — updated automatically from Google Maps.',
@@ -446,8 +461,8 @@
       'no-open':         (label) => `No ${label} appear to be open right now.`,
       'error':           '⚠️ Could not load listings right now. Please try again shortly.',
       'featured':        '⭐ Featured',
-      'feature-cta-text': 'Put your business <em>in front of more local visitors.</em> Ask us about featured placement.',
-      'feature-cta-btn': 'Get Featured',
+      'feature-cta-text': 'Put your business <em>in front of more local visitors.</em> See our advertising options.',
+      'feature-cta-btn': 'Advertise With Us',
     },
     es: {
       'skip-link':       'Ir al contenido principal',
@@ -455,6 +470,7 @@
       'nav-stay':        'Alojarse',
       'nav-directory':   'Directorio',
       'nav-contact':     'Contacto',
+      'nav-advertise':   'Anúnciate',
       'dir-label':       'Directorio Local',
       'dir-h2':          'Negocios del Pueblo',
       'dir-p':           'Restaurantes, tiendas y servicios — actualizados automáticamente de Google Maps.',
@@ -480,8 +496,8 @@
       'no-open':         (label) => `No hay ${label} abiertos en este momento.`,
       'error':           '⚠️ No se pudieron cargar los resultados. Intenta de nuevo pronto.',
       'featured':        '⭐ Destacado',
-      'feature-cta-text': 'Pon tu negocio <em>frente a más visitantes locales.</em> Pregúntanos sobre los lugares destacados.',
-      'feature-cta-btn': 'Destacar mi negocio',
+      'feature-cta-text': 'Pon tu negocio <em>frente a más visitantes locales.</em> Conoce nuestras opciones de publicidad.',
+      'feature-cta-btn': 'Anúnciate Con Nosotros',
     }
   };
 
