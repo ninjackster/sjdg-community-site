@@ -664,7 +664,14 @@
     }
     .footer-copy {
       font-size: .78rem; color: rgba(245,239,230,.4); letter-spacing: .05em;
+      display: flex; align-items: center; justify-content: center; gap: .3rem;
     }
+    .footer-jmm { display: inline-flex; align-items: center; }
+    .footer-jmm-logo {
+      height: 1.6rem; width: auto; border-radius: 50%;
+      vertical-align: middle; transition: opacity .2s;
+    }
+    .footer-jmm:hover .footer-jmm-logo { opacity: .8; }
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a {
       font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
@@ -1050,7 +1057,9 @@
     <div class="footer-links">
       <a href="https://www.facebook.com/t4k1t0/" target="_blank" rel="noopener" data-i18n="footer-contact">Contact</a>
     </div>
-    <p class="footer-copy">© 2025 JMM · Jalisco, México</p>
+    <p class="footer-copy">
+      © 2025 <a href="https://jaimem.com" target="_blank" rel="noopener" class="footer-jmm"><img src="/jmm-logo.png" alt="JMM" class="footer-jmm-logo" /></a> · Jalisco, México
+    </p>
   </footer>
 
   <script>
