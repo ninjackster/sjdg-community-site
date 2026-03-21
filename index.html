@@ -1,23 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4TGNPX9J5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z4TGNPX9J5');
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>San José de Gracia — Jalisco, México</title>
+  <link rel="icon" type="image/png" href="/temple.png" />
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["TouristDestination", "Place"],
+    "name": "San José de Gracia",
+    "alternateName": "San José de Gracia, Jalisco",
+    "description": "A historic highland town in the Altos de Jalisco, Jalisco, México. Founded in 1793 at 1,980 m elevation — cobblestone streets, the Parroquia de San José, mezcal, and unhurried warmth 95 km from Guadalajara.",
+    "url": "https://sanjosedegracia.net",
+    "image": "https://sanjosedegracia.net/pueblo-1.webp",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 20.6741,
+      "longitude": -102.5717
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "San José de Gracia",
+      "addressRegion": "Jalisco",
+      "addressCountry": "MX"
+    },
+    "containedInPlace": {
+      "@type": "AdministrativeArea",
+      "name": "Tepatitlán de Morelos",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "Jalisco",
+        "containedInPlace": { "@type": "Country", "name": "México" }
+      }
+    },
+    "touristType": ["Cultural tourism", "Religious tourism", "Gastronomy tourism", "Rural tourism"],
+    "hasMap": "https://www.google.com/maps/place/San+Jos%C3%A9+de+Gracia,+Jalisco/@20.6741,-102.5717,13z"
+  }
+  </script>
 
   <!-- SEO & Social Sharing -->
   <meta name="description" content="San José de Gracia — a historic highland town in the Altos de Jalisco, Jalisco, México. Discover local businesses, places to stay, festivals, and how to get here." />
   <meta name="keywords" content="San José de Gracia, Jalisco, México, Altos de Jalisco, Tepatitlán, turismo, pueblo, parroquia" />
-  <link rel="canonical" href="https://sjdg-webpage.vercel.app" />
+  <link rel="canonical" href="https://sanjosedegracia.net" />
 
   <!-- Open Graph (Facebook, WhatsApp, iMessage) -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sjdg-webpage.vercel.app" />
+  <meta property="og:url" content="https://sanjosedegracia.net" />
   <meta property="og:title" content="San José de Gracia — Jalisco, México" />
   <meta property="og:description" content="A quiet jewel in the Altos de Jalisco highlands — cobblestone streets, the Parroquia de San José, and unhurried warmth 95 km from Guadalajara." />
-  <meta property="og:image" content="https://sjdg-webpage.vercel.app/church-hero.jpg" />
-  <meta property="og:image:width" content="960" />
-  <meta property="og:image:height" content="540" />
+  <meta property="og:image" content="https://sanjosedegracia.net/pueblo-1.webp" />
+  <meta property="og:image:width" content="2304" />
+  <meta property="og:image:height" content="1536" />
   <meta property="og:locale" content="es_MX" />
   <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:site_name" content="San José de Gracia" />
@@ -26,7 +70,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="San José de Gracia — Jalisco, México" />
   <meta name="twitter:description" content="A quiet jewel in the Altos de Jalisco highlands — cobblestone streets, the Parroquia de San José, and unhurried warmth." />
-  <meta name="twitter:image" content="https://sjdg-webpage.vercel.app/church-hero.jpg" />
+  <meta name="twitter:image" content="https://sanjosedegracia.net/pueblo-1.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,6 +89,21 @@
     }
 
     html { scroll-behavior: smooth; }
+
+    /* ── ACCESSIBILITY ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      background: var(--dark); color: var(--cream);
+      padding: .6rem 1.2rem; font-size: .85rem;
+      border-radius: 0 0 4px 4px; z-index: 9999;
+      text-decoration: none; transition: top .2s;
+    }
+    .skip-link:focus { top: 0; }
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
 
     body {
       background: var(--cream);
@@ -74,8 +133,17 @@
       color: var(--cream);
       text-decoration: none;
       transition: color .3s;
+      display: flex; align-items: center; gap: .55rem;
     }
     nav.scrolled .nav-logo { color: var(--dark); }
+    .nav-logo img {
+      height: 4.4rem;
+      width: auto;
+      transition: height .35s ease;
+    }
+    nav.scrolled .nav-logo img {
+      height: 1.5rem;
+    }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       font-size: .82rem;
@@ -122,7 +190,7 @@
       position: absolute; inset: 0;
       background:
         linear-gradient(to bottom, rgba(28,19,9,.35) 0%, rgba(28,19,9,.1) 40%, rgba(28,19,9,.55) 100%),
-        url('church-hero.jpg') center/cover no-repeat;
+        var(--hero-img, url('pueblo-1.webp')) center/cover no-repeat;
       background-color: #6B3A1F;
     }
     .hero-bg::after {
@@ -252,6 +320,42 @@
     }
 
     /* ── EVENTS ── */
+    /* ── HISTORIA ── */
+    .historia {
+      background: var(--dark);
+      padding: 6rem 4rem;
+    }
+    .historia-inner {
+      max-width: 860px; margin: 0 auto; text-align: center;
+    }
+    .historia-inner .section-label { color: var(--gold); }
+    .historia-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400; color: var(--cream);
+      margin: .6rem 0 1rem;
+      line-height: 1.2;
+    }
+    .historia-inner h2 em { font-style: italic; color: var(--clay); }
+    .historia-inner p {
+      color: rgba(245,239,230,.65);
+      font-size: 1rem; line-height: 1.8;
+      max-width: 600px; margin: 0 auto 2.5rem;
+    }
+    .historia-video-wrap {
+      position: relative;
+      width: 100%; max-width: 720px;
+      margin: 0 auto;
+      border-radius: 6px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      aspect-ratio: 16/9;
+    }
+    .historia-video-wrap iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
     .events {
       background: var(--cream);
       padding: 6rem 4rem;
@@ -579,10 +683,59 @@
       50%       { opacity: 1;  transform: scaleY(1.3); transform-origin: top; }
     }
 
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer;
+      padding: .4rem; z-index: 200;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s, background .3s;
+    }
+    nav.scrolled .hamburger span { background: var(--dark); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed; inset: 0; z-index: 150;
+      background: rgba(28,19,9,.97);
+      backdrop-filter: blur(12px);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 400;
+      color: var(--cream); text-decoration: none;
+      letter-spacing: .04em;
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .mobile-lang {
+      display: flex; gap: 1rem; margin-top: 1rem;
+    }
+    .mobile-menu .mobile-lang button {
+      background: none; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .85rem; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(245,239,230,.4); padding: .3rem .5rem;
+      transition: color .2s;
+    }
+    .mobile-menu .mobile-lang button.active { color: var(--gold); }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       .about-strip { flex-direction: column; }
       .about-text { padding: 3rem 1.5rem; }
       .about-stats { width: 100%; flex-direction: row; flex-wrap: wrap; }
@@ -605,9 +758,14 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content" data-i18n="skip-link">Skip to main content</a>
+
   <!-- NAV -->
-  <nav id="nav">
-    <a href="#" class="nav-logo">San José de Gracia</a>
+  <nav id="nav" aria-label="Main navigation">
+    <a href="#" class="nav-logo">
+      <img src="/temple.png" alt="" aria-hidden="true" />
+      San José de Gracia
+    </a>
     <ul class="nav-links">
       <li><a href="/businesses" data-i18n="nav-directory">Directory</a></li>
       <li><a href="#stay" data-i18n="nav-stay">Stay</a></li>
@@ -620,11 +778,36 @@
       <span class="lang-sep">·</span>
       <span class="lang-opt" data-lang="es">ES</span>
     </button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+    <a href="/businesses" data-i18n="nav-directory" onclick="closeMobileMenu()">Directory</a>
+    <a href="#stay" data-i18n="nav-stay" onclick="closeMobileMenu()">Stay</a>
+    <a href="#events" data-i18n="nav-events" onclick="closeMobileMenu()">Events</a>
+    <a href="#getting-here" data-i18n="nav-getting-here" onclick="closeMobileMenu()">Getting Here</a>
+    <a href="#contact" data-i18n="nav-contact" onclick="closeMobileMenu()">Contact</a>
+    <div class="mobile-lang">
+      <button class="lang-opt active" data-lang="en" id="ml-en">EN</button>
+      <button class="lang-opt" data-lang="es" id="ml-es">ES</button>
+    </div>
+  </div>
+
+  <main id="main-content">
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"></div>
+    <div class="hero-bg" id="heroBg"></div>
+    <script>
+      (function(){
+        var imgs = ['pueblo-1.webp','pueblo-2.webp','pueblo-3.webp'];
+        var pick = imgs[Math.floor(Math.random() * imgs.length)];
+        document.getElementById('heroBg').style.setProperty('--hero-img', "url('" + pick + "')");
+      })();
+    </script>
     <p class="hero-eyebrow" data-i18n="hero-eyebrow">Jalisco, México · Est. 1793</p>
     <h1>San José<br>de <em>Gracia</em></h1>
     <p class="hero-sub" data-i18n="hero-sub">A quiet jewel in the Altos de Jalisco highlands — 95 km northeast of Guadalajara, a world away from the ordinary.</p>
@@ -643,7 +826,7 @@
     <div class="about-text">
       <p class="section-label" data-i18n="about-label">Our Town</p>
       <h2 data-i18n="about-h2">Where the highlands<br>slow everything down</h2>
-      <p data-i18n="about-p">Nestled at 1,980 meters above sea level in the municipality of Tepatitlán, San José de Gracia is a historic town of cobblestone streets, the centuries-old Parroquia de San José, and the kind of unhurried warmth the Altos de Jalisco are known for. Come for a weekend — stay for the mezcal and the sunsets.</p>
+      <p data-i18n="about-p">Nestled at 1,980 meters above sea level in the municipality of Tepatitlán, San José de Gracia is a historic town of cobblestone streets, the centuries-old Parroquia de San José, and the kind of unhurried warmth the Altos de Jalisco are known for. Come for a weekend — stay for the cold ones, the tequila, and the homemade chorizo and cheese.</p>
     </div>
     <div class="about-stats">
       <div class="stat">
@@ -657,6 +840,23 @@
       <div class="stat">
         <div class="stat-number">95km</div>
         <div class="stat-label" data-i18n="stat-distance">From Guadalajara</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORIA -->
+  <section class="historia" id="historia">
+    <div class="historia-inner">
+      <p class="section-label" data-i18n="historia-label">Our History</p>
+      <h2 data-i18n="historia-h2">A Town with <em>a Story</em></h2>
+      <p data-i18n="historia-p">San José de Gracia has been shaped by faith, family, and the rhythms of the highlands for over two centuries. This short film captures its soul.</p>
+      <div class="historia-video-wrap">
+        <iframe
+          src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D1817088212201890&show_text=false"
+          scrolling="no"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+        </iframe>
       </div>
     </div>
   </section>
@@ -842,6 +1042,8 @@
     <a href="#stay" class="btn" data-i18n="cta-btn">See Available Stays</a>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer id="contact">
     <a href="#" class="footer-logo">San José de Gracia</a>
@@ -861,6 +1063,7 @@
     // ── TRANSLATIONS ──
     const T = {
       en: {
+        'skip-link':       'Skip to main content',
         'nav-directory':   'Directory',
         'nav-stay':        'Stay',
         'nav-events':      'Events',
@@ -873,10 +1076,13 @@
         'hero-scroll':     'Scroll',
         'about-label':     'Our Town',
         'about-h2':        'Where the highlands<br>slow everything down',
-        'about-p':         'Nestled at 1,980 meters above sea level in the municipality of Tepatitlán, San José de Gracia is a historic town of cobblestone streets, the centuries-old Parroquia de San José, and the kind of unhurried warmth the Altos de Jalisco are known for. Come for a weekend — stay for the mezcal and the sunsets.',
+        'about-p':         'Nestled at 1,980 meters above sea level in the municipality of Tepatitlán, San José de Gracia is a historic town of cobblestone streets, the centuries-old Parroquia de San José, and the kind of unhurried warmth the Altos de Jalisco are known for. Come for a weekend — stay for the cold ones, the tequila, and the homemade chorizo and cheese.',
         'stat-founded':    'Year Founded',
         'stat-altitude':   'Altitude',
         'stat-distance':   'From Guadalajara',
+        'historia-label':  'Our History',
+        'historia-h2':     'A Town with <em>a Story</em>',
+        'historia-p':      'San José de Gracia has been shaped by faith, family, and the rhythms of the highlands for over two centuries. This short film captures its soul.',
         'events-label':    'Festivities',
         'events-h2':       'Celebrations &amp;<br><em>Traditions</em>',
         'events-intro':    'San José de Gracia comes alive throughout the year with religious festivals, cultural gatherings, and the warmth of Alteño traditions.',
@@ -941,6 +1147,7 @@
         'footer-contact':  'Contact',
       },
       es: {
+        'skip-link':       'Ir al contenido principal',
         'nav-directory':   'Directorio',
         'nav-stay':        'Alojarse',
         'nav-events':      'Eventos',
@@ -953,10 +1160,13 @@
         'hero-scroll':     'Desliza',
         'about-label':     'Nuestro Pueblo',
         'about-h2':        'Donde los Altos<br>hacen todo más lento',
-        'about-p':         'Enclavado a 1,980 metros sobre el nivel del mar en el municipio de Tepatitlán, San José de Gracia es un pueblo histórico de calles empedradas, la centenaria Parroquia de San José y esa calidez sin prisa que caracteriza los Altos de Jalisco. Ven un fin de semana — quédate por el mezcal y los atardeceres.',
+        'about-p':         'Enclavado a 1,980 metros sobre el nivel del mar en el municipio de Tepatitlán, San José de Gracia es un pueblo histórico de calles empedradas, la centenaria Parroquia de San José y esa calidez sin prisa que caracteriza los Altos de Jalisco. Ven un fin de semana — ve por las coquitas, el tequila y el chorizo y queso caseros.',
         'stat-founded':    'Año de Fundación',
         'stat-altitude':   'Altitud',
         'stat-distance':   'Desde Guadalajara',
+        'historia-label':  'Nuestra Historia',
+        'historia-h2':     'Un Pueblo con <em>Historia</em>',
+        'historia-p':      'San José de Gracia ha sido moldeado por la fe, la familia y los ritmos del altiplano por más de dos siglos. Este cortometraje captura su alma.',
         'events-label':    'Festividades',
         'events-h2':       'Celebraciones y<br><em>Tradiciones</em>',
         'events-intro':    'San José de Gracia cobra vida durante todo el año con festivales religiosos, reuniones culturales y la calidez de las tradiciones alteñas.',
@@ -1031,6 +1241,10 @@
       document.querySelectorAll('.lang-opt').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
+      ['ml-en','ml-es'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('active', el.dataset.lang === lang);
+      });
       if (save) localStorage.setItem('lang', lang);
     }
 
@@ -1039,6 +1253,24 @@
       if (!btn) return;
       applyLang(btn.dataset.lang, true);
     });
+
+    // ── MOBILE MENU ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    document.getElementById('ml-en').addEventListener('click', () => { applyLang('en', true); });
+    document.getElementById('ml-es').addEventListener('click', () => { applyLang('es', true); });
 
     const stored = localStorage.getItem('lang');
     if (stored === 'en' || stored === 'es') {
