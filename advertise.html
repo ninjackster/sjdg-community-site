@@ -31,6 +31,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
+    .skip-link { position: absolute; top: -40px; left: 0; background: var(--dark); color: #fff; padding: .5rem 1rem; z-index: 9999; transition: top .2s; }
+    .skip-link:focus { top: 0; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --clay:  #C4785A;
@@ -662,8 +664,10 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content" data-i18n="skip-link">Skip to main content</a>
+
   <!-- NAV -->
-  <nav>
+  <nav aria-label="Main navigation">
     <a href="/" class="nav-logo">
       <img src="/temple.png" alt="" />
       San José de Gracia
@@ -689,7 +693,7 @@
   </nav>
 
   <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
     <a href="/businesses" onclick="closeMobileMenu()" data-i18n="nav-directory">Directory</a>
     <a href="/#stay" onclick="closeMobileMenu()" data-i18n="nav-stay">Stay</a>
     <a href="/#events" onclick="closeMobileMenu()" data-i18n="nav-events">Events</a>
@@ -703,7 +707,7 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="main-content">
     <p class="section-label" data-i18n="pricing-label">For Local Businesses</p>
     <h1 data-i18n="pricing-h1">Reach more visitors in <em>San José</em></h1>
     <p data-i18n="pricing-sub">Promote your business, event, or experience to every visitor exploring the town online.</p>
@@ -723,7 +727,7 @@
         <div class="s-card">
           <div class="s-card-photo">
             <span class="s-badge" data-i18n="show-badge-feat">Featured</span>
-            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=200&fit=crop" alt="" />
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=200&fit=crop" alt="Restaurant interior example" />
           </div>
           <div class="s-card-info">
             <h4 class="s-card-name">La Cocina de Dona Maria</h4>
@@ -741,13 +745,13 @@
               <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>
               <span data-i18n="show-badge-prem">Premium</span>
             </span>
-            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=300&fit=crop" alt="" />
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=300&fit=crop" alt="Premium restaurant listing example" />
           </div>
           <div class="sp-gallery">
-            <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=150&h=80&fit=crop" alt="" /></div>
-            <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=150&h=80&fit=crop" alt="" /></div>
-            <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=150&h=80&fit=crop" alt="" /></div>
-            <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=150&h=80&fit=crop" alt="" /></div>
+            <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=150&h=80&fit=crop" alt="Dish photo 1" /></div>
+            <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=150&h=80&fit=crop" alt="Dish photo 2" /></div>
+            <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=150&h=80&fit=crop" alt="Dish photo 3" /></div>
+            <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=150&h=80&fit=crop" alt="Dish photo 4" /></div>
           </div>
           <div class="sp-info">
             <h4 class="sp-name">La Cocina de Dona Maria</h4>
@@ -956,6 +960,7 @@
     <a href="/" class="footer-logo">San José de Gracia</a>
     <div class="footer-links">
       <a href="https://jaimem.com" target="_blank" rel="noopener" data-i18n="footer-contact">Contact</a>
+      <a href="/advertise" data-i18n="nav-advertise">Advertise</a>
     </div>
     <p class="footer-a11y" data-i18n="footer-a11y">We are committed to making this website accessible to all visitors. If you experience any difficulty, please <a href="https://jaimem.com" target="_blank" rel="noopener">contact us</a>.</p>
     <p class="footer-copy">
@@ -966,6 +971,7 @@
 <script>
   const T = {
     en: {
+      'skip-link':       'Skip to main content',
       'nav-home':        'Home',
       'nav-directory':   'Directory',
       'nav-stay':        'Stay',
@@ -1043,6 +1049,7 @@
       'popular-badge':   'MOST POPULAR',
     },
     es: {
+      'skip-link':       'Ir al contenido principal',
       'nav-home':        'Inicio',
       'nav-directory':   'Directorio',
       'nav-stay':        'Alojarse',
