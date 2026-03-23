@@ -669,10 +669,11 @@
       San José de Gracia
     </a>
     <ul class="nav-links">
-      <li><a href="/" data-i18n="nav-home">Home</a></li>
       <li><a href="/businesses" data-i18n="nav-directory">Directory</a></li>
       <li><a href="/#stay" data-i18n="nav-stay">Stay</a></li>
       <li><a href="/#events" data-i18n="nav-events">Events</a></li>
+      <li><a href="/#getting-here" data-i18n="nav-getting-here">Getting Here</a></li>
+      <li><a href="/#contact" data-i18n="nav-contact">Contact</a></li>
       <li><a class="nav-active" href="/advertise" data-i18n="nav-advertise" aria-current="page">Advertise</a></li>
     </ul>
     <div style="display:flex;align-items:center;gap:1rem;">
@@ -689,10 +690,11 @@
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="/" onclick="closeMobileMenu()" data-i18n="nav-home">Home</a>
     <a href="/businesses" onclick="closeMobileMenu()" data-i18n="nav-directory">Directory</a>
     <a href="/#stay" onclick="closeMobileMenu()" data-i18n="nav-stay">Stay</a>
     <a href="/#events" onclick="closeMobileMenu()" data-i18n="nav-events">Events</a>
+    <a href="/#getting-here" onclick="closeMobileMenu()" data-i18n="nav-getting-here">Getting Here</a>
+    <a href="/#contact" onclick="closeMobileMenu()" data-i18n="nav-contact">Contact</a>
     <a href="/advertise" onclick="closeMobileMenu()" data-i18n="nav-advertise">Advertise</a>
     <div style="display:flex;gap:1rem;margin-top:1rem;">
       <span class="lang-opt active" id="ml-en" data-lang="en" style="cursor:pointer;font-size:1rem;color:var(--clay);">EN</span>
@@ -737,7 +739,7 @@
           <div class="sp-photo">
             <span class="sp-badge">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>
-              Premium
+              <span data-i18n="show-badge-prem">Premium</span>
             </span>
             <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=300&fit=crop" alt="" />
           </div>
@@ -765,7 +767,7 @@
             <div class="sp-actions">
               <span class="sp-btn sp-btn-wa">
                 <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-                WhatsApp
+                <span data-i18n="show-wa-btn">WhatsApp</span>
               </span>
               <span class="sp-btn sp-btn-menu">
                 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -968,6 +970,8 @@
       'nav-directory':   'Directory',
       'nav-stay':        'Stay',
       'nav-events':      'Events',
+      'nav-getting-here':'Getting Here',
+      'nav-contact':     'Contact',
       'pricing-label':   'For Local Businesses',
       'pricing-h1':      'Reach more visitors in <em>San José</em>',
       'pricing-sub':     'Promote your business, event, or experience to every visitor exploring the town online.',
@@ -977,8 +981,10 @@
       'show-regular':    'Featured Listing',
       'show-premium':    'Premium Profile — $300/mo',
       'show-badge-feat': 'Featured',
+      'show-badge-prem': 'Premium',
       'show-desc':       'Comida casera — birria, pozole, enchiladas, and the best chorizo con queso in town. Family-run since 1987.',
       'show-promo':      '10% off your first visit — mention this listing',
+      'show-wa-btn':     'WhatsApp',
       'show-menu-btn':   'Menu',
       'show-map-btn':    'Map',
       'nav-advertise':   'Advertise',
@@ -1041,6 +1047,8 @@
       'nav-directory':   'Directorio',
       'nav-stay':        'Alojarse',
       'nav-events':      'Eventos',
+      'nav-getting-here':'Cómo Llegar',
+      'nav-contact':     'Contacto',
       'pricing-label':   'Para Negocios Locales',
       'pricing-h1':      'Llega a más visitantes en <em>San José</em>',
       'pricing-sub':     'Promociona tu negocio, evento o experiencia ante cada visitante que explore el pueblo en línea.',
@@ -1050,8 +1058,10 @@
       'show-regular':    'Listado Destacado',
       'show-premium':    'Perfil Premium — $300/mes',
       'show-badge-feat': 'Destacado',
+      'show-badge-prem': 'Premium',
       'show-desc':       'Comida casera — birria, pozole, enchiladas y el mejor chorizo con queso del pueblo. Negocio familiar desde 1987.',
       'show-promo':      '10% de descuento en tu primera visita — menciona este listado',
+      'show-wa-btn':     'WhatsApp',
       'show-menu-btn':   'Menú',
       'show-map-btn':    'Mapa',
       'nav-advertise':   'Anúnciate',
