@@ -987,7 +987,7 @@
       <li><a href="#events" data-i18n="nav-events">Events</a></li>
       <li><a href="#getting-here" data-i18n="nav-getting-here">Getting Here</a></li>
       <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
-      <li><a href="/advertise" data-i18n="nav-advertise">Advertise</a></li>
+      <li><a href="/faq" data-i18n="nav-faq">FAQ</a></li>
     </ul>
     <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
       <span class="lang-opt active" data-lang="en">EN</span>
@@ -1006,7 +1006,7 @@
     <a href="#events" data-i18n="nav-events" onclick="closeMobileMenu()">Events</a>
     <a href="#getting-here" data-i18n="nav-getting-here" onclick="closeMobileMenu()">Getting Here</a>
     <a href="#contact" data-i18n="nav-contact" onclick="closeMobileMenu()">Contact</a>
-    <a href="/advertise" data-i18n="nav-advertise" onclick="closeMobileMenu()">Advertise</a>
+    <a href="/faq" data-i18n="nav-faq" onclick="closeMobileMenu()">FAQ</a>
     <div class="mobile-lang">
       <button class="lang-opt active" data-lang="en" id="ml-en">EN</button>
       <button class="lang-opt" data-lang="es" id="ml-es">ES</button>
@@ -1031,6 +1031,7 @@
     <div class="hero-ctas">
       <a href="#stay" class="btn btn-primary" data-i18n="hero-btn1">Find a Place to Stay</a>
       <a href="/businesses" class="btn btn-outline" data-i18n="hero-btn2">Explore the Town</a>
+      <a href="/tour" class="btn btn-outline" data-i18n="hero-btn3">Walking Tour</a>
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
@@ -1057,6 +1058,10 @@
       <div class="stat">
         <div class="stat-number">95km</div>
         <div class="stat-label" data-i18n="stat-distance">From Guadalajara</div>
+      </div>
+      <div class="stat" id="weather-stat" style="display:none;">
+        <div class="stat-number" id="weather-temp">--</div>
+        <div class="stat-label" id="weather-desc" data-i18n="stat-weather">Right Now</div>
       </div>
     </div>
   </section>
@@ -1149,6 +1154,7 @@
         </div>
       </div>
       <a class="maps-link" href="https://www.google.com/maps/place/San+Jos%C3%A9+de+Gracia,+Jalisco/@21.3617,-102.4158,13z" target="_blank" rel="noreferrer" data-i18n="maps-link">📍 Ver en Google Maps</a>
+      <a class="maps-link" href="/tour" data-i18n="tour-link" style="margin-left:1.5rem;">🗺️ Walking Tour</a>
     </div>
   </section>
 
@@ -1321,6 +1327,22 @@
   </footer>
 
   <script>
+    // ── WEATHER (Open-Meteo, no API key) ──
+    (function(){
+      const WMO = {0:'Clear',1:'Mostly Clear',2:'Partly Cloudy',3:'Overcast',45:'Foggy',48:'Foggy',51:'Light Drizzle',53:'Drizzle',55:'Heavy Drizzle',61:'Light Rain',63:'Rain',65:'Heavy Rain',71:'Light Snow',73:'Snow',75:'Heavy Snow',80:'Showers',81:'Showers',82:'Heavy Showers',95:'Thunderstorm',96:'Thunderstorm',99:'Thunderstorm'};
+      const WMO_ES = {0:'Despejado',1:'Mayormente Despejado',2:'Parcialmente Nublado',3:'Nublado',45:'Neblina',48:'Neblina',51:'Llovizna Ligera',53:'Llovizna',55:'Llovizna Fuerte',61:'Lluvia Ligera',63:'Lluvia',65:'Lluvia Fuerte',71:'Nevada Ligera',73:'Nevada',75:'Nevada Fuerte',80:'Chubascos',81:'Chubascos',82:'Chubascos Fuertes',95:'Tormenta',96:'Tormenta',99:'Tormenta'};
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=20.6741&longitude=-102.5717&current=temperature_2m,weather_code&temperature_unit=celsius')
+        .then(r=>r.json()).then(d=>{
+          const t = Math.round(d.current.temperature_2m);
+          const code = d.current.weather_code;
+          document.getElementById('weather-temp').textContent = t + '°C';
+          document.getElementById('weather-stat').style.display = '';
+          window._weatherCode = code;
+          window._weatherWMO = WMO;
+          window._weatherWMO_ES = WMO_ES;
+        }).catch(()=>{});
+    })();
+
     // ── NAV SCROLL ──
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
@@ -1337,17 +1359,21 @@
         'nav-getting-here':'Getting Here',
         'nav-contact':     'Contact',
         'nav-advertise':   'Advertise',
+        'nav-faq':         'FAQ',
         'hero-eyebrow':    'Jalisco, México · Est. 1793',
         'hero-sub':        'A quiet jewel in the Altos de Jalisco highlands — 95 km northeast of Guadalajara, a world away from the ordinary.',
         'hero-btn1':       'Find a Place to Stay',
         'hero-btn2':       'Explore the Town',
+        'hero-btn3':       'Walking Tour',
         'hero-scroll':     'Scroll',
+        'tour-link':       '🗺️ Walking Tour',
         'about-label':     'Our Town',
         'about-h2':        'Where the highlands<br>slow everything down',
         'about-p':         'Nestled at 1,980 meters above sea level in the municipality of Tepatitlán, San José de Gracia is a historic town of cobblestone streets, the centuries-old Parroquia de San José, and the kind of unhurried warmth the Altos de Jalisco are known for. Come for a weekend — stay for the cold ones, the tequila, and the homemade chorizo and cheese.',
         'stat-founded':    'Year Founded',
         'stat-altitude':   'Altitude',
         'stat-distance':   'From Guadalajara',
+        'stat-weather':    'Right Now',
         'historia-label':  'Our History',
         'historia-h2':     'A Town with <em>a Story</em>',
         'historia-p':      'San José de Gracia has been shaped by faith, family, and the rhythms of the highlands for over two centuries. This short film captures its soul.',
@@ -1435,17 +1461,21 @@
         'nav-getting-here':'Cómo Llegar',
         'nav-contact':     'Contacto',
         'nav-advertise':   'Anúnciate',
+        'nav-faq':         'Info',
         'hero-eyebrow':    'Jalisco, México · Fund. 1793',
         'hero-sub':        'Una joya tranquila en los Altos de Jalisco — a 95 km al noreste de Guadalajara, a un mundo de lo cotidiano.',
         'hero-btn1':       'Encuentra dónde quedarte',
         'hero-btn2':       'Explora el pueblo',
+        'hero-btn3':       'Recorrido a Pie',
         'hero-scroll':     'Desliza',
+        'tour-link':       '🗺️ Recorrido a Pie',
         'about-label':     'Nuestro Pueblo',
         'about-h2':        'Donde los Altos<br>hacen todo más lento',
         'about-p':         'Enclavado a 1,980 metros sobre el nivel del mar en el municipio de Tepatitlán, San José de Gracia es un pueblo histórico de calles empedradas, la centenaria Parroquia de San José y esa calidez sin prisa que caracteriza los Altos de Jalisco. Ven un fin de semana — ve por las coquitas, el tequila y el chorizo y queso caseros.',
         'stat-founded':    'Año de Fundación',
         'stat-altitude':   'Altitud',
         'stat-distance':   'Desde Guadalajara',
+        'stat-weather':    'Ahora Mismo',
         'historia-label':  'Nuestra Historia',
         'historia-h2':     'Un Pueblo con <em>Historia</em>',
         'historia-p':      'San José de Gracia ha sido moldeado por la fe, la familia y los ritmos del altiplano por más de dos siglos. Este cortometraje captura su alma.',

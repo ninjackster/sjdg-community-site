@@ -361,7 +361,7 @@
       <li><a href="/#events" data-i18n="nav-events">Events</a></li>
       <li><a href="/#getting-here" data-i18n="nav-getting-here">Getting Here</a></li>
       <li><a href="/#contact" data-i18n="nav-contact">Contact</a></li>
-      <li><a href="/advertise" data-i18n="nav-advertise">Advertise</a></li>
+      <li><a href="/faq" data-i18n="nav-faq">FAQ</a></li>
     </ul>
     <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
       <span class="lang-opt active" data-lang="en">EN</span>
@@ -380,7 +380,7 @@
     <a href="/#events" data-i18n="nav-events" onclick="closeMobileMenu()">Events</a>
     <a href="/#getting-here" data-i18n="nav-getting-here" onclick="closeMobileMenu()">Getting Here</a>
     <a href="/#contact" data-i18n="nav-contact" onclick="closeMobileMenu()">Contact</a>
-    <a href="/advertise" data-i18n="nav-advertise" onclick="closeMobileMenu()">Advertise</a>
+    <a href="/faq" data-i18n="nav-faq" onclick="closeMobileMenu()">FAQ</a>
     <div class="mobile-lang">
       <button class="lang-opt active" data-lang="en" id="ml-en">EN</button>
       <button class="lang-opt" data-lang="es" id="ml-es">ES</button>
@@ -455,6 +455,7 @@
       'nav-getting-here':'Getting Here',
       'nav-contact':     'Contact',
       'nav-advertise':   'Advertise',
+      'nav-faq':         'FAQ',
       'dir-label':       'Local Directory',
       'dir-h2':          'Businesses in Town',
       'dir-p':           'Restaurants, shops, and services — updated automatically from Google Maps.',
@@ -494,6 +495,7 @@
       'nav-getting-here':'Cómo Llegar',
       'nav-contact':     'Contacto',
       'nav-advertise':   'Anúnciate',
+      'nav-faq':         'Info',
       'dir-label':       'Directorio Local',
       'dir-h2':          'Negocios del Pueblo',
       'dir-p':           'Restaurantes, tiendas y servicios — actualizados automáticamente de Google Maps.',
@@ -611,6 +613,8 @@
 
   // Some tabs query multiple Google Places types and merge results
   const MULTI_TYPE_MAP = {
+    restaurant: ['restaurant', 'meal_takeaway', 'meal_delivery'],
+    bar:  ['bar'],
     store: ['store', 'grocery_or_supermarket', 'pharmacy', 'bakery'],
     park:  ['park', 'campground', 'tourist_attraction']
   };
