@@ -9,6 +9,10 @@ function urlFor(siteUrl, lang, slug) {
   return slug ? `${siteUrl}/${lang}/${slug}` : `${siteUrl}/${lang}/`;
 }
 
+function pathFor(lang, slug) {
+  return slug ? `/${lang}/${slug}` : `/${lang}/`;
+}
+
 function buildHreflang(siteUrl, slugs) {
   const tags = LANGS.map(
     l => `<link rel="alternate" hreflang="${l}" href="${urlFor(siteUrl, l, slugs[l])}" />`
@@ -19,7 +23,17 @@ function buildHreflang(siteUrl, slugs) {
   return tags.join('\n');
 }
 
-export function buildPage({ lang, layout, pageTemplate, content, shared, siteUrl }) {
+function buildNavUrls(lang, pageSlugs) {
+  const out = {};
+  if (!pageSlugs) return out;
+  for (const [pageName, slugMap] of Object.entries(pageSlugs)) {
+    const slug = slugMap[lang] ?? '';
+    out[pageName] = pathFor(lang, slug);
+  }
+  return out;
+}
+
+export function buildPage({ lang, layout, pageTemplate, content, shared, siteUrl, pageSlugs }) {
   const localized = resolveLang(content, lang);
   const localizedShared = resolveLang(shared, lang);
 
@@ -32,6 +46,7 @@ export function buildPage({ lang, layout, pageTemplate, content, shared, siteUrl
     lang: HTML_LANG[lang],
     canonical: urlFor(siteUrl, lang, slugs[lang]),
     hreflang: buildHreflang(siteUrl, slugs),
+    nav_urls: buildNavUrls(lang, pageSlugs),
   };
 
   // Render the page body first, then inject it into the layout.
