@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "slug":                { "en": "businesses", "es": "negocios" },
+    "title":               { "en": "Local Businesses — San José de Gracia", "es": "Negocios Locales — San José de Gracia" },
+    "description":         { "en": "Browse every local business in San Jose de Gracia, Jalisco — restaurants, bars, coffee shops, stores, and services. Powered by Google Maps, updated automatically.", "es": "Explora todos los negocios locales en San José de Gracia, Jalisco — restaurantes, bares, cafeterías, tiendas y servicios. Impulsado por Google Maps, actualizado automáticamente." },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "nav": {
+    "skip_link":     { "en": "Skip to main content", "es": "Ir al contenido principal" },
+    "home":          { "en": "Home", "es": "Inicio" },
+    "directory":     { "en": "Directory", "es": "Directorio" },
+    "stay":          { "en": "Stay", "es": "Alojarse" },
+    "events":        { "en": "Events", "es": "Eventos" },
+    "getting_here":  { "en": "Getting Here", "es": "Cómo Llegar" },
+    "contact":       { "en": "Contact", "es": "Contacto" },
+    "advertise":     { "en": "Advertise", "es": "Anúnciate" },
+    "faq":           { "en": "FAQ", "es": "Info" }
+  },
+  "header": {
+    "label": { "en": "Local Directory", "es": "Directorio Local" },
+    "h2":    { "en": "Businesses in Town", "es": "Negocios del Pueblo" },
+    "p":     { "en": "Restaurants, shops, and services — updated automatically from Google Maps.", "es": "Restaurantes, tiendas y servicios — actualizados automáticamente de Google Maps." }
+  },
+  "tabs": {
+    "restaurant": { "en": "Restaurants", "es": "Restaurantes" },
+    "bar":        { "en": "Bars", "es": "Bares" },
+    "coffee":     { "en": "Coffee", "es": "Café" },
+    "store":      { "en": "Shops", "es": "Tiendas" },
+    "attraction":  { "en": "Parks &amp; Recreation", "es": "Parques y Recreación" },
+    "sports":     { "en": "Sports &amp; Wellness", "es": "Deporte y Bienestar" },
+    "services":   { "en": "Services", "es": "Servicios" },
+    "church":     { "en": "Churches", "es": "Iglesias" },
+    "businesses": { "en": "Businesses", "es": "Negocios" }
+  },
+  "filter_open": { "en": "Open Now in the Area", "es": "Abierto Ahora en el Área" },
+  "loading":       { "en": "Finding local businesses...", "es": "Buscando negocios locales..." },
+  "loading_short": { "en": "Loading...", "es": "Cargando..." },
+  "open":          { "en": "● Open now", "es": "● Abierto ahora" },
+  "closed":        { "en": "● Closed", "es": "● Cerrado" },
+  "no_rating":     { "en": "No rating yet", "es": "Sin calificación" },
+  "reviews":       { "en": "reviews", "es": "reseñas" },
+  "maps_link":     { "en": "View on Google Maps →", "es": "Ver en Google Maps →" },
+  "no_results":    { "en": "No {category} found in Google Maps yet.<br><small style=\"opacity:.6\">Locals can add their business at <a href=\"https://business.google.com\" target=\"_blank\" style=\"color:var(--clay)\">business.google.com</a></small>", "es": "No se encontraron {category} en Google Maps aún.<br><small style=\"opacity:.6\">Los locales pueden agregar su negocio en <a href=\"https://business.google.com\" target=\"_blank\" style=\"color:var(--clay)\">business.google.com</a></small>" },
+  "no_open":       { "en": "No {category} appear to be open right now.", "es": "No hay {category} abiertos en este momento." },
+  "error":         { "en": "⚠️ Could not load listings right now. Please try again shortly.", "es": "⚠️ No se pudieron cargar los resultados. Intenta de nuevo pronto." },
+  "featured":      { "en": "⭐ Featured", "es": "⭐ Destacado" },
+  "feature_cta": {
+    "text":   { "en": "Put your business <em>in front of more local visitors.</em> See our advertising options.", "es": "Pon tu negocio <em>frente a más visitantes locales.</em> Conoce nuestras opciones de publicidad." },
+    "button": { "en": "Advertise With Us", "es": "Anúnciate Con Nosotros" }
+  },
+  "powered": { "en": "Business data provided by <a href=\"https://maps.google.com\" target=\"_blank\" rel=\"noopener\">Google Maps</a> · Updates automatically as listings change.", "es": "Datos de negocios provistos por <a href=\"https://maps.google.com\" target=\"_blank\" rel=\"noopener\">Google Maps</a> · Se actualizan automáticamente." },
+  "footer": {
+    "contact": { "en": "Contact", "es": "Contacto" },
+    "a11y":    { "en": "We are committed to making this website accessible to all visitors. If you experience any difficulty, please <a href=\"https://jaimem.com\" target=\"_blank\" rel=\"noopener\" style=\"color:rgba(255,255,255,.5);\">contact us</a>.", "es": "Nos comprometemos a hacer este sitio accesible para todos los visitantes. Si tienes alguna dificultad, por favor <a href=\"https://jaimem.com\" target=\"_blank\" rel=\"noopener\" style=\"color:rgba(255,255,255,.5);\">contáctanos</a>." }
+  },
+  "rental": {
+    "tab":      { "en": "For Rent",                      "es": "Se Renta" },
+    "header":   { "en": "For Rent · San Jose de Gracia", "es": "Se Renta · San Jose de Gracia" },
+    "avail":    { "en": "Available",                     "es": "Disponible" },
+    "area":     { "en": "Main area",                     "es": "Area principal" },
+    "dims":     { "en": "Meters (L×W)",                  "es": "Metros (L×A)" },
+    "storage":  { "en": "Storage space",                 "es": "Espacio de bodega" },
+    "patio":    { "en": "With water hookup",             "es": "Con toma de agua" },
+    "includes": { "en": "Included in rent",              "es": "Incluido en la renta" },
+    "cameras":  { "en": "Cameras",                       "es": "Camaras" },
+    "bath":     { "en": "Half bath",                     "es": "Medio bano" },
+    "wa":       { "en": "Inquire: 331 696 3003",         "es": "Informes: 331 696 3003" },
+    "note":     { "en": "Min. 1 year contract · Utilities separate", "es": "Contrato minimo 1 ano · Luz y agua aparte" }
+  }
+}

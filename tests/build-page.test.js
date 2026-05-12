@@ -120,3 +120,62 @@ test('throws if any token is left unresolved (catches missing translations)', ()
     /unresolved token/i
   );
 });
+
+const PAGE_SLUGS = {
+  home:       { en: '',            es: '' },
+  businesses: { en: 'businesses',  es: 'negocios' },
+  faq:        { en: 'faq',         es: 'preguntas' },
+};
+
+test('exposes nav_urls for the current language', () => {
+  const html = buildPage({
+    lang: 'en',
+    layout: '<a href="{{nav_urls.businesses}}">B</a><a href="{{nav_urls.faq}}">F</a>',
+    pageTemplate: '',
+    content: CONTENT,
+    shared: SHARED,
+    siteUrl: SITE_URL,
+    pageSlugs: PAGE_SLUGS,
+  });
+  assert.match(html, /<a href="\/en\/businesses">B<\/a>/);
+  assert.match(html, /<a href="\/en\/faq">F<\/a>/);
+});
+
+test('nav_urls swaps to Spanish slugs when lang is es', () => {
+  const html = buildPage({
+    lang: 'es',
+    layout: '<a href="{{nav_urls.businesses}}">B</a><a href="{{nav_urls.faq}}">F</a>',
+    pageTemplate: '',
+    content: CONTENT,
+    shared: SHARED,
+    siteUrl: SITE_URL,
+    pageSlugs: PAGE_SLUGS,
+  });
+  assert.match(html, /<a href="\/es\/negocios">B<\/a>/);
+  assert.match(html, /<a href="\/es\/preguntas">F<\/a>/);
+});
+
+test('nav_urls.home points at the language root', () => {
+  const html = buildPage({
+    lang: 'es',
+    layout: '<a href="{{nav_urls.home}}">H</a>',
+    pageTemplate: '',
+    content: CONTENT,
+    shared: SHARED,
+    siteUrl: SITE_URL,
+    pageSlugs: PAGE_SLUGS,
+  });
+  assert.match(html, /<a href="\/es\/">H<\/a>/);
+});
+
+test('buildPage works without pageSlugs (backwards compat — nav_urls is empty object)', () => {
+  const html = buildPage({
+    lang: 'en',
+    layout: '<p>{{meta.title}}</p>',
+    pageTemplate: '',
+    content: CONTENT,
+    shared: SHARED,
+    siteUrl: SITE_URL,
+  });
+  assert.match(html, /<p>EN Title<\/p>/);
+});

@@ -1,0 +1,7 @@
+{
+  "home":       { "en": "",            "es": "" },
+  "businesses": { "en": "businesses",  "es": "negocios" },
+  "faq":        { "en": "faq",         "es": "preguntas" },
+  "tour":       { "en": "tour",        "es": "recorrido" },
+  "advertise":  { "en": "advertise",   "es": "anuncios" }
+}

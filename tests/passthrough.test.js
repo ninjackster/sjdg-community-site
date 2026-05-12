@@ -9,10 +9,6 @@ before(() => {
 
 const LEGACY_FILES = [
   'index.html',
-  'businesses.html',
-  'faq.html',
-  'tour.html',
-  'advertise.html',
   'admin-businesses.html',
   'robots.txt',
   'sitemap.xml',

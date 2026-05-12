@@ -1,21 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
-    <loc>https://sanjosedegracia.net/</loc>
-    <lastmod>2026-03-21</lastmod>
+    <loc>https://sanjosedegracia.net/en/</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/" />
   </url>
   <url>
-    <loc>https://sanjosedegracia.net/businesses</loc>
-    <lastmod>2026-03-21</lastmod>
+    <loc>https://sanjosedegracia.net/es/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/" />
+  </url>
+
+  <url>
+    <loc>https://sanjosedegracia.net/en/businesses</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/businesses" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/negocios" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/businesses" />
   </url>
   <url>
-    <loc>https://sanjosedegracia.net/advertise</loc>
-    <lastmod>2026-03-21</lastmod>
+    <loc>https://sanjosedegracia.net/es/negocios</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/businesses" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/negocios" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/businesses" />
+  </url>
+
+  <url>
+    <loc>https://sanjosedegracia.net/en/faq</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/faq" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/preguntas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/faq" />
   </url>
+  <url>
+    <loc>https://sanjosedegracia.net/es/preguntas</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/faq" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/preguntas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/faq" />
+  </url>
+
+  <url>
+    <loc>https://sanjosedegracia.net/en/tour</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/tour" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/recorrido" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/tour" />
+  </url>
+  <url>
+    <loc>https://sanjosedegracia.net/es/recorrido</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/tour" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/recorrido" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/tour" />
+  </url>
+
+  <url>
+    <loc>https://sanjosedegracia.net/en/advertise</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/advertise" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/anuncios" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/advertise" />
+  </url>
+  <url>
+    <loc>https://sanjosedegracia.net/es/anuncios</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/advertise" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/anuncios" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/advertise" />
+  </url>
+
 </urlset>
