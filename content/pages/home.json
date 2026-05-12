@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "slug":               { "en": "", "es": "" },
+    "title":              { "en": "San José de Gracia — Jalisco, México", "es": "San José de Gracia — Jalisco, México" },
+    "description":        { "en": "San José de Gracia — a historic highland town in the Altos de Jalisco, Jalisco, México. Discover local businesses, places to stay, festivals, and how to get here.", "es": "San José de Gracia — un pueblo histórico en los Altos de Jalisco, México. Descubre negocios locales, dónde quedarte, festividades y cómo llegar." },
+    "og_locale_primary":  { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate":{ "en": "es_MX", "es": "en_US" }
+  },
+  "hero": {
+    "eyebrow": { "en": "Jalisco, México · Est. 1793",                                                                                                                                                   "es": "Jalisco, México · Fund. 1793" },
+    "sub":     { "en": "A quiet jewel in the Altos de Jalisco highlands — 95 km northeast of Guadalajara, a world away from the ordinary.",                                                             "es": "Una joya tranquila en los Altos de Jalisco — a 95 km al noreste de Guadalajara, a un mundo de lo cotidiano." },
+    "btn1":    { "en": "Find a Place to Stay",                                                                                                                                                          "es": "Encuentra dónde quedarte" },
+    "btn2":    { "en": "Explore the Town",                                                                                                                                                              "es": "Explora el pueblo" },
+    "btn3":    { "en": "Walking Tour",                                                                                                                                                                  "es": "Recorrido a Pie" },
+    "scroll":  { "en": "Scroll",                                                                                                                                                                        "es": "Desliza" }
+  },
+  "tour_link": { "en": "🗺️ Walking Tour", "es": "🗺️ Recorrido a Pie" },
+  "about": {
+    "label": { "en": "Our Town",                                                                                                                                                                                                                                                                                                                                                           "es": "Nuestro Pueblo" },
+    "h2":    { "en": "Where the highlands<br>slow everything down",                                                                                                                                                                                                                                                                                                                        "es": "Donde los Altos<br>hacen todo más lento" },
+    "p":     { "en": "Nestled at 1,980 meters above sea level in the municipality of Tepatitlán, San José de Gracia is a historic town of cobblestone streets, the centuries-old Parroquia de San José, and the kind of unhurried warmth the Altos de Jalisco are known for. Come for a weekend — stay for the cold ones, the tequila, and the homemade chorizo and cheese.", "es": "Enclavado a 1,980 metros sobre el nivel del mar en el municipio de Tepatitlán, San José de Gracia es un pueblo histórico de calles empedradas, la centenaria Parroquia de San José y esa calidez sin prisa que caracteriza los Altos de Jalisco. Ven un fin de semana — ve por las coquitas, el tequila y el chorizo y queso caseros." },
+    "stats": {
+      "founded":  { "en": "Year Founded",      "es": "Año de Fundación" },
+      "altitude": { "en": "Altitude",           "es": "Altitud" },
+      "distance": { "en": "From Guadalajara",   "es": "Desde Guadalajara" },
+      "weather":  { "en": "Right Now",          "es": "Ahora Mismo" }
+    }
+  },
+  "historia": {
+    "label": { "en": "Our History",                                                                                                                                                               "es": "Nuestra Historia" },
+    "h2":    { "en": "A Town with <em>a Story</em>",                                                                                                                                             "es": "Un Pueblo con <em>Historia</em>" },
+    "p":     { "en": "San José de Gracia has been shaped by faith, family, and the rhythms of the highlands for over two centuries. This short film captures its soul.", "es": "San José de Gracia ha sido moldeado por la fe, la familia y los ritmos del altiplano por más de dos siglos. Este cortometraje captura su alma." }
+  },
+  "events": {
+    "label": { "en": "Festivities",                                                                                                                                                                                                                           "es": "Festividades" },
+    "h2":    { "en": "Celebrations &amp;<br><em>Traditions</em>",                                                                                                                                                                                            "es": "Celebraciones y<br><em>Tradiciones</em>" },
+    "intro": { "en": "San José de Gracia comes alive throughout the year with religious festivals, cultural gatherings, and the warmth of Alteño traditions.", "es": "San José de Gracia cobra vida durante todo el año con festivales religiosos, reuniones culturales y la calidez de las tradiciones alteñas." },
+    "items": [
+      {
+        "month": { "en": "March 19",     "es": "19 de marzo" },
+        "name":  { "en": "Fiesta Patronal de San José", "es": "Fiesta Patronal de San José" },
+        "desc":  { "en": "The town's biggest celebration — honoring Saint Joseph, the patron saint. Though the feast day falls on March 19, the festivities are celebrated during the first 10 days of May with masses, processions, music, and fireworks in the plaza.", "es": "La celebración más grande del pueblo — en honor a San José, el santo patrono. Aunque la festividad cae el 19 de marzo, las fiestas se celebran durante los primeros 10 días de mayo con misas, procesiones, música y fuegos artificiales en la plaza." }
+      },
+      {
+        "month": { "en": "March / April", "es": "Marzo / Abril" },
+        "name":  { "en": "Semana Santa",  "es": "Semana Santa" },
+        "desc":  { "en": "Holy Week brings solemn processions and religious observances through the cobblestone streets, a deeply rooted tradition in the Altos.", "es": "La Semana Santa trae procesiones solemnes y actos religiosos por las calles empedradas, una tradición profundamente arraigada en los Altos." }
+      },
+      {
+        "month": { "en": "September 15–16", "es": "15–16 de septiembre" },
+        "name":  { "en": "Fiestas Patrias",  "es": "Fiestas Patrias" },
+        "desc":  { "en": "Independence celebrations fill the jardín with music, lights, and the traditional Grito de Independencia at midnight on September 15.", "es": "Las fiestas de Independencia llenan el jardín de música, luces y el tradicional Grito de Independencia a medianoche del 15 de septiembre." }
+      },
+      {
+        "month": { "en": "December 12",       "es": "12 de diciembre" },
+        "name":  { "en": "Virgen de Guadalupe", "es": "Virgen de Guadalupe" },
+        "desc":  { "en": "One of Mexico's most beloved celebrations — mañanitas, misa de gallo, and pilgrims honoring the Virgin through the night into dawn.", "es": "Una de las celebraciones más queridas de México — mañanitas, misa de gallo y peregrinos honrando a la Virgen durante toda la noche hasta el amanecer." }
+      },
+      {
+        "month": { "en": "December 16–24", "es": "16–24 de diciembre" },
+        "name":  { "en": "Las Posadas",    "es": "Las Posadas" },
+        "desc":  { "en": "Nine nights of candlelit processions, singing, piñatas, and ponche — a cherished Mexican Christmas tradition celebrated neighborhood by neighborhood.", "es": "Nueve noches de procesiones con velas, canto, piñatas y ponche — una entrañable tradición navideña mexicana celebrada barrio por barrio." }
+      },
+      {
+        "month": { "en": "Every Sunday",   "es": "Todos los domingos" },
+        "name":  { "en": "Tianguis Semanal", "es": "Tianguis Semanal" },
+        "desc":  { "en": "The weekly market brings fresh produce, local cheeses, handmade goods, and antojitos to the town center — a living piece of everyday Alteño culture.", "es": "El mercado semanal trae productos frescos, quesos locales, artesanías y antojitos al centro del pueblo — un pedazo vivo de la cultura alteña cotidiana." }
+      }
+    ]
+  },
+  "getting_here": {
+    "label": { "en": "Getting Here",                                                                                                                                         "es": "Cómo Llegar" },
+    "h2":    { "en": "How to get to<br><em>San José</em>",                                                                                                                   "es": "Cómo llegar a<br><em>San José</em>" },
+    "intro": { "en": "San José de Gracia sits in the heart of the Altos de Jalisco highlands. Getting here is part of the experience.", "es": "San José de Gracia está en el corazón de los Altos de Jalisco. El camino para llegar ya forma parte de la experiencia." },
+    "t1_title":  { "en": "By Car from Guadalajara",                                                                                                                                                                                                                                             "es": "En coche desde Guadalajara" },
+    "t1_detail": { "en": "Take <strong>Highway 80</strong> (Carretera Guadalajara–Lagos de Moreno) northeast toward Tepatitlán. Continue past Tepatitlán and follow signs for San José de Gracia. <strong>~95 km · ~1h 30 min.</strong>", "es": "Toma la <strong>Carretera 80</strong> (Guadalajara–Lagos de Moreno) al noreste hacia Tepatitlán. Continúa pasando Tepatitlán y sigue las señales a San José de Gracia. <strong>~95 km · ~1h 30 min.</strong>" },
+    "t2_title":  { "en": "By Bus",                                                                                                                                                                                                                                                              "es": "En autobús" },
+    "t2_detail": { "en": "From <strong>Central de Autobuses Guadalajara (Nueva Central)</strong>, take a bus to Tepatitlán (~1h). From there, take a local colectivo or taxi to San José de Gracia (~20 min).",                                                                                  "es": "Desde la <strong>Central de Autobuses de Guadalajara (Nueva Central)</strong>, toma un autobús a Tepatitlán (~1h). De ahí, un colectivo o taxi a San José de Gracia (~20 min)." },
+    "t3_title":  { "en": "From GDL Airport",                                                                                                                                                                                                                                                    "es": "Desde el Aeropuerto GDL" },
+    "t3_detail": { "en": "From <strong>Aeropuerto Internacional de Guadalajara (GDL)</strong>, head northeast via Highway 80. The drive is approximately <strong>~110 km · ~1h 45 min</strong>. Rental cars are available at the airport.",                                                      "es": "Desde el <strong>Aeropuerto Internacional de Guadalajara (GDL)</strong>, dirígete al noreste por la Carretera 80. El trayecto es de aproximadamente <strong>~110 km · ~1h 45 min</strong>. Hay autos en renta en el aeropuerto." },
+    "maps_link": { "en": "📍 View on Google Maps", "es": "📍 Ver en Google Maps" }
+  },
+  "directory": {
+    "label": { "en": "Local Directory",                                                                                                                                                                          "es": "Directorio Local" },
+    "h2":    { "en": "Every business<br>in <em style=\"font-style:italic;color:var(--gold)\">town</em>",                                                                                                         "es": "Cada negocio<br>del <em style=\"font-style:italic;color:var(--gold)\">pueblo</em>" },
+    "intro": { "en": "From family-run fondas to artisan shops, bars to local churches — browse the full local directory powered by Google Maps.", "es": "Desde fondas familiares hasta tiendas de artesanías, bares e iglesias locales — explora el directorio completo con Google Maps." },
+    "btn":   { "en": "Browse the Directory →",                                                                                                                                                                   "es": "Ver el Directorio →" },
+    "categories": {
+      "restaurant": { "en": "Restaurants",  "es": "Restaurantes" },
+      "bar":        { "en": "Bars",          "es": "Bares" },
+      "coffee":     { "en": "Coffee",        "es": "Café" },
+      "store":      { "en": "Shops",         "es": "Tiendas" },
+      "attraction": { "en": "Attractions",   "es": "Atracciones" },
+      "sports":     { "en": "Sports",        "es": "Deporte" },
+      "services":   { "en": "Services",      "es": "Servicios" },
+      "church":     { "en": "Churches",      "es": "Iglesias" },
+      "businesses": { "en": "Businesses",    "es": "Negocios" }
+    }
+  },
+  "stay": {
+    "label": { "en": "Where to Stay",                                                                                                                                                         "es": "Dónde Quedarse" },
+    "h2":    { "en": "Handpicked places,<br>personally hosted",                                                                                                                              "es": "Lugares escogidos,<br>atención personal" },
+    "p":     { "en": "Superhost-rated stays with 5-star reviews — whether you're in the highlands or on the Baja coast.", "es": "Hospedajes con calificación Superhost y reseñas de 5 estrellas — en los Altos o en la costa de Baja." },
+    "l1": {
+      "h3":     { "en": "Modern Apt · 2 Min to Centro",                                                                                                                                                                                                                                                     "es": "Depto. moderno · a 2 min del Centro" },
+      "p":      { "en": "Bright 2BR/1BA apartment steps from the historic plaza and the Parroquia de San José. New appliances, A/C, keyless entry. Perfect for couples, families, or remote workers.", "es": "Apartamento luminoso de 2 rec/1 baño a pasos de la plaza histórica y la Parroquia de San José. Electrodomésticos nuevos, A/C, entrada sin llave. Ideal para parejas, familias o trabajo remoto." },
+      "meta1":  { "en": "🛏 2 bedrooms · 2 beds",  "es": "🛏 2 recámaras · 2 camas" },
+      "meta2":  { "en": "👥 Up to 5 guests",        "es": "👥 Hasta 5 huéspedes" },
+      "rating": { "en": "★ 5.0 (4 reviews)",        "es": "★ 5.0 (4 reseñas)" },
+      "btn":    { "en": "Book on Airbnb →",          "es": "Reservar en Airbnb →" }
+    },
+    "l2": {
+      "h3":    { "en": "MG Beach House",                                                                                                                                                                     "es": "Casa de Playa MG" },
+      "p":     { "en": "A coastal escape on the Pacific. Laid-back Baja living just south of the US border — ocean views, salty air, and weekend vibes year-round.", "es": "Un escape costero en el Pacífico. El ambiente relajado de Baja, justo al sur de la frontera — vistas al océano, brisa salada y vibra de fin de semana todo el año." },
+      "meta1": { "en": "🌊 Beachside",       "es": "🌊 A orillas del mar" },
+      "meta2": { "en": "🌅 Pacific views",   "es": "🌅 Vistas al Pacífico" },
+      "btn":   { "en": "Book on Airbnb →",   "es": "Reservar en Airbnb →" }
+    }
+  },
+  "cta": {
+    "h2":  { "en": "Ready to visit?",                                                                                                              "es": "¿Listo para visitar?" },
+    "p":   { "en": "San José de Gracia is best experienced in person. Book your stay and let the highlands do the rest.", "es": "San José de Gracia se vive mejor en persona. Reserva tu estancia y deja que los Altos hagan el resto." },
+    "btn": { "en": "See Available Stays",                                                                                                          "es": "Ver alojamientos disponibles" }
+  },
+  "rental": {
+    "tab":      { "en": "For Rent",                      "es": "Se Renta" },
+    "header":   { "en": "For Rent · San Jose de Gracia", "es": "Se Renta · San Jose de Gracia" },
+    "avail":    { "en": "Available",                     "es": "Disponible" },
+    "area":     { "en": "Main area",                     "es": "Area principal" },
+    "dims":     { "en": "Meters (L&times;W)",            "es": "Metros (L&times;A)" },
+    "storage":  { "en": "Storage space",                 "es": "Espacio de bodega" },
+    "patio":    { "en": "With water hookup",             "es": "Con toma de agua" },
+    "includes": { "en": "Included in rent",              "es": "Incluido en la renta" },
+    "cameras":  { "en": "Cameras",                       "es": "Camaras" },
+    "bath":     { "en": "Half bath",                     "es": "Medio bano" },
+    "wa":       { "en": "Inquire: 331 696 3003",         "es": "Informes: 331 696 3003" },
+    "note":     { "en": "Min. 1 year contract · Utilities separate", "es": "Contrato minimo 1 ano · Luz y agua aparte" }
+  }
+}
