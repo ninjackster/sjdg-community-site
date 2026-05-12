@@ -1,5 +1,11 @@
 {
   "cleanUrls": true,
   "buildCommand": "npm run build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/businesses", "destination": "/en/businesses", "permanent": true },
+    { "source": "/faq",        "destination": "/en/faq",        "permanent": true },
+    { "source": "/tour",       "destination": "/en/tour",       "permanent": true },
+    { "source": "/advertise",  "destination": "/en/advertise",  "permanent": true }
+  ]
 }
