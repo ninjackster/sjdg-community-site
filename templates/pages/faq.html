@@ -1,0 +1,203 @@
+  <style>
+    /* HERO */
+    .faq-hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      background: var(--dark);
+      color: var(--cream);
+    }
+    .faq-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: .5rem; }
+    .faq-hero h1 em { font-style: italic; color: var(--clay); }
+    .faq-hero p { max-width: 600px; margin: 0 auto; font-size: 1rem; opacity: .7; }
+
+    /* CONTENT */
+    .faq-content { max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+    /* FAQ ACCORDION */
+    .faq-section { margin-bottom: 3rem; }
+    .faq-section-title {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem;
+      margin-bottom: 1.5rem; color: var(--earth);
+      padding-bottom: .5rem; border-bottom: 2px solid var(--mist);
+    }
+    .faq-item { border-bottom: 1px solid var(--mist); }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 0; cursor: pointer; font-weight: 500; font-size: .95rem;
+      background: none; border: none; width: 100%; text-align: left;
+      font-family: inherit; color: var(--dark);
+    }
+    .faq-q:hover { color: var(--clay); }
+    .faq-arrow { font-size: 1.2rem; transition: transform .3s; color: var(--clay); flex-shrink: 0; margin-left: 1rem; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height .3s ease;
+      font-size: .9rem; color: rgba(28,19,9,.7); line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 500px; padding-bottom: 1.2rem; }
+    .faq-a a { color: var(--clay); }
+
+    /* EMERGENCY GRID */
+    .emergency-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem; margin-top: 1rem;
+    }
+    .emergency-card {
+      background: #fff; border-radius: 12px; padding: 1.2rem;
+      border: 1px solid var(--mist); transition: box-shadow .3s;
+    }
+    .emergency-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+    .emergency-card h4 { font-size: .85rem; text-transform: uppercase; letter-spacing: .12em; color: var(--earth); margin-bottom: .5rem; }
+    .emergency-card .phone { font-size: 1.3rem; font-weight: 700; color: var(--dark); text-decoration: none; display: block; margin-bottom: .3rem; }
+    .emergency-card .phone:hover { color: var(--clay); }
+    .emergency-card .detail { font-size: .8rem; color: rgba(28,19,9,.5); }
+
+    /* TIPS */
+    .tip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .tip-card {
+      background: #fff; border-radius: 12px; padding: 1.2rem;
+      border: 1px solid var(--mist);
+    }
+    .tip-icon { width: 28px; height: 28px; margin-bottom: .5rem; display: block; color: var(--clay); }
+    .tip-icon svg { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .tip-card h4 { font-size: .9rem; margin-bottom: .4rem; }
+    .tip-card p { font-size: .82rem; color: rgba(28,19,9,.6); line-height: 1.5; }
+  </style>
+
+  <!-- HERO -->
+  <section class="faq-hero" id="main-content">
+    <h1>{{hero.h1}}</h1>
+    <p>{{hero.sub}}</p>
+  </section>
+
+  <!-- CONTENT -->
+  <div class="faq-content">
+
+    <!-- EMERGENCY CONTACTS -->
+    <section class="faq-section">
+      <h2 class="faq-section-title">{{emergency.heading}}</h2>
+      <div class="emergency-grid">
+        <div class="emergency-card">
+          <h4>{{emergency.items.0.label}}</h4>
+          <a href="tel:911" class="phone">{{emergency.items.0.phone}}</a>
+          <span class="detail">{{emergency.items.0.detail}}</span>
+        </div>
+        <div class="emergency-card">
+          <h4>{{emergency.items.1.label}}</h4>
+          <a href="tel:+523787889060" class="phone">{{emergency.items.1.phone}}</a>
+          <span class="detail">{{emergency.items.1.detail}}</span>
+        </div>
+        <div class="emergency-card">
+          <h4>{{emergency.items.2.label}}</h4>
+          <a href="tel:+523787820685" class="phone">{{emergency.items.2.phone}}</a>
+          <span class="detail">{{emergency.items.2.detail}}</span>
+        </div>
+        <div class="emergency-card">
+          <h4>{{emergency.items.3.label}}</h4>
+          <a href="tel:+523787825299" class="phone">{{emergency.items.3.phone}}</a>
+          <span class="detail">{{emergency.items.3.detail}}</span>
+        </div>
+        <div class="emergency-card">
+          <h4>{{emergency.items.4.label}}</h4>
+          <a href="tel:+523919110920" class="phone">{{emergency.items.4.phone}}</a>
+          <span class="detail">{{emergency.items.4.detail}}</span>
+        </div>
+        <div class="emergency-card">
+          <h4>{{emergency.items.5.label}}</h4>
+          <a href="tel:+523916110380" class="phone">{{emergency.items.5.phone}}</a>
+          <span class="detail">{{emergency.items.5.detail}}</span>
+        </div>
+        <div class="emergency-card">
+          <h4>{{emergency.items.6.label}}</h4>
+          <a href="tel:078" class="phone">{{emergency.items.6.phone}}</a>
+          <span class="detail">{{emergency.items.6.detail}}</span>
+        </div>
+        <div class="emergency-card">
+          <h4>{{emergency.items.7.label}}</h4>
+          <a href="tel:+523331117800" class="phone">{{emergency.items.7.phone}}</a>
+          <span class="detail">{{emergency.items.7.detail}}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRACTICAL TIPS -->
+    <section class="faq-section">
+      <h2 class="faq-section-title">{{tips.heading}}</h2>
+      <div class="tip-grid">
+        <div class="tip-card">
+          <span class="tip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></span>
+          <h4>{{tips.items.0.h}}</h4>
+          <p>{{tips.items.0.p}}</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3l4 8 5-5 5 15H2L8 3z"/></svg></span>
+          <h4>{{tips.items.1.h}}</h4>
+          <p>{{tips.items.1.p}}</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+          <h4>{{tips.items.2.h}}</h4>
+          <p>{{tips.items.2.p}}</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <h4>{{tips.items.3.h}}</h4>
+          <p>{{tips.items.3.p}}</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>
+          <h4>{{tips.items.4.h}}</h4>
+          <p>{{tips.items.4.p}}</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 16H9m10 0h3v-3.15a1 1 0 00-.84-.99L16 11l-2.7-3.6a1 1 0 00-.8-.4H5a2 2 0 00-2 2v7h2"/><circle cx="7.5" cy="17" r="2"/><circle cx="17.5" cy="17" r="2"/></svg></span>
+          <h4>{{tips.items.5.h}}</h4>
+          <p>{{tips.items.5.p}}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ ACCORDION -->
+    <section class="faq-section">
+      <h2 class="faq-section-title">{{faq.heading}}</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">{{faq.items.0.q}}</button>
+        <div class="faq-a">{{faq.items.0.a}}</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">{{faq.items.1.q}}</button>
+        <div class="faq-a">{{faq.items.1.a}}</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">{{faq.items.2.q}}</button>
+        <div class="faq-a">{{faq.items.2.a}}</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">{{faq.items.3.q}}</button>
+        <div class="faq-a">{{faq.items.3.a}}</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">{{faq.items.4.q}}</button>
+        <div class="faq-a">{{faq.items.4.a}}</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">{{faq.items.5.q}}</button>
+        <div class="faq-a">{{faq.items.5.a}}</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">{{faq.items.6.q}}</button>
+        <div class="faq-a">{{faq.items.6.a}}</div>
+      </div>
+    </section>
+
+  </div>
+
+<script>
+  // ── FAQ ACCORDION ──
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.parentElement.classList.toggle('open');
+    });
+  });
+</script>

@@ -1,0 +1,284 @@
+<style>
+  .hero { padding: 10rem 3rem 5rem; text-align: center; background: var(--dark); color: var(--cream); position: relative; overflow: hidden; }
+  .hero::before { content: 'SJG'; position: absolute; font-family: 'Playfair Display', serif; font-size: 28vw; font-weight: 700; color: rgba(255,255,255,.03); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; white-space: nowrap; }
+  .hero .section-label { font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; position: relative; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.2rem; position: relative; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p { color: rgba(245,239,230,.7); font-size: clamp(.92rem, 1.5vw, 1.05rem); max-width: 550px; margin: 0 auto; line-height: 1.7; position: relative; }
+
+  .pricing-section { padding: 5rem 3rem; max-width: 1200px; margin: 0 auto; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 3rem; }
+  .pricing-card { background: #fff; border: 1px solid rgba(28,19,9,.08); border-radius: 4px; padding: 2.5rem 2rem; display: flex; flex-direction: column; position: relative; transition: transform .25s, box-shadow .25s; }
+  .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(28,19,9,.08); }
+  .pricing-card.popular { border-color: var(--gold); border-width: 2px; }
+  .pricing-card.popular::before { content: attr(data-badge); position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--dark); font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .9rem; border-radius: 2px; white-space: nowrap; }
+  .card-icon { width: 2.2rem; height: 2.2rem; margin-bottom: 1rem; color: var(--clay); }
+  .card-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .card-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: .5rem; }
+  .card-desc { font-size: .85rem; color: rgba(28,19,9,.55); line-height: 1.6; margin-bottom: 1.5rem; }
+  .card-price { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--clay); margin-bottom: .15rem; }
+  .card-price span { font-size: .85rem; font-weight: 300; font-family: 'DM Sans', sans-serif; color: rgba(28,19,9,.45); }
+  .card-period { font-size: .78rem; color: rgba(28,19,9,.4); margin-bottom: 1.8rem; }
+  .card-features { list-style: none; flex: 1; margin-bottom: 2rem; }
+  .card-features li { font-size: .84rem; color: rgba(28,19,9,.7); padding: .45rem 0; border-bottom: 1px solid rgba(28,19,9,.05); display: flex; align-items: flex-start; gap: .5rem; line-height: 1.5; }
+  .card-features li::before { content: ''; width: .9rem; height: .9rem; flex-shrink: 0; margin-top: .15rem; background: var(--sage); -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; }
+  .card-btn { display: block; text-align: center; padding: .85rem 2rem; border-radius: 2px; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: all .25s; cursor: pointer; border: 1px solid var(--clay); color: var(--clay); background: transparent; }
+  .card-btn:hover { background: var(--clay); color: var(--cream); transform: translateY(-2px); }
+  .pricing-card.popular .card-btn { background: var(--clay); color: var(--cream); }
+  .pricing-card.popular .card-btn:hover { background: var(--earth); border-color: var(--earth); }
+
+  .showcase { padding: 5rem 3rem 2rem; max-width: 1000px; margin: 0 auto; }
+  .showcase-header { text-align: center; margin-bottom: 3rem; }
+  .showcase-header .section-label { font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .showcase-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; margin-bottom: .8rem; }
+  .showcase-header h2 em { font-style: italic; color: var(--gold); }
+  .showcase-header p { color: rgba(28,19,9,.5); font-size: .9rem; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+  .showcase-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 3rem; align-items: start; }
+  .showcase-col-label { font-size: .65rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(28,19,9,.35); margin-bottom: .8rem; text-align: center; }
+  .s-card { background: #fff; border-radius: 4px; overflow: hidden; border: 1px solid rgba(28,19,9,.06); }
+  .s-card-photo { height: 130px; background: var(--mist); position: relative; display: flex; align-items: center; justify-content: center; }
+  .s-card-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .s-badge { position: absolute; top: .5rem; left: .5rem; background: var(--gold); color: var(--dark); font-size: .58rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 2px; }
+  .s-card-info { padding: .9rem 1rem; }
+  .s-card-name { font-family: 'Playfair Display', serif; font-size: .95rem; font-weight: 400; margin-bottom: .25rem; }
+  .s-card-rating { font-size: .75rem; color: var(--gold); margin-bottom: .2rem; }
+  .s-card-rating span { color: rgba(28,19,9,.4); font-size: .7rem; }
+  .s-card-addr { font-size: .72rem; color: rgba(28,19,9,.4); }
+  .sp-card { background: #fff; border-radius: 4px; overflow: hidden; border: 2px solid var(--gold); }
+  .sp-photo { height: 170px; position: relative; overflow: hidden; }
+  .sp-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .sp-badge { position: absolute; top: .5rem; left: .5rem; background: var(--gold); color: var(--dark); font-size: .58rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .65rem; border-radius: 2px; display: flex; align-items: center; gap: .25rem; }
+  .sp-badge svg { width: .65rem; height: .65rem; fill: none; stroke: var(--dark); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sp-gallery { display: flex; gap: 2px; margin-top: 2px; }
+  .sp-gallery-thumb { flex: 1; height: 44px; overflow: hidden; background: var(--mist); }
+  .sp-gallery-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: .85; }
+  .sp-info { padding: 1.1rem 1.2rem; }
+  .sp-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 400; margin-bottom: .25rem; }
+  .sp-rating { font-size: .78rem; color: var(--gold); margin-bottom: .4rem; }
+  .sp-rating span { color: rgba(28,19,9,.4); font-size: .7rem; }
+  .sp-meta { display: flex; gap: .8rem; margin-bottom: .5rem; }
+  .sp-meta-item { display: flex; align-items: center; gap: .25rem; font-size: .7rem; color: rgba(28,19,9,.42); }
+  .sp-meta-item svg { width: .75rem; height: .75rem; fill: none; stroke: rgba(28,19,9,.35); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sp-desc { font-size: .8rem; color: rgba(28,19,9,.55); line-height: 1.6; margin-bottom: .7rem; }
+  .sp-promo { background: rgba(212,168,67,.08); border-left: 3px solid var(--gold); padding: .45rem .7rem; font-size: .72rem; color: var(--earth); margin-bottom: .9rem; border-radius: 0 2px 2px 0; }
+  .sp-actions { display: flex; gap: .5rem; }
+  .sp-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: .3rem; padding: .55rem; border-radius: 2px; font-size: .7rem; font-weight: 400; letter-spacing: .05em; text-transform: uppercase; text-decoration: none; transition: all .2s; cursor: pointer; }
+  .sp-btn svg { width: .8rem; height: .8rem; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sp-btn-wa { background: #25D366; color: #fff; border: 1px solid #25D366; }
+  .sp-btn-wa svg { stroke: #fff; }
+  .sp-btn-wa:hover { background: #1da851; }
+  .sp-btn-menu, .sp-btn-map { background: transparent; color: var(--earth); border: 1px solid rgba(139,94,60,.25); }
+  .sp-btn-menu svg, .sp-btn-map svg { stroke: var(--earth); }
+  .sp-btn-menu:hover, .sp-btn-map:hover { background: var(--earth); color: var(--cream); }
+  .sp-btn-menu:hover svg, .sp-btn-map:hover svg { stroke: var(--cream); }
+  .showcase-divider { text-align: center; padding: 3rem 0 1rem; }
+  .showcase-divider svg { width: 2rem; height: 2rem; stroke: rgba(28,19,9,.12); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  @media (max-width: 900px) { .showcase-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; } .showcase { padding: 3rem 1.5rem 1rem; } .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; } .hero { padding: 8rem 1.5rem 4rem; } .pricing-section { padding: 3rem 1.5rem; } .comparison-section { padding: 3rem 1.5rem; overflow-x: auto; } .cta-banner { padding: 5rem 1.5rem; } }
+
+  .annual-note { text-align: center; margin-top: 2.5rem; font-size: .85rem; color: rgba(28,19,9,.5); }
+  .annual-note strong { color: var(--sage); font-weight: 500; }
+
+  .comparison-section { padding: 4rem 3rem 5rem; max-width: 1000px; margin: 0 auto; }
+  .comparison-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; text-align: center; margin-bottom: .8rem; }
+  .comparison-section h2 em { font-style: italic; color: var(--gold); }
+  .comparison-sub { text-align: center; color: rgba(28,19,9,.5); font-size: .9rem; margin-bottom: 3rem; }
+  .comp-table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+  .comp-table thead th { text-align: center; font-weight: 500; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--earth); padding: 1rem .8rem; border-bottom: 2px solid rgba(28,19,9,.1); }
+  .comp-table thead th:first-child { text-align: left; }
+  .comp-table tbody td { padding: .8rem; border-bottom: 1px solid rgba(28,19,9,.06); text-align: center; color: rgba(28,19,9,.65); }
+  .comp-table tbody td:first-child { text-align: left; color: var(--dark); font-weight: 400; }
+  .comp-table .check { color: var(--sage); }
+  .comp-table .check svg, .comp-table .dash svg { width: 1rem; height: 1rem; vertical-align: middle; }
+  .comp-table .check svg { stroke: var(--sage); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .comp-table .dash svg { stroke: rgba(28,19,9,.18); fill: none; stroke-width: 2; stroke-linecap: round; }
+  @media (max-width: 600px) { .comp-table { font-size: .72rem; } .comp-table thead th, .comp-table tbody td { padding: .6rem .4rem; } }
+
+  .cta-banner { padding: 7rem 4rem; text-align: center; background: var(--clay); position: relative; overflow: hidden; }
+  .cta-banner::before { content: 'SJG'; position: absolute; font-family: 'Playfair Display', serif; font-size: 22vw; font-weight: 700; color: rgba(255,255,255,.07); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; white-space: nowrap; }
+  .cta-banner h2 { position: relative; font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; color: var(--cream); margin-bottom: 1rem; line-height: 1.2; }
+  .cta-banner p { position: relative; color: rgba(245,239,230,.8); font-size: 1rem; max-width: 460px; margin: 0 auto 2rem; line-height: 1.7; }
+  .cta-banner .btn { position: relative; display: inline-block; padding: .85rem 2rem; border-radius: 2px; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: all .25s; cursor: pointer; background: var(--cream); color: var(--clay); border: none; font-weight: 500; }
+  .cta-banner .btn:hover { background: var(--dark); color: var(--cream); }
+</style>
+
+<section class="hero" id="main-content">
+  <p class="section-label">{{hero.label}}</p>
+  <h1>{{hero.h1}}</h1>
+  <p>{{hero.sub}}</p>
+</section>
+
+<section class="showcase">
+  <div class="showcase-header">
+    <p class="section-label">{{showcase.label}}</p>
+    <h2>{{showcase.h2}}</h2>
+    <p>{{showcase.sub}}</p>
+  </div>
+  <div class="showcase-grid">
+    <div>
+      <p class="showcase-col-label">{{showcase.col_regular}}</p>
+      <div class="s-card">
+        <div class="s-card-photo">
+          <span class="s-badge">{{showcase.badge_feat}}</span>
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=200&fit=crop" alt="Restaurant interior example" />
+        </div>
+        <div class="s-card-info">
+          <h4 class="s-card-name">La Cocina de Dona Maria</h4>
+          <p class="s-card-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.8 (42)</span></p>
+          <p class="s-card-addr">Calle Hidalgo 15, Centro</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="showcase-col-label">{{showcase.col_premium}}</p>
+      <div class="sp-card">
+        <div class="sp-photo">
+          <span class="sp-badge">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>
+            <span>{{showcase.badge_prem}}</span>
+          </span>
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=300&fit=crop" alt="Premium restaurant listing example" />
+        </div>
+        <div class="sp-gallery">
+          <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=150&h=80&fit=crop" alt="Dish photo 1" /></div>
+          <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=150&h=80&fit=crop" alt="Dish photo 2" /></div>
+          <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=150&h=80&fit=crop" alt="Dish photo 3" /></div>
+          <div class="sp-gallery-thumb"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=150&h=80&fit=crop" alt="Dish photo 4" /></div>
+        </div>
+        <div class="sp-info">
+          <h4 class="sp-name">La Cocina de Dona Maria</h4>
+          <p class="sp-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.8 (42)</span></p>
+          <div class="sp-meta">
+            <span class="sp-meta-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              8am – 10pm
+            </span>
+            <span class="sp-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Calle Hidalgo 15
+            </span>
+          </div>
+          <p class="sp-desc">{{showcase.desc}}</p>
+          <div class="sp-promo">{{showcase.promo}}</div>
+          <div class="sp-actions">
+            <span class="sp-btn sp-btn-wa">
+              <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+              <span>{{showcase.wa_btn}}</span>
+            </span>
+            <span class="sp-btn sp-btn-menu">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <span>{{showcase.menu_btn}}</span>
+            </span>
+            <span class="sp-btn sp-btn-map">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>{{showcase.map_btn}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="showcase-divider">
+    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<section class="pricing-section">
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <h3 class="card-name">{{tiers.0.name}}</h3>
+      <p class="card-desc">{{tiers.0.desc}}</p>
+      <div class="card-price">{{tiers.0.price}}</div>
+      <p class="card-period">{{tiers.0.period}}</p>
+      <ul class="card-features">
+        <li>{{tiers.0.features.0}}</li>
+        <li>{{tiers.0.features.1}}</li>
+        <li>{{tiers.0.features.2}}</li>
+        <li>{{tiers.0.features.3}}</li>
+      </ul>
+      <a href="mailto:sanjosedegraciajalisco@gmail.com?subject=Featured%20Listing" class="card-btn">{{tiers.0.button}}</a>
+    </div>
+
+    <div class="pricing-card popular" data-badge="{{tiers.1.popular_badge}}">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg></div>
+      <h3 class="card-name">{{tiers.1.name}}</h3>
+      <p class="card-desc">{{tiers.1.desc}}</p>
+      <div class="card-price">{{tiers.1.price}}</div>
+      <p class="card-period">{{tiers.1.period}}</p>
+      <ul class="card-features">
+        <li>{{tiers.1.features.0}}</li>
+        <li>{{tiers.1.features.1}}</li>
+        <li>{{tiers.1.features.2}}</li>
+        <li>{{tiers.1.features.3}}</li>
+        <li>{{tiers.1.features.4}}</li>
+        <li>{{tiers.1.features.5}}</li>
+      </ul>
+      <a href="mailto:sanjosedegraciajalisco@gmail.com?subject=Premium%20Profile" class="card-btn">{{tiers.1.button}}</a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M12 14l-2 4h4l-2-4z"/></svg></div>
+      <h3 class="card-name">{{tiers.2.name}}</h3>
+      <p class="card-desc">{{tiers.2.desc}}</p>
+      <div class="card-price">{{tiers.2.price}}</div>
+      <p class="card-period">{{tiers.2.period}}</p>
+      <ul class="card-features">
+        <li>{{tiers.2.features.0}}</li>
+        <li>{{tiers.2.features.1}}</li>
+        <li>{{tiers.2.features.2}}</li>
+        <li>{{tiers.2.features.3}}</li>
+      </ul>
+      <a href="mailto:sanjosedegraciajalisco@gmail.com?subject=Event%20Spotlight" class="card-btn">{{tiers.2.button}}</a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+      <h3 class="card-name">{{tiers.3.name}}</h3>
+      <p class="card-desc">{{tiers.3.desc}}</p>
+      <div class="card-price">{{tiers.3.price}}</div>
+      <p class="card-period">{{tiers.3.period}}</p>
+      <ul class="card-features">
+        <li>{{tiers.3.features.0}}</li>
+        <li>{{tiers.3.features.1}}</li>
+        <li>{{tiers.3.features.2}}</li>
+        <li>{{tiers.3.features.3}}</li>
+      </ul>
+      <a href="mailto:sanjosedegraciajalisco@gmail.com?subject=Experience%20Listing" class="card-btn">{{tiers.3.button}}</a>
+    </div>
+  </div>
+
+  <p class="annual-note">{{annual_note}}</p>
+</section>
+
+<section class="comparison-section">
+  <h2>{{comparison.h2}}</h2>
+  <p class="comparison-sub">{{comparison.sub}}</p>
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>{{comparison.feature_col}}</th>
+        <th>{{tiers.0.name}}</th>
+        <th>{{tiers.1.name}}</th>
+        <th>{{tiers.2.name}}</th>
+        <th>{{tiers.3.name}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>{{comparison.rows.0}}</td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td></tr>
+      <tr><td>{{comparison.rows.1}}</td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td></tr>
+      <tr><td>{{comparison.rows.2}}</td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+      <tr><td>{{comparison.rows.3}}</td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+      <tr><td>{{comparison.rows.4}}</td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td></tr>
+      <tr><td>{{comparison.rows.5}}</td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td></tr>
+      <tr><td>{{comparison.rows.6}}</td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+      <tr><td>{{comparison.rows.7}}</td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+      <tr><td>{{comparison.rows.8}}</td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td><td class="dash"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></td><td class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="cta-banner">
+  <h2>{{cta.h2}}</h2>
+  <p>{{cta.p}}</p>
+  <a href="mailto:sanjosedegraciajalisco@gmail.com?subject=Advertising%20Inquiry" class="btn">{{cta.button}}</a>
+</section>
