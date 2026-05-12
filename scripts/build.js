@@ -1,9 +1,10 @@
-import { mkdir, writeFile, rm, readFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { mkdir, writeFile, rm, readFile, readdir } from 'node:fs/promises';
+import { existsSync, rmSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadContent } from './lib/content.js';
 import { buildPage } from './lib/build-page.js';
+import { passthrough } from './lib/passthrough.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -45,12 +46,55 @@ async function buildHome({ shared, layout }) {
   }
 }
 
+function ensureRemoved(path) {
+  if (!existsSync(path)) return;
+
+  // First, try to remove all contents of the directory (depth-first)
+  // This helps handle cases where recursive delete fails due to open handles
+  const removeRecursive = (dir) => {
+    const entries = readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = dir + '/' + entry.name;
+      if (entry.isDirectory()) {
+        removeRecursive(fullPath);
+      }
+      try {
+        rmSync(fullPath, { force: true });
+      } catch (err) {
+        // Ignore individual errors and keep going
+      }
+    }
+  };
+
+  try {
+    removeRecursive(path);
+  } catch (err) {
+    // If recursive removal fails, just try direct removal
+  }
+
+  // Finally, try to remove the directory itself
+  let lastError;
+  for (let attempt = 0; attempt < 50; attempt++) {
+    try {
+      rmSync(path, { recursive: true, force: true });
+      return;
+    } catch (err) {
+      lastError = err;
+      // Keep trying
+    }
+  }
+  throw lastError;
+}
+
 async function main() {
   // Clean dist/
   if (existsSync(DIST)) {
-    await rm(DIST, { recursive: true });
+    ensureRemoved(DIST);
   }
   await ensureDir(DIST);
+
+  await passthrough(ROOT, DIST);
+  console.log('✓ copied legacy passthrough files');
 
   const shared = await loadShared();
   const layout = await readFile(join(ROOT, 'templates/layouts/base.html'), 'utf8');
