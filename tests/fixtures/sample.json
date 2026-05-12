@@ -1,0 +1,8 @@
+{
+  "title":       { "en": "Hello",        "es": "Hola" },
+  "description": { "en": "A test page.", "es": "Una página de prueba." },
+  "nested": {
+    "label": { "en": "Click",  "es": "Haz clic" }
+  },
+  "constant": "not-translated"
+}

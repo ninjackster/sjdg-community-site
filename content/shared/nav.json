@@ -1,0 +1,10 @@
+{
+  "skip_link":    { "en": "Skip to main content", "es": "Ir al contenido principal" },
+  "directory":    { "en": "Directory",            "es": "Directorio" },
+  "stay":         { "en": "Stay",                 "es": "Alojarse" },
+  "events":       { "en": "Events",               "es": "Eventos" },
+  "getting_here": { "en": "Getting Here",         "es": "Cómo Llegar" },
+  "contact":      { "en": "Contact",              "es": "Contacto" },
+  "advertise":    { "en": "Advertise",            "es": "Anúnciate" },
+  "faq":          { "en": "FAQ",                  "es": "Info" }
+}

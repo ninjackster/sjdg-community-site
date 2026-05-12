@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{lang}}">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4TGNPX9J5"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{shared.common.ga_id}}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-Z4TGNPX9J5');
+  gtag('config', '{{shared.common.ga_id}}');
 </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>San José de Gracia — Jalisco, México</title>
+  <title>{{meta.title}}</title>
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -53,27 +53,28 @@
   </script>
 
   <!-- SEO & Social Sharing -->
-  <meta name="description" content="San José de Gracia — a historic highland town in the Altos de Jalisco, Jalisco, México. Discover local businesses, places to stay, festivals, and how to get here." />
+  <meta name="description" content="{{meta.description}}" />
   <meta name="keywords" content="San José de Gracia, Jalisco, México, Altos de Jalisco, Tepatitlán, turismo, pueblo, parroquia" />
-  <link rel="canonical" href="https://sanjosedegracia.net" />
+  <link rel="canonical" href="{{canonical}}" />
+  {{hreflang}}
 
   <!-- Open Graph (Facebook, WhatsApp, iMessage) -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sanjosedegracia.net" />
-  <meta property="og:title" content="San José de Gracia — Jalisco, México" />
-  <meta property="og:description" content="A quiet jewel in the Altos de Jalisco highlands — cobblestone streets, the Parroquia de San José, and unhurried warmth 95 km from Guadalajara." />
-  <meta property="og:image" content="https://sanjosedegracia.net/pueblo-1.webp" />
+  <meta property="og:url" content="{{canonical}}" />
+  <meta property="og:title" content="{{meta.title}}" />
+  <meta property="og:description" content="{{meta.description}}" />
+  <meta property="og:image" content="{{shared.common.default_og_image}}" />
   <meta property="og:image:width" content="2304" />
   <meta property="og:image:height" content="1536" />
-  <meta property="og:locale" content="es_MX" />
-  <meta property="og:locale:alternate" content="en_US" />
-  <meta property="og:site_name" content="San José de Gracia" />
+  <meta property="og:locale" content="{{meta.og_locale_primary}}" />
+  <meta property="og:locale:alternate" content="{{meta.og_locale_alternate}}" />
+  <meta property="og:site_name" content="{{shared.common.site_name}}" />
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="San José de Gracia — Jalisco, México" />
-  <meta name="twitter:description" content="A quiet jewel in the Altos de Jalisco highlands — cobblestone streets, the Parroquia de San José, and unhurried warmth." />
-  <meta name="twitter:image" content="https://sanjosedegracia.net/pueblo-1.webp" />
+  <meta name="twitter:title" content="{{meta.title}}" />
+  <meta name="twitter:description" content="{{meta.description}}" />
+  <meta name="twitter:image" content="{{shared.common.default_og_image}}" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -171,6 +172,7 @@
       color: rgba(245,239,230,.4);
       font-weight: 300;
       transition: color .25s, font-weight .25s;
+      text-decoration: none;
     }
     .lang-opt.active { color: var(--gold); font-weight: 500; }
     .lang-opt:hover:not(.active) { color: rgba(245,239,230,.75); }
@@ -193,7 +195,7 @@
       position: absolute; inset: 0;
       background:
         linear-gradient(to bottom, rgba(28,19,9,.35) 0%, rgba(28,19,9,.1) 40%, rgba(28,19,9,.55) 100%),
-        var(--hero-img, url('pueblo-1.webp')) center/cover no-repeat;
+        var(--hero-img, url('/pueblo-1.webp')) center/cover no-repeat;
       background-color: #6B3A1F;
     }
     .hero-bg::after {
@@ -739,14 +741,14 @@
     .mobile-menu .mobile-lang {
       display: flex; gap: 1rem; margin-top: 1rem;
     }
-    .mobile-menu .mobile-lang button {
+    .mobile-menu .mobile-lang a {
       background: none; border: none; cursor: pointer;
       font-family: 'DM Sans', sans-serif;
       font-size: .85rem; letter-spacing: .14em; text-transform: uppercase;
       color: rgba(245,239,230,.4); padding: .3rem .5rem;
       transition: color .2s;
     }
-    .mobile-menu .mobile-lang button.active { color: var(--gold); }
+    .mobile-menu .mobile-lang a.active { color: var(--gold); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -973,7 +975,7 @@
 </head>
 <body>
 
-  <a class="skip-link" href="#main-content" data-i18n="skip-link">Skip to main content</a>
+  <a class="skip-link" href="#main-content">{{shared.nav.skip_link}}</a>
 
   <!-- NAV -->
   <nav id="nav" aria-label="Main navigation">
@@ -982,18 +984,18 @@
       San José de Gracia
     </a>
     <ul class="nav-links">
-      <li><a href="/businesses" data-i18n="nav-directory">Directory</a></li>
-      <li><a href="#stay" data-i18n="nav-stay">Stay</a></li>
-      <li><a href="#events" data-i18n="nav-events">Events</a></li>
-      <li><a href="#getting-here" data-i18n="nav-getting-here">Getting Here</a></li>
-      <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
-      <li><a href="/faq" data-i18n="nav-faq">FAQ</a></li>
+      <li><a href="/businesses">{{shared.nav.directory}}</a></li>
+      <li><a href="#stay">{{shared.nav.stay}}</a></li>
+      <li><a href="#events">{{shared.nav.events}}</a></li>
+      <li><a href="#getting-here">{{shared.nav.getting_here}}</a></li>
+      <li><a href="#contact">{{shared.nav.contact}}</a></li>
+      <li><a href="/faq">{{shared.nav.faq}}</a></li>
     </ul>
-    <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
-      <span class="lang-opt active" data-lang="en">EN</span>
+    <div class="lang-toggle" aria-label="Select language">
+      <a class="lang-opt" href="/en/">EN</a>
       <span class="lang-sep">·</span>
-      <span class="lang-opt" data-lang="es">ES</span>
-    </button>
+      <a class="lang-opt" href="/es/">ES</a>
+    </div>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -1001,315 +1003,63 @@
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
-    <a href="/businesses" data-i18n="nav-directory" onclick="closeMobileMenu()">Directory</a>
-    <a href="#stay" data-i18n="nav-stay" onclick="closeMobileMenu()">Stay</a>
-    <a href="#events" data-i18n="nav-events" onclick="closeMobileMenu()">Events</a>
-    <a href="#getting-here" data-i18n="nav-getting-here" onclick="closeMobileMenu()">Getting Here</a>
-    <a href="#contact" data-i18n="nav-contact" onclick="closeMobileMenu()">Contact</a>
-    <a href="/faq" data-i18n="nav-faq" onclick="closeMobileMenu()">FAQ</a>
+    <a href="/businesses" onclick="closeMobileMenu()">{{shared.nav.directory}}</a>
+    <a href="#stay" onclick="closeMobileMenu()">{{shared.nav.stay}}</a>
+    <a href="#events" onclick="closeMobileMenu()">{{shared.nav.events}}</a>
+    <a href="#getting-here" onclick="closeMobileMenu()">{{shared.nav.getting_here}}</a>
+    <a href="#contact" onclick="closeMobileMenu()">{{shared.nav.contact}}</a>
+    <a href="/faq" onclick="closeMobileMenu()">{{shared.nav.faq}}</a>
     <div class="mobile-lang">
-      <button class="lang-opt active" data-lang="en" id="ml-en">EN</button>
-      <button class="lang-opt" data-lang="es" id="ml-es">ES</button>
+      <a class="lang-opt" href="/en/" onclick="closeMobileMenu()">EN</a>
+      <a class="lang-opt" href="/es/" onclick="closeMobileMenu()">ES</a>
     </div>
   </div>
 
-  <main id="main-content">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <script>
-      (function(){
-        var imgs = ['pueblo-1.webp','pueblo-2.webp','pueblo-3.webp'];
-        var pick = imgs[Math.floor(Math.random() * imgs.length)];
-        document.getElementById('heroBg').style.setProperty('--hero-img', "url('" + pick + "')");
-      })();
-    </script>
-    <p class="hero-eyebrow" data-i18n="hero-eyebrow">Jalisco, México · Est. 1793</p>
-    <h1>San José<br>de <em>Gracia</em></h1>
-    <p class="hero-sub" data-i18n="hero-sub">A quiet jewel in the Altos de Jalisco highlands — 95 km northeast of Guadalajara, a world away from the ordinary.</p>
-    <div class="hero-ctas">
-      <a href="#stay" class="btn btn-primary" data-i18n="hero-btn1">Find a Place to Stay</a>
-      <a href="/businesses" class="btn btn-outline" data-i18n="hero-btn2">Explore the Town</a>
-      <a href="/tour" class="btn btn-outline" data-i18n="hero-btn3">Walking Tour</a>
-    </div>
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      <span data-i18n="hero-scroll">Scroll</span>
-    </div>
-  </section>
-
-  <!-- ABOUT STRIP -->
-  <section class="about-strip" id="about">
-    <div class="about-text">
-      <p class="section-label" data-i18n="about-label">Our Town</p>
-      <h2 data-i18n="about-h2">Where the highlands<br>slow everything down</h2>
-      <p data-i18n="about-p">Nestled at 1,980 meters above sea level in the municipality of Tepatitlán, San José de Gracia is a historic town of cobblestone streets, the centuries-old Parroquia de San José, and the kind of unhurried warmth the Altos de Jalisco are known for. Come for a weekend — stay for the cold ones, the tequila, and the homemade chorizo and cheese.</p>
-    </div>
-    <div class="about-stats">
-      <div class="stat">
-        <div class="stat-number">1793</div>
-        <div class="stat-label" data-i18n="stat-founded">Year Founded</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">1,980m</div>
-        <div class="stat-label" data-i18n="stat-altitude">Altitude</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">95km</div>
-        <div class="stat-label" data-i18n="stat-distance">From Guadalajara</div>
-      </div>
-      <div class="stat" id="weather-stat" style="display:none;">
-        <div class="stat-number" id="weather-temp">--</div>
-        <div class="stat-label" id="weather-desc" data-i18n="stat-weather">Right Now</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HISTORIA -->
-  <section class="historia" id="historia">
-    <div class="historia-inner">
-      <p class="section-label" data-i18n="historia-label">Our History</p>
-      <h2 data-i18n="historia-h2">A Town with <em>a Story</em></h2>
-      <p data-i18n="historia-p">San José de Gracia has been shaped by faith, family, and the rhythms of the highlands for over two centuries. This short film captures its soul.</p>
-      <div class="historia-video-wrap">
-        <iframe
-          src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D1817088212201890&show_text=false"
-          scrolling="no"
-          allowfullscreen="true"
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-        </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- EVENTS & FESTIVALS -->
-  <section class="events" id="events">
-    <div class="events-inner">
-      <p class="section-label" data-i18n="events-label">Festividades</p>
-      <h2 data-i18n="events-h2">Celebrations &amp;<br><em>Traditions</em></h2>
-      <p class="events-intro" data-i18n="events-intro">San José de Gracia comes alive throughout the year with religious festivals, cultural gatherings, and the warmth of Alteño traditions.</p>
-      <div class="events-grid">
-        <div class="event-card">
-          <span class="event-icon">🌸</span>
-          <p class="event-month" data-i18n="ev1-month">March 19</p>
-          <h3 class="event-name" data-i18n="ev1-name">Fiesta Patronal de San José</h3>
-          <p class="event-desc" data-i18n="ev1-desc">The town's biggest celebration — honoring Saint Joseph, the patron saint. Though the feast day falls on March 19, the festivities are celebrated during the first 10 days of May with masses, processions, music, and fireworks in the plaza.</p>
-        </div>
-        <div class="event-card">
-          <span class="event-icon">🕯️</span>
-          <p class="event-month" data-i18n="ev2-month">March / April</p>
-          <h3 class="event-name" data-i18n="ev2-name">Semana Santa</h3>
-          <p class="event-desc" data-i18n="ev2-desc">Holy Week brings solemn processions and religious observances through the cobblestone streets, a deeply rooted tradition in the Altos.</p>
-        </div>
-        <div class="event-card">
-          <span class="event-icon">🇲🇽</span>
-          <p class="event-month" data-i18n="ev3-month">September 15–16</p>
-          <h3 class="event-name" data-i18n="ev3-name">Fiestas Patrias</h3>
-          <p class="event-desc" data-i18n="ev3-desc">Independence celebrations fill the jardín with music, lights, and the traditional Grito de Independencia at midnight on September 15.</p>
-        </div>
-        <div class="event-card">
-          <span class="event-icon">🌹</span>
-          <p class="event-month" data-i18n="ev4-month">December 12</p>
-          <h3 class="event-name" data-i18n="ev4-name">Virgen de Guadalupe</h3>
-          <p class="event-desc" data-i18n="ev4-desc">One of Mexico's most beloved celebrations — mañanitas, misa de gallo, and pilgrims honoring the Virgin through the night into dawn.</p>
-        </div>
-        <div class="event-card">
-          <span class="event-icon">🎄</span>
-          <p class="event-month" data-i18n="ev5-month">December 16–24</p>
-          <h3 class="event-name" data-i18n="ev5-name">Las Posadas</h3>
-          <p class="event-desc" data-i18n="ev5-desc">Nine nights of candlelit processions, singing, piñatas, and ponche — a cherished Mexican Christmas tradition celebrated neighborhood by neighborhood.</p>
-        </div>
-        <div class="event-card">
-          <span class="event-icon">🛖</span>
-          <p class="event-month" data-i18n="ev6-month" >Every Sunday</p>
-          <h3 class="event-name" data-i18n="ev6-name">Tianguis Semanal</h3>
-          <p class="event-desc" data-i18n="ev6-desc">The weekly market brings fresh produce, local cheeses, handmade goods, and antojitos to the town center — a living piece of everyday Alteño culture.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW TO GET HERE -->
-  <section class="getting-here" id="getting-here">
-    <div class="getting-here-inner">
-      <p class="section-label" data-i18n="here-label">Getting Here</p>
-      <h2 data-i18n="here-h2">How to get to<br><em>San José</em></h2>
-      <p class="getting-here-intro" data-i18n="here-intro">San José de Gracia sits in the heart of the Altos de Jalisco highlands. Getting here is part of the experience.</p>
-      <div class="transport-grid">
-        <div class="transport-card">
-          <span class="transport-icon">🚗</span>
-          <h3 class="transport-title" data-i18n="t1-title">By Car from Guadalajara</h3>
-          <p class="transport-detail" data-i18n="t1-detail">Take <strong>Highway 80</strong> (Carretera Guadalajara–Lagos de Moreno) northeast toward Tepatitlán. Continue past Tepatitlán and follow signs for San José de Gracia. <strong>~95 km · ~1h 30 min.</strong></p>
-        </div>
-        <div class="transport-card">
-          <span class="transport-icon">🚌</span>
-          <h3 class="transport-title" data-i18n="t2-title">By Bus</h3>
-          <p class="transport-detail" data-i18n="t2-detail">From <strong>Central de Autobuses Guadalajara (Nueva Central)</strong>, take a bus to Tepatitlán (~1h). From there, take a local colectivo or taxi to San José de Gracia (~20 min).</p>
-        </div>
-        <div class="transport-card">
-          <span class="transport-icon">✈️</span>
-          <h3 class="transport-title" data-i18n="t3-title">From GDL Airport</h3>
-          <p class="transport-detail" data-i18n="t3-detail">From <strong>Aeropuerto Internacional de Guadalajara (GDL)</strong>, head northeast via Highway 80. The drive is approximately <strong>~110 km · ~1h 45 min</strong>. Rental cars are available at the airport.</p>
-        </div>
-      </div>
-      <a class="maps-link" href="https://www.google.com/maps/place/San+Jos%C3%A9+de+Gracia,+Jalisco/@21.3617,-102.4158,13z" target="_blank" rel="noreferrer" data-i18n="maps-link">📍 Ver en Google Maps</a>
-      <a class="maps-link" href="/tour" data-i18n="tour-link" style="margin-left:1.5rem;">🗺️ Walking Tour</a>
-    </div>
-  </section>
-
-  <!-- LOCAL DIRECTORY -->
-  <section class="local-dir" id="directory">
-    <div class="local-dir-inner">
-      <p class="section-label" data-i18n="dir-label">Local Directory</p>
-      <h2 data-i18n="dir-h2">Every business<br>in <em style="font-style:italic;color:var(--gold)">town</em></h2>
-      <p class="local-dir-intro" data-i18n="dir-intro">From family-run fondas to artisan shops, bars to local churches — browse the full local directory powered by Google Maps.</p>
-      <div class="dir-categories">
-        <a href="/businesses?type=restaurant" class="dir-cat">
-          <span class="dir-cat-icon">🥘</span>
-          <span class="dir-cat-name" data-i18n="cat-restaurant">Restaurants</span>
-        </a>
-        <a href="/businesses?type=bar" class="dir-cat">
-          <span class="dir-cat-icon">🍹</span>
-          <span class="dir-cat-name" data-i18n="cat-bar">Bars</span>
-        </a>
-        <a href="/businesses?type=cafe" class="dir-cat">
-          <span class="dir-cat-icon">☕</span>
-          <span class="dir-cat-name" data-i18n="cat-coffee">Coffee</span>
-        </a>
-        <a href="/businesses?type=store" class="dir-cat">
-          <span class="dir-cat-icon">🛍️</span>
-          <span class="dir-cat-name" data-i18n="cat-store">Shops</span>
-        </a>
-        <a href="/businesses?type=tourist_attraction" class="dir-cat">
-          <span class="dir-cat-icon">🌄</span>
-          <span class="dir-cat-name" data-i18n="cat-attraction">Attractions</span>
-        </a>
-        <a href="/businesses?type=gym" class="dir-cat">
-          <span class="dir-cat-icon">🏋️</span>
-          <span class="dir-cat-name" data-i18n="cat-sports">Sports</span>
-        </a>
-        <a href="/businesses?type=beauty_salon" class="dir-cat">
-          <span class="dir-cat-icon">✂️</span>
-          <span class="dir-cat-name" data-i18n="cat-services">Services</span>
-        </a>
-        <a href="/businesses?type=church" class="dir-cat">
-          <span class="dir-cat-icon">⛪</span>
-          <span class="dir-cat-name" data-i18n="cat-church">Churches</span>
-        </a>
-        <a href="/businesses?type=establishment" class="dir-cat">
-          <span class="dir-cat-icon">🏪</span>
-          <span class="dir-cat-name" data-i18n="cat-businesses">Businesses</span>
-        </a>
-      </div>
-      <a href="/businesses" class="btn btn-dir" data-i18n="dir-btn">Browse the Directory →</a>
-    </div>
-  </section>
-
-  <!-- STAY -->
-  <section class="stay" id="stay">
-    <div class="stay-inner">
-      <div class="stay-header">
-        <p class="section-label" style="color: var(--gold);" data-i18n="stay-label">Where to Stay</p>
-        <h2 data-i18n="stay-h2">Handpicked places,<br>personally hosted</h2>
-        <p data-i18n="stay-p">Superhost-rated stays with 5-star reviews — whether you're in the highlands or on the Baja coast.</p>
-      </div>
-      <div class="listings">
-
-        <!-- Listing 1: SJDG -->
-        <div class="listing-card">
-          <div class="listing-img">
-            <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1467641479129016166/original/0fa27d8b-36ab-4260-b4d0-fa42f389405c.jpeg" alt="Modern Apt San Jose de Gracia" onerror="this.style.display='none'" />
-            <span class="listing-badge">⭐ 5.0 · Superhost</span>
-          </div>
-          <div class="listing-body">
-            <p class="listing-location">San José de Gracia, Jalisco</p>
-            <h3 data-i18n="l1-h3">Modern Apt · 2 Min to Centro</h3>
-            <p data-i18n="l1-p">Bright 2BR/1BA apartment steps from the historic plaza and the Parroquia de San José. New appliances, A/C, keyless entry. Perfect for couples, families, or remote workers.</p>
-            <div class="listing-meta">
-              <span class="meta-item" data-i18n="l1-meta1">🛏 2 bedrooms · 2 beds</span>
-              <span class="meta-item" data-i18n="l1-meta2">👥 Up to 5 guests</span>
-              <span class="meta-item rating" data-i18n="l1-rating">★ 5.0 (4 reviews)</span>
-            </div>
-            <a href="https://airbnb.com/h/sjdg" target="_blank" class="btn-listing" data-i18n="l1-btn">Book on Airbnb →</a>
-          </div>
-        </div>
-
-        <!-- Listing 2: Rosarito -->
-        <div class="listing-card">
-          <div class="listing-img">
-            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-824687510132317684/original/81d493b9-3bd0-4241-88db-c8e7c14e92ee.jpeg?im_w=1200" alt="MG Beach House" onerror="this.style.display='none'" />
-            <span class="listing-badge">⭐ Superhost</span>
-          </div>
-          <div class="listing-body">
-            <p class="listing-location">Rosarito, Baja California</p>
-            <h3 data-i18n="l2-h3">MG Beach House</h3>
-            <p data-i18n="l2-p">A coastal escape on the Pacific. Laid-back Baja living just south of the US border — ocean views, salty air, and weekend vibes year-round.</p>
-            <div class="listing-meta">
-              <span class="meta-item" data-i18n="l2-meta1">🌊 Beachside</span>
-              <span class="meta-item" data-i18n="l2-meta2">🌅 Pacific views</span>
-              <span class="meta-item rating">★ Superhost</span>
-            </div>
-            <a href="https://airbnb.com/h/mgbeachhouse" target="_blank" class="btn-listing" data-i18n="l2-btn">Book on Airbnb →</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CLOSING CTA -->
-  <section class="cta-banner">
-    <h2 data-i18n="cta-h2">Ready to visit?</h2>
-    <p data-i18n="cta-p">San José de Gracia is best experienced in person. Book your stay and let the highlands do the rest.</p>
-    <a href="#stay" class="btn" data-i18n="cta-btn">See Available Stays</a>
-  </section>
-
-  </main>
+  <main id="main-content">{{content}}</main>
 
   <!-- RENTAL TAB (minimized) -->
-  <div class="rental-tab" id="rentalTab" data-i18n="rental-tab">Se Renta</div>
+  <div class="rental-tab" id="rentalTab">{{rental.tab}}</div>
 
   <!-- RENTAL POPUP -->
   <div class="rental-popup" id="rentalPopup">
     <div class="rental-popup-header">
-      <span data-i18n="rental-header">Se Renta · San Jose de Gracia</span>
+      <span>{{rental.header}}</span>
       <button class="rental-popup-close" id="rentalClose" aria-label="Close">&times;</button>
     </div>
-    <img src="/local.jpg" alt="Local Comercial — Independencia 31" class="rental-popup-img" />
+    <img src="/local-comercial.jpg" alt="Local Comercial — Independencia 31" class="rental-popup-img" />
     <div class="rental-popup-body">
-      <span class="rental-popup-avail" data-i18n="rental-avail">Disponible</span>
+      <span class="rental-popup-avail">{{rental.avail}}</span>
       <div class="rental-popup-title">Local <em>Comercial</em></div>
       <a href="https://maps.google.com/?q=Independencia+31,+San+Jose+de+Gracia,+Jalisco" target="_blank" rel="noopener" class="rental-popup-addr" style="display:flex;align-items:center;gap:.3rem;text-decoration:none;color:rgba(28,19,9,.4);transition:color .2s;" onmouseover="this.style.color='var(--clay)'" onmouseout="this.style.color='rgba(28,19,9,.4)'"><svg style="width:.7rem;height:.7rem;flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Independencia 31, San Jose de Gracia, Jal.</a>
       <div class="rental-popup-stats">
         <div class="rental-popup-stat">
           <strong>25m&sup2;</strong>
-          <small data-i18n="rental-area">Area principal</small>
+          <small>{{rental.area}}</small>
         </div>
         <div class="rental-popup-stat">
           <strong>5.5&times;3.5</strong>
-          <small data-i18n="rental-dims">Metros (L&times;A)</small>
+          <small>{{rental.dims}}</small>
         </div>
         <div class="rental-popup-stat">
           <strong>+Almacen</strong>
-          <small data-i18n="rental-storage">Espacio de bodega</small>
+          <small>{{rental.storage}}</small>
         </div>
         <div class="rental-popup-stat">
           <strong>+Patio</strong>
-          <small data-i18n="rental-patio">Con toma de agua</small>
+          <small>{{rental.patio}}</small>
         </div>
       </div>
-      <p class="rental-popup-includes" data-i18n="rental-includes">Incluido en la renta</p>
+      <p class="rental-popup-includes">{{rental.includes}}</p>
       <div class="rental-popup-tags">
         <span class="rental-popup-tag">Internet</span>
-        <span class="rental-popup-tag" data-i18n="rental-cameras">Camaras</span>
-        <span class="rental-popup-tag" data-i18n="rental-bath">Medio bano</span>
+        <span class="rental-popup-tag">{{rental.cameras}}</span>
+        <span class="rental-popup-tag">{{rental.bath}}</span>
       </div>
       <a href="https://wa.me/523316963003?text=Hola%2C%20me%20interesa%20el%20local%20comercial%20en%20Independencia%2031" target="_blank" rel="noopener" class="rental-popup-wa">
         <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-        <span data-i18n="rental-wa">Informes: 331 696 3003</span>
+        <span>{{rental.wa}}</span>
       </a>
-      <p class="rental-popup-note" data-i18n="rental-note">Contrato minimo 1 ano · Luz y agua aparte</p>
+      <p class="rental-popup-note">{{rental.note}}</p>
     </div>
   </div>
 
@@ -1317,10 +1067,10 @@
   <footer id="contact">
     <a href="/" class="footer-logo">San José de Gracia</a>
     <div class="footer-links">
-      <a href="https://jaimem.com" target="_blank" rel="noopener" data-i18n="footer-contact">Contact</a>
-      <a href="/advertise" data-i18n="nav-advertise">Advertise</a>
+      <a href="https://jaimem.com" target="_blank" rel="noopener">{{shared.footer.contact_label}}</a>
+      <a href="/advertise">{{shared.nav.advertise}}</a>
     </div>
-    <p class="footer-a11y" data-i18n="footer-a11y">We are committed to making this website accessible to all visitors. If you experience any difficulty, please <a href="https://jaimem.com" target="_blank" rel="noopener">contact us</a>.</p>
+    <p class="footer-a11y">{{shared.footer.accessibility_statement}}</p>
     <p class="footer-copy">
       © 2025 <a href="https://jaimem.com" target="_blank" rel="noopener" class="footer-jmm"><img src="/jmm-logo.png" alt="JMM" class="footer-jmm-logo" /></a> · Jalisco, México
     </p>
@@ -1349,236 +1099,6 @@
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // ── TRANSLATIONS ──
-    const T = {
-      en: {
-        'skip-link':       'Skip to main content',
-        'nav-directory':   'Directory',
-        'nav-stay':        'Stay',
-        'nav-events':      'Events',
-        'nav-getting-here':'Getting Here',
-        'nav-contact':     'Contact',
-        'nav-advertise':   'Advertise',
-        'nav-faq':         'FAQ',
-        'hero-eyebrow':    'Jalisco, México · Est. 1793',
-        'hero-sub':        'A quiet jewel in the Altos de Jalisco highlands — 95 km northeast of Guadalajara, a world away from the ordinary.',
-        'hero-btn1':       'Find a Place to Stay',
-        'hero-btn2':       'Explore the Town',
-        'hero-btn3':       'Walking Tour',
-        'hero-scroll':     'Scroll',
-        'tour-link':       '🗺️ Walking Tour',
-        'about-label':     'Our Town',
-        'about-h2':        'Where the highlands<br>slow everything down',
-        'about-p':         'Nestled at 1,980 meters above sea level in the municipality of Tepatitlán, San José de Gracia is a historic town of cobblestone streets, the centuries-old Parroquia de San José, and the kind of unhurried warmth the Altos de Jalisco are known for. Come for a weekend — stay for the cold ones, the tequila, and the homemade chorizo and cheese.',
-        'stat-founded':    'Year Founded',
-        'stat-altitude':   'Altitude',
-        'stat-distance':   'From Guadalajara',
-        'stat-weather':    'Right Now',
-        'historia-label':  'Our History',
-        'historia-h2':     'A Town with <em>a Story</em>',
-        'historia-p':      'San José de Gracia has been shaped by faith, family, and the rhythms of the highlands for over two centuries. This short film captures its soul.',
-        'events-label':    'Festivities',
-        'events-h2':       'Celebrations &amp;<br><em>Traditions</em>',
-        'events-intro':    'San José de Gracia comes alive throughout the year with religious festivals, cultural gatherings, and the warmth of Alteño traditions.',
-        'ev1-month':       'March 19',
-        'ev1-name':        'Fiesta Patronal de San José',
-        'ev1-desc':        'The town\'s biggest celebration — honoring Saint Joseph, the patron saint. Though the feast day falls on March 19, the festivities are celebrated during the first 10 days of May with masses, processions, music, and fireworks in the plaza.',
-        'ev2-month':       'March / April',
-        'ev2-name':        'Semana Santa',
-        'ev2-desc':        'Holy Week brings solemn processions and religious observances through the cobblestone streets, a deeply rooted tradition in the Altos.',
-        'ev3-month':       'September 15–16',
-        'ev3-name':        'Fiestas Patrias',
-        'ev3-desc':        'Independence celebrations fill the jardín with music, lights, and the traditional Grito de Independencia at midnight on September 15.',
-        'ev4-month':       'December 12',
-        'ev4-name':        'Virgen de Guadalupe',
-        'ev4-desc':        'One of Mexico\'s most beloved celebrations — mañanitas, misa de gallo, and pilgrims honoring the Virgin through the night into dawn.',
-        'ev5-month':       'December 16–24',
-        'ev5-name':        'Las Posadas',
-        'ev5-desc':        'Nine nights of candlelit processions, singing, piñatas, and ponche — a cherished Mexican Christmas tradition celebrated neighborhood by neighborhood.',
-        'ev6-month':       'Every Sunday',
-        'ev6-name':        'Tianguis Semanal',
-        'ev6-desc':        'The weekly market brings fresh produce, local cheeses, handmade goods, and antojitos to the town center — a living piece of everyday Alteño culture.',
-        'here-label':      'Getting Here',
-        'here-h2':         'How to get to<br><em>San José</em>',
-        'here-intro':      'San José de Gracia sits in the heart of the Altos de Jalisco highlands. Getting here is part of the experience.',
-        't1-title':        'By Car from Guadalajara',
-        't1-detail':       'Take <strong>Highway 80</strong> (Carretera Guadalajara–Lagos de Moreno) northeast toward Tepatitlán. Continue past Tepatitlán and follow signs for San José de Gracia. <strong>~95 km · ~1h 30 min.</strong>',
-        't2-title':        'By Bus',
-        't2-detail':       'From <strong>Central de Autobuses Guadalajara (Nueva Central)</strong>, take a bus to Tepatitlán (~1h). From there, take a local colectivo or taxi to San José de Gracia (~20 min).',
-        't3-title':        'From GDL Airport',
-        't3-detail':       'From <strong>Aeropuerto Internacional de Guadalajara (GDL)</strong>, head northeast via Highway 80. The drive is approximately <strong>~110 km · ~1h 45 min</strong>. Rental cars are available at the airport.',
-        'maps-link':       '📍 View on Google Maps',
-        'dir-label':       'Local Directory',
-        'dir-h2':          'Every business<br>in <em style="font-style:italic;color:var(--gold)">town</em>',
-        'dir-intro':       'From family-run fondas to artisan shops, bars to local churches — browse the full local directory powered by Google Maps.',
-        'cat-restaurant':  'Restaurants',
-        'cat-bar':         'Bars',
-        'cat-coffee':      'Coffee',
-        'cat-store':       'Shops',
-        'cat-attraction':  'Attractions',
-        'cat-sports':      'Sports',
-        'cat-services':    'Services',
-        'cat-church':      'Churches',
-        'cat-businesses':  'Businesses',
-        'dir-btn':         'Browse the Directory →',
-        'stay-label':      'Where to Stay',
-        'stay-h2':         'Handpicked places,<br>personally hosted',
-        'stay-p':          'Superhost-rated stays with 5-star reviews — whether you\'re in the highlands or on the Baja coast.',
-        'l1-h3':           'Modern Apt · 2 Min to Centro',
-        'l1-p':            'Bright 2BR/1BA apartment steps from the historic plaza and the Parroquia de San José. New appliances, A/C, keyless entry. Perfect for couples, families, or remote workers.',
-        'l1-meta1':        '🛏 2 bedrooms · 2 beds',
-        'l1-meta2':        '👥 Up to 5 guests',
-        'l1-rating':       '★ 5.0 (4 reviews)',
-        'l1-btn':          'Book on Airbnb →',
-        'l2-h3':           'MG Beach House',
-        'l2-p':            'A coastal escape on the Pacific. Laid-back Baja living just south of the US border — ocean views, salty air, and weekend vibes year-round.',
-        'l2-meta1':        '🌊 Beachside',
-        'l2-meta2':        '🌅 Pacific views',
-        'l2-btn':          'Book on Airbnb →',
-        'cta-h2':          'Ready to visit?',
-        'cta-p':           'San José de Gracia is best experienced in person. Book your stay and let the highlands do the rest.',
-        'cta-btn':         'See Available Stays',
-        'footer-a11y':     'We are committed to making this website accessible to all visitors. If you experience any difficulty, please <a href="https://jaimem.com" target="_blank" rel="noopener">contact us</a>.',
-        'footer-contact':  'Contact',
-        'rental-header':   'For Rent · San Jose de Gracia',
-        'rental-avail':    'Available',
-        'rental-area':     'Main area',
-        'rental-dims':     'Meters (L&times;W)',
-        'rental-storage':  'Storage space',
-        'rental-patio':    'With water hookup',
-        'rental-includes': 'Included in rent',
-        'rental-cameras':  'Cameras',
-        'rental-bath':     'Half bath',
-        'rental-wa':       'Inquire: 331 696 3003',
-        'rental-note':     'Min. 1 year contract · Utilities separate',
-        'rental-tab':      'For Rent',
-      },
-      es: {
-        'skip-link':       'Ir al contenido principal',
-        'nav-directory':   'Directorio',
-        'nav-stay':        'Alojarse',
-        'nav-events':      'Eventos',
-        'nav-getting-here':'Cómo Llegar',
-        'nav-contact':     'Contacto',
-        'nav-advertise':   'Anúnciate',
-        'nav-faq':         'Info',
-        'hero-eyebrow':    'Jalisco, México · Fund. 1793',
-        'hero-sub':        'Una joya tranquila en los Altos de Jalisco — a 95 km al noreste de Guadalajara, a un mundo de lo cotidiano.',
-        'hero-btn1':       'Encuentra dónde quedarte',
-        'hero-btn2':       'Explora el pueblo',
-        'hero-btn3':       'Recorrido a Pie',
-        'hero-scroll':     'Desliza',
-        'tour-link':       '🗺️ Recorrido a Pie',
-        'about-label':     'Nuestro Pueblo',
-        'about-h2':        'Donde los Altos<br>hacen todo más lento',
-        'about-p':         'Enclavado a 1,980 metros sobre el nivel del mar en el municipio de Tepatitlán, San José de Gracia es un pueblo histórico de calles empedradas, la centenaria Parroquia de San José y esa calidez sin prisa que caracteriza los Altos de Jalisco. Ven un fin de semana — ve por las coquitas, el tequila y el chorizo y queso caseros.',
-        'stat-founded':    'Año de Fundación',
-        'stat-altitude':   'Altitud',
-        'stat-distance':   'Desde Guadalajara',
-        'stat-weather':    'Ahora Mismo',
-        'historia-label':  'Nuestra Historia',
-        'historia-h2':     'Un Pueblo con <em>Historia</em>',
-        'historia-p':      'San José de Gracia ha sido moldeado por la fe, la familia y los ritmos del altiplano por más de dos siglos. Este cortometraje captura su alma.',
-        'events-label':    'Festividades',
-        'events-h2':       'Celebraciones y<br><em>Tradiciones</em>',
-        'events-intro':    'San José de Gracia cobra vida durante todo el año con festivales religiosos, reuniones culturales y la calidez de las tradiciones alteñas.',
-        'ev1-month':       '19 de marzo',
-        'ev1-name':        'Fiesta Patronal de San José',
-        'ev1-desc':        'La celebración más grande del pueblo — en honor a San José, el santo patrono. Aunque la festividad cae el 19 de marzo, las fiestas se celebran durante los primeros 10 días de mayo con misas, procesiones, música y fuegos artificiales en la plaza.',
-        'ev2-month':       'Marzo / Abril',
-        'ev2-name':        'Semana Santa',
-        'ev2-desc':        'La Semana Santa trae procesiones solemnes y actos religiosos por las calles empedradas, una tradición profundamente arraigada en los Altos.',
-        'ev3-month':       '15–16 de septiembre',
-        'ev3-name':        'Fiestas Patrias',
-        'ev3-desc':        'Las fiestas de Independencia llenan el jardín de música, luces y el tradicional Grito de Independencia a medianoche del 15 de septiembre.',
-        'ev4-month':       '12 de diciembre',
-        'ev4-name':        'Virgen de Guadalupe',
-        'ev4-desc':        'Una de las celebraciones más queridas de México — mañanitas, misa de gallo y peregrinos honrando a la Virgen durante toda la noche hasta el amanecer.',
-        'ev5-month':       '16–24 de diciembre',
-        'ev5-name':        'Las Posadas',
-        'ev5-desc':        'Nueve noches de procesiones con velas, canto, piñatas y ponche — una entrañable tradición navideña mexicana celebrada barrio por barrio.',
-        'ev6-month':       'Todos los domingos',
-        'ev6-name':        'Tianguis Semanal',
-        'ev6-desc':        'El mercado semanal trae productos frescos, quesos locales, artesanías y antojitos al centro del pueblo — un pedazo vivo de la cultura alteña cotidiana.',
-        'here-label':      'Cómo Llegar',
-        'here-h2':         'Cómo llegar a<br><em>San José</em>',
-        'here-intro':      'San José de Gracia está en el corazón de los Altos de Jalisco. El camino para llegar ya forma parte de la experiencia.',
-        't1-title':        'En coche desde Guadalajara',
-        't1-detail':       'Toma la <strong>Carretera 80</strong> (Guadalajara–Lagos de Moreno) al noreste hacia Tepatitlán. Continúa pasando Tepatitlán y sigue las señales a San José de Gracia. <strong>~95 km · ~1h 30 min.</strong>',
-        't2-title':        'En autobús',
-        't2-detail':       'Desde la <strong>Central de Autobuses de Guadalajara (Nueva Central)</strong>, toma un autobús a Tepatitlán (~1h). De ahí, un colectivo o taxi a San José de Gracia (~20 min).',
-        't3-title':        'Desde el Aeropuerto GDL',
-        't3-detail':       'Desde el <strong>Aeropuerto Internacional de Guadalajara (GDL)</strong>, dirígete al noreste por la Carretera 80. El trayecto es de aproximadamente <strong>~110 km · ~1h 45 min</strong>. Hay autos en renta en el aeropuerto.',
-        'maps-link':       '📍 Ver en Google Maps',
-        'dir-label':       'Directorio Local',
-        'dir-h2':          'Cada negocio<br>del <em style="font-style:italic;color:var(--gold)">pueblo</em>',
-        'dir-intro':       'Desde fondas familiares hasta tiendas de artesanías, bares e iglesias locales — explora el directorio completo con Google Maps.',
-        'cat-restaurant':  'Restaurantes',
-        'cat-bar':         'Bares',
-        'cat-coffee':      'Café',
-        'cat-store':       'Tiendas',
-        'cat-attraction':  'Atracciones',
-        'cat-sports':      'Deporte',
-        'cat-services':    'Servicios',
-        'cat-church':      'Iglesias',
-        'cat-businesses':  'Negocios',
-        'dir-btn':         'Ver el Directorio →',
-        'stay-label':      'Dónde Quedarse',
-        'stay-h2':         'Lugares escogidos,<br>atención personal',
-        'stay-p':          'Hospedajes con calificación Superhost y reseñas de 5 estrellas — en los Altos o en la costa de Baja.',
-        'l1-h3':           'Depto. moderno · a 2 min del Centro',
-        'l1-p':            'Apartamento luminoso de 2 rec/1 baño a pasos de la plaza histórica y la Parroquia de San José. Electrodomésticos nuevos, A/C, entrada sin llave. Ideal para parejas, familias o trabajo remoto.',
-        'l1-meta1':        '🛏 2 recámaras · 2 camas',
-        'l1-meta2':        '👥 Hasta 5 huéspedes',
-        'l1-rating':       '★ 5.0 (4 reseñas)',
-        'l1-btn':          'Reservar en Airbnb →',
-        'l2-h3':           'Casa de Playa MG',
-        'l2-p':            'Un escape costero en el Pacífico. El ambiente relajado de Baja, justo al sur de la frontera — vistas al océano, brisa salada y vibra de fin de semana todo el año.',
-        'l2-meta1':        '🌊 A orillas del mar',
-        'l2-meta2':        '🌅 Vistas al Pacífico',
-        'l2-btn':          'Reservar en Airbnb →',
-        'cta-h2':          '¿Listo para visitar?',
-        'cta-p':           'San José de Gracia se vive mejor en persona. Reserva tu estancia y deja que los Altos hagan el resto.',
-        'cta-btn':         'Ver alojamientos disponibles',
-        'footer-a11y':     'Nos comprometemos a hacer este sitio accesible para todos los visitantes. Si tienes alguna dificultad, por favor <a href="https://jaimem.com" target="_blank" rel="noopener">contáctanos</a>.',
-        'footer-contact':  'Contacto',
-        'rental-header':   'Se Renta · San Jose de Gracia',
-        'rental-avail':    'Disponible',
-        'rental-area':     'Area principal',
-        'rental-dims':     'Metros (L&times;A)',
-        'rental-storage':  'Espacio de bodega',
-        'rental-patio':    'Con toma de agua',
-        'rental-includes': 'Incluido en la renta',
-        'rental-cameras':  'Camaras',
-        'rental-bath':     'Medio bano',
-        'rental-wa':       'Informes: 331 696 3003',
-        'rental-note':     'Contrato minimo 1 ano · Luz y agua aparte',
-        'rental-tab':      'Se Renta',
-      }
-    };
-
-    function applyLang(lang, save) {
-      document.documentElement.lang = lang === 'es' ? 'es-MX' : 'en';
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.dataset.i18n;
-        if (T[lang][key] !== undefined) el.innerHTML = T[lang][key];
-      });
-      document.querySelectorAll('.lang-opt').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-      });
-      ['ml-en','ml-es'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.toggle('active', el.dataset.lang === lang);
-      });
-      if (save) localStorage.setItem('lang', lang);
-    }
-
-    document.getElementById('lang-toggle').addEventListener('click', e => {
-      const btn = e.target.closest('.lang-opt');
-      if (!btn) return;
-      applyLang(btn.dataset.lang, true);
-    });
-
     // ── MOBILE MENU ──
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -1594,21 +1114,6 @@
       hamburger.setAttribute('aria-expanded', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
-    document.getElementById('ml-en').addEventListener('click', () => { applyLang('en', true); });
-    document.getElementById('ml-es').addEventListener('click', () => { applyLang('es', true); });
-
-    const stored = localStorage.getItem('lang');
-    if (stored === 'en' || stored === 'es') {
-      applyLang(stored, false);
-    } else {
-      fetch('https://ipapi.co/json/')
-        .then(r => r.json())
-        .then(d => applyLang(d.country_code === 'MX' ? 'es' : 'en', false))
-        .catch(() => {
-          const lang = (navigator.language || '').toLowerCase();
-          applyLang(lang.startsWith('es') ? 'es' : 'en', false);
-        });
-    }
 
     // ── RENTAL POPUP ──
     const rentalPopup = document.getElementById('rentalPopup');
@@ -1631,6 +1136,5 @@
       sessionStorage.removeItem('rental_minimized');
     });
   </script>
-
 </body>
 </html>
