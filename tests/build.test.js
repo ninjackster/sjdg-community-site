@@ -51,3 +51,13 @@ test('Canonical URL is language-specific', () => {
   assert.match(en, /<link rel="canonical" href="https:\/\/sanjosedegracia\.net\/en\/" \/>/);
   assert.match(es, /<link rel="canonical" href="https:\/\/sanjosedegracia\.net\/es\/" \/>/);
 });
+
+test('build creates dist/en/businesses.html when content + template exist', () => {
+  if (!existsSync('content/pages/businesses.json')) return;
+  assert.ok(existsSync('dist/en/businesses.html'), 'dist/en/businesses.html should exist');
+});
+
+test('build creates dist/es/negocios.html when content + template exist', () => {
+  if (!existsSync('content/pages/businesses.json')) return;
+  assert.ok(existsSync('dist/es/negocios.html'), 'dist/es/negocios.html should exist');
+});
