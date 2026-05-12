@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "slug":                { "en": "faq", "es": "preguntas" },
+    "title":               { "en": "FAQ & Emergency Info — San José de Gracia", "es": "Preguntas Frecuentes e Info de Emergencia — San José de Gracia" },
+    "description":         { "en": "Frequently asked questions, emergency contacts, and practical visitor tips for San José de Gracia, Jalisco, Mexico.", "es": "Preguntas frecuentes, contactos de emergencia y consejos prácticos para visitantes de San José de Gracia, Jalisco, México." },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "nav": {
+    "skip_link":    { "en": "Skip to main content", "es": "Ir al contenido principal" },
+    "home":         { "en": "Home", "es": "Inicio" },
+    "directory":    { "en": "Directory", "es": "Directorio" },
+    "stay":         { "en": "Stay", "es": "Alojarse" },
+    "events":       { "en": "Events", "es": "Eventos" },
+    "getting_here": { "en": "Getting Here", "es": "Cómo Llegar" },
+    "contact":      { "en": "Contact", "es": "Contacto" },
+    "faq":          { "en": "FAQ", "es": "Info" },
+    "advertise":    { "en": "Advertise", "es": "Anúnciate" }
+  },
+  "hero": {
+    "h1":  { "en": "Visitor <em>Info</em>", "es": "Info para <em>Visitantes</em>" },
+    "sub": { "en": "Everything you need to know before visiting San José de Gracia.", "es": "Todo lo que necesitas saber antes de visitar San José de Gracia." }
+  },
+  "emergency": {
+    "heading": { "en": "Emergency Contacts", "es": "Contactos de Emergencia" },
+    "items": [
+      {
+        "label":  { "en": "General Emergency", "es": "Emergencia General" },
+        "detail": { "en": "Police, fire, ambulance — nationwide", "es": "Policía, bomberos, ambulancia — a nivel nacional" },
+        "phone":  "911"
+      },
+      {
+        "label":  { "en": "Municipal Police", "es": "Policía Municipal" },
+        "detail": { "en": "Tepatitlán de Morelos", "es": "Tepatitlán de Morelos" },
+        "phone":  "378-788-9060"
+      },
+      {
+        "label":  { "en": "Red Cross", "es": "Cruz Roja" },
+        "detail": { "en": "Cruz Roja — Tepatitlán branch", "es": "Cruz Roja — sucursal Tepatitlán" },
+        "phone":  "378-782-0685"
+      },
+      {
+        "label":  { "en": "Fire & Civil Protection", "es": "Bomberos y Protección Civil" },
+        "detail": { "en": "Protección Civil y Bomberos", "es": "Protección Civil y Bomberos" },
+        "phone":  "378-782-5299"
+      },
+      {
+        "label":  { "en": "Health Clinic", "es": "Centro de Salud" },
+        "detail": { "en": "Centro de Salud — Hidalgo 155, San José de Gracia", "es": "Centro de Salud — Hidalgo 155, San José de Gracia" },
+        "phone":  "391-911-0920"
+      },
+      {
+        "label":  { "en": "Pharmacy", "es": "Farmacia" },
+        "detail": { "en": "Farmacia Tepa — Zaragoza 88", "es": "Farmacia Tepa — Zaragoza 88" },
+        "phone":  "391-611-0380"
+      },
+      {
+        "label":  { "en": "Roadside Assistance", "es": "Asistencia en Carretera" },
+        "detail": { "en": "Ángeles Verdes — free for tourists on federal highways", "es": "Ángeles Verdes — gratis para turistas en carreteras federales" },
+        "phone":  "078"
+      },
+      {
+        "label":  { "en": "U.S. Consulate", "es": "Consulado de EE.UU." },
+        "detail": { "en": "Guadalajara — for U.S. citizens", "es": "Guadalajara — para ciudadanos estadounidenses" },
+        "phone":  "(33) 3111-7800"
+      }
+    ]
+  },
+  "tips": {
+    "heading": { "en": "Visitor Tips", "es": "Consejos para Visitantes" },
+    "items": [
+      {
+        "h": { "en": "Water", "es": "Agua" },
+        "p": { "en": "Don't drink tap water. Buy bottled water for drinking and brushing teeth. Confirm ice at restaurants is made from purified water.", "es": "No tomes agua de la llave. Compra agua embotellada para beber y lavarte los dientes. Confirma que el hielo en restaurantes sea de agua purificada." }
+      },
+      {
+        "h": { "en": "Altitude", "es": "Altitud" },
+        "p": { "en": "At ~2,000m (6,500 ft), mild altitude effects are possible. Stay hydrated, take it easy on day one, and limit alcohol while adjusting.", "es": "A ~2,000m (6,500 pies), es posible sentir efectos leves de altitud. Mantente hidratado, tómalo con calma el primer día y limita el alcohol mientras te aclimatas." }
+      },
+      {
+        "h": { "en": "Cell Service", "es": "Señal Celular" },
+        "p": { "en": "Coverage can be spotty in smaller towns. Save emergency numbers to your phone before arriving. 911 works from any cell phone.", "es": "La cobertura puede ser irregular en pueblos pequeños. Guarda los números de emergencia en tu teléfono antes de llegar. El 911 funciona desde cualquier celular." }
+      },
+      {
+        "h": { "en": "Medical", "es": "Salud" },
+        "p": { "en": "The local Centro de Salud handles basic needs. For anything serious, hospitals are in Tepatitlán (~20 min) or Guadalajara (~1.5 hrs).", "es": "El Centro de Salud local atiende necesidades básicas. Para algo serio, los hospitales están en Tepatitlán (~20 min) o Guadalajara (~1.5 hrs)." }
+      },
+      {
+        "h": { "en": "Money", "es": "Dinero" },
+        "p": { "en": "Bring cash — many small businesses don't accept cards. There is one ATM inside Farmacia Tepa (Zaragoza 88), available during business hours only. For banks, head to Tepatitlán.", "es": "Trae efectivo — muchos negocios pequeños no aceptan tarjeta. Hay un cajero dentro de Farmacia Tepa (Zaragoza 88), disponible solo en horario de atención. Para bancos, ve a Tepatitlán." }
+      },
+      {
+        "h": { "en": "Driving", "es": "Conducir" },
+        "p": { "en": "Roads from Guadalajara are well-maintained. Watch for livestock on rural stretches. Toll road via Zapotlanejo is fastest.", "es": "Las carreteras desde Guadalajara están bien mantenidas. Cuidado con ganado en tramos rurales. La autopista vía Zapotlanejo es la más rápida." }
+      }
+    ]
+  },
+  "faq": {
+    "heading": { "en": "Frequently Asked Questions", "es": "Preguntas Frecuentes" },
+    "items": [
+      {
+        "q": { "en": "Is San José de Gracia safe to visit? <span class=\"faq-arrow\">&#9662;</span>", "es": "¿Es seguro visitar San José de Gracia? <span class=\"faq-arrow\">&#9662;</span>" },
+        "a": { "en": "Yes. The Los Altos region of Jalisco is generally considered one of the safer areas in the state. As with any travel, use common sense — stay on main roads, don't flash valuables, and check current travel advisories before your trip.", "es": "Sí. La región de Los Altos de Jalisco es generalmente considerada una de las zonas más seguras del estado. Como en cualquier viaje, usa el sentido común — quédate en caminos principales, no exhibas objetos de valor, y revisa las alertas de viaje actuales." }
+      },
+      {
+        "q": { "en": "What's the best time to visit? <span class=\"faq-arrow\">&#9662;</span>", "es": "¿Cuál es la mejor época para visitar? <span class=\"faq-arrow\">&#9662;</span>" },
+        "a": { "en": "October through April offers dry, comfortable weather. The Fiestas Patronales (March 19) and Día de los Muertos (November 1-2) are particularly special. Summers (June–September) bring afternoon rain showers but lush green landscapes.", "es": "De octubre a abril hay clima seco y agradable. Las Fiestas Patronales (19 de marzo) y el Día de los Muertos (1-2 de noviembre) son especialmente bonitos. Los veranos (junio–septiembre) traen lluvias por la tarde pero paisajes verdes." }
+      },
+      {
+        "q": { "en": "How do I get there from Guadalajara? <span class=\"faq-arrow\">&#9662;</span>", "es": "¿Cómo llego desde Guadalajara? <span class=\"faq-arrow\">&#9662;</span>" },
+        "a": { "en": "Drive northeast on the toll road via Zapotlanejo toward Tepatitlán (~1.5 hours). From Tepatitlán, San José de Gracia is about 20 minutes further. Buses also run from Guadalajara's Central Vieja station via Flecha Amarilla.", "es": "Maneja al noreste por la autopista vía Zapotlanejo hacia Tepatitlán (~1.5 horas). Desde Tepatitlán, San José de Gracia está a unos 20 minutos más. También hay camiones desde la Central Vieja de Guadalajara vía Flecha Amarilla." }
+      },
+      {
+        "q": { "en": "Do I need to speak Spanish? <span class=\"faq-arrow\">&#9662;</span>", "es": "¿Necesito hablar español? <span class=\"faq-arrow\">&#9662;</span>" },
+        "a": { "en": "Basic Spanish is very helpful — English is not widely spoken in the town. Download an offline translation app before arriving. Locals are incredibly friendly and patient with visitors trying to communicate.", "es": "El español básico es muy útil — no se habla mucho inglés en el pueblo. Descarga una app de traducción offline antes de llegar. Los locales son muy amables y pacientes con visitantes que intentan comunicarse." }
+      },
+      {
+        "q": { "en": "Where can I stay? <span class=\"faq-arrow\">&#9662;</span>", "es": "¿Dónde me puedo hospedar? <span class=\"faq-arrow\">&#9662;</span>" },
+        "a": { "en": "There are a few Airbnb options in town — check our <a href=\"/#stay\">Stay section</a> for current listings. For more hotel options, Tepatitlán is a 20-minute drive away and has several hotels.", "es": "Hay opciones de Airbnb en el pueblo — revisa nuestra <a href=\"/#stay\">sección de alojamiento</a> para listados actuales. Para más opciones de hotel, Tepatitlán está a 20 minutos y tiene varios hoteles." }
+      },
+      {
+        "q": { "en": "What should I eat? <span class=\"faq-arrow\">&#9662;</span>", "es": "¿Qué debo comer? <span class=\"faq-arrow\">&#9662;</span>" },
+        "a": { "en": "Don't miss the local chorizo con queso, birria, and carne en su jugo. The Altos region is also known for its tequila, mezcal, and cajeta. Check our <a href=\"/businesses\">business directory</a> for restaurants.", "es": "No te pierdas el chorizo con queso, la birria y la carne en su jugo. Los Altos también son conocidos por su tequila, mezcal y cajeta. Revisa nuestro <a href=\"/businesses\">directorio de negocios</a> para restaurantes." }
+      },
+      {
+        "q": { "en": "Is there parking in town? <span class=\"faq-arrow\">&#9662;</span>", "es": "¿Hay estacionamiento en el pueblo? <span class=\"faq-arrow\">&#9662;</span>" },
+        "a": { "en": "Yes, street parking is generally available and free. The town is small and very walkable once you arrive.", "es": "Sí, el estacionamiento en la calle generalmente está disponible y es gratis. El pueblo es pequeño y muy caminable." }
+      }
+    ]
+  },
+  "footer": {
+    "contact": { "en": "Contact", "es": "Contacto" },
+    "a11y":    { "en": "We are committed to making this website accessible to all visitors. If you experience any difficulty, please <a href=\"https://jaimem.com\" target=\"_blank\" rel=\"noopener\">contact us</a>.", "es": "Nos comprometemos a hacer este sitio accesible para todos los visitantes. Si tienes alguna dificultad, por favor <a href=\"https://jaimem.com\" target=\"_blank\" rel=\"noopener\">contáctanos</a>." }
+  }
+}

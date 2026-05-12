@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "slug":                { "en": "advertise", "es": "anuncios" },
+    "title":               { "en": "Advertise — San José de Gracia", "es": "Anúnciate — San José de Gracia" },
+    "description":         { "en": "Promote your business, event, or experience to visitors of San Jose de Gracia, Jalisco. Featured listings, premium profiles, event spotlights, and more.", "es": "Promociona tu negocio, evento o experiencia ante los visitantes de San José de Gracia, Jalisco. Listados destacados, perfiles premium, eventos especiales y más." },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "nav": {
+    "skip_link":    { "en": "Skip to main content", "es": "Ir al contenido principal" },
+    "home":         { "en": "Home", "es": "Inicio" },
+    "directory":    { "en": "Directory", "es": "Directorio" },
+    "stay":         { "en": "Stay", "es": "Alojarse" },
+    "events":       { "en": "Events", "es": "Eventos" },
+    "getting_here": { "en": "Getting Here", "es": "Cómo Llegar" },
+    "contact":      { "en": "Contact", "es": "Contacto" },
+    "advertise":    { "en": "Advertise", "es": "Anúnciate" }
+  },
+  "hero": {
+    "label": { "en": "For Local Businesses", "es": "Para Negocios Locales" },
+    "h1":    { "en": "Reach more visitors in <em>San José</em>", "es": "Llega a más visitantes en <em>San José</em>" },
+    "sub":   { "en": "Promote your business, event, or experience to every visitor exploring the town online.", "es": "Promociona tu negocio, evento o experiencia ante cada visitante que explore el pueblo en línea." }
+  },
+  "showcase": {
+    "label":        { "en": "See the Difference", "es": "Mira la Diferencia" },
+    "h2":           { "en": "Regular vs. <em>Premium</em>", "es": "Regular vs. <em>Premium</em>" },
+    "sub":          { "en": "A side-by-side look at how your listing appears in our directory.", "es": "Compara lado a lado cómo aparece tu listado en nuestro directorio." },
+    "col_regular":  { "en": "Featured Listing", "es": "Listado Destacado" },
+    "col_premium":  { "en": "Premium Profile — $300/mo", "es": "Perfil Premium — $300/mes" },
+    "badge_feat":   { "en": "Featured", "es": "Destacado" },
+    "badge_prem":   { "en": "Premium", "es": "Premium" },
+    "desc":         { "en": "Comida casera — birria, pozole, enchiladas, and the best chorizo con queso in town. Family-run since 1987.", "es": "Comida casera — birria, pozole, enchiladas y el mejor chorizo con queso del pueblo. Negocio familiar desde 1987." },
+    "promo":        { "en": "10% off your first visit — mention this listing", "es": "10% de descuento en tu primera visita — menciona este listado" },
+    "wa_btn":       { "en": "WhatsApp", "es": "WhatsApp" },
+    "menu_btn":     { "en": "Menu", "es": "Menú" },
+    "map_btn":      { "en": "Map", "es": "Mapa" }
+  },
+  "tiers": [
+    {
+      "key":     "t1",
+      "name":    { "en": "Featured Listing", "es": "Listado Destacado" },
+      "desc":    { "en": "Stand out in the directory. Your business appears first in its category with a gold badge.", "es": "Destaca en el directorio. Tu negocio aparece primero en su categoría con insignia dorada." },
+      "price":   "$100 MXN",
+      "period":  { "en": "per month · ~$5 USD", "es": "por mes · ~$5 USD" },
+      "features": [
+        { "en": "Priority placement — shown first in category", "es": "Ubicación prioritaria — aparece primero en categoría" },
+        { "en": "Gold \"Featured\" badge on your listing", "es": "Insignia dorada \"Destacado\" en tu listado" },
+        { "en": "Google Maps photo, rating & hours included", "es": "Foto, calificación y horarios de Google Maps" },
+        { "en": "Listed across bilingual EN/ES site", "es": "Listado en sitio bilingüe EN/ES" }
+      ],
+      "button":  { "en": "Get Featured", "es": "Destacar mi negocio" }
+    },
+    {
+      "key":     "t2",
+      "name":    { "en": "Premium Profile", "es": "Perfil Premium" },
+      "desc":    { "en": "Everything in Featured plus a rich profile with custom photos, WhatsApp, and your own menu or price list.", "es": "Todo lo de Destacado más un perfil completo con fotos propias, WhatsApp y tu menú o lista de precios." },
+      "price":   "$300 MXN",
+      "period":  { "en": "per month · ~$16 USD", "es": "por mes · ~$16 USD" },
+      "features": [
+        { "en": "All Featured benefits included", "es": "Todos los beneficios de Destacado" },
+        { "en": "Showcased on the homepage", "es": "Aparece en la página principal" },
+        { "en": "Custom photo gallery (up to 6 images)", "es": "Galería personalizada (hasta 6 fotos)" },
+        { "en": "Direct WhatsApp button on your card", "es": "Botón directo de WhatsApp en tu tarjeta" },
+        { "en": "Menu, price list, or PDF upload", "es": "Sube tu menú, lista de precios o PDF" },
+        { "en": "Special offers & promo banner", "es": "Ofertas especiales y banner promocional" }
+      ],
+      "button":  { "en": "Go Premium", "es": "Ir Premium" },
+      "popular_badge": { "en": "MOST POPULAR", "es": "MÁS POPULAR" }
+    },
+    {
+      "key":     "t3",
+      "name":    { "en": "Event Spotlight", "es": "Evento Destacado" },
+      "desc":    { "en": "Promote your event, festival, or special occasion on the homepage with a featured card for two weeks.", "es": "Promociona tu evento, festival o fecha especial en la página principal con una tarjeta destacada por dos semanas." },
+      "price":   "$200 MXN",
+      "period":  { "en": "one-time · 2 weeks · ~$11 USD", "es": "único · 2 semanas · ~$11 USD" },
+      "features": [
+        { "en": "Featured event card on homepage", "es": "Tarjeta de evento destacada en página principal" },
+        { "en": "Visible for 2 weeks", "es": "Visible por 2 semanas" },
+        { "en": "Custom image, description & link", "es": "Imagen, descripción y enlace personalizados" },
+        { "en": "Bilingual EN/ES display", "es": "Aparece en inglés y español" }
+      ],
+      "button":  { "en": "Promote Event", "es": "Promocionar Evento" }
+    },
+    {
+      "key":     "t4",
+      "name":    { "en": "Experience Listing", "es": "Listado de Experiencia" },
+      "desc":    { "en": "List your tour, mezcal tasting, horseback ride, or ranch experience in the \"Things to Do\" section.", "es": "Publica tu tour, degustación de mezcal, cabalgata o experiencia de rancho en la sección \"Qué Hacer\"." },
+      "price":   "$150 MXN",
+      "period":  { "en": "per month · ~$8 USD", "es": "por mes · ~$8 USD" },
+      "features": [
+        { "en": "Listed in \"Things to Do\" / Experiences", "es": "Listado en \"Qué Hacer\" / Experiencias" },
+        { "en": "Custom photo & description", "es": "Foto y descripción personalizadas" },
+        { "en": "WhatsApp or booking link included", "es": "Enlace de WhatsApp o reservación incluido" },
+        { "en": "Referral-based — pay per lead (optional)", "es": "Basado en referidos — pago por contacto (opcional)" }
+      ],
+      "button":  { "en": "List Experience", "es": "Publicar Experiencia" }
+    }
+  ],
+  "annual_note": { "en": "<strong>Save 2 months</strong> — pay annually for any monthly plan and get 12 months for the price of 10.", "es": "<strong>Ahorra 2 meses</strong> — paga anual cualquier plan mensual y obtén 12 meses al precio de 10." },
+  "comparison": {
+    "h2":     { "en": "Compare <em>plans</em>", "es": "Compara los <em>planes</em>" },
+    "sub":    { "en": "Every plan keeps your business in front of visitors — pick the level that fits.", "es": "Cada plan mantiene tu negocio frente a los visitantes — elige el nivel que te funcione." },
+    "feature_col": { "en": "Feature", "es": "Característica" },
+    "rows": [
+      { "en": "Priority placement in directory", "es": "Ubicación prioritaria en directorio" },
+      { "en": "Gold badge", "es": "Insignia dorada" },
+      { "en": "Custom photo gallery", "es": "Galería de fotos personalizada" },
+      { "en": "WhatsApp button", "es": "Botón de WhatsApp" },
+      { "en": "Menu / price list upload", "es": "Subir menú / lista de precios" },
+      { "en": "Promo banner / special offer", "es": "Banner promo / oferta especial" },
+      { "en": "Homepage visibility", "es": "Visibilidad en página principal" },
+      { "en": "Bilingual EN/ES", "es": "Bilingüe EN/ES" },
+      { "en": "Annual discount", "es": "Descuento anual" }
+    ]
+  },
+  "cta": {
+    "h2":     { "en": "Ready to <em>grow?</em>", "es": "¿Listo para <em>crecer?</em>" },
+    "p":      { "en": "Reach out and we'll get your business in front of visitors within 24 hours.", "es": "Escríbenos y pondremos tu negocio frente a los visitantes en menos de 24 horas." },
+    "button": { "en": "Contact Us", "es": "Contáctanos" }
+  },
+  "footer": {
+    "contact": { "en": "Contact", "es": "Contacto" },
+    "a11y":    { "en": "We are committed to making this website accessible to all visitors. If you experience any difficulty, please <a href=\"https://jaimem.com\" target=\"_blank\" rel=\"noopener\">contact us</a>.", "es": "Nos comprometemos a hacer este sitio accesible para todos los visitantes. Si tienes alguna dificultad, por favor <a href=\"https://jaimem.com\" target=\"_blank\" rel=\"noopener\">contáctanos</a>." }
+  }
+}

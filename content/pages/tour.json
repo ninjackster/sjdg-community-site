@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "slug":                { "en": "tour", "es": "recorrido" },
+    "title":               { "en": "Walking Tour — San José de Gracia", "es": "Recorrido a Pie — San José de Gracia" },
+    "description":         { "en": "An interactive self-guided walking tour of San José de Gracia, Jalisco. 9 stops through the historic centro — cafes, culture, food, and cantinas.", "es": "Un recorrido autoguiado e interactivo por San José de Gracia, Jalisco. 9 paradas por el centro histórico — cafés, cultura, comida y cantinas." },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "nav": {
+    "skip_link":    { "en": "Skip to main content", "es": "Ir al contenido principal" },
+    "directory":    { "en": "Directory", "es": "Directorio" },
+    "stay":         { "en": "Stay", "es": "Alojarse" },
+    "events":       { "en": "Events", "es": "Eventos" },
+    "getting_here": { "en": "Getting Here", "es": "Cómo Llegar" },
+    "contact":      { "en": "Contact", "es": "Contacto" },
+    "faq":          { "en": "FAQ", "es": "Info" },
+    "advertise":    { "en": "Advertise", "es": "Anúnciate" }
+  },
+  "sidebar": {
+    "h1":    { "en": "Walking <em>Tour</em>", "es": "Recorrido a <em>Pie</em>" },
+    "sub":   { "en": "A self-guided walk through the centro. ~1.5 km · 9 stops · 1–2 hours", "es": "Un recorrido autoguiado por el centro. ~1.5 km · 9 paradas · 1–2 horas" },
+    "print": { "en": "<svg viewBox=\"0 0 24 24\"><path d=\"M6 9V2h12v7\"/><path d=\"M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2\"/><rect x=\"6\" y=\"14\" width=\"12\" height=\"8\"/></svg> Print / Save PDF", "es": "<svg viewBox=\"0 0 24 24\"><path d=\"M6 9V2h12v7\"/><path d=\"M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2\"/><rect x=\"6\" y=\"14\" width=\"12\" height=\"8\"/></svg> Imprimir / Guardar PDF" },
+    "credit": "sanjosedegracia.net"
+  },
+  "badges": {
+    "start": { "en": "START", "es": "INICIO" },
+    "end":   { "en": "END", "es": "FIN" }
+  },
+  "footer": {
+    "contact": { "en": "Contact", "es": "Contacto" },
+    "a11y":    { "en": "We are committed to making this website accessible to all visitors. If you experience any difficulty, please <a href=\"https://jaimem.com\" target=\"_blank\" rel=\"noopener\">contact us</a>.", "es": "Nos comprometemos a hacer este sitio accesible para todos los visitantes. Si tienes alguna dificultad, por favor <a href=\"https://jaimem.com\" target=\"_blank\" rel=\"noopener\">contáctanos</a>." }
+  },
+  "stops": [
+    {
+      "num": 1, "lat": 20.6755, "lng": -102.5722, "icon": "🏠", "badge": "start",
+      "name": { "en": "Your Airbnb", "es": "Tu Airbnb" },
+      "desc": { "en": "Moctezuma 153. Start here", "es": "Moctezuma 153. Comienza aquí" },
+      "addr": "Moctezuma 153"
+    },
+    {
+      "num": 2, "lat": 20.6754, "lng": -102.5724, "icon": "☕",
+      "name": { "en": "Café Azul Cobalto", "es": "Café Azul Cobalto" },
+      "desc": { "en": "Coffee and pastries, right next door", "es": "Café y postres, justo al lado" },
+      "addr": "Moctezuma 155"
+    },
+    {
+      "num": 3, "lat": 20.6750, "lng": -102.5710, "icon": "⛪",
+      "name": { "en": "Plaza Principal", "es": "Plaza Principal" },
+      "desc": { "en": "French-imported kiosk, Parroquia del Señor San José, and the Cabeza de Águila monument", "es": "Kiosco importado de Francia, Parroquia del Señor San José y el monumento Cabeza de Águila" },
+      "addr": "Centro"
+    },
+    {
+      "num": 4, "lat": 20.6750, "lng": -102.5700, "icon": "🍦",
+      "name": { "en": "Paletería y Nevería San José", "es": "Paletería y Nevería San José" },
+      "desc": { "en": "Local-flavor ice cream and paletas, across from the church", "es": "Helados y paletas de sabores locales, frente a la iglesia" },
+      "addr": "Frente a la Parroquia"
+    },
+    {
+      "num": 5, "lat": 20.6779, "lng": -102.5714, "icon": "🎨",
+      "name": { "en": "Centro Cultural", "es": "Centro Cultural" },
+      "desc": { "en": "Gallery, classrooms, and auditorium. Reopened in 2021", "es": "Galería, salones y auditorio. Reabierto en 2021" },
+      "addr": "Josefa Ortiz de Domínguez 189-B"
+    },
+    {
+      "num": 6, "lat": 20.6750, "lng": -102.5690, "icon": "🛍️",
+      "name": { "en": "Calle Hidalgo", "es": "Calle Hidalgo" },
+      "desc": { "en": "The main commercial street. Shops, foot traffic, and local life", "es": "La calle comercial principal. Tiendas, peatones y vida local" },
+      "addr": "Calle Hidalgo"
+    },
+    {
+      "num": 7, "lat": 20.6751, "lng": -102.5684, "icon": "🍽️",
+      "name": { "en": "Bramido San José", "es": "Bramido San José" },
+      "desc": { "en": "Popular restaurant. Mexican and seafood. Great for a sit-down meal.", "es": "Restaurante popular. Comida mexicana y mariscos. Ideal para una comida." },
+      "addr": "Hidalgo 110"
+    },
+    {
+      "num": 8, "lat": 20.6749, "lng": -102.5706, "icon": "🏛️",
+      "name": { "en": "Los Portales", "es": "Los Portales" },
+      "desc": { "en": "Historic arcaded walkways surrounding the plaza. Perfect for people-watching", "es": "Portales históricos alrededor de la plaza. Perfecto para ver pasar la gente" },
+      "addr": "Plaza Principal"
+    },
+    {
+      "num": 9, "lat": 20.6758, "lng": -102.5721, "icon": "🍸", "badge": "end",
+      "name": { "en": "Cantina La Soga", "es": "Cantina La Soga" },
+      "desc": { "en": "End the tour here. Cold drinks, botana, and good vibes. Salud!", "es": "Termina el tour aquí. Bebidas frías, botana y buen ambiente. ¡Salud!" },
+      "addr": "Independencia 90"
+    }
+  ]
+}
