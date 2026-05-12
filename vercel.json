@@ -6,7 +6,7 @@
     {
       "source": "/",
       "has": [
-        { "type": "header", "key": "accept-language", "value": ".*\\b(es)\\b.*" }
+        { "type": "header", "key": "accept-language", "value": "^es.*" }
       ],
       "destination": "/es/",
       "permanent": false
