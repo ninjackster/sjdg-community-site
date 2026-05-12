@@ -3,6 +3,16 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "redirects": [
+    {
+      "source": "/",
+      "has": [
+        { "type": "header", "key": "accept-language", "value": ".*\\b(es)\\b.*" }
+      ],
+      "destination": "/es/",
+      "permanent": false
+    },
+    { "source": "/", "destination": "/en/", "permanent": false },
+
     { "source": "/businesses", "destination": "/en/businesses", "permanent": true },
     { "source": "/faq",        "destination": "/en/faq",        "permanent": true },
     { "source": "/tour",       "destination": "/en/tour",       "permanent": true },
