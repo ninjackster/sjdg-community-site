@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "slug": { "en": "businesses",  "es": "negocios" },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "labels": {
+    "back_to_directory": { "en": "← Back to directory",     "es": "← Volver al directorio" },
+    "address":           { "en": "Address",                 "es": "Dirección" },
+    "phone":             { "en": "Phone",                   "es": "Teléfono" },
+    "hours":             { "en": "Hours",                   "es": "Horario" },
+    "open_in_maps":      { "en": "Open in Google Maps",     "es": "Abrir en Google Maps" },
+    "rating":            { "en": "Rating",                  "es": "Calificación" },
+    "reviews":           { "en": "reviews",                 "es": "reseñas" },
+    "no_hours":          { "en": "Hours not available",     "es": "Horario no disponible" },
+    "no_phone":          { "en": "No phone listed",         "es": "Sin teléfono registrado" },
+    "directory_label":   { "en": "Directory",               "es": "Directorio" },
+    "home_label":        { "en": "Home",                    "es": "Inicio" },
+    "closed":            { "en": "Closed",                  "es": "Cerrado" }
+  },
+  "type_labels": {
+    "restaurant":             { "en": "Restaurant",        "es": "Restaurante" },
+    "bar":                    { "en": "Bar",               "es": "Bar" },
+    "cafe":                   { "en": "Café",              "es": "Café" },
+    "store":                  { "en": "Store",             "es": "Tienda" },
+    "grocery_or_supermarket": { "en": "Grocery store",     "es": "Supermercado" },
+    "pharmacy":               { "en": "Pharmacy",          "es": "Farmacia" },
+    "bakery":                 { "en": "Bakery",            "es": "Panadería" },
+    "park":                   { "en": "Park",              "es": "Parque" },
+    "campground":             { "en": "Campground",        "es": "Campamento" },
+    "tourist_attraction":     { "en": "Attraction",        "es": "Atracción" },
+    "lodging":                { "en": "Lodging",           "es": "Hospedaje" },
+    "meal_takeaway":          { "en": "Takeaway",          "es": "Para llevar" },
+    "meal_delivery":          { "en": "Delivery",          "es": "A domicilio" },
+    "default":                { "en": "Local business",    "es": "Negocio local" }
+  },
+  "weekday_labels": {
+    "0": { "en": "Sunday",    "es": "Domingo" },
+    "1": { "en": "Monday",    "es": "Lunes" },
+    "2": { "en": "Tuesday",   "es": "Martes" },
+    "3": { "en": "Wednesday", "es": "Miércoles" },
+    "4": { "en": "Thursday",  "es": "Jueves" },
+    "5": { "en": "Friday",    "es": "Viernes" },
+    "6": { "en": "Saturday",  "es": "Sábado" }
+  }
+}
