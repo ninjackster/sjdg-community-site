@@ -117,6 +117,19 @@
       "btn":   { "en": "Book on Airbnb →",   "es": "Reservar en Airbnb →" }
     }
   },
+  "discover": {
+    "label":          { "en": "Plan Your Visit",        "es": "Planea Tu Visita" },
+    "h2":             { "en": "Everything you need <em>in one place</em>", "es": "Todo lo que necesitas <em>en un lugar</em>" },
+    "intro":          { "en": "Detailed guides for first-time visitors and returning paisanos alike.", "es": "Guías detalladas para visitantes nuevos y paisanos que regresan." },
+    "things_to_do":   { "en": "Things to do",        "es": "Qué hacer" },
+    "things_to_do_p": { "en": "Plaza, walking tour, fiestas, and the Altos countryside.", "es": "Plaza, recorrido, fiestas y los Altos." },
+    "getting_here":   { "en": "Getting here",        "es": "Cómo llegar" },
+    "getting_here_p": { "en": "Drive, bus, and rideshare from Guadalajara.", "es": "Carretera, camión y rideshare desde Guadalajara." },
+    "where_to_eat":   { "en": "Where to eat",        "es": "Dónde comer" },
+    "where_to_eat_p": { "en": "Restaurants, cantinas, cafés, the Sunday tianguis.", "es": "Restaurantes, cantinas, cafés y el tianguis dominical." },
+    "where_to_stay":  { "en": "Where to stay",       "es": "Dónde hospedarse" },
+    "where_to_stay_p":{ "en": "Airbnbs in the centro and other lodging.", "es": "Airbnbs en el centro y otras opciones." }
+  },
   "cta": {
     "h2":  { "en": "Ready to visit?",                                                                                                              "es": "¿Listo para visitar?" },
     "p":   { "en": "San José de Gracia is best experienced in person. Book your stay and let the highlands do the rest.", "es": "San José de Gracia se vive mejor en persona. Reserva tu estancia y deja que los Altos hagan el resto." },
