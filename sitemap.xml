@@ -1676,4 +1676,31 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/where-to-stay" />
   </url>
 
+
+  <url>
+    <loc>https://sanjosedegracia.net/en/history</loc><lastmod>2026-05-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/history" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/historia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/history" />
+  </url>
+  <url>
+    <loc>https://sanjosedegracia.net/es/historia</loc><lastmod>2026-05-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/history" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/historia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/history" />
+  </url>
+
+  <url>
+    <loc>https://sanjosedegracia.net/en/festivals</loc><lastmod>2026-05-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/festivals" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/fiestas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/festivals" />
+  </url>
+  <url>
+    <loc>https://sanjosedegracia.net/es/fiestas</loc><lastmod>2026-05-13</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/festivals" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/fiestas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/festivals" />
+  </url>
+
 </urlset>
