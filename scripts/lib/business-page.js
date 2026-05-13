@@ -62,6 +62,19 @@ function hoursHtml(business, weekdayLabels, labels, lang) {
   return `<dl class="biz-hours">${rows.join('')}</dl>`;
 }
 
+function buildBreadcrumb(business, siteUrl, lang, labels) {
+  const directorySlug = lang === 'en' ? 'businesses' : 'negocios';
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: labels.home_label,      item: `${siteUrl}/${lang}/` },
+      { '@type': 'ListItem', position: 2, name: labels.directory_label, item: `${siteUrl}/${lang}/${directorySlug}` },
+      { '@type': 'ListItem', position: 3, name: business.displayName,   item: `${siteUrl}/${lang}/${directorySlug}/${business.slug}` },
+    ],
+  };
+}
+
 function buildSchema(business, siteUrl, lang) {
   const langPath = lang === 'en' ? 'businesses' : 'negocios';
   const url = `${siteUrl}/${lang}/${langPath}/${business.slug}`;
@@ -142,6 +155,7 @@ export function renderBusinessPage({ business, lang, layout, pageTemplate, detai
       hoursHtml: hoursHtml(business, detailContent.weekday_labels, localized.labels, lang),
     },
     schema_jsonld: JSON.stringify(buildSchema(business, siteUrl, lang), null, 2),
+    breadcrumb_jsonld: JSON.stringify(buildBreadcrumb(business, siteUrl, lang, localized.labels), null, 2),
   };
 
   return buildPage({
