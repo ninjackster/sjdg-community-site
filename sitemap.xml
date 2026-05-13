@@ -1599,4 +1599,81 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/businesses/las-hormigas-navarro-vgjcse" />
   </url>
 
+
+  <url>
+    <loc>https://sanjosedegracia.net/en/things-to-do</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/things-to-do" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/que-hacer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/things-to-do" />
+  </url>
+  <url>
+    <loc>https://sanjosedegracia.net/es/que-hacer</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/things-to-do" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/que-hacer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/things-to-do" />
+  </url>
+
+  <url>
+    <loc>https://sanjosedegracia.net/en/getting-here</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/getting-here" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/como-llegar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/getting-here" />
+  </url>
+  <url>
+    <loc>https://sanjosedegracia.net/es/como-llegar</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/getting-here" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/como-llegar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/getting-here" />
+  </url>
+
+  <url>
+    <loc>https://sanjosedegracia.net/en/where-to-eat</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/where-to-eat" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/donde-comer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/where-to-eat" />
+  </url>
+  <url>
+    <loc>https://sanjosedegracia.net/es/donde-comer</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/where-to-eat" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/donde-comer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/where-to-eat" />
+  </url>
+
+  <url>
+    <loc>https://sanjosedegracia.net/en/where-to-stay</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/where-to-stay" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/donde-hospedarse" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/where-to-stay" />
+  </url>
+  <url>
+    <loc>https://sanjosedegracia.net/es/donde-hospedarse</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sanjosedegracia.net/en/where-to-stay" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://sanjosedegracia.net/es/donde-hospedarse" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sanjosedegracia.net/en/where-to-stay" />
+  </url>
+
 </urlset>

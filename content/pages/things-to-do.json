@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "slug":        { "en": "things-to-do", "es": "que-hacer" },
+    "title":       { "en": "Things to Do in San José de Gracia, Jalisco — Walking Tour, Plaza, Cantinas",
+                     "es": "Qué Hacer en San José de Gracia, Jalisco — Recorrido, Plaza y Cantinas" },
+    "description": { "en": "What to do during a weekend in San José de Gracia: the historic Plaza Principal, the Parroquia, the self-guided walking tour, the cantinas, the Sunday tianguis, and the surrounding Altos countryside.",
+                     "es": "Qué hacer durante un fin de semana en San José de Gracia: la Plaza Principal, la Parroquia, el recorrido autoguiado, las cantinas, el tianguis dominical y los Altos de Jalisco." },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "hero": {
+    "h1":    { "en": "Things to Do in <em>San José de Gracia</em>",
+               "es": "Qué Hacer en <em>San José de Gracia</em>" },
+    "intro": { "en": "San José de Gracia is small. You can walk the centro in a morning, eat your way through the cantinas in an afternoon, and still have time for the plaza at sunset. Here's how locals actually spend a weekend here.",
+               "es": "San José de Gracia es chico. Puedes recorrer el centro en una mañana, comer en las cantinas en la tarde y todavía alcanzar la plaza al atardecer. Así pasa los fines de semana la gente del pueblo." }
+  },
+  "sections": {
+    "tour": {
+      "h2":   { "en": "Walk the centro on the self-guided tour", "es": "Recorre el centro con el tour autoguiado" },
+      "p":    { "en": "Start at the <strong>Plaza Principal</strong> — the French-imported kiosk and the Parroquia del Señor San José anchor the town. Our self-guided <a href=\"/en/tour\">walking tour</a> hits 9 stops in about 1.5 km, so 1–2 hours including coffee stops. Highlights: the Cabeza de Águila monument, the historic Portales arcades around the plaza, and the Centro Cultural just a few blocks north.",
+               "es": "Empieza en la <strong>Plaza Principal</strong> — el kiosco importado de Francia y la Parroquia del Señor San José son el corazón del pueblo. Nuestro <a href=\"/es/recorrido\">recorrido a pie</a> tiene 9 paradas en unos 1.5 km, así que toma 1–2 horas con paradas para café. Lo mejor: el monumento Cabeza de Águila, los Portales históricos alrededor de la plaza y el Centro Cultural a unas cuadras al norte." }
+    },
+    "eat": {
+      "h2":   { "en": "Eat where locals eat", "es": "Come donde come la gente" },
+      "p":    { "en": "The cantinas and family restaurants on Calle Hidalgo are the soul of the town. <strong>Bramido San José</strong> is the most popular sit-down spot (Mexican + seafood, busy on weekends). Cantina La Soga is a great late-evening stop for cold drinks and botana. For sweets, Paletería y Nevería San José sits right across from the Parroquia. Our full <a href=\"/en/where-to-eat\">where-to-eat guide</a> goes deeper.",
+               "es": "Las cantinas y los restaurantes familiares en Calle Hidalgo son el alma del pueblo. <strong>Bramido San José</strong> es el lugar más popular para sentarse a comer (mexicana y mariscos, lleno los fines de semana). La Cantina La Soga es perfecta para una visita nocturna con cervezas frías y botana. Para algo dulce, la Paletería y Nevería San José está justo enfrente de la Parroquia. Nuestra <a href=\"/es/donde-comer\">guía de dónde comer</a> tiene más detalles." }
+    },
+    "events": {
+      "h2":   { "en": "Catch a fiesta if your timing works", "es": "Cae en una fiesta si te coincide" },
+      "p":    { "en": "The town's biggest celebration is the <strong>Fiesta Patronal de San José</strong> — though the saint's day is March 19, the actual festivities run the first 10 days of May with masses, processions, music, and fireworks in the plaza. Other heavy hitters: Semana Santa (March/April), Fiestas Patrias (Sept 15–16), Virgen de Guadalupe (Dec 12), and Las Posadas (Dec 16–24). Every Sunday brings the <strong>tianguis semanal</strong> — fresh produce, local cheeses, handmade goods, antojitos.",
+               "es": "La fiesta más grande del pueblo es la <strong>Fiesta Patronal de San José</strong> — aunque el día del santo es el 19 de marzo, las festividades reales son los primeros 10 días de mayo con misas, procesiones, música y fuegos artificiales en la plaza. Otras grandes: Semana Santa (marzo/abril), Fiestas Patrias (15–16 sept), Virgen de Guadalupe (12 dic) y Las Posadas (16–24 dic). Cada domingo el <strong>tianguis semanal</strong> trae productos frescos, quesos locales, artesanías y antojitos." }
+    },
+    "outdoors": {
+      "h2":   { "en": "Step outside the town", "es": "Sal del pueblo" },
+      "p":    { "en": "San José sits at 1,980 m in the Altos de Jalisco — pasture country, dairy farms, big skies. Drives into the surrounding countryside are easy and scenic. The road toward Tepatitlán passes a string of ranches and small chapels. If you're up for it, ask any local about the best lookout for sunset; everyone has a favorite.",
+               "es": "San José está a 1,980 m en los Altos de Jalisco — tierra de potreros, ganaderías lecheras y cielos enormes. Las salidas en carro al campo son fáciles y bonitas. La carretera hacia Tepatitlán pasa por una serie de ranchos y capillitas. Si te animas, pregunta a cualquier local cuál es el mejor mirador para el atardecer; todos tienen el suyo." }
+    },
+    "stay": {
+      "h2":   { "en": "Sleep over and stay another day", "es": "Quédate a dormir y un día más" },
+      "p":    { "en": "There aren't many big hotels — that's part of the appeal. A handful of small inns and a couple of well-run Airbnbs (one of them right on Moctezuma, two blocks from the plaza). Our <a href=\"/en/where-to-stay\">where-to-stay guide</a> covers the options.",
+               "es": "No hay muchos hoteles grandes — y eso es parte del atractivo. Algunas posadas chicas y un par de Airbnbs bien cuidados (uno en Moctezuma, a dos cuadras de la plaza). Nuestra <a href=\"/es/donde-hospedarse\">guía de hospedaje</a> tiene las opciones." }
+    }
+  },
+  "cross_links": {
+    "h2":          { "en": "More for your trip",          "es": "Más para tu viaje" },
+    "getting_here":{ "en": "Getting here from Guadalajara","es": "Cómo llegar desde Guadalajara" },
+    "where_to_eat":{ "en": "Where to eat",                "es": "Dónde comer" },
+    "where_to_stay":{ "en": "Where to stay",              "es": "Dónde hospedarse" }
+  },
+  "rental": {
+    "tab":      { "en": "For Rent",                      "es": "Se Renta" },
+    "header":   { "en": "For Rent · San Jose de Gracia", "es": "Se Renta · San Jose de Gracia" },
+    "avail":    { "en": "Available",                     "es": "Disponible" },
+    "area":     { "en": "Main area",                     "es": "Area principal" },
+    "dims":     { "en": "Meters (L×W)",                  "es": "Metros (L×A)" },
+    "storage":  { "en": "Storage space",                 "es": "Espacio de bodega" },
+    "patio":    { "en": "With water hookup",             "es": "Con toma de agua" },
+    "includes": { "en": "Included in rent",              "es": "Incluido en la renta" },
+    "cameras":  { "en": "Cameras",                       "es": "Camaras" },
+    "bath":     { "en": "Half bath",                     "es": "Medio bano" },
+    "wa":       { "en": "Inquire: 331 696 3003",         "es": "Informes: 331 696 3003" },
+    "note":     { "en": "Min. 1 year contract · Utilities separate", "es": "Contrato minimo 1 ano · Luz y agua aparte" }
+  }
+}

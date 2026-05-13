@@ -1,7 +1,11 @@
 {
-  "home":       { "en": "",            "es": "" },
-  "businesses": { "en": "businesses",  "es": "negocios" },
-  "faq":        { "en": "faq",         "es": "preguntas" },
-  "tour":       { "en": "tour",        "es": "recorrido" },
-  "advertise":  { "en": "advertise",   "es": "anuncios" }
+  "home":          { "en": "",              "es": "" },
+  "businesses":    { "en": "businesses",    "es": "negocios" },
+  "faq":           { "en": "faq",           "es": "preguntas" },
+  "tour":          { "en": "tour",          "es": "recorrido" },
+  "advertise":     { "en": "advertise",     "es": "anuncios" },
+  "things-to-do":  { "en": "things-to-do",  "es": "que-hacer" },
+  "getting-here":  { "en": "getting-here",  "es": "como-llegar" },
+  "where-to-eat":  { "en": "where-to-eat",  "es": "donde-comer" },
+  "where-to-stay": { "en": "where-to-stay", "es": "donde-hospedarse" }
 }

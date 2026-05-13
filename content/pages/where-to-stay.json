@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "slug":        { "en": "where-to-stay", "es": "donde-hospedarse" },
+    "title":       { "en": "Where to Stay in San José de Gracia, Jalisco — Airbnbs and Inns",
+                     "es": "Dónde Hospedarse en San José de Gracia, Jalisco — Airbnbs y Posadas" },
+    "description": { "en": "Lodging options in San José de Gracia: Airbnbs in the centro, small inns, and a beach-house option in Rosarito for an extended trip.",
+                     "es": "Opciones de hospedaje en San José de Gracia: Airbnbs en el centro, posadas chicas y una casa de playa en Rosarito si quieres extender el viaje." },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "hero": {
+    "h1":    { "en": "Where to <em>Stay</em>",
+               "es": "Dónde <em>Hospedarse</em>" },
+    "intro": { "en": "San José de Gracia is small enough that you don't have many big-hotel options — and that's part of the appeal. A handful of small inns and well-run Airbnbs make the centro easy to walk from.",
+               "es": "San José de Gracia es lo suficientemente chico para no tener muchas opciones de hotel grande — y eso es parte del encanto. Un puñado de posadas y Airbnbs bien cuidados hacen que el centro quede a la vuelta." }
+  },
+  "sections": {
+    "airbnb_centro": {
+      "h2": { "en": "Airbnb in the centro", "es": "Airbnb en el centro" },
+      "p":  { "en": "<a href=\"https://airbnb.com/h/sjdg\" target=\"_blank\" rel=\"noopener\"><strong>The Moctezuma 153 apartment</strong></a> is the most-booked option for visitors — bright 2BR, 2BA on a quiet street two blocks from the plaza, with new appliances, A/C, and keyless entry. ★5.0 with Superhost status. Sleeps up to 5; works equally well for a couple weekend or a family trip.",
+              "es": "<a href=\"https://airbnb.com/h/sjdg\" target=\"_blank\" rel=\"noopener\"><strong>El departamento de Moctezuma 153</strong></a> es la opción más reservada por visitantes — luminoso, 2 recámaras, 2 baños, en una calle tranquila a dos cuadras de la plaza, con electrodomésticos nuevos, A/C y entrada sin llave. ★5.0 con estatus de Súper Host. Hasta 5 huéspedes; sirve igual para un fin de semana en pareja o un viaje familiar." }
+    },
+    "lodging_directory": {
+      "h2": { "en": "Other lodging in town", "es": "Otros hospedajes del pueblo" },
+      "p":  { "en": "Small inns and posadas come and go — for the latest list with hours, addresses, and ratings, see the <a href=\"/en/businesses\">business directory</a> filtered to lodging.",
+              "es": "Las posadas chicas van y vienen — para la lista más reciente con horarios, direcciones y calificaciones, mira el <a href=\"/es/negocios\">directorio de negocios</a> filtrado a hospedaje." }
+    },
+    "extended_trip": {
+      "h2": { "en": "Extended trip? A beach option", "es": "¿Viaje largo? Una opción en la playa" },
+      "p":  { "en": "If you're already coming this far and want to add a few days at the coast, the <a href=\"https://airbnb.com/h/mgbeachhouse\" target=\"_blank\" rel=\"noopener\"><strong>Casa de Playa MG in Rosarito</strong></a> is run by the same family — laid-back Pacific vibes, ocean views, just south of the US border. About 12 hours by car from San José de Gracia or a short flight from GDL to TIJ.",
+              "es": "Si ya viniste hasta acá y quieres sumar unos días en la costa, la <a href=\"https://airbnb.com/h/mgbeachhouse\" target=\"_blank\" rel=\"noopener\"><strong>Casa de Playa MG en Rosarito</strong></a> es de la misma familia — vibras tranquilas del Pacífico, vista al mar, justo al sur de la frontera con EU. Son unas 12 horas en carro desde San José de Gracia, o un vuelo corto de GDL a TIJ." }
+    },
+    "tips": {
+      "h2": { "en": "Booking tips", "es": "Tips para reservar" },
+      "p":  { "en": "Book a few weeks ahead during the <strong>Fiesta Patronal</strong> (first 10 days of May), Semana Santa, and the December holidays — those weekends fill up. Outside those windows you can usually find space on shorter notice. WiFi is solid in the centro; data coverage is good throughout town.",
+              "es": "Reserva con unas semanas de anticipación durante la <strong>Fiesta Patronal</strong> (primeros 10 días de mayo), Semana Santa y las fiestas decembrinas — esos fines de semana se llenan. Fuera de esas fechas, normalmente encuentras lugar con poca anticipación. El WiFi en el centro es estable; la cobertura de datos es buena en todo el pueblo." }
+    }
+  },
+  "cross_links": {
+    "h2":           { "en": "More for your trip",          "es": "Más para tu viaje" },
+    "things_to_do": { "en": "Things to do",                "es": "Qué hacer" },
+    "getting_here": { "en": "Getting here from Guadalajara","es": "Cómo llegar desde Guadalajara" },
+    "where_to_eat": { "en": "Where to eat",                "es": "Dónde comer" }
+  },
+  "rental": {
+    "tab":      { "en": "For Rent",                      "es": "Se Renta" },
+    "header":   { "en": "For Rent · San Jose de Gracia", "es": "Se Renta · San Jose de Gracia" },
+    "avail":    { "en": "Available",                     "es": "Disponible" },
+    "area":     { "en": "Main area",                     "es": "Area principal" },
+    "dims":     { "en": "Meters (L×W)",                  "es": "Metros (L×A)" },
+    "storage":  { "en": "Storage space",                 "es": "Espacio de bodega" },
+    "patio":    { "en": "With water hookup",             "es": "Con toma de agua" },
+    "includes": { "en": "Included in rent",              "es": "Incluido en la renta" },
+    "cameras":  { "en": "Cameras",                       "es": "Camaras" },
+    "bath":     { "en": "Half bath",                     "es": "Medio bano" },
+    "wa":       { "en": "Inquire: 331 696 3003",         "es": "Informes: 331 696 3003" },
+    "note":     { "en": "Min. 1 year contract · Utilities separate", "es": "Contrato minimo 1 ano · Luz y agua aparte" }
+  }
+}

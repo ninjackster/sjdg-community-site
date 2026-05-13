@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "slug":        { "en": "where-to-eat", "es": "donde-comer" },
+    "title":       { "en": "Where to Eat in San José de Gracia, Jalisco — Restaurants, Cantinas, Cafés",
+                     "es": "Dónde Comer en San José de Gracia, Jalisco — Restaurantes, Cantinas y Cafés" },
+    "description": { "en": "Where locals actually eat in San José de Gracia: the popular sit-down restaurants, the cantinas with cold beer and botana, the cafés on the plaza, and the Sunday tianguis food stalls.",
+                     "es": "Dónde realmente come la gente en San José de Gracia: los restaurantes populares, las cantinas con cerveza fría y botana, los cafés de la plaza y los puestos del tianguis dominical." },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "hero": {
+    "h1":    { "en": "Where to <em>Eat</em>",
+               "es": "Dónde <em>Comer</em>" },
+    "intro": { "en": "Eating out in San José de Gracia is unpretentious and generous — handmade tortillas, dairy-rich chiles rellenos, fresh chicharrón, and the occasional birria stand on a side street. Here are the spots locals actually go.",
+               "es": "Comer en San José de Gracia es sin pretensiones y abundante — tortillas hechas a mano, chiles rellenos con el queso de aquí, chicharrón fresco y de vez en cuando un puesto de birria en alguna calle. Estos son los lugares a los que la gente del pueblo realmente va." }
+  },
+  "sections": {
+    "sit_down": {
+      "h2": { "en": "Sit-down restaurants", "es": "Restaurantes para sentarte" },
+      "p":  { "en": "<a href=\"/en/businesses/bramido-san-jose-krfi1a\"><strong>Bramido San José</strong></a> on Calle Hidalgo is the busiest restaurant in town for good reason — Mexican classics, a strong seafood section, and a setting that scales from a coffee with a friend to a family Sunday lunch. <a href=\"/en/businesses/restaurante-y-cantina-la-muralla-rfh9ce\"><strong>Restaurante y Cantina La Muralla</strong></a> is the other big anchor, and works equally well for a long meal or a few beers.",
+              "es": "<a href=\"/es/negocios/bramido-san-jose-krfi1a\"><strong>Bramido San José</strong></a> en Calle Hidalgo es el restaurante más concurrido del pueblo y por algo — clásicos de la cocina mexicana, buena sección de mariscos y un ambiente que sirve igual para un café con un amigo que para una comida dominical en familia. <a href=\"/es/negocios/restaurante-y-cantina-la-muralla-rfh9ce\"><strong>Restaurante y Cantina La Muralla</strong></a> es el otro grande, y funciona igual de bien para una comida larga o unas cervezas." }
+    },
+    "cantinas": {
+      "h2": { "en": "Cantinas", "es": "Cantinas" },
+      "p":  { "en": "Cantinas in the Altos lean traditional — botana with the beer, regulars at the bar, music on weekends. Cantina La Soga is a reliable evening spot and our walking-tour endpoint. Don't expect curated cocktails; do expect cold cervezas and good company.",
+              "es": "Las cantinas de los Altos son tradicionales — botana con la cerveza, parroquianos en la barra, música los fines de semana. La Cantina La Soga es un lugar de confianza para la tarde y es la última parada del recorrido a pie. No esperes coctelería de autor; sí espera cervezas bien frías y buena compañía." }
+    },
+    "cafes": {
+      "h2": { "en": "Cafés and sweet stops", "es": "Cafés y dulces" },
+      "p":  { "en": "<strong>Café Azul Cobalto</strong> on Moctezuma (right next to the Airbnb on stop #1 of the walking tour) is the easiest morning coffee in town. For ice cream, the <strong>Paletería y Nevería San José</strong> sits directly across from the Parroquia — fruit-flavored paletas, ice cream, and the kind of late-afternoon line that tells you it's good.",
+              "es": "<strong>Café Azul Cobalto</strong> en Moctezuma (justo al lado del Airbnb que es la parada 1 del recorrido) es el lugar más fácil para un café en la mañana. Para algo dulce, la <strong>Paletería y Nevería San José</strong> está justo enfrente de la Parroquia — paletas de sabores frutales, helado y la fila de las tardes que te dice que está bueno." }
+    },
+    "tianguis": {
+      "h2": { "en": "Sunday tianguis", "es": "Tianguis dominical" },
+      "p":  { "en": "Every Sunday the centro fills with the <strong>tianguis semanal</strong> — fresh produce, local cheeses (try the panela and cotija), handmade tortillas, and stalls selling antojitos hot off the comal. Best around 10–11 AM. It's worth timing a Sunday visit to overlap.",
+              "es": "Cada domingo el centro se llena con el <strong>tianguis semanal</strong> — productos frescos, quesos locales (prueba el panela y el cotija), tortillas hechas a mano y puestos vendiendo antojitos recién hechos del comal. Mejor de 10–11 AM. Vale la pena que tu visita en domingo coincida." }
+    },
+    "more": {
+      "h2": { "en": "Browse the full directory", "es": "Mira el directorio completo" },
+      "p":  { "en": "We pull live ratings and hours from Google Maps for every restaurant, bar, café, taquería, and store in town. Browse the <a href=\"/en/businesses\">complete business directory</a>.",
+              "es": "Sacamos las calificaciones y horarios en vivo de Google Maps para cada restaurante, bar, café, taquería y tienda del pueblo. Mira el <a href=\"/es/negocios\">directorio completo de negocios</a>." }
+    }
+  },
+  "cross_links": {
+    "h2":           { "en": "More for your trip",          "es": "Más para tu viaje" },
+    "things_to_do": { "en": "Things to do",                "es": "Qué hacer" },
+    "getting_here": { "en": "Getting here from Guadalajara","es": "Cómo llegar desde Guadalajara" },
+    "where_to_stay":{ "en": "Where to stay",               "es": "Dónde hospedarse" }
+  },
+  "rental": {
+    "tab":      { "en": "For Rent",                      "es": "Se Renta" },
+    "header":   { "en": "For Rent · San Jose de Gracia", "es": "Se Renta · San Jose de Gracia" },
+    "avail":    { "en": "Available",                     "es": "Disponible" },
+    "area":     { "en": "Main area",                     "es": "Area principal" },
+    "dims":     { "en": "Meters (L×W)",                  "es": "Metros (L×A)" },
+    "storage":  { "en": "Storage space",                 "es": "Espacio de bodega" },
+    "patio":    { "en": "With water hookup",             "es": "Con toma de agua" },
+    "includes": { "en": "Included in rent",              "es": "Incluido en la renta" },
+    "cameras":  { "en": "Cameras",                       "es": "Camaras" },
+    "bath":     { "en": "Half bath",                     "es": "Medio bano" },
+    "wa":       { "en": "Inquire: 331 696 3003",         "es": "Informes: 331 696 3003" },
+    "note":     { "en": "Min. 1 year contract · Utilities separate", "es": "Contrato minimo 1 ano · Luz y agua aparte" }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "slug":        { "en": "getting-here", "es": "como-llegar" },
+    "title":       { "en": "Getting to San José de Gracia from Guadalajara — Drive, Bus, Map",
+                     "es": "Cómo Llegar a San José de Gracia desde Guadalajara — Carretera, Camión, Mapa" },
+    "description": { "en": "How to get to San José de Gracia, Jalisco from Guadalajara: ~95 km northeast, ~1h 45m drive via the Carretera Tepatitlán–San José. Bus and rideshare options included.",
+                     "es": "Cómo llegar a San José de Gracia, Jalisco desde Guadalajara: ~95 km al noreste, ~1h 45m por carretera vía Tepatitlán. Incluye opciones de camión y rideshare." },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "hero": {
+    "h1":    { "en": "Getting to <em>San José de Gracia</em>",
+               "es": "Cómo Llegar a <em>San José de Gracia</em>" },
+    "intro": { "en": "San José de Gracia sits about 95 km northeast of Guadalajara, in the highlands of Los Altos de Jalisco. The drive takes 1 hour 45 minutes on a good day, longer if you hit rush hour leaving the city. Here's how to get here.",
+               "es": "San José de Gracia está a unos 95 km al noreste de Guadalajara, en los Altos de Jalisco. El recorrido en carro toma 1 hora 45 minutos en un día bueno, más si te toca el tráfico saliendo de la ciudad. Aquí están las opciones." }
+  },
+  "sections": {
+    "drive": {
+      "h2": { "en": "By car (recommended)", "es": "En carro (recomendado)" },
+      "p":  { "en": "From central Guadalajara, take the <strong>Carretera Tepatitlán</strong> (Federal 80D / Mexico 80). It's a toll road for most of the way, well-maintained, and the easiest route. After Tepatitlán de Morelos, follow signs to San José de Gracia — the last stretch is a regular highway, two lanes, gentle curves through pasture country. Total: <strong>95 km, ~1h 45m</strong>. Tolls are about $150 MXN one-way (cash or IAVE).",
+              "es": "Desde el centro de Guadalajara, toma la <strong>Carretera Tepatitlán</strong> (Federal 80D / México 80). Es de cuota la mayor parte del camino, está bien mantenida y es la ruta más fácil. Después de Tepatitlán de Morelos, sigue las indicaciones a San José de Gracia — el último tramo es carretera normal de dos carriles, con curvas suaves entre los potreros. Total: <strong>95 km, ~1h 45m</strong>. Las casetas suman unos $150 MXN por viaje (efectivo o IAVE)." }
+    },
+    "bus": {
+      "h2": { "en": "By bus", "es": "En camión" },
+      "p":  { "en": "There's no direct first-class line from Guadalajara to San José de Gracia. The realistic route is: take a bus to <strong>Tepatitlán de Morelos</strong> from Nueva Central Camionera (operators include Servicios Coordinados, ETN, Primera Plus — frequent service, ~1h 30m, ~$200 MXN). From Tepa, take a local segunda clase line or rideshare into San José (~30 min). Plan ~3 hours total door-to-door.",
+              "es": "No hay línea directa de primera clase de Guadalajara a San José de Gracia. La ruta real: toma un camión a <strong>Tepatitlán de Morelos</strong> desde la Nueva Central Camionera (operan Servicios Coordinados, ETN, Primera Plus — salidas frecuentes, ~1h 30m, ~$200 MXN). De Tepa, toma una línea local de segunda o un rideshare a San José (~30 min). Planea ~3 horas puerta a puerta." }
+    },
+    "rideshare": {
+      "h2": { "en": "By Uber / DiDi", "es": "Con Uber / DiDi" },
+      "p":  { "en": "Uber and DiDi work from Guadalajara out to Tepatitlán reliably. Past Tepatitlán, coverage is hit-or-miss — you may need to set the destination to a specific address in San José rather than the town generally. Expect $700–$1,000 MXN one-way depending on time of day. Coming from the airport (GDL), it's about 110 km — same logic.",
+              "es": "Uber y DiDi funcionan bien de Guadalajara hasta Tepatitlán. Pasando Tepatitlán, la cobertura es irregular — puede que necesites poner una dirección específica en San José en vez del pueblo en general. Espera $700–$1,000 MXN por viaje según la hora. Desde el aeropuerto (GDL), son unos 110 km — misma lógica." }
+    },
+    "from_us": {
+      "h2": { "en": "Coming from the US?", "es": "¿Vienes desde Estados Unidos?" },
+      "p":  { "en": "<strong>Guadalajara International Airport (GDL)</strong> is the closest major airport — direct flights from LAX, SFO, ORD, DFW, ATL, JFK, and many midsize US cities. From the airport, follow the same routes above (it's actually slightly closer to San José than central Guadalajara). Many paisanos drive down from California or Texas — the most common route via the border at Nuevo Laredo + Federal 85 takes 18–20 hours of driving from the Texas border.",
+              "es": "El <strong>Aeropuerto Internacional de Guadalajara (GDL)</strong> es el más cercano — vuelos directos desde LAX, SFO, ORD, DFW, ATL, JFK y muchas ciudades medianas de EU. Desde el aeropuerto, las mismas rutas de arriba aplican (de hecho está un poco más cerca a San José que el centro de Guadalajara). Muchos paisanos manejan desde California o Texas — la ruta más común vía Nuevo Laredo + Federal 85 toma 18–20 horas desde la frontera." }
+    },
+    "map": {
+      "h2": { "en": "On the map", "es": "En el mapa" },
+      "p":  { "en": "<a href=\"https://www.google.com/maps/dir/Guadalajara,+Jalisco/San+Jos%C3%A9+de+Gracia,+Jalisco/\" target=\"_blank\" rel=\"noopener\">Open turn-by-turn directions in Google Maps →</a>",
+              "es": "<a href=\"https://www.google.com/maps/dir/Guadalajara,+Jalisco/San+Jos%C3%A9+de+Gracia,+Jalisco/\" target=\"_blank\" rel=\"noopener\">Abre la ruta en Google Maps →</a>" }
+    }
+  },
+  "cross_links": {
+    "h2":            { "en": "Once you're here", "es": "Cuando ya llegaste" },
+    "things_to_do":  { "en": "Things to do",     "es": "Qué hacer" },
+    "where_to_eat":  { "en": "Where to eat",     "es": "Dónde comer" },
+    "where_to_stay": { "en": "Where to stay",    "es": "Dónde hospedarse" }
+  },
+  "rental": {
+    "tab":      { "en": "For Rent",                      "es": "Se Renta" },
+    "header":   { "en": "For Rent · San Jose de Gracia", "es": "Se Renta · San Jose de Gracia" },
+    "avail":    { "en": "Available",                     "es": "Disponible" },
+    "area":     { "en": "Main area",                     "es": "Area principal" },
+    "dims":     { "en": "Meters (L×W)",                  "es": "Metros (L×A)" },
+    "storage":  { "en": "Storage space",                 "es": "Espacio de bodega" },
+    "patio":    { "en": "With water hookup",             "es": "Con toma de agua" },
+    "includes": { "en": "Included in rent",              "es": "Incluido en la renta" },
+    "cameras":  { "en": "Cameras",                       "es": "Camaras" },
+    "bath":     { "en": "Half bath",                     "es": "Medio bano" },
+    "wa":       { "en": "Inquire: 331 696 3003",         "es": "Informes: 331 696 3003" },
+    "note":     { "en": "Min. 1 year contract · Utilities separate", "es": "Contrato minimo 1 ano · Luz y agua aparte" }
+  }
+}
