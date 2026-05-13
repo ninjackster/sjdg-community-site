@@ -1,4 +1,7 @@
-const TOKEN_RE = /\{\{\s*([\w.]+)\s*\}\}/g;
+// Allow letters/digits/underscores plus hyphens and dots so tokens like
+// {{nav_urls.things-to-do}} resolve correctly. Without hyphens, those tokens
+// would silently pass through as literal text in the output.
+const TOKEN_RE = /\{\{\s*([\w.-]+)\s*\}\}/g;
 
 function resolve(ctx, key) {
   return key.split('.').reduce((acc, part) => {

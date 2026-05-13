@@ -41,3 +41,17 @@ test('does not double-render — output containing braces is left alone', () => 
     '{{not-a-token}}'
   );
 });
+
+test('substitutes tokens with hyphens in keys (e.g. nav_urls.things-to-do)', () => {
+  assert.equal(
+    render('{{nav_urls.things-to-do}}', { nav_urls: { 'things-to-do': '/en/things-to-do' } }),
+    '/en/things-to-do'
+  );
+});
+
+test('throws on unresolved hyphenated token (catches typos)', () => {
+  assert.throws(
+    () => render('{{nav_urls.bad-key}}', { nav_urls: {} }),
+    /unresolved token: nav_urls\.bad-key/i
+  );
+});
