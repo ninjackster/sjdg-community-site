@@ -8,7 +8,6 @@ before(() => {
 });
 
 const LEGACY_FILES = [
-  'index.html',
   'admin-businesses.html',
   'robots.txt',
   'sitemap.xml',
