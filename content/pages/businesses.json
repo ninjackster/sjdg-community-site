@@ -41,6 +41,7 @@
   "no_rating":     { "en": "No rating yet", "es": "Sin calificación" },
   "reviews":       { "en": "reviews", "es": "reseñas" },
   "maps_link":     { "en": "View on Google Maps →", "es": "Ver en Google Maps →" },
+  "view_details":  { "en": "View details →",         "es": "Ver detalles →" },
   "no_results":    { "en": "No {category} found in Google Maps yet.<br><small style=\"opacity:.6\">Locals can add their business at <a href=\"https://business.google.com\" target=\"_blank\" style=\"color:var(--clay)\">business.google.com</a></small>", "es": "No se encontraron {category} en Google Maps aún.<br><small style=\"opacity:.6\">Los locales pueden agregar su negocio en <a href=\"https://business.google.com\" target=\"_blank\" style=\"color:var(--clay)\">business.google.com</a></small>" },
   "no_open":       { "en": "No {category} appear to be open right now.", "es": "No hay {category} abiertos en este momento." },
   "error":         { "en": "⚠️ Could not load listings right now. Please try again shortly.", "es": "⚠️ No se pudieron cargar los resultados. Intenta de nuevo pronto." },

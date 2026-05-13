@@ -223,6 +223,16 @@
     <p class="powered">{{powered}}</p>
   </div>
 
+<script type="application/json" id="business-slug-map">
+{{slug_map_json}}
+</script>
+
+<script>
+  const SLUG_MAP = JSON.parse(document.getElementById('business-slug-map').textContent);
+  const BIZ_DETAIL_BASE = '{{nav_urls.businesses}}';
+  const VIEW_DETAILS_LABEL = '{{view_details}}';
+</script>
+
 <script>
   // ── TYPE LABELS (bilingual, resolved at build time) ──
   const TYPE_LABELS = {
@@ -368,8 +378,15 @@
     }
 
     visible.forEach(place => {
-      const card = document.createElement('div');
+      const slug = SLUG_MAP[place.place_id];
+      const card = document.createElement(slug ? 'a' : 'div');
       card.className = 'place-card';
+      if (slug) {
+        card.href = `${BIZ_DETAIL_BASE}/${slug}`;
+        card.style.textDecoration = 'none';
+        card.style.color = 'inherit';
+        card.style.display = 'block';
+      }
 
       // Photo
       const isFeatured = FEATURED_PLACE_IDS.includes(place.place_id);
@@ -404,6 +421,7 @@
       const addr = place.vicinity || '';
       const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name)}&query_place_id=${place.place_id}`;
 
+      const detailsLink = slug ? `<span class="place-link">${VIEW_DETAILS_LABEL}</span>` : `<a href="${mapsUrl}" target="_blank" class="place-link" onclick="event.stopPropagation()">{{maps_link}}</a>`;
       card.innerHTML = `
         ${photoHTML}
         <div class="place-body">
@@ -411,7 +429,7 @@
           <div class="place-rating">${ratingHTML}</div>
           ${statusHTML}
           <div class="place-address">📍 ${addr}</div>
-          <a href="${mapsUrl}" target="_blank" class="place-link">{{maps_link}}</a>
+          ${detailsLink}
         </div>
       `;
       grid.appendChild(card);

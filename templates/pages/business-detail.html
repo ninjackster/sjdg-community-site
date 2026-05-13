@@ -1,0 +1,69 @@
+<style>
+  .biz-wrap { max-width: 760px; margin: 0 auto; padding: 7rem 1.5rem 4rem; }
+  .biz-crumbs { font-size: .8rem; color: rgba(28,19,9,.45); margin-bottom: 1.5rem; }
+  .biz-crumbs a { color: var(--clay); text-decoration: none; }
+  .biz-crumbs a:hover { text-decoration: underline; }
+  .biz-crumbs .sep { margin: 0 .35rem; color: rgba(28,19,9,.25); }
+  .biz-back { display: inline-block; margin-bottom: 1.2rem; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: var(--clay); text-decoration: none; }
+  .biz-back:hover { color: var(--earth); }
+  .biz-hero { border-bottom: 1px solid var(--mist); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+  .biz-type { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .6rem; }
+  .biz-name { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 400; line-height: 1.15; margin-bottom: .8rem; }
+  .biz-rating { font-size: .9rem; color: rgba(28,19,9,.65); }
+  .biz-rating .stars { color: var(--gold); margin-right: .35rem; }
+  .biz-section { margin-bottom: 2rem; }
+  .biz-section h2 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: .5rem; color: var(--dark); }
+  .biz-section p, .biz-section dd { font-size: .92rem; color: rgba(28,19,9,.75); line-height: 1.6; }
+  .biz-section a { color: var(--clay); text-decoration: none; border-bottom: 1px solid rgba(196,120,90,.35); }
+  .biz-section a:hover { color: var(--earth); border-color: var(--earth); }
+  .biz-hours { display: grid; grid-template-columns: max-content 1fr; gap: .35rem 1rem; font-size: .9rem; }
+  .biz-hours dt { font-weight: 500; color: rgba(28,19,9,.7); }
+  .biz-hours dd { color: rgba(28,19,9,.75); }
+  .biz-cta { display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 1.4rem; background: var(--clay); color: var(--cream); border-radius: 4px; text-decoration: none; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; transition: background .2s; }
+  .biz-cta:hover { background: var(--earth); }
+  .biz-cta svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; }
+</style>
+
+<script type="application/ld+json">
+{{schema_jsonld}}
+</script>
+
+<div class="biz-wrap">
+  <a href="{{nav_urls.businesses}}" class="biz-back">{{labels.back_to_directory}}</a>
+
+  <nav class="biz-crumbs" aria-label="Breadcrumb">
+    <a href="{{nav_urls.home}}">{{labels.home_label}}</a>
+    <span class="sep">/</span>
+    <a href="{{nav_urls.businesses}}">{{labels.directory_label}}</a>
+    <span class="sep">/</span>
+    <span>{{business.displayName}}</span>
+  </nav>
+
+  <div class="biz-hero">
+    <p class="biz-type">{{business.typeLabel}}</p>
+    <h1 class="biz-name">{{business.displayName}}</h1>
+    <p class="biz-rating">{{business.ratingLine}}</p>
+  </div>
+
+  <div class="biz-section">
+    <h2>{{labels.address}}</h2>
+    <p><a href="https://www.google.com/maps/place/?q=place_id:{{business.placeId}}" target="_blank" rel="noopener">{{business.formattedAddress}}</a></p>
+  </div>
+
+  <div class="biz-section">
+    <h2>{{labels.phone}}</h2>
+    <p>{{business.phoneLine}}</p>
+  </div>
+
+  <div class="biz-section">
+    <h2>{{labels.hours}}</h2>
+    {{business.hoursHtml}}
+  </div>
+
+  <div class="biz-section">
+    <a href="https://www.google.com/maps/place/?q=place_id:{{business.placeId}}" target="_blank" rel="noopener" class="biz-cta">
+      <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      {{labels.open_in_maps}}
+    </a>
+  </div>
+</div>

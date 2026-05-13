@@ -1,0 +1,6101 @@
+{
+  "fetchedAt": "2026-05-13T00:42:45.378Z",
+  "townCenter": {
+    "latitude": 20.6748,
+    "longitude": -102.5705
+  },
+  "radius": 5000,
+  "blockedCount": 1,
+  "count": 79,
+  "businesses": [
+    {
+      "placeId": "ChIJCypx4QYzKYQR0yYkkKrfi1A",
+      "displayName": "BRAMIDO San José",
+      "primaryType": "restaurant",
+      "types": [
+        "restaurant",
+        "mexican_restaurant",
+        "bar",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "C. Hidalgo 110, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675051,
+        "longitude": -102.5683507
+      },
+      "internationalPhoneNumber": "+52 33 1358 3059",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 0,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 1:00 – 11:00 PM",
+          "Tuesday: 1:00 – 11:00 PM",
+          "Wednesday: 1:00 – 11:00 PM",
+          "Thursday: 1:00 PM – 12:00 AM",
+          "Friday: 1:00 PM – 12:00 AM",
+          "Saturday: 12:00 PM – 12:00 AM",
+          "Sunday: 12:00 – 11:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T05:00:00Z"
+      },
+      "rating": 4.6,
+      "userRatingCount": 2123,
+      "slug": "bramido-san-jose-krfi1a"
+    },
+    {
+      "placeId": "ChIJY_nwrk8yKYQRE8tG9rfh9CE",
+      "displayName": "Restaurante y Cantina La Muralla",
+      "primaryType": "restaurant",
+      "types": [
+        "restaurant",
+        "bar",
+        "general_contractor",
+        "service",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "formattedAddress": "Carretera Tepatitlán-San José De Gracia Km 23, Rancho la Muralla 2001, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6906568,
+        "longitude": -102.58525449999999
+      },
+      "internationalPhoneNumber": "+52 378 731 4445",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 12,
+              "minute": 30
+            },
+            "close": {
+              "day": 0,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 12,
+              "minute": 30
+            },
+            "close": {
+              "day": 2,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 12,
+              "minute": 30
+            },
+            "close": {
+              "day": 3,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 12,
+              "minute": 30
+            },
+            "close": {
+              "day": 4,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 12,
+              "minute": 30
+            },
+            "close": {
+              "day": 5,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 12,
+              "minute": 30
+            },
+            "close": {
+              "day": 6,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 12,
+              "minute": 30
+            },
+            "close": {
+              "day": 0,
+              "hour": 0,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 12:30 PM – 12:00 AM",
+          "Tuesday: 12:30 PM – 12:00 AM",
+          "Wednesday: 12:30 PM – 12:00 AM",
+          "Thursday: 12:30 PM – 12:00 AM",
+          "Friday: 12:30 PM – 12:00 AM",
+          "Saturday: 12:30 PM – 12:00 AM",
+          "Sunday: 12:30 – 9:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T06:00:00Z"
+      },
+      "rating": 4.4,
+      "userRatingCount": 311,
+      "slug": "restaurante-y-cantina-la-muralla-rfh9ce"
+    },
+    {
+      "placeId": "ChIJuwauKQEzKYQR6Ipa3txgBg4",
+      "displayName": "Plaza de San José de Gracia",
+      "primaryType": "park",
+      "types": [
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Allende 42, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.674980599999998,
+        "longitude": -102.5705662
+      },
+      "rating": 4.7,
+      "userRatingCount": 308,
+      "slug": "plaza-de-san-jose-de-gracia-txgbg4"
+    },
+    {
+      "placeId": "ChIJ3SQv8AAzKYQRqTEQaJ_06rc",
+      "displayName": "Cantina La Soga",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Independencia 90, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675798000000004,
+        "longitude": -102.5721423
+      },
+      "internationalPhoneNumber": "+52 378 116 4086",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 0,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 12:00 PM – 12:00 AM",
+          "Tuesday: 12:00 PM – 12:00 AM",
+          "Wednesday: 12:00 PM – 12:00 AM",
+          "Thursday: 12:00 PM – 12:00 AM",
+          "Friday: 12:00 PM – 12:00 AM",
+          "Saturday: 12:00 PM – 12:00 AM",
+          "Sunday: 12:00 PM – 12:00 AM"
+        ],
+        "nextCloseTime": "2026-05-13T06:00:00Z"
+      },
+      "rating": 4.7,
+      "userRatingCount": 230,
+      "slug": "cantina-la-soga-j_06rc"
+    },
+    {
+      "placeId": "ChIJEW8XKgEzKYQRfBAzsgTOerI",
+      "displayName": "Hotel Los Agaves",
+      "primaryType": "hotel",
+      "types": [
+        "hotel",
+        "lodging",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Allende 10, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6751704,
+        "longitude": -102.5702103
+      },
+      "internationalPhoneNumber": "+52 378 711 5190",
+      "rating": 4.2,
+      "userRatingCount": 119,
+      "slug": "hotel-los-agaves-gtoeri"
+    },
+    {
+      "placeId": "ChIJrWqk050zKYQRyreENNhifII",
+      "displayName": "Restaurante El Pedregal San José de Gracia",
+      "primaryType": "bar_and_grill",
+      "types": [
+        "bar_and_grill",
+        "bar",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Rancho la Coyotera #1174, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.689985999999998,
+        "longitude": -102.56052899999999
+      },
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 0,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: Closed",
+          "Tuesday: Closed",
+          "Wednesday: 2:00 PM – 12:00 AM",
+          "Thursday: 2:00 PM – 12:00 AM",
+          "Friday: 2:00 PM – 12:00 AM",
+          "Saturday: 2:00 PM – 12:00 AM",
+          "Sunday: 2:00 PM – 12:00 AM"
+        ],
+        "nextOpenTime": "2026-05-13T20:00:00Z"
+      },
+      "rating": 4.6,
+      "userRatingCount": 104,
+      "slug": "restaurante-el-pedregal-san-jose-de-gracia-nhifii"
+    },
+    {
+      "placeId": "ChIJJc-JNAEzKYQR9FWL9eXi5rg",
+      "displayName": "Hotel San Jose",
+      "primaryType": "hotel",
+      "types": [
+        "hotel",
+        "lodging",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "López Mateos 10, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.673964299999998,
+        "longitude": -102.569845
+      },
+      "internationalPhoneNumber": "+52 33 1251 4062",
+      "rating": 4.2,
+      "userRatingCount": 101,
+      "slug": "hotel-san-jose-exi5rg"
+    },
+    {
+      "placeId": "ChIJnYOQQYAzKYQRQhD1e4x3DjE",
+      "displayName": "La Cabaña - Restaurante Bar",
+      "primaryType": "bar_and_grill",
+      "types": [
+        "bar_and_grill",
+        "bar",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Tepatitlán, 47728 Jalisco, Mexico",
+      "location": {
+        "latitude": 20.7076307,
+        "longitude": -102.5958186
+      },
+      "internationalPhoneNumber": "+52 391 688 0028",
+      "rating": 4.4,
+      "userRatingCount": 99,
+      "slug": "la-cabana-restaurante-bar-4x3dje"
+    },
+    {
+      "placeId": "ChIJUfx23QAzKYQRou9CrOScIRA",
+      "displayName": "Ahí Bar",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Josefa Ortiz de Domínguez 51, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675539800000003,
+        "longitude": -102.571378
+      },
+      "internationalPhoneNumber": "+52 391 911 0261",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 23,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 12:00 – 11:00 PM",
+          "Tuesday: 12:00 – 11:00 PM",
+          "Wednesday: 12:00 – 11:00 PM",
+          "Thursday: 12:00 – 11:00 PM",
+          "Friday: 12:00 – 11:00 PM",
+          "Saturday: 12:00 – 11:00 PM",
+          "Sunday: 12:00 – 11:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T05:00:00Z"
+      },
+      "rating": 4.5,
+      "userRatingCount": 82,
+      "slug": "ahi-bar-oscira"
+    },
+    {
+      "placeId": "ChIJQYCBZVwzKYQRapjLIa-HRaY",
+      "displayName": "Potrero Blanco (Restaurante - Bar)",
+      "primaryType": "bar_and_grill",
+      "types": [
+        "bar_and_grill",
+        "bar",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Libramiento poniente 245, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6742764,
+        "longitude": -102.57935069999999
+      },
+      "internationalPhoneNumber": "+52 391 611 1123",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: 8:00 AM – 5:00 PM"
+        ],
+        "nextOpenTime": "2026-05-13T14:00:00Z"
+      },
+      "rating": 4.5,
+      "userRatingCount": 68,
+      "slug": "potrero-blanco-restaurante-bar-a-hray"
+    },
+    {
+      "placeId": "ChIJxSAsxaozKYQRxzr7RhdyikQ",
+      "displayName": "Taqueria La Grapa",
+      "primaryType": "taco_restaurant",
+      "types": [
+        "taco_restaurant",
+        "mexican_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Ramón Corona 150, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.673344099999998,
+        "longitude": -102.571029
+      },
+      "internationalPhoneNumber": "+52 33 1705 7683",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 23,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 23,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 23,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 23,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 23,
+              "minute": 30
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 7:00 – 11:30 PM",
+          "Tuesday: 7:00 – 11:30 PM",
+          "Wednesday: Closed",
+          "Thursday: Closed",
+          "Friday: 7:00 – 11:30 PM",
+          "Saturday: 7:00 – 11:30 PM",
+          "Sunday: 7:00 – 11:30 PM"
+        ],
+        "nextOpenTime": "2026-05-13T01:00:00Z"
+      },
+      "rating": 4.5,
+      "userRatingCount": 60,
+      "slug": "taqueria-la-grapa-hdyikq"
+    },
+    {
+      "placeId": "ChIJ45j5wgAzKYQRJe2p22FPWVE",
+      "displayName": "Floreria D Magda",
+      "primaryType": "florist",
+      "types": [
+        "florist",
+        "gift_shop",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Josefa Ortiz de Domínguez 72, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6758377,
+        "longitude": -102.57135009999999
+      },
+      "internationalPhoneNumber": "+52 378 114 0285",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 9:00 AM – 10:00 PM",
+          "Tuesday: 9:00 AM – 10:00 PM",
+          "Wednesday: 9:00 AM – 10:00 PM",
+          "Thursday: 9:00 AM – 10:00 PM",
+          "Friday: 9:00 AM – 10:00 PM",
+          "Saturday: 9:00 AM – 10:00 PM",
+          "Sunday: 9:00 AM – 10:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T04:00:00Z"
+      },
+      "rating": 4.5,
+      "userRatingCount": 54,
+      "slug": "floreria-d-magda-2fpwve"
+    },
+    {
+      "placeId": "ChIJTaVr1QYzKYQR0AB_XD9HBCA",
+      "displayName": "Abarrotes Tachos",
+      "primaryType": "grocery_store",
+      "types": [
+        "grocery_store",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "C. Hidalgo 14A, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6750553,
+        "longitude": -102.5698919
+      },
+      "internationalPhoneNumber": "+52 391 611 0192",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 10:00 PM",
+          "Tuesday: 8:00 AM – 10:00 PM",
+          "Wednesday: 8:00 AM – 10:00 PM",
+          "Thursday: 8:00 AM – 10:00 PM",
+          "Friday: 8:00 AM – 10:00 PM",
+          "Saturday: 8:00 AM – 10:00 PM",
+          "Sunday: 8:00 AM – 10:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T04:00:00Z"
+      },
+      "rating": 4.6,
+      "userRatingCount": 53,
+      "slug": "abarrotes-tachos-d9hbca"
+    },
+    {
+      "placeId": "ChIJg60itUgyKYQR_yW4YK4aLM8",
+      "displayName": "VALLE BAR",
+      "primaryType": "bar_and_grill",
+      "types": [
+        "bar_and_grill",
+        "bar",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "20.694496,-102 585869, La muralla, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6945208,
+        "longitude": -102.5858241
+      },
+      "internationalPhoneNumber": "+52 33 1609 3653",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 1,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 18,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 1,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 1,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: Closed",
+          "Tuesday: Closed",
+          "Wednesday: Closed",
+          "Thursday: Closed",
+          "Friday: 6:00 PM – 1:00 AM",
+          "Saturday: 2:00 PM – 1:00 AM",
+          "Sunday: 12:00 PM – 1:00 AM"
+        ],
+        "nextOpenTime": "2026-05-16T00:00:00Z"
+      },
+      "rating": 4.4,
+      "userRatingCount": 46,
+      "slug": "valle-bar-k4alm8"
+    },
+    {
+      "placeId": "ChIJM_R5XNkzKYQRX1nknqZpZJg",
+      "displayName": "Cremería Macías",
+      "primaryType": "grocery_store",
+      "types": [
+        "grocery_store",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Ramón Corona 325, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.669405599999997,
+        "longitude": -102.57071619999999
+      },
+      "internationalPhoneNumber": "+52 378 218 1659",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 10:00 PM",
+          "Tuesday: 8:00 AM – 10:00 PM",
+          "Wednesday: 8:00 AM – 10:00 PM",
+          "Thursday: 8:00 AM – 10:00 PM",
+          "Friday: 8:00 AM – 10:00 PM",
+          "Saturday: 8:00 AM – 10:00 PM",
+          "Sunday: 8:00 AM – 10:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T04:00:00Z"
+      },
+      "rating": 4.7,
+      "userRatingCount": 44,
+      "slug": "cremeria-macias-qzpzjg"
+    },
+    {
+      "placeId": "ChIJ_egw5QMzKYQRofW1eRJvOEU",
+      "displayName": "Taquería Santo Toribio",
+      "primaryType": "taco_restaurant",
+      "types": [
+        "taco_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Ramón Corona 477, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6640187,
+        "longitude": -102.5701496
+      },
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: Closed",
+          "Tuesday: 7:00 – 10:00 PM",
+          "Wednesday: 7:00 – 10:00 PM",
+          "Thursday: 7:00 – 10:00 PM",
+          "Friday: 7:00 – 10:00 PM",
+          "Saturday: 7:00 – 10:00 PM",
+          "Sunday: 7:00 – 10:00 PM"
+        ],
+        "nextOpenTime": "2026-05-13T01:00:00Z"
+      },
+      "rating": 4.6,
+      "userRatingCount": 38,
+      "slug": "taqueria-santo-toribio-rjvoeu"
+    },
+    {
+      "placeId": "ChIJzQirVgEzKYQRXIj7pC9tJ08",
+      "displayName": "Pizzas Momy's",
+      "primaryType": "pizza_restaurant",
+      "types": [
+        "pizza_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "47728, C. Pedro Moreno 149A, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6724802,
+        "longitude": -102.5703521
+      },
+      "internationalPhoneNumber": "+52 391 611 0005",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 18,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 18,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 18,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 18,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 30
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 6:00 – 10:30 PM",
+          "Tuesday: 6:00 – 10:30 PM",
+          "Wednesday: Closed",
+          "Thursday: 6:00 – 10:30 PM",
+          "Friday: 6:00 – 10:30 PM",
+          "Saturday: 2:00 – 10:30 PM",
+          "Sunday: 2:00 – 10:30 PM"
+        ],
+        "nextCloseTime": "2026-05-13T04:30:00Z"
+      },
+      "rating": 3.9,
+      "userRatingCount": 36,
+      "slug": "pizzas-momys-c9tj08"
+    },
+    {
+      "placeId": "ChIJLd_az540KYQRSX0buAeYt9U",
+      "displayName": "Cabaña del Lobo (Don Rodo)",
+      "primaryType": "supermarket",
+      "types": [
+        "supermarket",
+        "grocery_store",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Unnamed Rd, 47188 Jal., Mexico",
+      "location": {
+        "latitude": 20.661664599999998,
+        "longitude": -102.5246148
+      },
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 23,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 5:00 – 11:00 PM",
+          "Tuesday: 5:00 – 11:00 PM",
+          "Wednesday: 5:00 – 11:00 PM",
+          "Thursday: 5:00 – 11:00 PM",
+          "Friday: 5:00 – 11:00 PM",
+          "Saturday: 5:00 – 11:00 PM",
+          "Sunday: Closed"
+        ],
+        "nextCloseTime": "2026-05-13T05:00:00Z"
+      },
+      "rating": 4.9,
+      "userRatingCount": 31,
+      "slug": "cabana-del-lobo-don-rodo-aeyt9u"
+    },
+    {
+      "placeId": "ChIJh1mtPbUzKYQR5VAS3uZS6FU",
+      "displayName": "Refaccionaría San José",
+      "primaryType": "auto_parts_store",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "service",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Av. Jalisco 26, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6786565,
+        "longitude": -102.5733188
+      },
+      "internationalPhoneNumber": "+52 33 1535 9015",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 15,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 9:00 AM – 7:00 PM",
+          "Tuesday: 9:00 AM – 7:00 PM",
+          "Wednesday: 9:00 AM – 7:00 PM",
+          "Thursday: 9:00 AM – 7:00 PM",
+          "Friday: 9:00 AM – 7:00 PM",
+          "Saturday: 9:00 AM – 3:00 PM",
+          "Sunday: Closed"
+        ],
+        "nextCloseTime": "2026-05-13T01:00:00Z"
+      },
+      "rating": 4.5,
+      "userRatingCount": 31,
+      "slug": "refaccionaria-san-jose-uzs6fu"
+    },
+    {
+      "placeId": "ChIJ67Og5DEzKYQRrmhfz2aPQWc",
+      "displayName": "Bar El Perico",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Moctezuma, San José 146, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675457899999998,
+        "longitude": -102.5706611
+      },
+      "internationalPhoneNumber": "+52 33 1533 0892",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 0,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 7:00 AM – 12:00 AM",
+          "Tuesday: 7:00 AM – 12:00 AM",
+          "Wednesday: 7:00 AM – 12:00 AM",
+          "Thursday: 7:00 AM – 12:00 AM",
+          "Friday: 7:00 AM – 12:00 AM",
+          "Saturday: 7:00 AM – 12:00 AM",
+          "Sunday: 7:00 AM – 12:00 AM"
+        ],
+        "nextCloseTime": "2026-05-13T06:00:00Z"
+      },
+      "rating": 4.9,
+      "userRatingCount": 29,
+      "slug": "bar-el-perico-2apqwc"
+    },
+    {
+      "placeId": "ChIJN3bID_wzKYQRasb7LT3DOsc",
+      "displayName": "El Pozito",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "C. Hidalgo 338, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6757271,
+        "longitude": -102.56000329999999
+      },
+      "internationalPhoneNumber": "+52 391 611 4043",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 0,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 10:00 AM – 12:00 AM",
+          "Tuesday: 10:00 AM – 12:00 AM",
+          "Wednesday: 10:00 AM – 12:00 AM",
+          "Thursday: 10:00 AM – 12:00 AM",
+          "Friday: 10:00 AM – 12:00 AM",
+          "Saturday: 10:00 AM – 12:00 AM",
+          "Sunday: 10:00 AM – 12:00 AM"
+        ],
+        "nextCloseTime": "2026-05-13T06:00:00Z"
+      },
+      "rating": 4.4,
+      "userRatingCount": 29,
+      "slug": "el-pozito-t3dosc"
+    },
+    {
+      "placeId": "ChIJQSRJlQAzKYQRNPQ3ZzxIcBo",
+      "displayName": "Mini Super \"El Cajeto\"",
+      "primaryType": "grocery_store",
+      "types": [
+        "grocery_store",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Josefa Ortiz de Domínguez 127, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6764671,
+        "longitude": -102.5714582
+      },
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 30
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 10:30 PM",
+          "Tuesday: 8:00 AM – 10:30 PM",
+          "Wednesday: 8:00 AM – 10:30 PM",
+          "Thursday: 8:00 AM – 10:30 PM",
+          "Friday: 8:00 AM – 10:30 PM",
+          "Saturday: 8:00 AM – 10:30 PM",
+          "Sunday: 8:00 AM – 10:30 PM"
+        ],
+        "nextCloseTime": "2026-05-13T04:30:00Z"
+      },
+      "rating": 4.2,
+      "userRatingCount": 29,
+      "slug": "mini-super-el-cajeto-zxicbo"
+    },
+    {
+      "placeId": "ChIJdS3mmEUzKYQR_z5J_FcaxzA",
+      "displayName": "Cabañas Rancho Paraiso",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Unnamed Road, 47188 Jal., Mexico",
+      "location": {
+        "latitude": 20.666834599999998,
+        "longitude": -102.5304965
+      },
+      "rating": 4.8,
+      "userRatingCount": 27,
+      "slug": "cabanas-rancho-paraiso-fcaxza"
+    },
+    {
+      "placeId": "ChIJqxuLh6IzKYQRVFjSmtvVIiA",
+      "displayName": "Menuderia la soledad",
+      "primaryType": "mexican_restaurant",
+      "types": [
+        "mexican_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Jalisco 326, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6379183,
+        "longitude": -102.56676309999999
+      },
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 12,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: Closed",
+          "Tuesday: Closed",
+          "Wednesday: Closed",
+          "Thursday: Closed",
+          "Friday: Closed",
+          "Saturday: Closed",
+          "Sunday: 7:00 AM – 12:00 PM"
+        ],
+        "nextOpenTime": "2026-05-17T13:00:00Z"
+      },
+      "rating": 4.6,
+      "userRatingCount": 22,
+      "slug": "menuderia-la-soledad-tvviia"
+    },
+    {
+      "placeId": "ChIJ9yeOjgYzKYQR3cnqujCmohU",
+      "displayName": "ABARROTES VALLE",
+      "primaryType": "grocery_store",
+      "types": [
+        "grocery_store",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Agustín Melgar 143A, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6733652,
+        "longitude": -102.5675917
+      },
+      "internationalPhoneNumber": "+52 33 1011 8217",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 7:00 AM – 10:00 PM",
+          "Tuesday: 7:00 AM – 10:00 PM",
+          "Wednesday: 7:00 AM – 10:00 PM",
+          "Thursday: 7:00 AM – 10:00 PM",
+          "Friday: 7:00 AM – 10:00 PM",
+          "Saturday: 7:00 AM – 10:00 PM",
+          "Sunday: 7:00 AM – 10:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T04:00:00Z"
+      },
+      "rating": 4.6,
+      "userRatingCount": 16,
+      "slug": "abarrotes-valle-jcmohu"
+    },
+    {
+      "placeId": "ChIJQemKjkozKYQR-YGY9NiSOzE",
+      "displayName": "Tacos de julio",
+      "primaryType": "taco_restaurant",
+      "types": [
+        "taco_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Iturbide 40, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.674629600000003,
+        "longitude": -102.5694832
+      },
+      "internationalPhoneNumber": "+52 391 611 0389",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 20,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 20,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 20,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 20,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 19,
+              "minute": 30
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 1:00 – 8:30 PM",
+          "Tuesday: Closed",
+          "Wednesday: 1:00 – 8:30 PM",
+          "Thursday: 1:00 – 8:30 PM",
+          "Friday: 1:00 – 8:30 PM",
+          "Saturday: 1:00 – 7:30 PM",
+          "Sunday: 10:00 AM – 7:00 PM"
+        ],
+        "nextOpenTime": "2026-05-13T19:00:00Z"
+      },
+      "rating": 4.1,
+      "userRatingCount": 15,
+      "slug": "tacos-de-julio-nisoze"
+    },
+    {
+      "placeId": "ChIJHx5pyOAzKYQRjbhXNb3XrYo",
+      "displayName": "Mateos Bar",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "47769 La Soledad, Jalisco, Mexico",
+      "location": {
+        "latitude": 20.635893799999998,
+        "longitude": -102.5550853
+      },
+      "internationalPhoneNumber": "+52 33 3108 9264",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 0,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 0,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 0,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 12:00 AM – 10:00 PM",
+          "Tuesday: 12:00 AM – 10:00 PM",
+          "Wednesday: 5:00 PM – 12:00 AM",
+          "Thursday: 5:00 PM – 12:00 AM",
+          "Friday: 5:00 PM – 12:00 AM",
+          "Saturday: 12:00 PM – 12:00 AM",
+          "Sunday: 12:00 PM – 12:00 AM"
+        ],
+        "nextCloseTime": "2026-05-13T04:00:00Z"
+      },
+      "rating": 4.7,
+      "userRatingCount": 15,
+      "slug": "mateos-bar-b3xryo"
+    },
+    {
+      "placeId": "ChIJr4oTlgAzKYQR1uXvPl0IK-s",
+      "displayName": "Pinturas Zaak",
+      "primaryType": "home_goods_store",
+      "types": [
+        "home_goods_store",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "C. Hernán Cortés 39 A, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.678585599999998,
+        "longitude": -102.5728213
+      },
+      "internationalPhoneNumber": "+52 33 1467 9144",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 1,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 19,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 2,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 19,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 3,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 19,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 4,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 19,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 5,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 16,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 19,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 6,
+              "hour": 14,
+              "minute": 30
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:30 AM – 2:30 PM, 4:00 – 7:30 PM",
+          "Tuesday: 8:30 AM – 2:30 PM, 4:00 – 7:30 PM",
+          "Wednesday: 8:30 AM – 2:30 PM, 4:00 – 7:30 PM",
+          "Thursday: 8:30 AM – 2:30 PM, 4:00 – 7:30 PM",
+          "Friday: 8:30 AM – 2:30 PM, 4:00 – 7:30 PM",
+          "Saturday: 8:30 AM – 2:30 PM",
+          "Sunday: Closed"
+        ],
+        "nextCloseTime": "2026-05-13T01:30:00Z"
+      },
+      "rating": 4.7,
+      "userRatingCount": 14,
+      "slug": "pinturas-zaak-l0ik-s"
+    },
+    {
+      "placeId": "ChIJYw4PDpQzKYQRy0-wCPd_Nbc",
+      "displayName": "Ferretería conchita",
+      "primaryType": "hardware_store",
+      "types": [
+        "hardware_store",
+        "building_materials_store",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "C. Hidalgo 70, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6750533,
+        "longitude": -102.5691665
+      },
+      "internationalPhoneNumber": "+52 391 611 0139",
+      "rating": 3.8,
+      "userRatingCount": 13,
+      "slug": "ferreteria-conchita-pd_nbc"
+    },
+    {
+      "placeId": "ChIJkWUXlxUzKYQReh-sCa9LCKw",
+      "displayName": "Que rollo sushi",
+      "primaryType": "sushi_restaurant",
+      "types": [
+        "sushi_restaurant",
+        "japanese_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Morelos 25, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675246599999998,
+        "longitude": -102.57078729999999
+      },
+      "internationalPhoneNumber": "+52 378 110 7828",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 5:00 – 10:00 PM",
+          "Tuesday: 5:00 – 10:00 PM",
+          "Wednesday: 5:00 – 10:00 PM",
+          "Thursday: 5:00 – 10:00 PM",
+          "Friday: 5:00 – 10:00 PM",
+          "Saturday: 2:00 – 10:00 PM",
+          "Sunday: 2:00 – 10:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T04:00:00Z"
+      },
+      "rating": 4.5,
+      "userRatingCount": 11,
+      "slug": "que-rollo-sushi-a9lckw"
+    },
+    {
+      "placeId": "ChIJo67e4io1KYQRzmsWuETdl_Y",
+      "displayName": "El fresno",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "MF7G+V4, 47188 Unión de Guadalupe, Jal., Mexico",
+      "location": {
+        "latitude": 20.6646268,
+        "longitude": -102.5246434
+      },
+      "rating": 4.8,
+      "userRatingCount": 11,
+      "slug": "el-fresno-etdl_y"
+    },
+    {
+      "placeId": "ChIJs39iygAzKYQRK5o0r848gGA",
+      "displayName": "Farmacia Tepa",
+      "primaryType": "drugstore",
+      "types": [
+        "drugstore",
+        "pharmacy",
+        "health",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Zaragoza 88, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.676619799999997,
+        "longitude": -102.5702141
+      },
+      "internationalPhoneNumber": "+52 391 611 0380",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 0,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 1,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 2,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 3,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 4,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 5,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 7:45 AM – 9:00 PM",
+          "Tuesday: 7:45 AM – 9:00 PM",
+          "Wednesday: 7:45 AM – 9:00 PM",
+          "Thursday: 7:45 AM – 9:00 PM",
+          "Friday: 7:45 AM – 9:00 PM",
+          "Saturday: 7:45 AM – 9:00 PM",
+          "Sunday: 7:45 AM – 9:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T03:00:00Z"
+      },
+      "rating": 4.7,
+      "userRatingCount": 11,
+      "slug": "farmacia-tepa-848gga"
+    },
+    {
+      "placeId": "ChIJlc_GQmUzKYQRWmCnORbrwzQ",
+      "displayName": "MAXI POLLO Pollo Rostizado-KFC",
+      "primaryType": "chicken_restaurant",
+      "types": [
+        "chicken_restaurant",
+        "fast_food_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Independencia 147, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.676733199999997,
+        "longitude": -102.5721659
+      },
+      "internationalPhoneNumber": "+52 33 3484 6407",
+      "rating": 4.5,
+      "userRatingCount": 10,
+      "slug": "maxi-pollo-pollo-rostizado-kfc-rbrwzq"
+    },
+    {
+      "placeId": "ChIJbeOJFQAzKYQRIdh3qWpbEkk",
+      "displayName": "Massey Ferguson San José de Gracia Maquinaria y Equipos de Tepatitlán",
+      "primaryType": "truck_dealer",
+      "types": [
+        "truck_dealer",
+        "supplier",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Ramón Corona 500, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6631467,
+        "longitude": -102.56953109999999
+      },
+      "internationalPhoneNumber": "+52 378 218 0219",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 14,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 9:00 AM – 7:00 PM",
+          "Tuesday: 9:00 AM – 7:00 PM",
+          "Wednesday: 9:00 AM – 7:00 PM",
+          "Thursday: 9:00 AM – 7:00 PM",
+          "Friday: 9:00 AM – 7:00 PM",
+          "Saturday: 9:00 AM – 2:00 PM",
+          "Sunday: Closed"
+        ],
+        "nextCloseTime": "2026-05-13T01:00:00Z"
+      },
+      "rating": 4.6,
+      "userRatingCount": 8,
+      "slug": "massey-ferguson-san-jose-de-gracia-maquinaria-y-equipos-de-tepatitlan-wpbekk"
+    },
+    {
+      "placeId": "ChIJrRTxBQAzKYQR5qCYjTvGlw4",
+      "displayName": "Rancho viejo",
+      "primaryType": "breakfast_restaurant",
+      "types": [
+        "breakfast_restaurant",
+        "mexican_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "47755 San Francisco de Asís, Jalisco, Mexico",
+      "location": {
+        "latitude": 20.6544338,
+        "longitude": -102.56898319999999
+      },
+      "internationalPhoneNumber": "+52 33 2335 5505",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 10:00 PM",
+          "Tuesday: Closed",
+          "Wednesday: Closed",
+          "Thursday: 8:00 AM – 10:00 PM",
+          "Friday: 8:00 AM – 10:00 PM",
+          "Saturday: 8:00 AM – 10:00 PM",
+          "Sunday: 8:00 AM – 10:00 PM"
+        ],
+        "nextOpenTime": "2026-05-14T14:00:00Z"
+      },
+      "rating": 4.4,
+      "userRatingCount": 7,
+      "slug": "rancho-viejo-tvglw4"
+    },
+    {
+      "placeId": "ChIJeYj2YZ0zKYQRQ7d7ZCko6MA",
+      "displayName": "La Antigua De Don Julio",
+      "primaryType": "restaurant",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Iturbide 38, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.674754099999998,
+        "longitude": -102.5694341
+      },
+      "internationalPhoneNumber": "+52 391 611 0836",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 12,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: Closed",
+          "Tuesday: 12:00 – 9:00 PM",
+          "Wednesday: 12:00 – 9:00 PM",
+          "Thursday: 12:00 – 9:00 PM",
+          "Friday: 12:00 – 9:00 PM",
+          "Saturday: 12:00 – 9:00 PM",
+          "Sunday: 10:00 AM – 6:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T03:00:00Z"
+      },
+      "rating": 4.1,
+      "userRatingCount": 7,
+      "slug": "la-antigua-de-don-julio-cko6ma"
+    },
+    {
+      "placeId": "ChIJ6-8i1twzKYQRowEFoDTyRjE",
+      "displayName": "Comedor La Chely",
+      "primaryType": "meal_delivery",
+      "types": [
+        "meal_delivery",
+        "brunch_restaurant",
+        "food_delivery",
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "formattedAddress": "47728, Centro, 47725 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6760227,
+        "longitude": -102.57218350000001
+      },
+      "internationalPhoneNumber": "+52 33 1244 8312",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 16,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 16,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 16,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 16,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 16,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 16,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 4:00 PM",
+          "Tuesday: 8:00 AM – 4:00 PM",
+          "Wednesday: 8:00 AM – 4:00 PM",
+          "Thursday: 8:00 AM – 4:00 PM",
+          "Friday: 8:00 AM – 4:00 PM",
+          "Saturday: 8:00 AM – 4:00 PM",
+          "Sunday: 8:00 AM – 12:00 PM"
+        ],
+        "nextOpenTime": "2026-05-13T14:00:00Z"
+      },
+      "rating": 4,
+      "userRatingCount": 7,
+      "slug": "comedor-la-chely-dtyrje"
+    },
+    {
+      "placeId": "ChIJH6OVBaczKYQRGorrF0PBCkY",
+      "displayName": "El Rincón",
+      "primaryType": "cafe",
+      "types": [
+        "cafe",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "C. Pedro Moreno 183, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6720063,
+        "longitude": -102.5703297
+      },
+      "rating": 5,
+      "userRatingCount": 7,
+      "slug": "el-rincon-0pbcky"
+    },
+    {
+      "placeId": "ChIJn-rr7YAzKYQR3s8PjrG2p9A",
+      "displayName": "DON CHILAQUIL- desayunador",
+      "primaryType": "breakfast_restaurant",
+      "types": [
+        "breakfast_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Moctezuma 477, El publito, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675861299999998,
+        "longitude": -102.5777514
+      },
+      "internationalPhoneNumber": "+52 378 119 7707",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 13,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 13,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 13,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 13,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 13,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 13,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 13,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 1:00 PM",
+          "Tuesday: 8:00 AM – 1:00 PM",
+          "Wednesday: 8:00 AM – 1:00 PM",
+          "Thursday: 8:00 AM – 1:00 PM",
+          "Friday: 8:00 AM – 1:00 PM",
+          "Saturday: 8:00 AM – 1:00 PM",
+          "Sunday: 8:00 AM – 1:00 PM"
+        ],
+        "nextOpenTime": "2026-05-13T14:00:00Z"
+      },
+      "rating": 4.3,
+      "userRatingCount": 6,
+      "slug": "don-chilaquil-desayunador-rg2p9a"
+    },
+    {
+      "placeId": "ChIJMxrRNgAzKYQRNdirx27FzcI",
+      "displayName": "Taqueria el escorpión",
+      "primaryType": "mexican_restaurant",
+      "types": [
+        "mexican_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "C. Hernán Cortés 39 A, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.67858,
+        "longitude": -102.5728361
+      },
+      "rating": 4.8,
+      "userRatingCount": 6,
+      "slug": "taqueria-el-escorpion-27fzci"
+    },
+    {
+      "placeId": "ChIJGe-ZSIIzKYQRSoLhW840cDc",
+      "displayName": "Restaurante Flavors",
+      "primaryType": "restaurant",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Allende 30, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675100999999998,
+        "longitude": -102.57053409999999
+      },
+      "internationalPhoneNumber": "+52 378 218 0384",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 0,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: Closed",
+          "Tuesday: Closed",
+          "Wednesday: 8:30 AM – 5:00 PM",
+          "Thursday: 8:30 AM – 5:00 PM",
+          "Friday: 8:30 AM – 5:00 PM",
+          "Saturday: 8:30 AM – 5:00 PM",
+          "Sunday: 8:30 AM – 5:00 PM"
+        ],
+        "nextOpenTime": "2026-05-13T14:30:00Z"
+      },
+      "rating": 4.3,
+      "userRatingCount": 6,
+      "slug": "restaurante-flavors-840cdc"
+    },
+    {
+      "placeId": "ChIJOUrP2zIzKYQRHTn-uNKpgpA",
+      "displayName": "Taquería El Cuñado",
+      "primaryType": "taco_restaurant",
+      "types": [
+        "taco_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Zaragoza 45, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6752102,
+        "longitude": -102.5701479
+      },
+      "rating": 5,
+      "userRatingCount": 6,
+      "slug": "taqueria-el-cunado-nkpgpa"
+    },
+    {
+      "placeId": "ChIJ3wjUKgAzKYQR7FJ5dafDQvs",
+      "displayName": "Azul Cobalto cafe",
+      "primaryType": "coffee_shop",
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Moctezuma 155, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6755304,
+        "longitude": -102.5723721
+      },
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 18,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 18,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 18,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 18,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 23,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: Closed",
+          "Tuesday: Closed",
+          "Wednesday: Closed",
+          "Thursday: 6:00 – 11:00 PM",
+          "Friday: 6:00 – 11:00 PM",
+          "Saturday: 6:00 – 11:00 PM",
+          "Sunday: 6:00 – 11:00 PM"
+        ],
+        "nextOpenTime": "2026-05-15T00:00:00Z"
+      },
+      "rating": 5,
+      "userRatingCount": 6,
+      "slug": "azul-cobalto-cafe-afdqvs"
+    },
+    {
+      "placeId": "ChIJeWeGpKkzKYQRr8puP2LtMg0",
+      "displayName": "Abarrotes Los Pinos",
+      "primaryType": "grocery_store",
+      "types": [
+        "grocery_store",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Francisco Javier Mina 222, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6804454,
+        "longitude": -102.56814949999999
+      },
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 7,
+              "minute": 30
+            },
+            "close": {
+              "day": 0,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 7,
+              "minute": 30
+            },
+            "close": {
+              "day": 1,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 7,
+              "minute": 30
+            },
+            "close": {
+              "day": 2,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 7,
+              "minute": 30
+            },
+            "close": {
+              "day": 3,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 7,
+              "minute": 30
+            },
+            "close": {
+              "day": 4,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 7,
+              "minute": 30
+            },
+            "close": {
+              "day": 5,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 7,
+              "minute": 30
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 7:30 AM – 9:00 PM",
+          "Tuesday: 7:30 AM – 9:00 PM",
+          "Wednesday: 7:30 AM – 9:00 PM",
+          "Thursday: 7:30 AM – 9:00 PM",
+          "Friday: 7:30 AM – 9:00 PM",
+          "Saturday: 7:30 AM – 9:00 PM",
+          "Sunday: 7:30 AM – 9:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T03:00:00Z"
+      },
+      "rating": 4.4,
+      "userRatingCount": 5,
+      "slug": "abarrotes-los-pinos-2ltmg0"
+    },
+    {
+      "placeId": "ChIJTbUIPAAzKYQRaN1p-8EtZVw",
+      "displayName": "EL COCAS “Tacos de barbacoa”",
+      "primaryType": "mexican_restaurant",
+      "types": [
+        "mexican_restaurant",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "C. Hidalgo 160, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675112199999997,
+        "longitude": -102.56607539999999
+      },
+      "internationalPhoneNumber": "+52 33 3232 7350",
+      "rating": 5,
+      "userRatingCount": 4,
+      "slug": "el-cocas-tacos-de-barbacoa-8etzvw"
+    },
+    {
+      "placeId": "ChIJgyoq4eczKYQR2I8WCuHsSbc",
+      "displayName": "El barecito wings bar",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "formattedAddress": "47728, Moctezuma 43, Centro, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6753473,
+        "longitude": -102.57067839999999
+      },
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 23,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 23,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 23,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 23,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 23,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 14,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 23,
+              "minute": 30
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: Closed",
+          "Tuesday: 5:00 – 11:30 PM",
+          "Wednesday: 5:00 – 11:30 PM",
+          "Thursday: 5:00 – 11:30 PM",
+          "Friday: 5:00 – 11:30 PM",
+          "Saturday: 2:00 – 11:30 PM",
+          "Sunday: 1:00 – 11:30 PM"
+        ],
+        "nextCloseTime": "2026-05-13T05:30:00Z"
+      },
+      "rating": 5,
+      "userRatingCount": 4,
+      "slug": "el-barecito-wings-bar-uhssbc"
+    },
+    {
+      "placeId": "ChIJw5Tx1EYzKYQRvSjVzsnMIZo",
+      "displayName": "Centro Botanero Bar M Trac",
+      "primaryType": "brewpub",
+      "types": [
+        "brewpub",
+        "pub",
+        "bar",
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "formattedAddress": "Moctezuma 238, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6760081,
+        "longitude": -102.5759214
+      },
+      "internationalPhoneNumber": "+52 378 203 3577",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 23,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 9:00 AM – 11:00 PM",
+          "Tuesday: 9:00 AM – 11:00 PM",
+          "Wednesday: 9:00 AM – 11:00 PM",
+          "Thursday: 9:00 AM – 11:00 PM",
+          "Friday: 9:00 AM – 11:00 PM",
+          "Saturday: 9:00 AM – 11:00 PM",
+          "Sunday: 10:00 AM – 11:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T05:00:00Z"
+      },
+      "rating": 2.5,
+      "userRatingCount": 4,
+      "slug": "centro-botanero-bar-m-trac-snmizo"
+    },
+    {
+      "placeId": "ChIJScc7bAAzKYQRKdQr0jXynkk",
+      "displayName": "Oxxo San José De Gracia",
+      "primaryType": "grocery_store",
+      "types": [
+        "grocery_store",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Libramiento 156, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.673994999999998,
+        "longitude": -102.57926099999999
+      },
+      "rating": 4.5,
+      "userRatingCount": 4,
+      "slug": "oxxo-san-jose-de-gracia-jxynkk"
+    },
+    {
+      "placeId": "ChIJKVKZMI8zKYQRIlyLKrMts3c",
+      "displayName": "Tienda Comex",
+      "primaryType": "building_materials_store",
+      "types": [
+        "building_materials_store",
+        "home_goods_store",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Av. Jalisco 43A, Centro, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6782489,
+        "longitude": -102.5736474
+      },
+      "internationalPhoneNumber": "+52 391 104 0774",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 1,
+              "hour": 18,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 2,
+              "hour": 18,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 3,
+              "hour": 18,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 4,
+              "hour": 18,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 5,
+              "hour": 18,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 6,
+              "hour": 14,
+              "minute": 30
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:30 AM – 6:30 PM",
+          "Tuesday: 8:30 AM – 6:30 PM",
+          "Wednesday: 8:30 AM – 6:30 PM",
+          "Thursday: 8:30 AM – 6:30 PM",
+          "Friday: 8:30 AM – 6:30 PM",
+          "Saturday: 8:30 AM – 2:30 PM",
+          "Sunday: Closed"
+        ],
+        "nextOpenTime": "2026-05-13T14:30:00Z"
+      },
+      "rating": 4.5,
+      "userRatingCount": 4,
+      "slug": "tienda-comex-rmts3c"
+    },
+    {
+      "placeId": "ChIJV2MJOwAzKYQRZ9j2xE0HiFg",
+      "displayName": "Cafetería Vanila",
+      "primaryType": "coffee_shop",
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Morelos 24A, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6752592,
+        "longitude": -102.57066050000002
+      },
+      "internationalPhoneNumber": "+52 348 100 2184",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 0,
+              "hour": 14,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 0,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 14,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 14,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 14,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 14,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 14,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 14,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 2:00 PM, 5:00 – 10:00 PM",
+          "Tuesday: 8:00 AM – 2:00 PM, 5:00 – 10:00 PM",
+          "Wednesday: 8:00 AM – 2:00 PM, 5:00 – 10:00 PM",
+          "Thursday: 8:00 AM – 2:00 PM, 5:00 – 10:00 PM",
+          "Friday: 8:00 AM – 2:00 PM, 5:00 – 10:00 PM",
+          "Saturday: 9:00 AM – 2:00 PM, 5:00 – 9:00 PM",
+          "Sunday: 8:30 AM – 2:00 PM, 5:00 – 10:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T04:00:00Z"
+      },
+      "rating": 5,
+      "userRatingCount": 3,
+      "slug": "cafeteria-vanila-e0hifg"
+    },
+    {
+      "placeId": "ChIJI4AeOoczKYQRGWXTk73QThc",
+      "displayName": "Ferretería Ferreruz",
+      "primaryType": "hardware_store",
+      "types": [
+        "hardware_store",
+        "building_materials_store",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Guadalajara 198, Centro, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6793045,
+        "longitude": -102.5738212
+      },
+      "internationalPhoneNumber": "+52 33 4267 5516",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 16,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 9:00 AM – 6:00 PM",
+          "Tuesday: 9:00 AM – 6:00 PM",
+          "Wednesday: 9:00 AM – 6:00 PM",
+          "Thursday: 9:00 AM – 6:00 PM",
+          "Friday: 9:00 AM – 6:00 PM",
+          "Saturday: 9:00 AM – 4:00 PM",
+          "Sunday: Closed"
+        ],
+        "nextOpenTime": "2026-05-13T15:00:00Z"
+      },
+      "rating": 4.7,
+      "userRatingCount": 3,
+      "slug": "ferreteria-ferreruz-73qthc"
+    },
+    {
+      "placeId": "ChIJG-5lJ-kzKYQRlsY8ppJ7mk8",
+      "displayName": "Ferretería ana",
+      "primaryType": "hardware_store",
+      "types": [
+        "hardware_store",
+        "building_materials_store",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Ramón Corona 86A, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.674108,
+        "longitude": -102.57105969999999
+      },
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 14,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 20,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 8:00 PM",
+          "Tuesday: 8:00 AM – 8:00 PM",
+          "Wednesday: 8:00 AM – 8:00 PM",
+          "Thursday: 8:00 AM – 8:00 PM",
+          "Friday: 8:00 AM – 8:00 PM",
+          "Saturday: Closed",
+          "Sunday: 8:00 AM – 2:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T02:00:00Z"
+      },
+      "rating": 5,
+      "userRatingCount": 3,
+      "slug": "ferreteria-ana-pj7mk8"
+    },
+    {
+      "placeId": "ChIJ86-HYHgzKYQRSgtMnoRw25s",
+      "displayName": "El Ausente Ranch",
+      "primaryType": "lodging",
+      "types": [
+        "lodging",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "47769 Atotonilco El Alto, Jalisco, Mexico",
+      "location": {
+        "latitude": 20.650695199999998,
+        "longitude": -102.552388
+      },
+      "internationalPhoneNumber": "+52 33 3842 8813",
+      "rating": 5,
+      "userRatingCount": 3,
+      "slug": "el-ausente-ranch-orw25s"
+    },
+    {
+      "placeId": "ChIJj7Wxw5YzKYQRmmrQAXsa2V0",
+      "displayName": "Lechería Bar",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Morelos 50, Centro, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675393099999997,
+        "longitude": -102.5706998
+      },
+      "rating": 5,
+      "userRatingCount": 2,
+      "slug": "lecheria-bar-xsa2v0"
+    },
+    {
+      "placeId": "ChIJk7QXdhwzKYQRr71IquPl1e8",
+      "displayName": "MINI SUPER ACEVES",
+      "primaryType": "grocery_store",
+      "types": [
+        "grocery_store",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "JAL 326, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.662354099999998,
+        "longitude": -102.5700199
+      },
+      "rating": 4.5,
+      "userRatingCount": 2,
+      "slug": "mini-super-aceves-upl1e8"
+    },
+    {
+      "placeId": "ChIJJfBQ1QAzKYQRfFhQSEaL-Xo",
+      "displayName": "FARMACIA SAN JOSE",
+      "primaryType": "pharmacy",
+      "types": [
+        "pharmacy",
+        "health",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Zaragoza 2, Centro, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6750929,
+        "longitude": -102.57003549999999
+      },
+      "internationalPhoneNumber": "+52 391 611 0679",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 1,
+              "hour": 21,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 2,
+              "hour": 21,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 3,
+              "hour": 21,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 4,
+              "hour": 21,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 5,
+              "hour": 21,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 30
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:30 AM – 9:30 PM",
+          "Tuesday: 8:30 AM – 9:30 PM",
+          "Wednesday: 8:30 AM – 9:30 PM",
+          "Thursday: 8:30 AM – 9:30 PM",
+          "Friday: 8:30 AM – 9:30 PM",
+          "Saturday: 8:30 AM – 9:30 PM",
+          "Sunday: 9:00 AM – 9:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T03:30:00Z"
+      },
+      "rating": 5,
+      "userRatingCount": 2,
+      "slug": "farmacia-san-jose-eal-xo"
+    },
+    {
+      "placeId": "ChIJbehbJAEzKYQRGW6wvxuYW1E",
+      "displayName": "Farmapronto",
+      "primaryType": "pharmacy",
+      "types": [
+        "pharmacy",
+        "health",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "formattedAddress": "C. Galeana 49, San José de Gracia, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6752193,
+        "longitude": -102.5701771
+      },
+      "internationalPhoneNumber": "+52 391 911 0679",
+      "rating": 5,
+      "userRatingCount": 2,
+      "slug": "farmapronto-xuyw1e"
+    },
+    {
+      "placeId": "ChIJM6RMNgAzKYQRq72nKDjUXUE",
+      "displayName": "Bistrea caffeto",
+      "primaryType": "coffee_shop",
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "16 de Septiembre 167, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.673033099999998,
+        "longitude": -102.56812
+      },
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 19,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 20,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 19,
+              "minute": 30
+            },
+            "close": {
+              "day": 5,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 19,
+              "minute": 30
+            },
+            "close": {
+              "day": 6,
+              "hour": 23,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: Closed",
+          "Tuesday: Closed",
+          "Wednesday: Closed",
+          "Thursday: 8:00 – 11:00 PM",
+          "Friday: 7:30 – 11:00 PM",
+          "Saturday: 7:30 – 11:00 PM",
+          "Sunday: 7:00 – 11:00 PM"
+        ],
+        "nextOpenTime": "2026-05-15T02:00:00Z"
+      },
+      "rating": 4,
+      "userRatingCount": 1,
+      "slug": "bistrea-caffeto-djuxue"
+    },
+    {
+      "placeId": "ChIJ46p52CczKYQRzqvVnr-IE1M",
+      "displayName": "Café de Coco",
+      "primaryType": "coffee_shop",
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Zaragoza 187, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6771609,
+        "longitude": -102.5703621
+      },
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 20,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 20,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 20,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 20,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 20,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 20,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 23,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 – 11:00 PM",
+          "Tuesday: 8:00 – 11:00 PM",
+          "Wednesday: 8:00 – 11:00 PM",
+          "Thursday: 8:00 – 11:00 PM",
+          "Friday: 8:00 – 11:00 PM",
+          "Saturday: Closed",
+          "Sunday: 8:00 – 11:00 PM"
+        ],
+        "nextOpenTime": "2026-05-13T02:00:00Z"
+      },
+      "rating": 5,
+      "userRatingCount": 1,
+      "slug": "cafe-de-coco-r-ie1m"
+    },
+    {
+      "placeId": "ChIJDwrgFwAzKYQRseCfZM7oS5I",
+      "displayName": "El Horno de Elías Bakery & Cafe",
+      "primaryType": "coffee_shop",
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Ramón Corona 406, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.667689799999998,
+        "longitude": -102.57033849999999
+      },
+      "internationalPhoneNumber": "+52 33 3459 9718",
+      "rating": 5,
+      "userRatingCount": 1,
+      "slug": "el-horno-de-elias-bakery-cafe-m7os5i"
+    },
+    {
+      "placeId": "ChIJN4nQ0egzKYQRoPD1lYIOFE0",
+      "displayName": "Farmacia rojas",
+      "primaryType": "pharmacy",
+      "types": [
+        "pharmacy",
+        "health",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "C. Pedro Moreno 147, Centro, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6725884,
+        "longitude": -102.5703719
+      },
+      "internationalPhoneNumber": "+52 391 611 0827",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 0,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 14,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 9:00 AM – 2:30 PM, 5:00 – 9:00 PM",
+          "Tuesday: 9:00 AM – 2:30 PM, 5:00 – 9:00 PM",
+          "Wednesday: 9:00 AM – 2:30 PM, 5:00 – 9:00 PM",
+          "Thursday: 9:00 AM – 2:30 PM, 5:00 – 9:00 PM",
+          "Friday: 9:00 AM – 2:30 PM, 5:00 – 9:00 PM",
+          "Saturday: 9:00 AM – 2:30 PM, 5:00 – 9:00 PM",
+          "Sunday: 9:00 AM – 2:30 PM, 5:00 – 9:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T03:00:00Z"
+      },
+      "rating": 5,
+      "userRatingCount": 1,
+      "slug": "farmacia-rojas-yiofe0"
+    },
+    {
+      "placeId": "ChIJOzsj8q0zKYQRhNVCavvxRK4",
+      "displayName": "Repostería Dulce Tentación",
+      "primaryType": "pastry_shop",
+      "types": [
+        "pastry_shop",
+        "bakery",
+        "dessert_shop",
+        "confectionery",
+        "food_store",
+        "point_of_interest",
+        "food",
+        "store",
+        "establishment"
+      ],
+      "formattedAddress": "Niños Heroes 258, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.672285,
+        "longitude": -102.57400659999999
+      },
+      "rating": 5,
+      "userRatingCount": 1,
+      "slug": "reposteria-dulce-tentacion-vvxrk4"
+    },
+    {
+      "placeId": "ChIJGXQUWQEzKYQRQOQhQrPa8VQ",
+      "displayName": "Panadería Rosa Mistica",
+      "primaryType": "bakery",
+      "types": [
+        "bakery",
+        "food_store",
+        "point_of_interest",
+        "food",
+        "store",
+        "establishment"
+      ],
+      "formattedAddress": "47728 San Jose de Gracia, Jalisco, Mexico",
+      "location": {
+        "latitude": 20.672338699999997,
+        "longitude": -102.57094579999999
+      },
+      "rating": 5,
+      "userRatingCount": 1,
+      "slug": "panaderia-rosa-mistica-rpa8vq"
+    },
+    {
+      "placeId": "ChIJabt16yUzKYQRJQB9EGrQmfM",
+      "displayName": "Hacienda Fonseca",
+      "primaryType": "restaurant",
+      "types": [
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Rancho La Soledad 8, 47755 San Francisco de Asís, Jal., Mexico",
+      "location": {
+        "latitude": 20.635654,
+        "longitude": -102.56253819999999
+      },
+      "internationalPhoneNumber": "+52 33 3815 4657",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 9,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 18,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 15,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 9:00 AM – 6:00 PM",
+          "Tuesday: 9:00 AM – 6:00 PM",
+          "Wednesday: 9:00 AM – 6:00 PM",
+          "Thursday: 9:00 AM – 6:00 PM",
+          "Friday: 9:00 AM – 6:00 PM",
+          "Saturday: 10:00 AM – 3:00 PM",
+          "Sunday: Closed"
+        ],
+        "nextOpenTime": "2026-05-13T15:00:00Z"
+      },
+      "slug": "hacienda-fonseca-grqmfm"
+    },
+    {
+      "placeId": "ChIJTaGKHQAzKYQR-t1NJYRSxZE",
+      "displayName": "PEDREGAL Licoreria_bar",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Libramiento 260, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6732492,
+        "longitude": -102.57951849999999
+      },
+      "slug": "pedregal-licoreriabar-yrsxze"
+    },
+    {
+      "placeId": "ChIJ6TPTLgEzKYQRtACunBlnKGw",
+      "displayName": "Restaurant Bar El Portal",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "C. Galeana 9, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6745656,
+        "longitude": -102.570435
+      },
+      "slug": "restaurant-bar-el-portal-blnkgw"
+    },
+    {
+      "placeId": "ChIJuRvPdQAzKYQR1dD1A3vVY5w",
+      "displayName": "Tequila campellania",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "47728 San Jose de Gracia, Jalisco, Mexico",
+      "location": {
+        "latitude": 20.6740697,
+        "longitude": -102.5716841
+      },
+      "slug": "tequila-campellania-3vvy5w"
+    },
+    {
+      "placeId": "ChIJNVpFOAAzKYQR6m8O2O9z3PY",
+      "displayName": "BAR LA CURADITA",
+      "primaryType": "bar",
+      "types": [
+        "bar",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "JCQJ+5Q, 47768 La Soledad, Jalisco, Mexico",
+      "location": {
+        "latitude": 20.6379046,
+        "longitude": -102.56811499999999
+      },
+      "slug": "bar-la-curadita-o9z3py"
+    },
+    {
+      "placeId": "ChIJ-f7HmMkzKYQR7Cm38AkfC-0",
+      "displayName": "café del portal",
+      "primaryType": "coffee_shop",
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Allende 10, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675214699999998,
+        "longitude": -102.5702584
+      },
+      "slug": "cafe-del-portal-akfc-0"
+    },
+    {
+      "placeId": "ChIJb4xHoxUzKYQRgOZTUmZWBbc",
+      "displayName": "La jugueria",
+      "primaryType": "coffee_shop",
+      "types": [
+        "coffee_shop",
+        "cafe",
+        "food_store",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Av. Jalisco 60, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6790031,
+        "longitude": -102.5737024
+      },
+      "internationalPhoneNumber": "+52 33 1944 3277",
+      "regularOpeningHours": {
+        "openNow": false,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 7,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 3,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 3,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 15,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 7:00 AM – 3:00 PM",
+          "Tuesday: Closed",
+          "Wednesday: 7:00 AM – 3:00 PM",
+          "Thursday: 7:00 AM – 3:00 PM",
+          "Friday: 3:00 AM – 3:00 PM",
+          "Saturday: 3:00 AM – 3:00 PM",
+          "Sunday: 7:00 AM – 3:00 PM"
+        ],
+        "nextOpenTime": "2026-05-13T13:00:00Z"
+      },
+      "slug": "la-jugueria-mzwbbc"
+    },
+    {
+      "placeId": "ChIJE1LxRrkzKYQRml6uYjgL62k",
+      "displayName": "Abarrotes Oty",
+      "primaryType": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Ramón Corona 380, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.669008899999998,
+        "longitude": -102.57025300000001
+      },
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 23,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 23,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 11:00 PM",
+          "Tuesday: 8:00 AM – 11:00 PM",
+          "Wednesday: 8:00 AM – 11:00 PM",
+          "Thursday: 8:00 AM – 11:00 PM",
+          "Friday: 8:00 AM – 11:00 PM",
+          "Saturday: 8:00 AM – 11:00 PM",
+          "Sunday: 8:00 AM – 11:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T05:00:00Z"
+      },
+      "slug": "abarrotes-oty-jgl62k"
+    },
+    {
+      "placeId": "ChIJyc0N0f4zKYQRyVgXZxcBl0o",
+      "displayName": "Farmacia Cuidamos +",
+      "primaryType": "pharmacy",
+      "types": [
+        "pharmacy",
+        "health",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "formattedAddress": "C. Galeana 53, Centro, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.674359799999998,
+        "longitude": -102.57115069999999
+      },
+      "internationalPhoneNumber": "+52 312 317 0329",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 10:00 PM",
+          "Tuesday: 8:00 AM – 10:00 PM",
+          "Wednesday: 8:00 AM – 10:00 PM",
+          "Thursday: 8:00 AM – 10:00 PM",
+          "Friday: 8:00 AM – 10:00 PM",
+          "Saturday: 8:00 AM – 10:00 PM",
+          "Sunday: 8:00 AM – 10:00 PM"
+        ],
+        "nextCloseTime": "2026-05-13T04:00:00Z"
+      },
+      "slug": "farmacia-cuidamos-xcbl0o"
+    },
+    {
+      "placeId": "ChIJOyA7hYYzKYQR_c_KboxyGY8",
+      "displayName": "Pastelería San José",
+      "primaryType": "pastry_shop",
+      "types": [
+        "pastry_shop",
+        "bakery",
+        "dessert_shop",
+        "confectionery",
+        "food_store",
+        "point_of_interest",
+        "food",
+        "store",
+        "establishment"
+      ],
+      "formattedAddress": "Allende 80, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.675066299999997,
+        "longitude": -102.57105159999999
+      },
+      "internationalPhoneNumber": "+52 348 108 0599",
+      "slug": "pasteleria-san-jose-oxygy8"
+    },
+    {
+      "placeId": "ChIJ4WTyQgAzKYQRiY45i0391aI",
+      "displayName": "PANADERÍA EL PUEBLITO",
+      "primaryType": "bakery",
+      "types": [
+        "bakery",
+        "food_store",
+        "point_of_interest",
+        "food",
+        "store",
+        "establishment"
+      ],
+      "formattedAddress": "Moctezuma 241a, 47728 San José de Gracia, Jal., Mexico",
+      "location": {
+        "latitude": 20.6756809,
+        "longitude": -102.5761409
+      },
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 15,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 21,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 15,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 21,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 15,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 21,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 15,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 21,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 15,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 21,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 15,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 30
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 3:00 – 9:30 PM",
+          "Tuesday: 3:00 – 9:30 PM",
+          "Wednesday: 3:00 – 9:30 PM",
+          "Thursday: 3:00 – 9:30 PM",
+          "Friday: 3:00 – 9:30 PM",
+          "Saturday: 3:00 – 9:30 PM",
+          "Sunday: Closed"
+        ],
+        "nextCloseTime": "2026-05-13T03:30:00Z"
+      },
+      "slug": "panaderia-el-pueblito-0391ai"
+    },
+    {
+      "placeId": "ChIJtezN6zMzKYQR1BMYSKYBVYw",
+      "displayName": "La Huertita",
+      "primaryType": "campground",
+      "types": [
+        "campground",
+        "lodging",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "JCPX+GC, 47769 La Soledad, Jalisco, Mexico",
+      "location": {
+        "latitude": 20.6362746,
+        "longitude": -102.5514219
+      },
+      "slug": "la-huertita-kybvyw"
+    },
+    {
+      "placeId": "ChIJxzMFsZ0zKYQRpe884UqMg0w",
+      "displayName": "Hacienda Las Hormigas",
+      "primaryType": "campground",
+      "types": [
+        "campground",
+        "lodging",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "Tepatitlán, 47728 Jalisco, Mexico",
+      "location": {
+        "latitude": 20.6463732,
+        "longitude": -102.6061237
+      },
+      "slug": "hacienda-las-hormigas-uqmg0w"
+    },
+    {
+      "placeId": "ChIJs1BvtO4zKYQRKyNP9YBs7jM",
+      "displayName": "Rancho El Salvador",
+      "primaryType": "lodging",
+      "types": [
+        "lodging",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "M9QX+V5, 47728 San Jose de Gracia, Jalisco, Mexico",
+      "location": {
+        "latitude": 20.689666499999998,
+        "longitude": -102.60204519999999
+      },
+      "slug": "rancho-el-salvador-ybs7jm"
+    },
+    {
+      "placeId": "ChIJsw8wEgAzKYQRClSejmOL-VE",
+      "displayName": "Rancho Navarro",
+      "primaryType": "cottage",
+      "types": [
+        "cottage",
+        "lodging",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "J9XX+Q6, 47728 El Refugio, Jal., Mexico",
+      "location": {
+        "latitude": 20.6493569,
+        "longitude": -102.60190399999999
+      },
+      "slug": "rancho-navarro-mol-ve"
+    },
+    {
+      "placeId": "ChIJgcN2aAAzKYQREgnJYvgjCsE",
+      "displayName": "Las Hormigas Navarro",
+      "primaryType": "cottage",
+      "types": [
+        "cottage",
+        "lodging",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "J9XX+P7, 47728 El Refugio, Jal., Mexico",
+      "location": {
+        "latitude": 20.6492648,
+        "longitude": -102.6018706
+      },
+      "slug": "las-hormigas-navarro-vgjcse"
+    }
+  ]
+}
