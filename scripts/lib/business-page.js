@@ -131,6 +131,7 @@ export function renderBusinessPage({ business, lang, layout, pageTemplate, detai
       og_locale_alternate: detailContent.meta.og_locale_alternate,
     },
     labels: localized.labels,
+    rental: localized.rental,
     business: {
       placeId: business.placeId,
       displayName: business.displayName,

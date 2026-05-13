@@ -8,3 +8,4 @@ __pycache__/
 .worktrees/
 node_modules/
 dist/
+.env.local

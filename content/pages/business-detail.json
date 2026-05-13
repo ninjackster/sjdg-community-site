@@ -42,5 +42,19 @@
     "4": { "en": "Thursday",  "es": "Jueves" },
     "5": { "en": "Friday",    "es": "Viernes" },
     "6": { "en": "Saturday",  "es": "Sábado" }
+  },
+  "rental": {
+    "tab":      { "en": "For Rent",                      "es": "Se Renta" },
+    "header":   { "en": "For Rent · San Jose de Gracia", "es": "Se Renta · San Jose de Gracia" },
+    "avail":    { "en": "Available",                     "es": "Disponible" },
+    "area":     { "en": "Main area",                     "es": "Area principal" },
+    "dims":     { "en": "Meters (L×W)",                  "es": "Metros (L×A)" },
+    "storage":  { "en": "Storage space",                 "es": "Espacio de bodega" },
+    "patio":    { "en": "With water hookup",             "es": "Con toma de agua" },
+    "includes": { "en": "Included in rent",              "es": "Incluido en la renta" },
+    "cameras":  { "en": "Cameras",                       "es": "Camaras" },
+    "bath":     { "en": "Half bath",                     "es": "Medio bano" },
+    "wa":       { "en": "Inquire: 331 696 3003",         "es": "Informes: 331 696 3003" },
+    "note":     { "en": "Min. 1 year contract · Utilities separate", "es": "Contrato minimo 1 ano · Luz y agua aparte" }
   }
 }

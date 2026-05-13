@@ -61,3 +61,33 @@ test('build creates dist/es/negocios.html when content + template exist', () => 
   if (!existsSync('content/pages/businesses.json')) return;
   assert.ok(existsSync('dist/es/negocios.html'), 'dist/es/negocios.html should exist');
 });
+
+test('build creates per-business pages from snapshot', () => {
+  if (!existsSync('content/businesses-snapshot.json')) return;
+  const snapshot = JSON.parse(readFileSync('content/businesses-snapshot.json', 'utf8'));
+  if (snapshot.businesses.length === 0) return;
+  const first = snapshot.businesses[0];
+  assert.ok(existsSync(`dist/en/businesses/${first.slug}.html`),
+    `dist/en/businesses/${first.slug}.html should exist`);
+  assert.ok(existsSync(`dist/es/negocios/${first.slug}.html`),
+    `dist/es/negocios/${first.slug}.html should exist`);
+});
+
+test('per-business pages contain LocalBusiness JSON-LD schema', () => {
+  if (!existsSync('content/businesses-snapshot.json')) return;
+  const snapshot = JSON.parse(readFileSync('content/businesses-snapshot.json', 'utf8'));
+  if (snapshot.businesses.length === 0) return;
+  const first = snapshot.businesses[0];
+  const html = readFileSync(`dist/en/businesses/${first.slug}.html`, 'utf8');
+  assert.match(html, /"@type":\s*"LocalBusiness"/);
+});
+
+test('per-business pages have language-specific hreflang', () => {
+  if (!existsSync('content/businesses-snapshot.json')) return;
+  const snapshot = JSON.parse(readFileSync('content/businesses-snapshot.json', 'utf8'));
+  if (snapshot.businesses.length === 0) return;
+  const first = snapshot.businesses[0];
+  const enHtml = readFileSync(`dist/en/businesses/${first.slug}.html`, 'utf8');
+  assert.match(enHtml, new RegExp(`hreflang="en" href="https://sanjosedegracia\\.net/en/businesses/${first.slug}"`));
+  assert.match(enHtml, new RegExp(`hreflang="es" href="https://sanjosedegracia\\.net/es/negocios/${first.slug}"`));
+});

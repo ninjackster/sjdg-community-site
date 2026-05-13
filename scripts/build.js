@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { loadContent } from './lib/content.js';
 import { buildPage } from './lib/build-page.js';
 import { passthrough } from './lib/passthrough.js';
+import { renderBusinessPage } from './lib/business-page.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -73,6 +74,18 @@ async function buildOnePage({ pageName, pageSlugs, shared, layout }) {
   const content = await loadContent(cPath);
   const pageTemplate = await readFile(tPath, 'utf8');
 
+  // The directory page needs a place_id → slug map so its card-render JS can deep-link.
+  if (pageName === 'businesses') {
+    const snapshotPath = join(ROOT, 'content/businesses-snapshot.json');
+    const slugMap = {};
+    if (existsSync(snapshotPath)) {
+      const snapshot = await loadContent(snapshotPath);
+      for (const b of snapshot.businesses) slugMap[b.placeId] = b.slug;
+    }
+    const json = JSON.stringify(slugMap);
+    content.slug_map_json = { en: json, es: json };
+  }
+
   for (const lang of LANGS) {
     const slug = pageSlugs[pageName]?.[lang] ?? '';
     const html = buildPage({
@@ -106,7 +119,41 @@ async function main() {
     await buildOnePage({ pageName, pageSlugs, shared, layout });
   }
 
+  await buildBusinessPages({ shared, layout, pageSlugs });
+
   console.log('\nBuild complete.');
+}
+
+async function buildBusinessPages({ shared, layout, pageSlugs }) {
+  const snapshotPath = join(ROOT, 'content/businesses-snapshot.json');
+  if (!existsSync(snapshotPath)) {
+    console.log('⊘ skipping per-business pages (snapshot missing — run npm run fetch-businesses)');
+    return;
+  }
+  const snapshot = await loadContent(snapshotPath);
+  const detailContent = await loadContent(join(ROOT, 'content/pages/business-detail.json'));
+  const template = await readFile(join(ROOT, 'templates/pages/business-detail.html'), 'utf8');
+
+  let written = 0;
+  for (const business of snapshot.businesses) {
+    for (const lang of LANGS) {
+      const html = renderBusinessPage({
+        business,
+        lang,
+        layout,
+        pageTemplate: template,
+        detailContent,
+        shared,
+        pageSlugs,
+        siteUrl: SITE_URL,
+      });
+      const dir = join(DIST, lang, lang === 'en' ? 'businesses' : 'negocios');
+      await ensureDir(dir);
+      await writeFile(join(dir, `${business.slug}.html`), html, 'utf8');
+      written++;
+    }
+  }
+  console.log(`✓ wrote ${written} per-business pages (${snapshot.businesses.length} businesses × 2 langs)`);
 }
 
 main().catch(err => {
