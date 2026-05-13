@@ -1,0 +1,22 @@
+{
+  "id": "places/ChIJg60itUgyKYQR_yW4YK4aLM8",
+  "placeId": "ChIJg60itUgyKYQR_yW4YK4aLM8",
+  "displayName": "Cantina La Soga",
+  "primaryType": "bar",
+  "types": ["bar", "establishment", "point_of_interest"],
+  "formattedAddress": "Independencia 90, Centro, San José de Gracia, Jal., México",
+  "location": { "latitude": 20.6758, "longitude": -102.5721 },
+  "internationalPhoneNumber": "+52 376 735 1234",
+  "rating": 4.6,
+  "userRatingCount": 87,
+  "regularOpeningHours": {
+    "periods": [
+      { "open": { "day": 2, "hour": 17, "minute": 0 }, "close": { "day": 2, "hour": 23, "minute": 0 } },
+      { "open": { "day": 3, "hour": 17, "minute": 0 }, "close": { "day": 3, "hour": 23, "minute": 0 } },
+      { "open": { "day": 4, "hour": 17, "minute": 0 }, "close": { "day": 4, "hour": 23, "minute": 0 } },
+      { "open": { "day": 5, "hour": 17, "minute": 0 }, "close": { "day": 6, "hour": 1, "minute": 0 } },
+      { "open": { "day": 6, "hour": 17, "minute": 0 }, "close": { "day": 0, "hour": 1, "minute": 0 } }
+    ]
+  },
+  "slug": "cantina-la-soga-2alm8c"
+}
