@@ -17,5 +17,16 @@
     { "source": "/faq",        "destination": "/en/faq",        "permanent": true },
     { "source": "/tour",       "destination": "/en/tour",       "permanent": true },
     { "source": "/advertise",  "destination": "/en/advertise",  "permanent": true }
+  ],
+  "functions": {
+    "api/refresh-businesses.js": {
+      "maxDuration": 60
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/refresh-businesses",
+      "schedule": "0 10 * * *"
+    }
   ]
 }
