@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "slug":        { "en": "history", "es": "historia" },
+    "title":       { "en": "History of San José de Gracia, Jalisco — Founded 1793",
+                     "es": "Historia de San José de Gracia, Jalisco — Fundado en 1793" },
+    "description": { "en": "The history of San José de Gracia: a highland town in Los Altos de Jalisco, founded in 1793, shaped by the Cristero War, mezcal traditions, and centuries of family ranching.",
+                     "es": "La historia de San José de Gracia: un pueblo de los Altos de Jalisco, fundado en 1793, formado por la Guerra Cristera, las tradiciones del mezcal y siglos de ganadería familiar." },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "hero": {
+    "h1":    { "en": "History of <em>San José de Gracia</em>",
+               "es": "Historia de <em>San José de Gracia</em>" },
+    "intro": { "en": "Founded in 1793 at 1,980 meters above sea level in Los Altos de Jalisco, San José de Gracia has been shaped for more than two centuries by faith, family ranching, and the rhythms of the highlands. This is the short version of how the town came to be what it is today.",
+               "es": "Fundado en 1793 a 1,980 metros sobre el nivel del mar en los Altos de Jalisco, San José de Gracia se ha formado por más de dos siglos por la fe, la ganadería familiar y los ritmos de los altos. Esta es la versión corta de cómo el pueblo llegó a ser lo que es hoy." }
+  },
+  "sections": {
+    "founding": {
+      "h2": { "en": "Founding (1793)", "es": "Fundación (1793)" },
+      "p":  { "en": "The town was officially founded in <strong>1793</strong> on land that had been part of the haciendas of Los Altos for generations. The original settlement clustered around what is today the Plaza Principal, with the church — eventually consecrated as the Parroquia del Señor San José — serving as the social and spiritual anchor from the start. The Altos region was already known for its dairy ranching and tequila production by the time San José emerged as a recognized town.",
+              "es": "El pueblo se fundó oficialmente en <strong>1793</strong> en tierras que habían sido parte de las haciendas de los Altos durante generaciones. El asentamiento original se agrupó alrededor de lo que hoy es la Plaza Principal, con la iglesia — eventualmente consagrada como Parroquia del Señor San José — sirviendo como el ancla social y espiritual desde el principio. La región de los Altos ya era conocida por la ganadería lechera y la producción de tequila para cuando San José emergió como un pueblo reconocido." }
+    },
+    "cristero": {
+      "h2": { "en": "The Cristero War", "es": "La Guerra Cristera" },
+      "p":  { "en": "Like much of Los Altos de Jalisco, San José de Gracia was at the heart of the <strong>Cristero War (1926–1929)</strong> — the armed Catholic uprising against the Mexican government's anti-clerical laws. The region's deep religious identity, combined with its remote highland geography, made it a natural Cristero stronghold. The war shaped families, narratives, and the town's still-strong relationship with the parroquia. Stories from those years are still passed down at the family table.",
+              "es": "Como gran parte de los Altos de Jalisco, San José de Gracia estuvo en el centro de la <strong>Guerra Cristera (1926–1929)</strong> — el levantamiento católico armado contra las leyes anticlericales del gobierno mexicano. La profunda identidad religiosa de la región, combinada con su geografía remota en los altos, la convirtió en un baluarte cristero natural. La guerra moldeó a las familias, las narrativas y la relación que el pueblo todavía mantiene con la parroquia. Las historias de esos años se siguen contando en la mesa familiar." }
+    },
+    "ranching": {
+      "h2": { "en": "Ranching and dairy", "es": "Ganadería y lácteos" },
+      "p":  { "en": "The economy of San José has always rested on <strong>cattle ranching, dairy, and tequila/mezcal production</strong>. The high-altitude pasture is ideal for dairy cows, and the panela and cotija cheese from the area is sold across Jalisco. Family ranches dating back generations are still the backbone of the local economy, even as the town has modernized.",
+              "es": "La economía de San José siempre se ha basado en la <strong>ganadería, los lácteos y la producción de tequila y mezcal</strong>. El pastizal de altura es ideal para vacas lecheras, y los quesos panela y cotija de la región se venden en todo Jalisco. Los ranchos familiares de generaciones siguen siendo la columna vertebral de la economía local, aun con la modernización del pueblo." }
+    },
+    "diaspora": {
+      "h2": { "en": "Migration and the diaspora", "es": "Migración y la diáspora" },
+      "p":  { "en": "Through the 20th century, many families from San José emigrated to the United States — particularly to California, Texas, and Illinois. The diaspora maintained strong ties to the town, returning for the Fiesta Patronal in May, supporting families through remesas, and eventually rebuilding parts of the centro and surrounding ranches. This migration story is one of the defining threads of the town's modern identity.",
+              "es": "A lo largo del siglo XX, muchas familias de San José emigraron a Estados Unidos — particularmente a California, Texas e Illinois. La diáspora mantuvo lazos fuertes con el pueblo, regresando para la Fiesta Patronal de mayo, apoyando a las familias con remesas, y eventualmente reconstruyendo partes del centro y de los ranchos. Esta historia de migración es uno de los hilos definitorios de la identidad moderna del pueblo." }
+    },
+    "today": {
+      "h2": { "en": "San José today", "es": "San José hoy" },
+      "p":  { "en": "Today the town has paved streets, fiber internet, a Centro Cultural reopened in 2021, and a small but growing tourism profile. The pace is unhurried, the cantinas are still cantinas, and the Fiesta Patronal still fills the plaza every May. Walk the centro on the <a href=\"/en/tour\">self-guided tour</a> to see the layers — the kiosk imported from France, the Cabeza de Águila monument, the Portales arcades around the plaza.",
+              "es": "Hoy el pueblo tiene calles pavimentadas, internet de fibra, un Centro Cultural reabierto en 2021 y un perfil turístico pequeño pero creciente. El ritmo es tranquilo, las cantinas siguen siendo cantinas, y la Fiesta Patronal todavía llena la plaza cada mayo. Recorre el centro con el <a href=\"/es/recorrido\">tour autoguiado</a> para ver las capas — el kiosco traído de Francia, el monumento Cabeza de Águila, los Portales alrededor de la plaza." }
+    }
+  },
+  "cross_links": {
+    "h2":           { "en": "More about San José",        "es": "Más sobre San José" },
+    "festivals":    { "en": "Festivals and traditions",   "es": "Fiestas y tradiciones" },
+    "tour":         { "en": "Walking tour",               "es": "Recorrido a pie" },
+    "things_to_do": { "en": "Things to do",               "es": "Qué hacer" }
+  },
+  "rental": {
+    "tab":      { "en": "For Rent",                      "es": "Se Renta" },
+    "header":   { "en": "For Rent · San Jose de Gracia", "es": "Se Renta · San Jose de Gracia" },
+    "avail":    { "en": "Available",                     "es": "Disponible" },
+    "area":     { "en": "Main area",                     "es": "Area principal" },
+    "dims":     { "en": "Meters (L×W)",                  "es": "Metros (L×A)" },
+    "storage":  { "en": "Storage space",                 "es": "Espacio de bodega" },
+    "patio":    { "en": "With water hookup",             "es": "Con toma de agua" },
+    "includes": { "en": "Included in rent",              "es": "Incluido en la renta" },
+    "cameras":  { "en": "Cameras",                       "es": "Camaras" },
+    "bath":     { "en": "Half bath",                     "es": "Medio bano" },
+    "wa":       { "en": "Inquire: 331 696 3003",         "es": "Informes: 331 696 3003" },
+    "note":     { "en": "Min. 1 year contract · Utilities separate", "es": "Contrato minimo 1 ano · Luz y agua aparte" }
+  }
+}

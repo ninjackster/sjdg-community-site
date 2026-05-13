@@ -7,5 +7,7 @@
   "things-to-do":  { "en": "things-to-do",  "es": "que-hacer" },
   "getting-here":  { "en": "getting-here",  "es": "como-llegar" },
   "where-to-eat":  { "en": "where-to-eat",  "es": "donde-comer" },
-  "where-to-stay": { "en": "where-to-stay", "es": "donde-hospedarse" }
+  "where-to-stay": { "en": "where-to-stay", "es": "donde-hospedarse" },
+  "history":       { "en": "history",       "es": "historia" },
+  "festivals":     { "en": "festivals",     "es": "fiestas" }
 }

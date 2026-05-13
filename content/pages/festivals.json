@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "slug":        { "en": "festivals", "es": "fiestas" },
+    "title":       { "en": "Festivals & Fiestas in San José de Gracia, Jalisco — Calendar of Annual Celebrations",
+                     "es": "Fiestas y Festividades en San José de Gracia, Jalisco — Calendario Anual" },
+    "description": { "en": "When the fiestas happen in San José de Gracia: the Fiesta Patronal de San José in May, Semana Santa, Fiestas Patrias, Virgen de Guadalupe, Las Posadas, and the weekly tianguis.",
+                     "es": "Cuándo son las fiestas en San José de Gracia: la Fiesta Patronal de San José en mayo, Semana Santa, Fiestas Patrias, Virgen de Guadalupe, Las Posadas y el tianguis semanal." },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "hero": {
+    "h1":    { "en": "Festivals & <em>Fiestas</em>",
+               "es": "Fiestas y <em>Festividades</em>" },
+    "intro": { "en": "San José de Gracia comes alive throughout the year with religious festivals, civic celebrations, and the steady weekly rhythm of the Sunday tianguis. If your timing works out, lining up a visit with one of these is the surest way to see the town at its fullest.",
+               "es": "San José de Gracia se llena de vida durante todo el año con fiestas religiosas, celebraciones civiles y el ritmo semanal del tianguis dominical. Si te coincide, hacer que tu visita coincida con una de estas es la manera más segura de ver el pueblo en pleno." }
+  },
+  "events": [
+    {
+      "key":       "patronal",
+      "name":      { "en": "Fiesta Patronal de San José", "es": "Fiesta Patronal de San José" },
+      "when":      { "en": "First 10 days of May (saint's day March 19)", "es": "Primeros 10 días de mayo (día del santo: 19 de marzo)" },
+      "next_iso":  "2027-05-01",
+      "next_end_iso": "2027-05-10",
+      "p":         { "en": "The town's biggest celebration of the year. Although <strong>March 19</strong> is the official feast day for Saint Joseph, the town's actual festivities run the <strong>first 10 days of May</strong> with masses, processions, music in the plaza, fireworks, and a long string of regional bandas. The plaza is the center of everything; expect packed streets and visiting paisanos from the US.",
+                     "es": "La celebración más grande del año en el pueblo. Aunque el <strong>19 de marzo</strong> es el día oficial de San José, las festividades reales del pueblo ocurren los <strong>primeros 10 días de mayo</strong> con misas, procesiones, música en la plaza, fuegos artificiales y una larga fila de bandas regionales. La plaza es el centro de todo; espera calles llenas y paisanos visitando desde Estados Unidos." }
+    },
+    {
+      "key":       "semana-santa",
+      "name":      { "en": "Semana Santa (Holy Week)", "es": "Semana Santa" },
+      "when":      { "en": "March or April (varies — week before Easter)", "es": "Marzo o abril (varía — semana antes de Pascua)" },
+      "next_iso":  "2027-03-22",
+      "next_end_iso": "2027-03-28",
+      "p":         { "en": "Holy Week brings solemn processions through the cobblestone streets, Vía Crucis on Good Friday, and Mass at the Parroquia. The traditions are deeply rooted in Los Altos — quieter and more reverent than the Fiesta Patronal, but heavily attended.",
+                     "es": "La Semana Santa trae procesiones solemnes por las calles empedradas, Vía Crucis el Viernes Santo y misa en la Parroquia. Las tradiciones están profundamente arraigadas en los Altos — más silenciosa y reverente que la Fiesta Patronal, pero muy concurrida." }
+    },
+    {
+      "key":       "fiestas-patrias",
+      "name":      { "en": "Fiestas Patrias (Mexican Independence)", "es": "Fiestas Patrias" },
+      "when":      { "en": "September 15–16", "es": "15–16 de septiembre" },
+      "next_iso":  "2026-09-15",
+      "next_end_iso": "2026-09-16",
+      "p":         { "en": "Independence celebrations fill the jardín with music, lights, traditional Mexican food, and the <strong>Grito de Independencia</strong> at midnight on September 15. The morning of the 16th brings parades and civic ceremonies.",
+                     "es": "Las celebraciones de la Independencia llenan el jardín con música, luces, comida mexicana tradicional y el <strong>Grito de Independencia</strong> a la medianoche del 15 de septiembre. La mañana del 16 trae desfiles y ceremonias cívicas." }
+    },
+    {
+      "key":       "guadalupe",
+      "name":      { "en": "Día de la Virgen de Guadalupe", "es": "Día de la Virgen de Guadalupe" },
+      "when":      { "en": "December 12 (with mañanitas the night of December 11)", "es": "12 de diciembre (con mañanitas la noche del 11)" },
+      "next_iso":  "2026-12-12",
+      "next_end_iso": "2026-12-12",
+      "p":         { "en": "One of Mexico's most beloved religious celebrations. Mañanitas at the church start in the early hours, followed by misa de gallo and pilgrims through the day. The Parroquia is packed; the surrounding plaza fills with food vendors and processions.",
+                     "es": "Una de las celebraciones religiosas más queridas de México. Las mañanitas en la iglesia empiezan en las primeras horas, seguidas de misa de gallo y peregrinos durante todo el día. La Parroquia se llena; la plaza alrededor se llena de puestos de comida y procesiones." }
+    },
+    {
+      "key":       "posadas",
+      "name":      { "en": "Las Posadas", "es": "Las Posadas" },
+      "when":      { "en": "December 16–24 (nine consecutive nights)", "es": "16–24 de diciembre (nueve noches consecutivas)" },
+      "next_iso":  "2026-12-16",
+      "next_end_iso": "2026-12-24",
+      "p":         { "en": "Nine nights of candlelit processions, singing, piñatas, and ponche — a cherished Mexican Christmas tradition celebrated neighborhood by neighborhood. Each night a different family hosts.",
+                     "es": "Nueve noches de procesiones con velas, cantos, piñatas y ponche — una tradición navideña mexicana celebrada barrio por barrio. Cada noche, una familia diferente recibe." }
+    },
+    {
+      "key":       "tianguis",
+      "name":      { "en": "Tianguis Semanal (Weekly Market)", "es": "Tianguis Semanal" },
+      "when":      { "en": "Every Sunday", "es": "Todos los domingos" },
+      "next_iso":  "",
+      "next_end_iso": "",
+      "p":         { "en": "Every Sunday morning, the centro fills with vendors selling fresh produce, local cheeses (the panela and cotija from Los Altos are excellent), handmade tortillas, and antojitos hot off the comal. Best around 10–11 AM. A weekly piece of everyday Alteño life.",
+                     "es": "Cada domingo en la mañana, el centro se llena de vendedores con productos frescos, quesos locales (el panela y cotija de los Altos son excelentes), tortillas hechas a mano y antojitos recién hechos del comal. Mejor de 10 a 11 AM. Una pieza semanal de la vida cotidiana alteña." }
+    }
+  ],
+  "cross_links": {
+    "h2":           { "en": "More about San José",   "es": "Más sobre San José" },
+    "history":      { "en": "History of the town",   "es": "Historia del pueblo" },
+    "tour":         { "en": "Walking tour",          "es": "Recorrido a pie" },
+    "things_to_do": { "en": "Things to do",          "es": "Qué hacer" }
+  },
+  "rental": {
+    "tab":      { "en": "For Rent",                      "es": "Se Renta" },
+    "header":   { "en": "For Rent · San Jose de Gracia", "es": "Se Renta · San Jose de Gracia" },
+    "avail":    { "en": "Available",                     "es": "Disponible" },
+    "area":     { "en": "Main area",                     "es": "Area principal" },
+    "dims":     { "en": "Meters (L×W)",                  "es": "Metros (L×A)" },
+    "storage":  { "en": "Storage space",                 "es": "Espacio de bodega" },
+    "patio":    { "en": "With water hookup",             "es": "Con toma de agua" },
+    "includes": { "en": "Included in rent",              "es": "Incluido en la renta" },
+    "cameras":  { "en": "Cameras",                       "es": "Camaras" },
+    "bath":     { "en": "Half bath",                     "es": "Medio bano" },
+    "wa":       { "en": "Inquire: 331 696 3003",         "es": "Informes: 331 696 3003" },
+    "note":     { "en": "Min. 1 year contract · Utilities separate", "es": "Contrato minimo 1 ano · Luz y agua aparte" }
+  }
+}
