@@ -1136,5 +1136,49 @@
       sessionStorage.removeItem('rental_minimized');
     });
   </script>
+
+  <!-- GA4 outbound click tracking — fires on any anchor leaving the site,
+       per-business card clicks, and Google Maps "Open in" buttons. -->
+  <script>
+    (function() {
+      if (typeof gtag !== 'function') return;
+      const SITE_HOST = 'sanjosedegracia.net';
+      document.addEventListener('click', function(e) {
+        const a = e.target.closest('a');
+        if (!a || !a.href) return;
+
+        let url;
+        try { url = new URL(a.href, location.href); } catch (_) { return; }
+
+        // Per-business directory card click (deep-link to per-business page on this site).
+        if (a.classList.contains('place-card') || a.closest('.place-card')) {
+          const card = a.classList.contains('place-card') ? a : a.closest('.place-card');
+          const name = (card.querySelector('.place-name') || {}).textContent || '';
+          gtag('event', 'business_card_click', {
+            business_name: name.trim(),
+            destination_url: a.href,
+            page_path: location.pathname
+          });
+          return;
+        }
+
+        // Outbound link (different host, http/https only).
+        if ((url.protocol === 'http:' || url.protocol === 'https:') && url.host && !url.host.endsWith(SITE_HOST)) {
+          let category = 'outbound';
+          if (url.host.includes('google.com/maps') || url.pathname.includes('/maps/')) category = 'google_maps';
+          else if (url.host.includes('airbnb')) category = 'airbnb';
+          else if (url.host.includes('whatsapp') || url.host.includes('wa.me')) category = 'whatsapp';
+
+          gtag('event', 'outbound_click', {
+            destination_url: a.href,
+            destination_host: url.host,
+            link_text: (a.textContent || '').trim().slice(0, 80),
+            category: category,
+            page_path: location.pathname
+          });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

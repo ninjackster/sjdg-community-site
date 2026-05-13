@@ -4,6 +4,13 @@
   "outputDirectory": "dist",
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "(www\\.)?sanjosedegracia\\.org" }],
+      "destination": "https://sanjosedegracia.net/$1",
+      "permanent": true
+    },
+
+    {
       "source": "/",
       "has": [
         { "type": "header", "key": "accept-language", "value": "^es.*" }
