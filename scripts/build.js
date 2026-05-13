@@ -6,6 +6,7 @@ import { loadContent } from './lib/content.js';
 import { buildPage } from './lib/build-page.js';
 import { passthrough } from './lib/passthrough.js';
 import { renderBusinessPage } from './lib/business-page.js';
+import { getSnapshot } from './lib/snapshot-store.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -76,10 +77,9 @@ async function buildOnePage({ pageName, pageSlugs, shared, layout }) {
 
   // The directory page needs a place_id → slug map so its card-render JS can deep-link.
   if (pageName === 'businesses') {
-    const snapshotPath = join(ROOT, 'content/businesses-snapshot.json');
+    const snapshot = await resolveSnapshot();
     const slugMap = {};
-    if (existsSync(snapshotPath)) {
-      const snapshot = await loadContent(snapshotPath);
+    if (snapshot) {
       for (const b of snapshot.businesses) slugMap[b.placeId] = b.slug;
     }
     const json = JSON.stringify(slugMap);
@@ -124,13 +124,27 @@ async function main() {
   console.log('\nBuild complete.');
 }
 
+async function resolveSnapshot() {
+  const remote = await getSnapshot();
+  if (remote) {
+    console.log(`✓ using Upstash snapshot (${remote.count} businesses)`);
+    return remote;
+  }
+  const localPath = join(ROOT, 'content/businesses-snapshot.json');
+  if (existsSync(localPath)) {
+    console.log('✓ using local snapshot fallback');
+    return loadContent(localPath);
+  }
+  return null;
+}
+
 async function buildBusinessPages({ shared, layout, pageSlugs }) {
-  const snapshotPath = join(ROOT, 'content/businesses-snapshot.json');
-  if (!existsSync(snapshotPath)) {
-    console.log('⊘ skipping per-business pages (snapshot missing — run npm run fetch-businesses)');
+  const snapshot = await resolveSnapshot();
+  if (!snapshot) {
+    console.log('⊘ skipping per-business pages (no snapshot in Upstash or local file — run npm run fetch-businesses)');
     return;
   }
-  const snapshot = await loadContent(snapshotPath);
+  console.log(`✓ loaded snapshot (${snapshot.count} businesses, fetched ${snapshot.fetchedAt})`);
   const detailContent = await loadContent(join(ROOT, 'content/pages/business-detail.json'));
   const template = await readFile(join(ROOT, 'templates/pages/business-detail.html'), 'utf8');
 
