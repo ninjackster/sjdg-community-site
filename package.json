@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "node scripts/build.js",
-    "test": "node --test 'tests/**/*.test.js'"
+    "test": "node --test 'tests/**/*.test.js'",
+    "fetch-businesses": "node --env-file-if-exists=.env.local scripts/fetch-businesses.js"
   }
 }
