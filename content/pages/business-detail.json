@@ -16,7 +16,12 @@
     "no_phone":          { "en": "No phone listed",         "es": "Sin teléfono registrado" },
     "directory_label":   { "en": "Directory",               "es": "Directorio" },
     "home_label":        { "en": "Home",                    "es": "Inicio" },
-    "closed":            { "en": "Closed",                  "es": "Cerrado" }
+    "closed":            { "en": "Closed",                  "es": "Cerrado" },
+    "related_label":         { "en": "Related",                       "es": "Relacionado" },
+    "related_things_to_do":  { "en": "Things to do in the area",      "es": "Qué hacer en la zona" },
+    "related_where_to_eat":  { "en": "Where to eat in San José",      "es": "Dónde comer en San José" },
+    "related_where_to_stay": { "en": "Where to stay nearby",          "es": "Dónde hospedarse cerca" },
+    "related_back_directory":{ "en": "All businesses",                "es": "Todos los negocios" }
   },
   "type_labels": {
     "restaurant":             { "en": "Restaurant",        "es": "Restaurante" },

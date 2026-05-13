@@ -28,6 +28,10 @@
 {{schema_jsonld}}
 </script>
 
+<script type="application/ld+json">
+{{breadcrumb_jsonld}}
+</script>
+
 <div class="biz-wrap">
   <a href="{{nav_urls.businesses}}" class="biz-back">{{labels.back_to_directory}}</a>
 
@@ -66,4 +70,22 @@
       {{labels.open_in_maps}}
     </a>
   </div>
+
+  <nav class="biz-related" aria-label="Related">
+    <h2>{{labels.related_label}}</h2>
+    <ul>
+      <li><a href="{{nav_urls.things-to-do}}">{{labels.related_things_to_do}} →</a></li>
+      <li><a href="{{nav_urls.where-to-eat}}">{{labels.related_where_to_eat}} →</a></li>
+      <li><a href="{{nav_urls.where-to-stay}}">{{labels.related_where_to_stay}} →</a></li>
+      <li><a href="{{nav_urls.businesses}}">{{labels.related_back_directory}} →</a></li>
+    </ul>
+  </nav>
 </div>
+
+<style>
+  .biz-related { margin-top: 3rem; padding-top: 1.8rem; border-top: 1px solid var(--mist); }
+  .biz-related h2 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: .8rem; color: var(--dark); }
+  .biz-related ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .4rem; }
+  .biz-related a { display: inline-block; font-size: .92rem; color: var(--clay); text-decoration: none; }
+  .biz-related a:hover { color: var(--earth); text-decoration: underline; }
+</style>
