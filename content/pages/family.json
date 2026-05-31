@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "slug":        { "en": "family", "es": "familia" },
+    "title":       { "en": "Family Tree (Private)", "es": "Árbol Genealógico (Privado)" },
+    "description": { "en": "Private family tree.", "es": "Árbol genealógico privado." },
+    "robots":      { "en": "noindex, nofollow", "es": "noindex, nofollow" },
+    "og_locale_primary":   { "en": "en_US", "es": "es_MX" },
+    "og_locale_alternate": { "en": "es_MX", "es": "en_US" }
+  },
+  "ui": {
+    "heading":        { "en": "Murillo · Mena Family Tree", "es": "Árbol Genealógico Murillo · Mena" },
+    "login_prompt":   { "en": "This page is private. Enter the family password.", "es": "Esta página es privada. Ingresa la contraseña familiar." },
+    "password_label": { "en": "Family password", "es": "Contraseña familiar" },
+    "enter":          { "en": "Enter", "es": "Entrar" },
+    "wrong":          { "en": "Incorrect password.", "es": "Contraseña incorrecta." }
+  },
+  "rental": {
+    "tab":      { "en": "For Rent", "es": "Se Renta" },
+    "header":   { "en": "For Rent · San Jose de Gracia", "es": "Se Renta · San Jose de Gracia" },
+    "avail":    { "en": "Available", "es": "Disponible" },
+    "area":     { "en": "Main area", "es": "Area principal" },
+    "dims":     { "en": "Meters (L×W)", "es": "Metros (L×A)" },
+    "storage":  { "en": "Storage space", "es": "Espacio de bodega" },
+    "patio":    { "en": "With water hookup", "es": "Con toma de agua" },
+    "includes": { "en": "Included in rent", "es": "Incluido en la renta" },
+    "cameras":  { "en": "Cameras", "es": "Camaras" },
+    "bath":     { "en": "Half bath", "es": "Medio bano" },
+    "wa":       { "en": "Inquire: 331 696 3003", "es": "Informes: 331 696 3003" },
+    "note":     { "en": "Min. 1 year contract · Utilities separate", "es": "Contrato minimo 1 ano · Luz y agua aparte" }
+  }
+}
