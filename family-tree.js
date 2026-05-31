@@ -235,6 +235,7 @@
       }
 
       drawConnectors(wrap, tree, elById);
+      meta.elById = elById; meta.order = order; // for keyboard navigation
 
       const wr = wrap.getBoundingClientRect();
       const rr = (rootEl || wrap).getBoundingClientRect();
@@ -262,7 +263,32 @@
     controls.appendChild(mkBtn('−', lang === 'es' ? 'Alejar' : 'Zoom out', () => vp.zoomBy(1 / 1.2)));
     controls.appendChild(mkBtn('⌖', lang === 'es' ? 'Centrarme' : 'Center on me', () => focusRoot(1)));
     controls.appendChild(mkBtn('⛶', lang === 'es' ? 'Ver todo' : 'Fit all', fitAll));
+    controls.appendChild(mkBtn('⊕', lang === 'es' ? 'Expandir todo' : 'Expand all', () => { collapsed.clear(); render(); }));
+    controls.appendChild(mkBtn('⊖', lang === 'es' ? 'Colapsar todo' : 'Collapse all', () => { collapsible.forEach(f => collapsed.add(f)); render(); }));
     canvas.appendChild(controls);
+
+    // Keyboard navigation between relatives: arrows move up (parent) / down
+    // (child) / sideways (same generation); Enter opens the detail card.
+    canvas.setAttribute('tabindex', '0');
+    let navId = rootId;
+    const focusNode = (id) => {
+      const el = meta.elById && meta.elById.get(id); if (!el) return;
+      navId = id; el.focus();
+      const cx = parseFloat(el.style.left) || 0, cy = (parseFloat(el.style.top) || 0) + 31, s = vp.cur().scale;
+      vp.set(cw / 2 - cx * s, ch / 2 - cy * s, s);
+    };
+    canvas.addEventListener('keydown', (e) => {
+      if (document.getElementById('ft-modal')) return;
+      if (e.key === 'Enter') { if (byId.get(navId)) { openCard(byId.get(navId)); e.preventDefault(); } return; }
+      if (!/^Arrow/.test(e.key)) return;
+      e.preventDefault();
+      const vis = (id) => meta.elById && meta.elById.has(id);
+      let t = null;
+      if (e.key === 'ArrowUp') t = (childParents.get(navId) || []).filter(vis)[0];
+      else if (e.key === 'ArrowDown') t = (kidsOf.get(navId) || []).filter(vis)[0];
+      else { const row = (meta.order[gens.get(navId)] || []).filter(vis); const i = row.indexOf(navId); if (i >= 0) t = row[i + (e.key === 'ArrowLeft' ? -1 : 1)]; }
+      if (t) focusNode(t);
+    });
 
     const legend = document.createElement('div');
     legend.innerHTML = (lang === 'es' ? '∗ adoptado · +N expandir · ? por confirmar' : '∗ adopted · +N expand · ? unconfirmed');
@@ -309,7 +335,10 @@
     if (ind.placeholder) { el.style.borderStyle = 'dashed'; el.style.opacity = '0.72'; el.style.background = '#faf6ef'; }
     const initials = ind.placeholder ? '?' : (ind.names.given[0] || '') + (ind.names.surnames[0]?.[0] || '');
     const star = ind.adopted ? ' <span title="' + (lang === 'es' ? 'adoptado' : 'adopted') + '" style="color:var(--clay,#C4785A);font-weight:700;">∗</span>' : '';
-    el.innerHTML = '<span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;background:var(--earth,#8B5E3C);color:var(--cream,#F5EFE6);display:flex;align-items:center;justify-content:center;font-weight:600;flex:none;">' + initials + '</span>' +
+    const avatar = ind.photo
+      ? '<img src="' + ind.photo + '" alt="" aria-hidden="true" style="width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;background:var(--mist,#EDE8DF);" />'
+      : '<span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;background:var(--earth,#8B5E3C);color:var(--cream,#F5EFE6);display:flex;align-items:center;justify-content:center;font-weight:600;flex:none;">' + initials + '</span>';
+    el.innerHTML = avatar +
       '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;"><strong style="font-size:.88rem;font-weight:500;">' + nameOf(ind) + star + '</strong></span>';
     el.setAttribute('aria-label', nameOf(ind) + (ind.id === FOCAL_ID ? (lang === 'es' ? ' (tú)' : ' (you)') : '') + (ind.adopted ? (lang === 'es' ? ', adoptado' : ', adopted') : '') + (ind.placeholder ? (lang === 'es' ? ', por confirmar' : ', unconfirmed') : ''));
     el.addEventListener('click', () => openCard(ind));
@@ -350,7 +379,7 @@
     container.addEventListener('pointerdown', (e) => { dragging = true; sx = e.clientX - x; sy = e.clientY - y; });
     window.addEventListener('pointermove', (e) => { if (!dragging) return; x = e.clientX - sx; y = e.clientY - sy; apply(); });
     window.addEventListener('pointerup', () => { dragging = false; });
-    return { set(nx, ny, ns) { x = nx; y = ny; scale = clamp(ns); apply(); }, zoomBy(f) { const r = container.getBoundingClientRect(); zoomAround(scale * f, r.width / 2, r.height / 2); } };
+    return { set(nx, ny, ns) { x = nx; y = ny; scale = clamp(ns); apply(); }, zoomBy(f) { const r = container.getBoundingClientRect(); zoomAround(scale * f, r.width / 2, r.height / 2); }, cur() { return { x: x, y: y, scale: scale }; } };
   }
 
   tryLoad();
