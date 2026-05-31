@@ -14,5 +14,22 @@ export function computeGenerations(tree, rootId) {
     for (const parent of (childToParents.get(id) || [])) walk(parent, depth + 1);
   };
   walk(rootId, 0);
+
+  // Place siblings: any child of a family whose parent is already placed sits
+  // one generation below that parent. This lets aunts/uncles render alongside
+  // the direct ancestor line. Repeat until stable (handles families in any order).
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const fam of tree.families) {
+      const parents = [fam.husband, fam.wife].filter(Boolean);
+      const placedParent = parents.find(p => gens.has(p));
+      if (placedParent == null) continue;
+      const childGen = gens.get(placedParent) - 1;
+      for (const child of (fam.children || [])) {
+        if (!gens.has(child)) { gens.set(child, childGen); changed = true; }
+      }
+    }
+  }
   return gens;
 }
