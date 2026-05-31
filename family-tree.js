@@ -85,8 +85,29 @@
     const maxGen = Math.max(...gens.values());
     const rows = Array.from({ length: maxGen + 1 }, () => []);
     for (const [id, g] of gens) rows[g].push(id);
-    // Order each row so siblings stay grouped by family-of-origin; a married-in
-    // spouse (no origin family) is keyed to sit just after their partner's group.
+    // Split into two trees: everything above the father is paternal (left),
+    // everything above the mother is maternal (right); the two converge on you
+    // and your parents. Build a kin graph (excluding your own nuclear family so
+    // the sides don't connect through you), then flood from each parent.
+    const rootFam = tree.families.find(f => (f.children || []).includes(rootId));
+    const father = rootFam ? rootFam.husband : null;
+    const mother = rootFam ? rootFam.wife : null;
+    const adj = new Map();
+    const link = (a, b) => { if (!a || !b) return; (adj.get(a) || adj.set(a, new Set()).get(a)).add(b); (adj.get(b) || adj.set(b, new Set()).get(b)).add(a); };
+    for (const fam of tree.families) {
+      if (rootFam && fam.id === rootFam.id) continue; // don't bridge the two sides through you
+      const ps = [fam.husband, fam.wife].filter(Boolean);
+      const ks = fam.children || [];
+      if (ps.length === 2) link(ps[0], ps[1]);
+      for (const k of ks) for (const p of ps) link(p, k);
+      for (let i = 0; i < ks.length; i++) for (let j = i + 1; j < ks.length; j++) link(ks[i], ks[j]);
+    }
+    const side = new Map([[rootId, 'C']]);
+    const flood = (start, tag) => { if (!start) return; const st = [start]; while (st.length) { const n = st.pop(); if (side.has(n)) continue; side.set(n, tag); for (const m of (adj.get(n) || [])) if (m !== rootId && !side.has(m)) st.push(m); } };
+    flood(father, 'P'); flood(mother, 'M');
+    const sideOf = (id) => side.get(id) || 'M';
+
+    // Within a side, keep siblings grouped by family-of-origin.
     const originKey = (id) => {
       if (childToFamily.has(id)) return childToFamily.get(id);
       for (const fam of tree.families) {
@@ -97,21 +118,22 @@
       }
       return 'zzz';
     };
-    rows.forEach(row => row.sort((a, b) => {
-      const fa = originKey(a), fb = originKey(b);
-      return fa < fb ? -1 : fa > fb ? 1 : 0;
-    }));
+    const bySide = (ids, s) => ids.filter(id => sideOf(id) === s).sort((a, b) => { const fa = originKey(a), fb = originKey(b); return fa < fb ? -1 : fa > fb ? 1 : 0; });
 
-    // Layered tidy layout: one horizontal line per generation (never wraps),
-    // generous fixed spacing; the canvas pans/zooms. inline-flex so the wrap
-    // sizes to its content and can be larger than the viewport.
+    // Layered tidy layout: one line per generation, paternal | channel | maternal.
     const wrap = document.createElement('div');
     wrap.style.cssText = 'display:inline-flex;flex-direction:column-reverse;gap:64px;padding:48px;align-items:center;';
     const elById = new Map();
+    const spacer = () => { const s = document.createElement('div'); s.style.cssText = 'width:110px;flex:none;'; return s; };
     rows.forEach(row => {
       const r = document.createElement('div');
-      r.style.cssText = 'display:flex;gap:26px;justify-content:center;flex-wrap:nowrap;';
-      row.forEach(id => { const el = nodeEl(byId.get(id)); elById.set(id, el); r.appendChild(el); });
+      r.style.cssText = 'display:flex;gap:26px;justify-content:center;flex-wrap:nowrap;align-items:center;';
+      const put = (id) => { const el = nodeEl(byId.get(id)); elById.set(id, el); r.appendChild(el); };
+      bySide(row, 'P').forEach(put);
+      r.appendChild(spacer());
+      bySide(row, 'C').forEach(put);
+      r.appendChild(spacer());
+      bySide(row, 'M').forEach(put);
       wrap.appendChild(r);
     });
     canvas.innerHTML = '';
