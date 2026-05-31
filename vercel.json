@@ -30,7 +30,9 @@
       "maxDuration": 60
     },
     "api/family-auth.js": { "maxDuration": 10 },
-    "api/family-tree.js": { "maxDuration": 10 }
+    "api/family-tree.js": { "maxDuration": 10 },
+    "api/family-suggest.js": { "maxDuration": 10 },
+    "api/family-admin.js": { "maxDuration": 10 }
   },
   "crons": [
     {

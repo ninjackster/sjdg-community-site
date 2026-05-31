@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Revisión · Árbol Genealógico</title>
+  <style>
+    :root { --clay:#C4785A; --earth:#8B5E3C; --cream:#F5EFE6; --dark:#1C1309; --mist:#EDE8DF; --sage:#7A8C6A; }
+    * { box-sizing: border-box; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--cream); color: var(--dark); margin: 0; padding: 2rem 1.2rem; }
+    h1 { font-family: Georgia, serif; font-weight: 400; }
+    #gate, #panel { max-width: 720px; margin: 0 auto; }
+    input, button { font: inherit; }
+    .pw { padding: .6rem; border: 1px solid var(--mist); border-radius: 6px; width: 240px; }
+    button { cursor: pointer; border-radius: 6px; border: 1px solid var(--mist); background: #fff; padding: .5rem .9rem; }
+    .sub { background: #fff; border: 1px solid var(--mist); border-radius: 10px; padding: 1rem; margin: .8rem 0; display: flex; gap: 1rem; align-items: flex-start; }
+    .sub img, .sub .ph { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; background: var(--earth); color: var(--cream); display: flex; align-items: center; justify-content: center; flex: none; font-weight: 600; }
+    .sub h3 { margin: 0 0 .2rem; font-size: 1.05rem; }
+    .meta { font-size: .85rem; color: rgba(28,19,9,.7); }
+    .acts { margin-top: .5rem; display: flex; gap: .5rem; }
+    .approve { background: var(--sage); color: #fff; border-color: var(--sage); }
+    .reject { background: #fff; color: #b00; border-color: #e3c9c0; }
+    .badge { font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; padding: 1px 7px; border-radius: 99px; }
+    .pending { background: rgba(212,168,67,.2); color: #8a6a1e; }
+    .approved { background: rgba(122,140,106,.2); color: var(--sage); }
+    #msg { color: rgba(28,19,9,.6); }
+  </style>
+</head>
+<body>
+  <div id="gate">
+    <h1>Revisión de familiares</h1>
+    <p>Ingresa la contraseña de administrador.</p>
+    <input id="pw" class="pw" type="password" autocomplete="current-password" />
+    <button id="enter">Entrar</button>
+    <div id="gmsg" style="color:#b00;font-size:.85rem;margin-top:.5rem;"></div>
+  </div>
+  <div id="panel" style="display:none;">
+    <h1>Sugerencias de familiares</h1>
+    <div id="msg">Cargando…</div>
+    <div id="list"></div>
+  </div>
+  <script>
+    var PW = '';
+    function esc(s) { return (s || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    async function api(method, body) {
+      return fetch('/api/family-admin', { method: method, headers: { Authorization: 'Bearer ' + PW, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+    }
+    async function load() {
+      var msg = document.getElementById('msg'); msg.textContent = 'Cargando…';
+      var res = await api('GET');
+      if (res.status === 401) { document.getElementById('panel').style.display = 'none'; document.getElementById('gate').style.display = 'block'; document.getElementById('gmsg').textContent = 'Contraseña incorrecta.'; return; }
+      var data = await res.json();
+      var subs = (data.submissions || []);
+      var rel = { child: 'Hijo/a', parent: 'Padre/Madre', spouse: 'Cónyuge', sibling: 'Hermano/a' };
+      msg.textContent = subs.length ? (subs.filter(function (s) { return s.status === 'pending'; }).length + ' pendiente(s)') : 'No hay sugerencias.';
+      document.getElementById('list').innerHTML = subs.map(function (s) {
+        var nm = esc(s.names.given + ' ' + (s.names.surnames || []).join(' '));
+        var av = s.photo ? '<img src="' + s.photo + '" alt="">' : '<div class="ph">' + esc((s.names.given[0] || '?')) + '</div>';
+        var when = (s.birth && s.birth.date ? '★ ' + esc(s.birth.date) + ' ' : '') + (s.death && s.death.date ? '✝ ' + esc(s.death.date) : '');
+        return '<div class="sub" data-id="' + s.id + '">' + av + '<div style="flex:1;"><h3>' + nm + ' <span class="badge ' + s.status + '">' + s.status + '</span></h3>' +
+          '<div class="meta">' + (rel[s.relationship] || s.relationship) + ' · ' + esc(s.relativeOf) + (when ? ' · ' + when : '') + '</div>' +
+          (s.notes && s.notes.es ? '<div class="meta" style="margin-top:.3rem;">' + esc(s.notes.es) + '</div>' : '') +
+          '<div class="acts">' + (s.status === 'pending' ? '<button class="approve" data-a="approve">Aprobar</button>' : '') + '<button class="reject" data-a="' + (s.status === 'pending' ? 'reject' : 'delete') + '">' + (s.status === 'pending' ? 'Rechazar' : 'Eliminar') + '</button></div></div></div>';
+      }).join('');
+      document.querySelectorAll('.sub button').forEach(function (b) {
+        b.addEventListener('click', async function () {
+          var id = b.closest('.sub').getAttribute('data-id');
+          b.disabled = true;
+          await api('POST', { id: id, action: b.getAttribute('data-a') });
+          load();
+        });
+      });
+    }
+    document.getElementById('enter').addEventListener('click', function () { PW = document.getElementById('pw').value; document.getElementById('gate').style.display = 'none'; document.getElementById('panel').style.display = 'block'; load(); });
+    document.getElementById('pw').addEventListener('keydown', function (e) { if (e.key === 'Enter') document.getElementById('enter').click(); });
+  </script>
+</body>
+</html>

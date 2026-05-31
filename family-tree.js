@@ -448,9 +448,63 @@
         (oo ? '<p style="background:#f7eecf;border-left:3px solid #c4785a;padding:8px 10px;border-radius:0 6px 6px 0;margin:.8rem 0;"><strong>' + (lang === 'es' ? 'Origen del apellido' : 'Surname origin') + ':</strong> ' + oo.text + ' <em>(' + oo.confidence + ')</em></p>' : '') +
         (recs ? '<h3 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;opacity:.6;margin:.9rem 0 .3rem;">' + (lang === 'es' ? 'Registros' : 'Records') + '</h3><ul style="margin:0;padding-left:1.1rem;">' + recs + '</ul>' : '') +
         ((ind.notes && ind.notes[lang]) ? '<p style="margin:.8rem 0 0;color:rgba(28,19,9,.8);">' + ind.notes[lang] + '</p>' : '') +
+        '<button id="ft-suggest" style="margin-top:1rem;width:100%;padding:.6rem;border:1px dashed var(--clay,#C4785A);background:#fff;color:var(--clay,#C4785A);border-radius:8px;cursor:pointer;font:inherit;font-size:.85rem;">' + (lang === 'es' ? '＋ Sugerir un familiar' : '＋ Suggest a relative') + '</button>' +
       '</div>';
     document.body.appendChild(o);
     o.querySelector('#ft-close').addEventListener('click', closeCard);
+    o.querySelector('#ft-suggest').addEventListener('click', () => openSuggest(ind));
+  }
+
+  function resizePhoto(file) {
+    return new Promise((resolve) => {
+      if (!file) { resolve(null); return; }
+      const r = new FileReader();
+      r.onload = () => { const img = new Image(); img.onload = () => { const S = 160, c = document.createElement('canvas'); c.width = S; c.height = S; const ctx = c.getContext('2d'); const m = Math.min(img.width, img.height); ctx.drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, S, S); resolve(c.toDataURL('image/jpeg', 0.82)); }; img.onerror = () => resolve(null); img.src = r.result; };
+      r.onerror = () => resolve(null); r.readAsDataURL(file);
+    });
+  }
+
+  function openSuggest(ind) {
+    closeCard();
+    const es = lang === 'es';
+    const o = document.createElement('div');
+    o.id = 'ft-modal';
+    o.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(28,19,9,.45);z-index:60;padding:1rem;';
+    o.addEventListener('click', (e) => { if (e.target === o) closeCard(); });
+    const rels = es ? [['child', 'Hijo/a'], ['parent', 'Padre/Madre'], ['spouse', 'Cónyuge'], ['sibling', 'Hermano/a']] : [['child', 'Child'], ['parent', 'Parent'], ['spouse', 'Spouse'], ['sibling', 'Sibling']];
+    const inp = 'width:100%;padding:.5rem;margin:.25rem 0 .6rem;border:1px solid var(--mist,#EDE8DF);border-radius:6px;font:inherit;box-sizing:border-box;';
+    o.innerHTML =
+      '<div role="dialog" aria-modal="true" style="position:relative;background:#fffdf8;width:min(420px,93vw);max-height:88vh;overflow:auto;border-radius:14px;box-shadow:0 14px 44px rgba(28,19,9,.30);padding:24px;">' +
+        '<button id="ft-close" aria-label="Close" style="position:absolute;top:10px;right:12px;border:none;background:none;font-size:1.6rem;cursor:pointer;color:rgba(28,19,9,.5);">×</button>' +
+        '<h2 style="font-family:\'Playfair Display\',serif;font-weight:400;font-size:1.25rem;margin:0 1.6rem .2rem 0;">' + (es ? 'Sugerir un familiar' : 'Suggest a relative') + '</h2>' +
+        '<p style="font-size:.85rem;color:rgba(28,19,9,.6);margin:0 0 1rem;">' + (es ? 'de ' : 'of ') + nameOf(ind) + '</p>' +
+        '<label style="font-size:.8rem;">' + (es ? 'Relación' : 'Relationship') + '</label>' +
+        '<select id="sg-rel" style="' + inp + '">' + rels.map(r => '<option value="' + r[0] + '">' + r[1] + '</option>').join('') + '</select>' +
+        '<label style="font-size:.8rem;">' + (es ? 'Nombre(s)' : 'First name(s)') + '</label><input id="sg-given" style="' + inp + '" />' +
+        '<label style="font-size:.8rem;">' + (es ? 'Apellidos' : 'Surnames') + '</label><input id="sg-sur" placeholder="' + (es ? 'separados por espacio' : 'space-separated') + '" style="' + inp + '" />' +
+        '<div style="display:flex;gap:.6rem;"><div style="flex:1;"><label style="font-size:.8rem;">' + (es ? 'Nació' : 'Born') + '</label><input id="sg-birth" style="' + inp + '" /></div><div style="flex:1;"><label style="font-size:.8rem;">' + (es ? 'Falleció' : 'Died') + '</label><input id="sg-death" style="' + inp + '" /></div></div>' +
+        '<label style="font-size:.8rem;">' + (es ? 'Nota' : 'Note') + '</label><textarea id="sg-note" rows="2" style="' + inp + 'resize:vertical;"></textarea>' +
+        '<label style="font-size:.8rem;">' + (es ? 'Foto (opcional)' : 'Photo (optional)') + '</label><input id="sg-photo" type="file" accept="image/*" style="' + inp + '" />' +
+        '<div id="sg-msg" style="font-size:.8rem;min-height:1.1em;margin:.2rem 0;"></div>' +
+        '<button id="sg-send" style="width:100%;padding:.6rem;border:none;border-radius:8px;background:var(--clay,#C4785A);color:#fff;cursor:pointer;font:inherit;">' + (es ? 'Enviar para revisión' : 'Submit for review') + '</button>' +
+      '</div>';
+    document.body.appendChild(o);
+    o.querySelector('#ft-close').addEventListener('click', closeCard);
+    const msg = o.querySelector('#sg-msg');
+    o.querySelector('#sg-send').addEventListener('click', async () => {
+      const given = o.querySelector('#sg-given').value.trim();
+      if (!given) { msg.style.color = '#b00'; msg.textContent = es ? 'Falta el nombre.' : 'Name required.'; return; }
+      msg.style.color = 'rgba(28,19,9,.6)'; msg.textContent = es ? 'Enviando…' : 'Sending…';
+      const photo = await resizePhoto(o.querySelector('#sg-photo').files[0]);
+      try {
+        const res = await fetch('/api/family-suggest', {
+          method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ relativeOf: ind.id, relationship: o.querySelector('#sg-rel').value, given: given, surnames: o.querySelector('#sg-sur').value, birth: o.querySelector('#sg-birth').value, death: o.querySelector('#sg-death').value, note: o.querySelector('#sg-note').value, photo: photo }),
+        });
+        if (res.ok) { msg.style.color = 'var(--sage,#7A8C6A)'; msg.textContent = es ? '¡Gracias! Enviado para revisión.' : 'Thanks! Sent for review.'; o.querySelector('#sg-send').disabled = true; }
+        else { msg.style.color = '#b00'; msg.textContent = es ? 'Error al enviar.' : 'Submit failed.'; }
+      } catch (_) { msg.style.color = '#b00'; msg.textContent = es ? 'Error de red.' : 'Network error.'; }
+    });
   }
 
   function makeViewport(container, wrap) {
