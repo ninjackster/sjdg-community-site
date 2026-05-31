@@ -89,6 +89,7 @@
       for (const p of ps) if (!parentFamilyOf.has(p)) parentFamilyOf.set(p, fam.id);
       if (ps.length === 2) { if (!coupleOf.has(ps[0])) coupleOf.set(ps[0], ps[1]); if (!coupleOf.has(ps[1])) coupleOf.set(ps[1], ps[0]); }
     }
+    const famById = new Map(tree.families.map(f => [f.id, f]));
     const direct = new Set();
     (function up(id) { if (direct.has(id)) return; direct.add(id); for (const p of (childParents.get(id) || [])) up(p); })(rootId);
     const gens = buildGenerations(tree);
@@ -162,7 +163,7 @@
     const cw = canvas.clientWidth || 1000, ch = canvas.clientHeight || 700;
     const vp = makeViewport(canvas, wrap);
     const meta = { rootCx: 0, rootCy: 0, w: 0, h: 0 };
-    let firstRender = true;
+    let firstRender = true, mode = 'tree';
 
     function render() {
       const hidden = computeHidden();
@@ -193,6 +194,34 @@
             const x = (prev === null) ? (desired != null ? desired : 0) : (desired != null ? Math.max(desired, prevX + spacing(prev, id)) : prevX + spacing(prev, id));
             xpos.set(id, x); prev = id; prevX = x; i += 1;
           }
+        }
+      }
+      // Top-down: center each family's children under their parent couple and
+      // shift each child's sub-branch with it, so descendants (cousins, your
+      // half-sister) sit under their real parents — not adrift in the row.
+      const shiftSub = (id, dx) => { const st = [id], seen = new Set(); while (st.length) { const n = st.pop(); if (seen.has(n)) continue; seen.add(n); if (xpos.has(n)) xpos.set(n, xpos.get(n) + dx); for (const c of (kidsOf.get(n) || [])) if (xpos.has(c)) st.push(c); } };
+      for (let g = gMax; g > gMin; g--) {
+        const childGen = g - 1;
+        if (childGen > 0) continue; // correct descendants (your generation and below)
+        const rowIds = order[childGen]; if (!rowIds || !rowIds.length) continue;
+        const prov = new Map(), famKids = new Map();
+        for (const id of rowIds) { const f = childToFamily.get(id); if (f) { if (!famKids.has(f)) famKids.set(f, []); famKids.get(f).push(id); } }
+        for (const [f, kids] of famKids) {
+          const fam = famById.get(f); const par = [fam.husband, fam.wife].filter(p => xpos.has(p));
+          if (!par.length) continue;
+          const mid = par.reduce((s, p) => s + xpos.get(p), 0) / par.length;
+          const ordered = rowIds.filter(k => kids.indexOf(k) >= 0);
+          const w = ordered.length * NODE_W + (ordered.length - 1) * GAP;
+          let x = mid - w / 2 + NODE_W / 2;
+          for (const k of ordered) { prov.set(k, x); x += NODE_W + GAP; }
+        }
+        let prev = null, prevX = 0;
+        for (const id of rowIds) {
+          let target = prov.has(id) ? prov.get(id) : xpos.get(id);
+          if (prev != null) { const mn = prevX + spacing(prev, id); if (target < mn) target = mn; }
+          const dx = target - (xpos.get(id) || 0);
+          if (dx) shiftSub(id, dx);
+          prev = id; prevX = xpos.get(id);
         }
       }
       let minX = Infinity, maxX = -Infinity;
@@ -244,6 +273,59 @@
       if (firstRender) { firstRender = false; vp.set(cw / 2 - meta.rootCx, ch * 0.72 - meta.rootCy, 1); }
     }
 
+    // Fan chart: ancestors-only radial view (focal at center, generations as rings).
+    function renderFan() {
+      wrap.innerHTML = '';
+      const NS = 'http://www.w3.org/2000/svg';
+      const segs = [];
+      (function rec(id, depth, a0, a1) {
+        if (!id || depth > 6) return;
+        segs.push({ id: id, depth: depth, a0: a0, a1: a1 });
+        const fam = famById.get(childToFamily.get(id));
+        const mid = (a0 + a1) / 2;
+        rec(fam ? fam.husband : null, depth + 1, a0, mid);
+        rec(fam ? fam.wife : null, depth + 1, mid, a1);
+      })(rootId, 0, -Math.PI, Math.PI);
+      const R0 = 54, ringW = 66, maxD = segs.reduce((m, s) => Math.max(m, s.depth), 0);
+      const R = R0 + maxD * ringW, cx = R + 40, cy = R + 40, size = (R + 40) * 2;
+      wrap.style.width = size + 'px'; wrap.style.height = size + 'px';
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('width', size); svg.setAttribute('height', size);
+      svg.style.cssText = 'position:absolute;left:0;top:0;overflow:visible;';
+      const polar = (r, a) => [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+      const arc = (rIn, rOut, a0, a1) => { const A = polar(rOut, a0), B = polar(rOut, a1), C = polar(rIn, a1), D = polar(rIn, a0), lg = (a1 - a0) > Math.PI ? 1 : 0; return 'M ' + A[0] + ' ' + A[1] + ' A ' + rOut + ' ' + rOut + ' 0 ' + lg + ' 1 ' + B[0] + ' ' + B[1] + ' L ' + C[0] + ' ' + C[1] + ' A ' + rIn + ' ' + rIn + ' 0 ' + lg + ' 0 ' + D[0] + ' ' + D[1] + ' Z'; };
+      for (const s of segs) {
+        const ind = byId.get(s.id); if (!ind) continue;
+        const sd = sideOf(s.id);
+        if (s.depth === 0) {
+          const c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', R0); c.setAttribute('fill', '#6b4f2e'); c.setAttribute('stroke', 'var(--gold,#D4A843)'); c.setAttribute('stroke-width', '3'); c.style.cursor = 'pointer'; c.addEventListener('click', () => openCard(ind)); svg.appendChild(c);
+          const tx = document.createElementNS(NS, 'text'); tx.setAttribute('x', cx); tx.setAttribute('y', cy); tx.setAttribute('text-anchor', 'middle'); tx.setAttribute('dominant-baseline', 'middle'); tx.setAttribute('fill', '#f4e9d8'); tx.setAttribute('font-size', '13'); tx.setAttribute('font-weight', '600'); tx.style.pointerEvents = 'none'; tx.textContent = ind.names.given; svg.appendChild(tx); continue;
+        }
+        const rIn = R0 + (s.depth - 1) * ringW, rOut = R0 + s.depth * ringW;
+        const path = document.createElementNS(NS, 'path');
+        path.setAttribute('d', arc(rIn, rOut, s.a0, s.a1));
+        path.setAttribute('fill', sd === 'P' ? '#ecdfce' : '#e2d4bf');
+        path.setAttribute('stroke', '#fffdf8'); path.setAttribute('stroke-width', '2');
+        if (ind.placeholder) path.setAttribute('fill-opacity', '0.45');
+        path.style.cursor = 'pointer';
+        path.addEventListener('click', () => openCard(ind));
+        const ttl = document.createElementNS(NS, 'title'); ttl.textContent = nameOf(ind); path.appendChild(ttl);
+        svg.appendChild(path);
+        const midA = (s.a0 + s.a1) / 2, rMid = (rIn + rOut) / 2, L = polar(rMid, midA);
+        let deg = midA * 180 / Math.PI; if (deg > 90 || deg < -90) deg += 180;
+        const tx = document.createElementNS(NS, 'text');
+        tx.setAttribute('x', L[0]); tx.setAttribute('y', L[1]); tx.setAttribute('text-anchor', 'middle'); tx.setAttribute('dominant-baseline', 'middle');
+        tx.setAttribute('transform', 'rotate(' + deg + ' ' + L[0] + ' ' + L[1] + ')');
+        tx.setAttribute('fill', '#3a2a17'); tx.setAttribute('font-size', s.depth <= 2 ? '11' : '9'); tx.style.pointerEvents = 'none';
+        const lim = s.depth <= 2 ? 13 : 8;
+        tx.textContent = ind.placeholder ? '?' : (ind.names.given.length > lim ? ind.names.given.slice(0, lim - 1) + '…' : ind.names.given);
+        svg.appendChild(tx);
+      }
+      wrap.appendChild(svg);
+      const s = Math.max(0.2, Math.min(1.1, (cw - 60) / size, (ch - 60) / size));
+      vp.set(cw / 2 - cx * s, ch / 2 - cy * s, s);
+    }
+
     render();
 
     const focusRoot = (s) => vp.set(cw / 2 - meta.rootCx * s, ch * 0.72 - meta.rootCy * s, s);
@@ -265,6 +347,7 @@
     controls.appendChild(mkBtn('⛶', lang === 'es' ? 'Ver todo' : 'Fit all', fitAll));
     controls.appendChild(mkBtn('⊕', lang === 'es' ? 'Expandir todo' : 'Expand all', () => { collapsed.clear(); render(); }));
     controls.appendChild(mkBtn('⊖', lang === 'es' ? 'Colapsar todo' : 'Collapse all', () => { collapsible.forEach(f => collapsed.add(f)); render(); }));
+    controls.appendChild(mkBtn('❋', lang === 'es' ? 'Abanico / árbol' : 'Fan / tree view', () => { mode = mode === 'tree' ? 'fan' : 'tree'; if (mode === 'fan') renderFan(); else { firstRender = true; render(); } }));
     canvas.appendChild(controls);
 
     // Keyboard navigation between relatives: arrows move up (parent) / down
