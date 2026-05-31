@@ -1,6 +1,7 @@
 {
   "skip_link":    { "en": "Skip to main content", "es": "Ir al contenido principal" },
   "directory":    { "en": "Directory",            "es": "Directorio" },
+  "history":      { "en": "History",              "es": "Historia" },
   "stay":         { "en": "Stay",                 "es": "Alojarse" },
   "events":       { "en": "Events",               "es": "Eventos" },
   "getting_here": { "en": "Getting Here",         "es": "Cómo Llegar" },
