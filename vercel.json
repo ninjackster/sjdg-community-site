@@ -28,7 +28,9 @@
   "functions": {
     "api/refresh-businesses.js": {
       "maxDuration": 60
-    }
+    },
+    "api/family-auth.js": { "maxDuration": 10 },
+    "api/family-tree.js": { "maxDuration": 10 }
   },
   "crons": [
     {
