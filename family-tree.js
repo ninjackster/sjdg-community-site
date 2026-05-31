@@ -79,6 +79,12 @@
     const rootId = tree.individuals[0].id;
     const byId = new Map(tree.individuals.map(i => [i.id, i]));
     const { gens, childToFamily } = buildGenerations(tree);
+    // Direct ancestral line (you + your ancestors) — used to seat the direct
+    // line nearest the center channel, pushing collateral relatives outward.
+    const childParents = new Map();
+    for (const fam of tree.families) { const ps = [fam.husband, fam.wife].filter(Boolean); for (const c of (fam.children || [])) childParents.set(c, (childParents.get(c) || []).concat(ps)); }
+    const direct = new Set();
+    (function up(id) { if (direct.has(id)) return; direct.add(id); for (const p of (childParents.get(id) || [])) up(p); })(tree.individuals[0].id);
     const maxGen = Math.max(...gens.values());
     const rows = Array.from({ length: maxGen + 1 }, () => []);
     for (const [id, g] of gens) rows[g].push(id);
@@ -129,9 +135,10 @@
           out.push(pair[0], pair[1]); placed.add(id); placed.add(spouse);
         } else { out.push(id); placed.add(id); }
       }
-      if (s === 'P' && father && out.indexOf(father) !== -1) { out.splice(out.indexOf(father), 1); out.push(father); }       // innermost (right)
-      if (s === 'M' && mother && out.indexOf(mother) !== -1) { out.splice(out.indexOf(mother), 1); out.unshift(mother); }    // innermost (left)
-      return out;
+      // Direct line hugs the center channel; collaterals (siblings, their kin)
+      // sit outward. Paternal: direct to the right; maternal: direct to the left.
+      const nd = out.filter(id => !direct.has(id)), dr = out.filter(id => direct.has(id));
+      return s === 'P' ? nd.concat(dr) : dr.concat(nd);
     };
 
     const cw = canvas.clientWidth || 1000, ch = canvas.clientHeight || 700;
@@ -234,7 +241,8 @@
     el.type = 'button';
     el.dataset.id = ind.id;
     el.style.cssText = 'position:relative;z-index:1;flex:none;white-space:nowrap;display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--mist,#EDE8DF);border-radius:10px;padding:10px 14px;cursor:pointer;font:inherit;text-align:left;box-shadow:0 1px 3px rgba(28,19,9,.07);';
-    const initials = (ind.names.given[0] || '') + (ind.names.surnames[0]?.[0] || '');
+    if (ind.placeholder) { el.style.borderStyle = 'dashed'; el.style.opacity = '0.72'; el.style.background = '#faf6ef'; }
+    const initials = ind.placeholder ? '?' : (ind.names.given[0] || '') + (ind.names.surnames[0]?.[0] || '');
     const star = ind.adopted ? ' <span title="' + (lang === 'es' ? 'adoptado' : 'adopted') + '" style="color:var(--clay,#C4785A);font-weight:700;">∗</span>' : '';
     el.innerHTML = '<span style="width:40px;height:40px;border-radius:50%;background:var(--earth,#8B5E3C);color:var(--cream,#F5EFE6);display:flex;align-items:center;justify-content:center;font-weight:600;flex:none;">' + initials + '</span>' +
       '<span><strong style="font-size:.9rem;">' + nameOf(ind) + star + '</strong></span>';
