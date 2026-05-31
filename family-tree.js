@@ -6,7 +6,7 @@
   const enterBtn = document.getElementById('ft-enter');
   const errEl = document.getElementById('ft-error');
   if (!login || !canvas) return;
-  const lang = canvas.getAttribute('data-lang') || 'en';
+  const lang = (canvas.getAttribute('data-lang') || 'en').slice(0, 2); // 'es-MX' -> 'es'
   let FOCAL_ID = null;
 
   async function tryLoad() {
