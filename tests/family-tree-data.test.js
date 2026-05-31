@@ -50,3 +50,22 @@ test('rejects an invalid surnameOrigin confidence', () => {
   assert.equal(res.valid, false);
   assert.match(res.errors.join('\n'), /individual I2 surnameOrigin\.confidence must be one of/i);
 });
+
+import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+test('the committed seed tree.json is valid', async () => {
+  const raw = await readFile(join(__dirname, '../content/family/tree.json'), 'utf8');
+  const res = validateTree(JSON.parse(raw));
+  assert.deepEqual(res, { valid: true, errors: [] });
+});
+
+test('seed contains the eight researched surnames somewhere', async () => {
+  const raw = await readFile(join(__dirname, '../content/family/tree.json'), 'utf8');
+  const all = JSON.parse(raw).individuals.flatMap(i => i.names.surnames);
+  for (const s of ['Murillo','Mena','Ruiz','Patiño','Villalobos','Gutiérrez','Sánchez','Hernández']) {
+    assert.ok(all.includes(s), `missing surname ${s}`);
+  }
+});
