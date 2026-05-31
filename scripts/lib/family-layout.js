@@ -30,8 +30,12 @@ export function computeGenerations(tree, rootId) {
       // generation — this seats grandparents' siblings whose own parents
       // aren't in the tree.
       let childGen = null;
-      if (placedParent != null) childGen = gens.get(placedParent) - 1;
-      else {
+      if (placedParent != null) {
+        const pg = gens.get(placedParent);
+        // Seat a married-in spouse at the same generation as their partner.
+        for (const p of parents) if (!gens.has(p)) { gens.set(p, pg); changed = true; }
+        childGen = pg - 1;
+      } else {
         const placedChild = kids.find(c => gens.has(c));
         if (placedChild != null) childGen = gens.get(placedChild);
       }

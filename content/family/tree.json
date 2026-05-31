@@ -42,7 +42,8 @@
     { "id": "I40", "names": { "given": "Ricardo", "surnames": [] }, "sex": "M", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Child of Josefina \"Chepa\" Mena Ruiz; Jaime's cousin. Father's surname to confirm. From family memory.", "es": "Hijo de Josefina \"Chepa\" Mena Ruiz; primo de Jaime. Apellido paterno por confirmar. De la memoria familiar." } },
     { "id": "I41", "names": { "given": "Jesús", "surnames": [] }, "sex": "M", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Child of Josefina \"Chepa\" Mena Ruiz, known as \"Chuy\"; Jaime's cousin. Father's surname to confirm. From family memory.", "es": "Hijo de Josefina \"Chepa\" Mena Ruiz, conocido como \"Chuy\"; primo de Jaime. Apellido paterno por confirmar. De la memoria familiar." } },
     { "id": "I42", "names": { "given": "Fernando", "surnames": [] }, "sex": "M", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Child of Josefina \"Chepa\" Mena Ruiz; Jaime's cousin. Father's surname to confirm. From family memory.", "es": "Hijo de Josefina \"Chepa\" Mena Ruiz; primo de Jaime. Apellido paterno por confirmar. De la memoria familiar." } },
-    { "id": "I43", "names": { "given": "Noé", "surnames": [] }, "sex": "M", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Child of Josefina \"Chepa\" Mena Ruiz; Jaime's cousin. Father's surname to confirm. From family memory.", "es": "Hijo de Josefina \"Chepa\" Mena Ruiz; primo de Jaime. Apellido paterno por confirmar. De la memoria familiar." } }
+    { "id": "I43", "names": { "given": "Noé", "surnames": [] }, "sex": "M", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Child of Josefina \"Chepa\" Mena Ruiz; Jaime's cousin. Father's surname to confirm. From family memory.", "es": "Hijo de Josefina \"Chepa\" Mena Ruiz; primo de Jaime. Apellido paterno por confirmar. De la memoria familiar." } },
+    { "id": "I44", "names": { "given": "Pedro", "surnames": [] }, "sex": "M", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Ex-husband of Josefina \"Chepa\" Mena Ruiz; father of her children. Surname to confirm. From family memory.", "es": "Ex esposo de Josefina \"Chepa\" Mena Ruiz; padre de sus hijos. Apellido por confirmar. De la memoria familiar." } }
   ],
   "families": [
     { "id": "F1", "husband": "I2", "wife": "I3", "children": ["I1"] },
@@ -54,6 +55,6 @@
     { "id": "F7", "husband": null, "wife": null, "children": ["I5", "I27", "I28", "I29", "I30", "I31", "I32", "I33"] },
     { "id": "F8", "husband": null, "wife": null, "children": ["I4", "I34"] },
     { "id": "F9", "husband": "I20", "wife": null, "children": ["I35", "I36", "I37"] },
-    { "id": "F10", "husband": null, "wife": "I19", "children": ["I38", "I39", "I40", "I41", "I42", "I43"] }
+    { "id": "F10", "husband": "I44", "wife": "I19", "children": ["I38", "I39", "I40", "I41", "I42", "I43"] }
   ]
 }

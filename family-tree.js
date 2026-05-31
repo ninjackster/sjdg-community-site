@@ -66,8 +66,11 @@
         const parents = [fam.husband, fam.wife].filter(Boolean);
         const placedParent = parents.find(p => gens.has(p));
         let cg = null;
-        if (placedParent != null) cg = gens.get(placedParent) - 1;
-        else { const pc = kids.find(c => gens.has(c)); if (pc != null) cg = gens.get(pc); }
+        if (placedParent != null) {
+          const pg = gens.get(placedParent);
+          for (const p of parents) if (!gens.has(p)) { gens.set(p, pg); changed = true; } // married-in spouse
+          cg = pg - 1;
+        } else { const pc = kids.find(c => gens.has(c)); if (pc != null) cg = gens.get(pc); }
         if (cg == null) continue;
         for (const c of kids) if (!gens.has(c)) { gens.set(c, cg); changed = true; }
       }
@@ -82,9 +85,20 @@
     const maxGen = Math.max(...gens.values());
     const rows = Array.from({ length: maxGen + 1 }, () => []);
     for (const [id, g] of gens) rows[g].push(id);
-    // Keep siblings adjacent by grouping each row by family-of-origin.
+    // Order each row so siblings stay grouped by family-of-origin; a married-in
+    // spouse (no origin family) is keyed to sit just after their partner's group.
+    const originKey = (id) => {
+      if (childToFamily.has(id)) return childToFamily.get(id);
+      for (const fam of tree.families) {
+        if (fam.husband === id || fam.wife === id) {
+          const other = fam.husband === id ? fam.wife : fam.husband;
+          if (other && childToFamily.has(other)) return childToFamily.get(other) + '~';
+        }
+      }
+      return 'zzz';
+    };
     rows.forEach(row => row.sort((a, b) => {
-      const fa = childToFamily.get(a) || 'zzz', fb = childToFamily.get(b) || 'zzz';
+      const fa = originKey(a), fb = originKey(b);
       return fa < fb ? -1 : fa > fb ? 1 : 0;
     }));
 
@@ -92,7 +106,7 @@
     // generous fixed spacing; the canvas pans/zooms. inline-flex so the wrap
     // sizes to its content and can be larger than the viewport.
     const wrap = document.createElement('div');
-    wrap.style.cssText = 'position:relative;display:inline-flex;flex-direction:column-reverse;gap:64px;padding:48px;align-items:center;';
+    wrap.style.cssText = 'display:inline-flex;flex-direction:column-reverse;gap:64px;padding:48px;align-items:center;';
     const elById = new Map();
     rows.forEach(row => {
       const r = document.createElement('div');
@@ -112,18 +126,36 @@
 
     drawConnectors(wrap, tree, elById);
 
-    // Initial view: fit the whole tree to the canvas and center horizontally on
-    // the root, seated near the bottom so ancestors rise above it.
+    // Measure at identity, then drive the view.
     const cw = canvas.clientWidth || 900, ch = canvas.clientHeight || 600;
     const sw = wrap.scrollWidth, sh = wrap.scrollHeight;
-    const scale = Math.max(0.3, Math.min(1, (cw - 48) / sw, (ch - 48) / sh));
     const wr = wrap.getBoundingClientRect();
     const rr = (rootEl || wrap).getBoundingClientRect();
     const rootCx = (rr.left - wr.left) + rr.width / 2;
     const rootCy = (rr.top - wr.top) + rr.height / 2;
-    const x0 = cw / 2 - rootCx * scale;
-    const y0 = ch * 0.82 - rootCy * scale;
-    enableZoomPan(canvas, wrap, { x: x0, y: y0, scale });
+    const vp = makeViewport(canvas, wrap);
+    const focusRoot = (s) => vp.set(cw / 2 - rootCx * s, ch * 0.80 - rootCy * s, s); // you, centered
+    const fitAll = () => { const s = Math.max(0.25, Math.min(1, (cw - 48) / sw, (ch - 48) / sh)); vp.set(cw / 2 - (sw / 2) * s, ch / 2 - (sh / 2) * s, s); };
+
+    // Visible zoom controls, bottom-right.
+    const controls = document.createElement('div');
+    controls.style.cssText = 'position:absolute;right:16px;bottom:16px;display:flex;flex-direction:column;gap:6px;z-index:5;';
+    const mkBtn = (label, title, fn) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = label; b.title = title; b.setAttribute('aria-label', title);
+      b.style.cssText = 'width:40px;height:40px;border:1px solid var(--mist,#EDE8DF);background:#fffdf8;border-radius:9px;font-size:1.15rem;line-height:1;cursor:pointer;color:var(--earth,#8B5E3C);box-shadow:0 1px 5px rgba(28,19,9,.14);display:flex;align-items:center;justify-content:center;';
+      b.addEventListener('pointerdown', (e) => e.stopPropagation());
+      b.addEventListener('click', (e) => { e.stopPropagation(); fn(); });
+      return b;
+    };
+    controls.appendChild(mkBtn('+', lang === 'es' ? 'Acercar' : 'Zoom in', () => vp.zoomBy(1.2)));
+    controls.appendChild(mkBtn('−', lang === 'es' ? 'Alejar' : 'Zoom out', () => vp.zoomBy(1 / 1.2)));
+    controls.appendChild(mkBtn('⌖', lang === 'es' ? 'Centrarme' : 'Center on me', () => focusRoot(1.1)));
+    controls.appendChild(mkBtn('⛶', lang === 'es' ? 'Ver todo' : 'Fit all', fitAll));
+    canvas.appendChild(controls);
+
+    // Start zoomed in on you.
+    focusRoot(1.1);
   }
 
   // Elbow connectors from each couple down to their children. Drawn in an SVG
@@ -206,14 +238,20 @@
     o.querySelector('#ft-close').addEventListener('click', closeCard);
   }
 
-  function enableZoomPan(container, target, init) {
-    let scale = (init && init.scale) || 1, x = (init && init.x) || 0, y = (init && init.y) || 0, dragging = false, sx = 0, sy = 0;
-    const apply = () => { target.style.transformOrigin = '0 0'; target.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + scale + ')'; };
-    apply();
-    container.addEventListener('wheel', (e) => { e.preventDefault(); scale = Math.min(2.5, Math.max(0.3, scale - e.deltaY * 0.0015)); apply(); }, { passive: false });
+  // Pan/zoom viewport with an imperative API for the zoom controls.
+  function makeViewport(container, wrap) {
+    let scale = 1, x = 0, y = 0, dragging = false, sx = 0, sy = 0;
+    const clamp = (s) => Math.min(2.6, Math.max(0.25, s));
+    const apply = () => { wrap.style.transformOrigin = '0 0'; wrap.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + scale + ')'; };
+    const zoomAround = (ns, ax, ay) => { ns = clamp(ns); const k = ns / scale; x = ax - (ax - x) * k; y = ay - (ay - y) * k; scale = ns; apply(); };
+    container.addEventListener('wheel', (e) => { e.preventDefault(); const r = container.getBoundingClientRect(); zoomAround(scale - e.deltaY * 0.0016 * scale, e.clientX - r.left, e.clientY - r.top); }, { passive: false });
     container.addEventListener('pointerdown', (e) => { dragging = true; sx = e.clientX - x; sy = e.clientY - y; });
     window.addEventListener('pointermove', (e) => { if (!dragging) return; x = e.clientX - sx; y = e.clientY - sy; apply(); });
     window.addEventListener('pointerup', () => { dragging = false; });
+    return {
+      set(nx, ny, ns) { x = nx; y = ny; scale = clamp(ns); apply(); },
+      zoomBy(f) { const r = container.getBoundingClientRect(); zoomAround(scale * f, r.width / 2, r.height / 2); },
+    };
   }
 
   tryLoad();
