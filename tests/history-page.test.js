@@ -34,3 +34,30 @@ test('history content is corrected, bylined, and sourced', async () => {
   // pdf button label present
   assert.ok(c.pdf.label.en && c.pdf.label.es);
 });
+
+import { buildPage } from '../scripts/lib/build-page.js';
+
+async function buildHistory(lang) {
+  const layout = await readFile(join(ROOT, 'templates/layouts/base.html'), 'utf8');
+  const tpl = await readFile(join(ROOT, 'templates/pages/history.html'), 'utf8');
+  const content = await loadContent(join(ROOT, 'content/pages/history.json'));
+  const shared = {
+    nav: await loadContent(join(ROOT, 'content/shared/nav.json')),
+    footer: await loadContent(join(ROOT, 'content/shared/footer.json')),
+    common: await loadContent(join(ROOT, 'content/shared/common.json')),
+  };
+  const pageSlugs = await loadContent(join(ROOT, 'content/shared/page-slugs.json'));
+  return buildPage({ lang, layout, pageTemplate: tpl, content, shared, siteUrl: 'https://sanjosedegracia.net', pageSlugs });
+}
+
+test('history page renders long-form with print affordances and no unresolved tokens', async () => {
+  const html = await buildHistory('es');
+  assert.doesNotMatch(html, /\{\{.*?\}\}/);                 // no unresolved tokens
+  assert.match(html, /Compilado por Jaime Murillo/);        // byline
+  assert.match(html, /@media print/);                       // print stylesheet
+  assert.match(html, /window\.print\(\)/);                  // download-pdf trigger
+  for (const id of ['place','origins','administrative','faith','cristero','economy','people','culture','book1897','sources']) {
+    assert.match(html, new RegExp(`id="sec-${id}"`), `missing #sec-${id}`);
+  }
+  assert.match(html, /Descargar PDF/);                      // es pdf label
+});
