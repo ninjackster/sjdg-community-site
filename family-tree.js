@@ -7,6 +7,7 @@
   const errEl = document.getElementById('ft-error');
   if (!login || !canvas) return;
   const lang = canvas.getAttribute('data-lang') || 'en';
+  let FOCAL_ID = null;
 
   async function tryLoad() {
     const res = await fetch('/api/family-tree', { credentials: 'same-origin' });
@@ -77,6 +78,7 @@
 
   function draw(tree) {
     const rootId = tree.individuals[0].id;
+    FOCAL_ID = rootId;
     const byId = new Map(tree.individuals.map(i => [i.id, i]));
     const { gens, childToFamily } = buildGenerations(tree);
     // Direct ancestral line (you + your ancestors) — used to seat the direct
@@ -149,31 +151,47 @@
     };
 
     const cw = canvas.clientWidth || 1000, ch = canvas.clientHeight || 700;
-    // Fixed center axis: every row is a 3-column grid [1fr | center | 1fr], so the
-    // center column lines up vertically across all generations. You live in the
-    // center; paternal hugs the channel from the left, maternal from the right.
+
+    // ---- Coordinate layout (tidy, bottom-up centering) ----
+    const NODE_W = 210, ROW_H = 132, GAP = 30, FAM_GAP = 78, SIDE_GAP = 150;
+    const kidsOf = new Map();
+    for (const fam of tree.families) {
+      const ps = [fam.husband, fam.wife].filter(Boolean);
+      for (const c of (fam.children || [])) for (const p of ps) { if (!kidsOf.has(p)) kidsOf.set(p, []); kidsOf.get(p).push(c); }
+    }
+    // Pass A: left-to-right order within each generation (paternal | you | maternal).
+    const order = rows.map(row => [].concat(bySide(row, 'P'), bySide(row, 'C'), bySide(row, 'M')));
+    const spacing = (a, b) => NODE_W + (sideOf(a) !== sideOf(b) ? SIDE_GAP : clusterKey(a) !== clusterKey(b) ? FAM_GAP : GAP);
+    // Pass B: assign x. Youngest generation first; each older person is centered
+    // over the average x of their already-placed children, then de-overlapped
+    // left-to-right so the row order (Pass A) and minimum spacing are preserved.
+    const xpos = new Map();
+    for (let gi = 0; gi < order.length; gi++) {
+      let prev = null, prevX = 0;
+      for (const id of order[gi]) {
+        const kx = (kidsOf.get(id) || []).filter(k => xpos.has(k)).map(k => xpos.get(k));
+        const desired = kx.length ? kx.reduce((s, v) => s + v, 0) / kx.length : null;
+        let x;
+        if (prev === null) x = desired != null ? desired : 0;
+        else { const minX = prevX + spacing(prev, id); x = desired != null ? Math.max(desired, minX) : minX; }
+        xpos.set(id, x); prev = id; prevX = x;
+      }
+    }
+    let minX = Infinity, maxX = -Infinity;
+    xpos.forEach(v => { if (v < minX) minX = v; if (v > maxX) maxX = v; });
+    const PAD = 70;
     const wrap = document.createElement('div');
-    wrap.style.cssText = 'display:flex;flex-direction:column-reverse;gap:64px;padding:48px 0;align-items:stretch;width:' + Math.max(cw, 1100) + 'px;';
+    wrap.style.cssText = 'position:relative;width:' + ((maxX - minX) + NODE_W + PAD * 2) + 'px;height:' + ((maxGen - minGen) * ROW_H + 120 + PAD * 2) + 'px;';
     const elById = new Map();
-    const cell = (justify) => { const c = document.createElement('div'); c.style.cssText = 'display:flex;gap:26px;align-items:center;min-width:0;justify-content:' + justify + ';'; return c; };
-    rows.forEach(row => {
-      const r = document.createElement('div');
-      r.style.cssText = 'display:grid;grid-template-columns:1fr auto 1fr;column-gap:90px;align-items:center;width:100%;';
-      const L = cell('flex-end'), Cc = cell('center'), R = cell('flex-start');
-      const fill = (cellEl, ids) => {
-        let prev = null;
-        ids.forEach(id => {
-          const ck = clusterKey(id);
-          if (prev !== null && ck !== prev) { const sp = document.createElement('div'); sp.style.cssText = 'width:56px;flex:none;'; cellEl.appendChild(sp); } // gap between family branches
-          const el = nodeEl(byId.get(id)); elById.set(id, el); cellEl.appendChild(el); prev = ck;
-        });
-      };
-      fill(L, bySide(row, 'P'));
-      fill(Cc, bySide(row, 'C'));
-      fill(R, bySide(row, 'M'));
-      r.appendChild(L); r.appendChild(Cc); r.appendChild(R);
-      wrap.appendChild(r);
-    });
+    for (const [id, g] of gens) {
+      const el = nodeEl(byId.get(id));
+      elById.set(id, el);
+      el.style.position = 'absolute';
+      el.style.left = (xpos.get(id) - minX + PAD) + 'px';
+      el.style.top = ((maxGen - g) * ROW_H + PAD) + 'px';
+      el.style.transform = 'translateX(-50%)'; // xpos is the node's center
+      wrap.appendChild(el);
+    }
     canvas.innerHTML = '';
     canvas.appendChild(wrap);
 
@@ -254,12 +272,13 @@
     const el = document.createElement('button');
     el.type = 'button';
     el.dataset.id = ind.id;
-    el.style.cssText = 'position:relative;z-index:1;flex:none;white-space:nowrap;display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--mist,#EDE8DF);border-radius:10px;padding:10px 14px;cursor:pointer;font:inherit;text-align:left;box-shadow:0 1px 3px rgba(28,19,9,.07);';
+    el.style.cssText = 'position:relative;z-index:1;box-sizing:border-box;width:210px;flex:none;display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--mist,#EDE8DF);border-radius:10px;padding:10px 14px;cursor:pointer;font:inherit;text-align:left;box-shadow:0 1px 3px rgba(28,19,9,.07);';
     if (ind.placeholder) { el.style.borderStyle = 'dashed'; el.style.opacity = '0.72'; el.style.background = '#faf6ef'; }
     const initials = ind.placeholder ? '?' : (ind.names.given[0] || '') + (ind.names.surnames[0]?.[0] || '');
     const star = ind.adopted ? ' <span title="' + (lang === 'es' ? 'adoptado' : 'adopted') + '" style="color:var(--clay,#C4785A);font-weight:700;">∗</span>' : '';
-    el.innerHTML = '<span style="width:40px;height:40px;border-radius:50%;background:var(--earth,#8B5E3C);color:var(--cream,#F5EFE6);display:flex;align-items:center;justify-content:center;font-weight:600;flex:none;">' + initials + '</span>' +
-      '<span><strong style="font-size:.9rem;">' + nameOf(ind) + star + '</strong></span>';
+    el.innerHTML = '<span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;background:var(--earth,#8B5E3C);color:var(--cream,#F5EFE6);display:flex;align-items:center;justify-content:center;font-weight:600;flex:none;">' + initials + '</span>' +
+      '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;"><strong style="font-size:.88rem;font-weight:500;">' + nameOf(ind) + star + '</strong></span>';
+    el.setAttribute('aria-label', nameOf(ind) + (ind.id === FOCAL_ID ? (lang === 'es' ? ' (tú)' : ' (you)') : '') + (ind.adopted ? (lang === 'es' ? ', adoptado' : ', adopted') : '') + (ind.placeholder ? (lang === 'es' ? ', por confirmar' : ', unconfirmed') : ''));
     el.addEventListener('click', () => openCard(ind));
     return el;
   }

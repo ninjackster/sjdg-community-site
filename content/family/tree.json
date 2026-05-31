@@ -73,7 +73,8 @@
     { "id": "I71", "names": { "given": "Alexis", "surnames": ["Murillo"] }, "sex": "F", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Jaime's older paternal half-sister (daughter of Héctor Murillo Patiño). From family memory.", "es": "Media hermana mayor de Jaime por parte del padre (hija de Héctor Murillo Patiño). De la memoria familiar." } },
     { "id": "I72", "names": { "given": "Yamileth", "surnames": [] }, "sex": "F", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Child of Alexis; Jaime's niece. From family memory.", "es": "Hija de Alexis; sobrina de Jaime. De la memoria familiar." } },
     { "id": "I73", "names": { "given": "Dylan", "surnames": [] }, "sex": "M", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Child of Alexis; Jaime's nephew. From family memory.", "es": "Hijo de Alexis; sobrino de Jaime. De la memoria familiar." } },
-    { "id": "I74", "names": { "given": "Wendy", "surnames": [] }, "sex": "F", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Child of Alexis; Jaime's niece. From family memory.", "es": "Hija de Alexis; sobrina de Jaime. De la memoria familiar." } }
+    { "id": "I74", "names": { "given": "Wendy", "surnames": [] }, "sex": "F", "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Child of Alexis; Jaime's niece. From family memory.", "es": "Hija de Alexis; sobrina de Jaime. De la memoria familiar." } },
+    { "id": "I75", "names": { "given": "¿?", "surnames": [] }, "sex": "F", "placeholder": true, "birth": { "date": null, "place": null }, "death": { "date": null, "place": null }, "photo": null, "surnameOrigin": null, "recordLinks": [], "notes": { "en": "Daughter of Lupita Vásquez Mena. Name to confirm (placeholder).", "es": "Hija de Lupita Vásquez Mena. Nombre por confirmar (marcador)." } }
   ],
   "families": [
     { "id": "F1", "husband": "I2", "wife": "I3", "children": ["I1"] },
@@ -92,6 +93,7 @@
     { "id": "F14", "husband": "I21", "wife": null, "children": ["I62", "I63", "I64"] },
     { "id": "F15", "husband": "I22", "wife": null, "children": ["I65", "I66", "I67"] },
     { "id": "F16", "husband": "I2", "wife": "I70", "children": ["I71"] },
-    { "id": "F17", "husband": null, "wife": "I71", "children": ["I72", "I73", "I74"] }
+    { "id": "F17", "husband": null, "wife": "I71", "children": ["I72", "I73", "I74"] },
+    { "id": "F18", "husband": null, "wife": "I38", "children": ["I75"] }
   ]
 }
