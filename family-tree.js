@@ -85,9 +85,10 @@
     for (const fam of tree.families) { const ps = [fam.husband, fam.wife].filter(Boolean); for (const c of (fam.children || [])) childParents.set(c, (childParents.get(c) || []).concat(ps)); }
     const direct = new Set();
     (function up(id) { if (direct.has(id)) return; direct.add(id); for (const p of (childParents.get(id) || [])) up(p); })(tree.individuals[0].id);
-    const maxGen = Math.max(...gens.values());
-    const rows = Array.from({ length: maxGen + 1 }, () => []);
-    for (const [id, g] of gens) rows[g].push(id);
+    const genVals = Array.from(gens.values());
+    const minGen = Math.min.apply(null, genVals), maxGen = Math.max.apply(null, genVals);
+    const rows = Array.from({ length: maxGen - minGen + 1 }, () => []);
+    for (const [id, g] of gens) rows[g - minGen].push(id); // offset so generations below you (e.g. nieces/nephews) get a row
 
     // Two trees: paternal (left) and maternal (right). Build a kin graph that
     // excludes your nuclear family (so the sides don't connect through you),
@@ -118,6 +119,12 @@
       }
       return 'zzz';
     };
+    // Cluster key groups a person with their downstream family (the one they
+    // parent), falling back to their family-of-origin — used to insert a visible
+    // gap between distinct family branches (e.g. the Murillo vs Patiño lines).
+    const parentFamilyOf = new Map();
+    for (const fam of tree.families) for (const p of [fam.husband, fam.wife].filter(Boolean)) if (!parentFamilyOf.has(p)) parentFamilyOf.set(p, fam.id);
+    const clusterKey = (id) => parentFamilyOf.get(id) || childToFamily.get(id) || 'x';
     // Order a side: keep same-side couples adjacent (husband first), and seat
     // your parent nearest the center channel so you sit directly under them.
     const bySide = (ids, s) => {
@@ -153,10 +160,17 @@
       const r = document.createElement('div');
       r.style.cssText = 'display:grid;grid-template-columns:1fr auto 1fr;column-gap:90px;align-items:center;width:100%;';
       const L = cell('flex-end'), Cc = cell('center'), R = cell('flex-start');
-      const put = (cellEl) => (id) => { const el = nodeEl(byId.get(id)); elById.set(id, el); cellEl.appendChild(el); };
-      bySide(row, 'P').forEach(put(L));
-      bySide(row, 'C').forEach(put(Cc));
-      bySide(row, 'M').forEach(put(R));
+      const fill = (cellEl, ids) => {
+        let prev = null;
+        ids.forEach(id => {
+          const ck = clusterKey(id);
+          if (prev !== null && ck !== prev) { const sp = document.createElement('div'); sp.style.cssText = 'width:56px;flex:none;'; cellEl.appendChild(sp); } // gap between family branches
+          const el = nodeEl(byId.get(id)); elById.set(id, el); cellEl.appendChild(el); prev = ck;
+        });
+      };
+      fill(L, bySide(row, 'P'));
+      fill(Cc, bySide(row, 'C'));
+      fill(R, bySide(row, 'M'));
       r.appendChild(L); r.appendChild(Cc); r.appendChild(R);
       wrap.appendChild(r);
     });
