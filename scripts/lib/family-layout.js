@@ -22,11 +22,21 @@ export function computeGenerations(tree, rootId) {
   while (changed) {
     changed = false;
     for (const fam of tree.families) {
+      const kids = fam.children || [];
       const parents = [fam.husband, fam.wife].filter(Boolean);
       const placedParent = parents.find(p => gens.has(p));
-      if (placedParent == null) continue;
-      const childGen = gens.get(placedParent) - 1;
-      for (const child of (fam.children || [])) {
+      // Prefer a placed parent (children sit one below). Otherwise, if a
+      // sibling is already placed, the rest of the children share its
+      // generation — this seats grandparents' siblings whose own parents
+      // aren't in the tree.
+      let childGen = null;
+      if (placedParent != null) childGen = gens.get(placedParent) - 1;
+      else {
+        const placedChild = kids.find(c => gens.has(c));
+        if (placedChild != null) childGen = gens.get(placedChild);
+      }
+      if (childGen == null) continue;
+      for (const child of kids) {
         if (!gens.has(child)) { gens.set(child, childGen); changed = true; }
       }
     }

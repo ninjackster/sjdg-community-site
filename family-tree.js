@@ -33,12 +33,16 @@
 
   enterBtn.addEventListener('click', submit);
   pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+  // Esc closes the detail popout.
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCard(); });
 
   function nameOf(ind) { return ind.names.given + ' ' + ind.names.surnames.join(' '); }
 
-  // Generation depth from the root (0), plus the family each person is a child
-  // of. Ancestors are walked upward; siblings/aunts/uncles are then placed one
-  // generation below their (already-placed) parent so they render too.
+  // Generation depth from the root (0). Ancestors are walked upward; then any
+  // child of a family is seated either one generation below a placed parent,
+  // or — if no parent is in the tree — at the generation of a placed sibling
+  // (so grandparents' siblings render too). Also records each person's
+  // family-of-origin for grouping siblings together in a row.
   function buildGenerations(tree) {
     const childToParents = new Map();
     const childToFamily = new Map();
@@ -58,11 +62,14 @@
     while (changed) {
       changed = false;
       for (const fam of tree.families) {
+        const kids = fam.children || [];
         const parents = [fam.husband, fam.wife].filter(Boolean);
-        const placed = parents.find(p => gens.has(p));
-        if (placed == null) continue;
-        const cg = gens.get(placed) - 1;
-        for (const c of (fam.children || [])) if (!gens.has(c)) { gens.set(c, cg); changed = true; }
+        const placedParent = parents.find(p => gens.has(p));
+        let cg = null;
+        if (placedParent != null) cg = gens.get(placedParent) - 1;
+        else { const pc = kids.find(c => gens.has(c)); if (pc != null) cg = gens.get(pc); }
+        if (cg == null) continue;
+        for (const c of kids) if (!gens.has(c)) { gens.set(c, cg); changed = true; }
       }
     }
     return { gens, childToFamily };
@@ -97,7 +104,8 @@
 
   // Elbow connectors from each couple down to their children. Drawn in an SVG
   // layer inside `wrap` (so it pans/zooms with the nodes) using positions
-  // measured at the initial identity transform.
+  // measured at the initial identity transform. Families with no parent in the
+  // tree (e.g. a grandparent's sibling group) draw no lines.
   function drawConnectors(wrap, tree, elById) {
     const NS = 'http://www.w3.org/2000/svg';
     const wr = wrap.getBoundingClientRect();
@@ -140,30 +148,38 @@
     const initials = (ind.names.given[0] || '') + (ind.names.surnames[0]?.[0] || '');
     el.innerHTML = '<span style="width:40px;height:40px;border-radius:50%;background:var(--earth,#8B5E3C);color:var(--cream,#F5EFE6);display:flex;align-items:center;justify-content:center;font-weight:600;flex:none;">' + initials + '</span>' +
       '<span><strong style="font-size:.9rem;">' + nameOf(ind) + '</strong></span>';
-    el.addEventListener('click', () => openDrawer(ind));
+    el.addEventListener('click', () => openCard(ind));
     return el;
   }
 
-  function openDrawer(ind) {
-    let d = document.getElementById('ft-drawer');
-    if (!d) {
-      d = document.createElement('div');
-      d.id = 'ft-drawer';
-      d.style.cssText = 'position:fixed;top:0;right:0;height:100%;width:min(380px,90vw);background:#fffdf8;box-shadow:-4px 0 24px rgba(0,0,0,.18);padding:24px;overflow:auto;z-index:50;';
-      document.body.appendChild(d);
-    }
-    const o = ind.surnameOrigin;
+  function closeCard() {
+    const o = document.getElementById('ft-modal');
+    if (o) o.remove();
+  }
+
+  // Centered popout card (small/medium). Closes via the ✕, clicking the
+  // backdrop, or Esc.
+  function openCard(ind) {
+    closeCard();
+    const o = document.createElement('div');
+    o.id = 'ft-modal';
+    o.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(28,19,9,.45);z-index:60;padding:1rem;';
+    o.addEventListener('click', (e) => { if (e.target === o) closeCard(); });
+
+    const oo = ind.surnameOrigin;
     const recs = (ind.recordLinks || []).map(r => '<li><a href="' + r.url + '" target="_blank" rel="noopener">' + r.label + '</a></li>').join('');
-    d.innerHTML =
-      '<button id="ft-close" style="float:right;border:none;background:none;font-size:1.4rem;cursor:pointer;">×</button>' +
-      '<h2 style="font-family:\'Playfair Display\',serif;font-weight:400;">' + nameOf(ind) + '</h2>' +
-      '<p><strong>' + (lang === 'es' ? 'Nació' : 'Born') + ':</strong> ' + ((ind.birth && (ind.birth.date || ind.birth.place)) || '—') + '</p>' +
-      ((ind.death && ind.death.date) ? '<p><strong>' + (lang === 'es' ? 'Falleció' : 'Died') + ':</strong> ' + ind.death.date + '</p>' : '') +
-      (o ? '<p style="background:#f7eecf;border-left:3px solid #c4785a;padding:8px 10px;border-radius:0 6px 6px 0;"><strong>' + (lang === 'es' ? 'Origen del apellido' : 'Surname origin') + ':</strong> ' + o.text + ' <em>(' + o.confidence + ')</em></p>' : '') +
-      (recs ? '<h3 style="font-size:.8rem;text-transform:uppercase;opacity:.6;">' + (lang === 'es' ? 'Registros' : 'Records') + '</h3><ul>' + recs + '</ul>' : '') +
-      ((ind.notes && ind.notes[lang]) ? '<p>' + ind.notes[lang] + '</p>' : '');
-    d.style.display = 'block';
-    document.getElementById('ft-close').addEventListener('click', () => { d.style.display = 'none'; });
+    o.innerHTML =
+      '<div role="dialog" aria-modal="true" aria-label="' + nameOf(ind) + '" style="position:relative;background:#fffdf8;width:min(440px,92vw);max-height:80vh;overflow:auto;border-radius:14px;box-shadow:0 14px 44px rgba(28,19,9,.30);padding:26px 24px 22px;">' +
+        '<button id="ft-close" aria-label="Close" style="position:absolute;top:10px;right:12px;border:none;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:rgba(28,19,9,.5);">×</button>' +
+        '<h2 style="font-family:\'Playfair Display\',serif;font-weight:400;font-size:1.4rem;margin:0 1.6rem .6rem 0;">' + nameOf(ind) + '</h2>' +
+        '<p style="margin:.2rem 0;"><strong>' + (lang === 'es' ? 'Nació' : 'Born') + ':</strong> ' + ((ind.birth && (ind.birth.date || ind.birth.place)) || '—') + '</p>' +
+        ((ind.death && ind.death.date) ? '<p style="margin:.2rem 0;"><strong>' + (lang === 'es' ? 'Falleció' : 'Died') + ':</strong> ' + ind.death.date + '</p>' : '') +
+        (oo ? '<p style="background:#f7eecf;border-left:3px solid #c4785a;padding:8px 10px;border-radius:0 6px 6px 0;margin:.8rem 0;"><strong>' + (lang === 'es' ? 'Origen del apellido' : 'Surname origin') + ':</strong> ' + oo.text + ' <em>(' + oo.confidence + ')</em></p>' : '') +
+        (recs ? '<h3 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;opacity:.6;margin:.9rem 0 .3rem;">' + (lang === 'es' ? 'Registros' : 'Records') + '</h3><ul style="margin:0;padding-left:1.1rem;">' + recs + '</ul>' : '') +
+        ((ind.notes && ind.notes[lang]) ? '<p style="margin:.8rem 0 0;color:rgba(28,19,9,.8);">' + ind.notes[lang] + '</p>' : '') +
+      '</div>';
+    document.body.appendChild(o);
+    o.querySelector('#ft-close').addEventListener('click', closeCard);
   }
 
   function enableZoomPan(container, target) {
