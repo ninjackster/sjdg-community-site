@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /en/family
+Disallow: /es/familia
 
 Sitemap: https://sanjosedegracia.net/sitemap.xml
