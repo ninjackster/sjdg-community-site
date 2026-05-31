@@ -49,6 +49,9 @@ export function buildPage({ lang, layout, pageTemplate, content, shared, siteUrl
     nav_urls: buildNavUrls(lang, pageSlugs),
   };
 
+  // Pages are indexable by default; private pages set meta.robots to "noindex, nofollow".
+  ctx.meta = { ...ctx.meta, robots: ctx.meta.robots ?? 'index, follow' };
+
   // Render the page body first, then inject it into the layout.
   const body = render(pageTemplate, ctx);
   return render(layout, { ...ctx, content: body });
