@@ -1,19 +1,36 @@
 <style>
-  .topic-wrap { max-width: 760px; margin: 0 auto; padding: 7rem 1.5rem 4rem; }
-  .topic-hero { border-bottom: 1px solid var(--mist); padding-bottom: 1.5rem; margin-bottom: 2rem; }
-  .topic-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
-  .topic-hero h1 em { font-style: italic; color: var(--clay); }
-  .topic-hero .lede { font-size: 1.05rem; line-height: 1.7; color: rgba(28,19,9,.75); }
-  .topic-section { margin-bottom: 2.4rem; }
-  .topic-section h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 500; line-height: 1.3; margin-bottom: .8rem; color: var(--dark); }
-  .topic-section p { font-size: .98rem; line-height: 1.75; color: rgba(28,19,9,.75); }
-  .topic-section a { color: var(--clay); text-decoration: none; border-bottom: 1px solid rgba(196,120,90,.35); }
-  .topic-section a:hover { color: var(--earth); border-color: var(--earth); }
-  .topic-cross { margin-top: 3rem; padding-top: 1.8rem; border-top: 1px solid var(--mist); }
-  .topic-cross h2 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: .8rem; color: var(--dark); }
-  .topic-cross ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .4rem; }
-  .topic-cross a { display: inline-block; font-size: .92rem; color: var(--clay); text-decoration: none; }
-  .topic-cross a:hover { color: var(--earth); text-decoration: underline; }
+  .cr-wrap { max-width: 820px; margin: 0 auto; padding: 7rem 1.5rem 4rem; }
+  .cr-hero { border-bottom: 1px solid var(--mist); padding-bottom: 1.6rem; margin-bottom: 2.4rem; }
+  .cr-kicker { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--clay); margin-bottom: .6rem; }
+  .cr-hero h1 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.1; margin-bottom: 1rem; }
+  .cr-hero h1 em { font-style: italic; color: var(--clay); }
+  .cr-lede { font-size: 1.08rem; line-height: 1.75; color: rgba(28,19,9,.78); }
+  .cr-byline { margin-top: 1rem; font-size: .85rem; color: rgba(28,19,9,.55); font-style: italic; }
+  .cr-actions { margin: 1.4rem 0 0; }
+  .cr-pdf { font: inherit; font-size: .85rem; cursor: pointer; background: var(--clay); color: #fff; border: none; border-radius: 6px; padding: .55rem 1.1rem; }
+  .cr-section { margin-bottom: 2.6rem; }
+  .cr-section h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; line-height: 1.3; margin-bottom: .8rem; color: var(--dark); }
+  .cr-section p { font-size: 1rem; line-height: 1.8; color: rgba(28,19,9,.8); margin-bottom: 1rem; }
+  .cr-section blockquote { border-left: 3px solid var(--clay); margin: 1.2rem 0; padding: .4rem 0 .4rem 1.1rem; color: rgba(28,19,9,.7); }
+  .cr-section a { color: var(--clay); }
+  .cr-sources { margin-top: 3rem; padding-top: 1.8rem; border-top: 1px solid var(--mist); font-size: .9rem; }
+  .cr-sources ul { line-height: 1.7; }
+  .cr-cross { margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--mist); }
+  .cr-cross ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 1rem; }
+  .cr-cross a { color: var(--clay); text-decoration: none; }
+
+  @media print {
+    body * { visibility: hidden; }
+    .cr-wrap, .cr-wrap * { visibility: visible; }
+    .cr-wrap { position: absolute; left: 0; top: 0; max-width: 100%; padding: 1.5cm; }
+    .cr-actions, .cr-cross { display: none; }
+    .cr-section { page-break-inside: avoid; }
+    .cr-section h2 { page-break-after: avoid; }
+    /* Diagonal watermark + running footer */
+    .cr-wrap::before { content: "Compilado por Jaime Murillo"; position: fixed; top: 45%; left: 50%; transform: translate(-50%,-50%) rotate(-30deg); font-size: 3rem; color: rgba(196,120,90,.10); white-space: nowrap; z-index: 0; }
+    .cr-wrap::after { content: "La Crónica de San José de Gracia · sanjosedegracia.net"; position: fixed; bottom: .6cm; left: 0; right: 0; text-align: center; font-size: .7rem; color: rgba(28,19,9,.5); }
+    a[href]::after { content: ""; } /* don't print raw URLs inline */
+  }
 </style>
 
 <script type="application/ld+json">
@@ -23,37 +40,42 @@
   "headline": "{{meta.title}}",
   "description": "{{meta.description}}",
   "inLanguage": "{{lang}}",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "{{shared.common.site_name}}",
-    "url": "{{shared.common.site_url}}"
-  },
-  "about": {
-    "@type": "Place",
-    "name": "San José de Gracia",
-    "address": { "@type": "PostalAddress", "addressLocality": "San José de Gracia", "addressRegion": "Jalisco", "addressCountry": "MX" }
-  }
+  "author": { "@type": "Person", "name": "Jaime Murillo" },
+  "isPartOf": { "@type": "WebSite", "name": "{{shared.common.site_name}}", "url": "{{shared.common.site_url}}" },
+  "about": { "@type": "Place", "name": "San José de Gracia", "address": { "@type": "PostalAddress", "addressLocality": "San José de Gracia", "addressRegion": "Jalisco", "addressCountry": "MX" } }
 }
 </script>
 
-<div class="topic-wrap">
-  <div class="topic-hero">
+<div class="cr-wrap">
+  <header class="cr-hero">
+    <div class="cr-kicker">{{hero.kicker}}</div>
     <h1>{{hero.h1}}</h1>
-    <p class="lede">{{hero.intro}}</p>
-  </div>
+    <p class="cr-lede">{{hero.intro}}</p>
+    <p class="cr-byline">{{byline}}</p>
+    <div class="cr-actions"><button class="cr-pdf" onclick="window.print()">{{pdf.label}}</button></div>
+  </header>
 
-  <div class="topic-section"><h2>{{sections.founding.h2}}</h2><p>{{sections.founding.p}}</p></div>
-  <div class="topic-section"><h2>{{sections.cristero.h2}}</h2><p>{{sections.cristero.p}}</p></div>
-  <div class="topic-section"><h2>{{sections.ranching.h2}}</h2><p>{{sections.ranching.p}}</p></div>
-  <div class="topic-section"><h2>{{sections.diaspora.h2}}</h2><p>{{sections.diaspora.p}}</p></div>
-  <div class="topic-section"><h2>{{sections.today.h2}}</h2><p>{{sections.today.p}}</p></div>
+  <section class="cr-section" id="sec-place"><h2>{{sections.place.h2}}</h2>{{sections.place.body}}</section>
+  <section class="cr-section" id="sec-origins"><h2>{{sections.origins.h2}}</h2>{{sections.origins.body}}</section>
+  <section class="cr-section" id="sec-administrative"><h2>{{sections.administrative.h2}}</h2>{{sections.administrative.body}}</section>
+  <section class="cr-section" id="sec-faith"><h2>{{sections.faith.h2}}</h2>{{sections.faith.body}}</section>
+  <section class="cr-section" id="sec-cristero"><h2>{{sections.cristero.h2}}</h2>{{sections.cristero.body}}</section>
+  <section class="cr-section" id="sec-economy"><h2>{{sections.economy.h2}}</h2>{{sections.economy.body}}</section>
+  <section class="cr-section" id="sec-people"><h2>{{sections.people.h2}}</h2>{{sections.people.body}}</section>
+  <section class="cr-section" id="sec-culture"><h2>{{sections.culture.h2}}</h2>{{sections.culture.body}}</section>
+  <section class="cr-section" id="sec-book1897"><h2>{{sections.book1897.h2}}</h2>{{sections.book1897.body}}</section>
 
-  <div class="topic-cross">
-    <h2>{{cross_links.h2}}</h2>
+  <section class="cr-sources" id="sec-sources">
+    <h2>{{sources.h2}}</h2>
+    <p>{{sources.note}}</p>
+    {{sources.body}}
+  </section>
+
+  <nav class="cr-cross">
     <ul>
-      <li><a href="{{nav_urls.festivals}}">{{cross_links.festivals}} →</a></li>
-      <li><a href="{{nav_urls.tour}}">{{cross_links.tour}} →</a></li>
-      <li><a href="{{nav_urls.things-to-do}}">{{cross_links.things_to_do}} →</a></li>
+      <li><a href="{{nav_urls.festivals}}">{{cross_links.festivals}}</a></li>
+      <li><a href="{{nav_urls.tour}}">{{cross_links.tour}}</a></li>
+      <li><a href="{{nav_urls.things-to-do}}">{{cross_links.things_to_do}}</a></li>
     </ul>
-  </div>
+  </nav>
 </div>
