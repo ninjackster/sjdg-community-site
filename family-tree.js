@@ -1,5 +1,6 @@
 // family-tree.js — served statically, runs on /en/family and /es/familia
 import { layoutHourglass } from '/hourglass-layout.js';
+import { relationshipLabel } from '/kinship.js';
 (function () {
   const login = document.getElementById('ft-login');
   const canvas = document.getElementById('ft-canvas');
@@ -9,6 +10,7 @@ import { layoutHourglass } from '/hourglass-layout.js';
   if (!login || !canvas) return;
   const lang = (canvas.getAttribute('data-lang') || 'en').slice(0, 2); // 'es-MX' -> 'es'
   let FOCAL_ID = null;
+  let TREE = null;
 
   async function tryLoad() {
     const res = await fetch('/api/family-tree', { credentials: 'same-origin' });
@@ -77,6 +79,7 @@ import { layoutHourglass } from '/hourglass-layout.js';
   function draw(tree) {
     const rootId = tree.individuals[0].id;
     FOCAL_ID = rootId;
+    TREE = tree;
     const byId = new Map(tree.individuals.map(i => [i.id, i]));
 
     // ---- Relationship maps (computed once) ----
@@ -492,11 +495,13 @@ import { layoutHourglass } from '/hourglass-layout.js';
     o.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(28,19,9,.45);z-index:60;padding:1rem;';
     o.addEventListener('click', (e) => { if (e.target === o) closeCard(); });
     const oo = ind.surnameOrigin;
+    const rel = (TREE && ind.id) ? relationshipLabel(TREE, FOCAL_ID, ind.id, lang) : '';
     const recs = (ind.recordLinks || []).map(r => '<li><a href="' + r.url + '" target="_blank" rel="noopener">' + r.label + '</a></li>').join('');
     o.innerHTML =
       '<div role="dialog" aria-modal="true" aria-label="' + nameOf(ind) + '" style="position:relative;background:#fffdf8;width:min(440px,92vw);max-height:80vh;overflow:auto;border-radius:14px;box-shadow:0 14px 44px rgba(28,19,9,.30);padding:26px 24px 22px;">' +
         '<button id="ft-close" aria-label="Close" style="position:absolute;top:10px;right:12px;border:none;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:rgba(28,19,9,.5);">×</button>' +
-        '<h2 style="font-family:\'Playfair Display\',serif;font-weight:400;font-size:1.4rem;margin:0 1.6rem .5rem 0;">' + nameOf(ind) + '</h2>' +
+        '<h2 style="font-family:\'Playfair Display\',serif;font-weight:400;font-size:1.4rem;margin:0 1.6rem .25rem 0;">' + nameOf(ind) + '</h2>' +
+        (rel ? '<p style="margin:0 0 .6rem;color:var(--clay,#C4785A);font-size:.84rem;font-weight:500;">' + rel + '</p>' : '') +
         (ind.adopted ? '<p style="display:inline-block;font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;background:rgba(196,120,90,.15);color:var(--clay,#C4785A);padding:2px 9px;border-radius:99px;margin:0 0 .6rem;">' + (lang === 'es' ? 'Adoptado' : 'Adopted') + '</p>' : '') +
         '<p style="margin:.2rem 0;"><strong>' + (lang === 'es' ? 'Nació' : 'Born') + ':</strong> ' + ((ind.birth && (ind.birth.date || ind.birth.place)) || '—') + '</p>' +
         ((ind.death && ind.death.date) ? '<p style="margin:.2rem 0;"><strong>' + (lang === 'es' ? 'Falleció' : 'Died') + ':</strong> ' + ind.death.date + '</p>' : '') +
