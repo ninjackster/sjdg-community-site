@@ -509,10 +509,56 @@ import { relationshipLabel } from '/kinship.js';
         (recs ? '<h3 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;opacity:.6;margin:.9rem 0 .3rem;">' + (lang === 'es' ? 'Registros' : 'Records') + '</h3><ul style="margin:0;padding-left:1.1rem;">' + recs + '</ul>' : '') +
         ((ind.notes && ind.notes[lang]) ? '<p style="margin:.8rem 0 0;color:rgba(28,19,9,.8);">' + ind.notes[lang] + '</p>' : '') +
         '<button id="ft-suggest" style="margin-top:1rem;width:100%;padding:.6rem;border:1px dashed var(--clay,#C4785A);background:#fff;color:var(--clay,#C4785A);border-radius:8px;cursor:pointer;font:inherit;font-size:.85rem;">' + (lang === 'es' ? '＋ Sugerir un familiar' : '＋ Suggest a relative') + '</button>' +
+        '<button id="ft-edit" style="margin-top:.5rem;width:100%;padding:.6rem;border:1px dashed var(--earth,#8B5E3C);background:#fff;color:var(--earth,#8B5E3C);border-radius:8px;cursor:pointer;font:inherit;font-size:.85rem;">' + (lang === 'es' ? '✎ Sugerir una corrección' : '✎ Suggest a correction') + '</button>' +
       '</div>';
     document.body.appendChild(o);
     o.querySelector('#ft-close').addEventListener('click', closeCard);
     o.querySelector('#ft-suggest').addEventListener('click', () => openSuggest(ind));
+    o.querySelector('#ft-edit').addEventListener('click', () => openEdit(ind));
+  }
+
+  function openEdit(ind) {
+    closeCard();
+    const es = lang === 'es';
+    const o = document.createElement('div');
+    o.id = 'ft-modal';
+    o.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(28,19,9,.45);z-index:60;padding:1rem;';
+    o.addEventListener('click', (e) => { if (e.target === o) closeCard(); });
+    const inp = 'width:100%;padding:.5rem;margin:.25rem 0 .6rem;border:1px solid var(--mist,#EDE8DF);border-radius:6px;font:inherit;box-sizing:border-box;';
+    const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const given = ind.names.given || '';
+    const sur = (ind.names.surnames || []).join(' ');
+    const birth = (ind.birth && ind.birth.date) || '';
+    const death = (ind.death && ind.death.date) || '';
+    const note = (ind.notes && ind.notes[lang]) || '';
+    o.innerHTML =
+      '<div role="dialog" aria-modal="true" style="position:relative;background:#fffdf8;width:min(420px,93vw);max-height:88vh;overflow:auto;border-radius:14px;box-shadow:0 14px 44px rgba(28,19,9,.30);padding:24px;">' +
+        '<button id="ft-close" aria-label="Close" style="position:absolute;top:10px;right:12px;border:none;background:none;font-size:1.6rem;cursor:pointer;color:rgba(28,19,9,.5);">×</button>' +
+        '<h2 style="font-family:\'Playfair Display\',serif;font-weight:400;font-size:1.25rem;margin:0 1.6rem .2rem 0;">' + (es ? 'Sugerir una corrección' : 'Suggest a correction') + '</h2>' +
+        '<p style="font-size:.85rem;color:rgba(28,19,9,.6);margin:0 0 1rem;">' + nameOf(ind) + '</p>' +
+        '<label style="font-size:.8rem;">' + (es ? 'Nombre(s)' : 'First name(s)') + '</label><input id="ed-given" value="' + esc(given) + '" style="' + inp + '" />' +
+        '<label style="font-size:.8rem;">' + (es ? 'Apellidos' : 'Surnames') + '</label><input id="ed-sur" value="' + esc(sur) + '" placeholder="' + (es ? 'separados por espacio' : 'space-separated') + '" style="' + inp + '" />' +
+        '<div style="display:flex;gap:.6rem;"><div style="flex:1;"><label style="font-size:.8rem;">' + (es ? 'Nació' : 'Born') + '</label><input id="ed-birth" value="' + esc(birth) + '" style="' + inp + '" /></div><div style="flex:1;"><label style="font-size:.8rem;">' + (es ? 'Falleció' : 'Died') + '</label><input id="ed-death" value="' + esc(death) + '" style="' + inp + '" /></div></div>' +
+        '<label style="font-size:.8rem;">' + (es ? 'Nota' : 'Note') + '</label><textarea id="ed-note" rows="2" style="' + inp + 'resize:vertical;">' + esc(note) + '</textarea>' +
+        '<div id="ed-msg" style="font-size:.8rem;min-height:1.1em;margin:.2rem 0;"></div>' +
+        '<button id="ed-send" style="width:100%;padding:.6rem;border:none;border-radius:8px;background:var(--earth,#8B5E3C);color:#fff;cursor:pointer;font:inherit;">' + (es ? 'Enviar para revisión' : 'Submit for review') + '</button>' +
+      '</div>';
+    document.body.appendChild(o);
+    o.querySelector('#ft-close').addEventListener('click', closeCard);
+    const msg = o.querySelector('#ed-msg');
+    o.querySelector('#ed-send').addEventListener('click', async () => {
+      const g = o.querySelector('#ed-given').value.trim();
+      if (!g) { msg.style.color = '#b00'; msg.textContent = es ? 'Falta el nombre.' : 'Name required.'; return; }
+      msg.style.color = 'rgba(28,19,9,.6)'; msg.textContent = es ? 'Enviando…' : 'Sending…';
+      try {
+        const res = await fetch('/api/family-suggest', {
+          method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ kind: 'edit', targetId: ind.id, given: g, surnames: o.querySelector('#ed-sur').value, birth: o.querySelector('#ed-birth').value, death: o.querySelector('#ed-death').value, note: o.querySelector('#ed-note').value }),
+        });
+        if (res.ok) { msg.style.color = 'var(--sage,#7A8C6A)'; msg.textContent = es ? '¡Gracias! Enviado para revisión.' : 'Thanks! Sent for review.'; o.querySelector('#ed-send').disabled = true; }
+        else { msg.style.color = '#b00'; msg.textContent = es ? 'Error al enviar.' : 'Submit failed.'; }
+      } catch (_) { msg.style.color = '#b00'; msg.textContent = es ? 'Error de red.' : 'Network error.'; }
+    });
   }
 
   function resizePhoto(file) {

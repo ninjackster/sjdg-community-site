@@ -1,4 +1,5 @@
 import { verifyToken } from '../scripts/lib/family-cookie.js';
+import { buildEditSubmission } from '../scripts/lib/family-subs.js';
 
 const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
 const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
@@ -28,6 +29,16 @@ export default async function handler(req, res) {
   if (!REDIS_URL || !REDIS_TOKEN) return res.status(500).json({ error: 'Storage not configured' });
 
   const b = req.body || {};
+
+  // Suggest-a-correction (edit to an existing person) — same review queue, tagged kind:'edit'.
+  if (b.kind === 'edit') {
+    const eid = 'X' + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36);
+    const { sub, error } = buildEditSubmission(b, eid, Date.now());
+    if (error) return res.status(400).json({ error });
+    await redis(['HSET', HASH, sub.id, JSON.stringify(sub)]);
+    return res.json({ ok: true });
+  }
+
   const given = typeof b.given === 'string' ? b.given.trim().slice(0, 60) : '';
   if (!given) return res.status(400).json({ error: 'name required' });
   if (!b.relativeOf || typeof b.relativeOf !== 'string') return res.status(400).json({ error: 'relativeOf required' });
