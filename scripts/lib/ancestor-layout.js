@@ -110,11 +110,25 @@ export function layoutAncestors(tree, focalId, opts = {}) {
   focalReserve = Math.max(nodeW, focalReserve - gap);
   const half = focalReserve / 2 + gap / 2;
 
+  // A focal parent may have a SECOND family (e.g. a half-sibling's other parent). Slot that
+  // extra spouse in just outward of the parent (dir side), shifting the parent's gen-1 siblings
+  // out to make room. The half-sibling (gen 0) is then placed by the caller under that union.
+  const injectExtraSpouses = (cells, parentId, dir) => {
+    for (const f of tree.families) {
+      if (f.id === focalFamId || (f.husband !== parentId && f.wife !== parentId)) continue;
+      const sp = f.husband === parentId ? f.wife : f.husband;
+      if (!vis(sp)) continue;
+      const INS = nodeW + gap;
+      for (const c of cells) if (c.gen === 1 && c.id !== parentId && Math.sign(c.x) === dir) c.x += dir * INS;
+      cells.push({ id: sp, x: dir * (nodeW + gap), gen: 1 });
+    }
+  };
+
   const both = momId && dadId;                        // with one parent only, centre it over the focal
   const momOff = both ? -half : 0, dadOff = both ? half : 0;
   const all = [];
-  if (momId) { const mB = block(momId, 1, -1); for (const c of mB.cells) all.push({ id: c.id, x: c.x + momOff, gen: c.gen }); }
-  if (dadId) { const pB = block(dadId, 1, 1); for (const c of pB.cells) all.push({ id: c.id, x: c.x + dadOff, gen: c.gen }); }
+  if (momId) { const mB = block(momId, 1, -1); injectExtraSpouses(mB.cells, momId, -1); for (const c of mB.cells) all.push({ id: c.id, x: c.x + momOff, gen: c.gen }); }
+  if (dadId) { const pB = block(dadId, 1, 1); injectExtraSpouses(pB.cells, dadId, 1); for (const c of pB.cells) all.push({ id: c.id, x: c.x + dadOff, gen: c.gen }); }
   for (const c of all) out.set(c.id, { x: c.x, gen: c.gen });
   out.set(focalId, { x: 0, gen: 0 });
   return out;
