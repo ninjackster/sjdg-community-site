@@ -1,8 +1,30 @@
 # BACKLOG — Family tree: recursive bifurcation + directional expand/contract
 
-**Status:** Backlogged (not started). Requested by Jaime 2026-05-31.
+**Status:** Largely implemented 2026-06-02 on branch `feature/family-tree-bifurcation`
+(spec `docs/superpowers/specs/2026-06-01-family-tree-bifurcation-design.md`,
+plan `docs/superpowers/plans/2026-06-01-family-tree-bifurcation.md`).
 **Owner:** Jaime Murillo
 **Area:** `family-tree.js` layout engine (the private tree at `/es/familia`).
+
+### What shipped (2026-06-02)
+- New pure module `scripts/lib/ancestor-layout.js` (`layoutAncestors`) does
+  recursive-bifurcation layout of the **entire ancestor region** (gen ≥ 1): every
+  direct ancestor sits centred under its parents; collateral aunts/uncles &
+  great-aunts/uncles fan outward with their married-in spouse; each couple's wife
+  block is laid strictly left of the husband block, so **no lineage lines cross**.
+  Maternal (Mena/Ruiz) fills the left, paternal (Murillo/Patiño) the right.
+- The client inlines the same function (sync-guarded by a test) and uses it for all
+  gen ≥ 1 + the focal anchor; descendants (gen ≤ 0) keep the existing child-centering.
+- **Compact default view** (a slice of scope B): great-aunts/uncles (gen ≥ 2
+  collaterals) and cousins collapse behind `+N` toggles; the direct line + your own
+  aunts/uncles + your siblings show by default. Expanding a direct ancestor reveals
+  its siblings; expanding a relative reveals their children. Verified in-browser.
+
+### Still backlogged (scope B remainder)
+- Dedicated directional **▲ expand-up / ◀▶ expand-sideways** affordances distinct
+  from the unified `+N` toggle, and any further compaction of the focal-couple gap
+  (parents are pushed apart by the inner grandparents nesting between them — inherent
+  to a non-overlapping pedigree, acceptable but could be tuned).
 
 ## Problem (observed in production)
 
