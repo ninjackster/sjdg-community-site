@@ -184,12 +184,29 @@ export function layoutHourglass(tree, focalId, opts = {}) {
   const focalSibs = (focalFam.children || []).filter(vis);
   let reserve = 0; for (const c of focalSibs) reserve += layoutSubtree(c, 0, model, lopts).w + gap;
   reserve = Math.max(nodeW, reserve - gap);
-  const half = reserve / 2 + gap / 2;
-
-  // Collect half-siblings (children of a focal parent's other families) keyed by direction.
+  // Half-siblings = children of a focal parent's OTHER families, keyed by side (-1 maternal,
+  // +1 paternal). They sit at gen 0 in the seam gap beside the focal band; their footprint must
+  // be RESERVED so the ancestor side on that side is pushed out far enough not to overlap them.
   const halfSibsByDir = { '-1': [], '1': [] };
-  // NOTE: we insert only the bare second-family spouse node here; that spouse's OWN ancestors
-  // (step-grandparents of the focal) are intentionally out of scope and not laid out.
+  for (const [pid, dir] of [[momId, -1], [dadId, 1]]) {
+    if (!pid) continue;
+    for (const f of tree.families) {
+      if (f.id === model.focalFamId || (f.husband !== pid && f.wife !== pid)) continue;
+      for (const hs of (f.children || [])) if (vis(hs) && hs !== focalId) halfSibsByDir[String(dir)].push(hs);
+    }
+  }
+  const halfSibBandWidth = (dir) => {
+    let w = 0; for (const hs of halfSibsByDir[String(dir)]) w += gap + layoutSubtree(hs, 0, model, lopts).w;
+    return w; // total width (incl. a leading gap per half-sib); 0 when none on this side
+  };
+  // Each ancestor side must clear: focal band edge (reserve/2) + its half-sib band + gap + the
+  // ancestor node's own half-width. Symmetric offsets keep the focal centred at the seam.
+  const half = Math.max(reserve / 2 + gap / 2,
+    reserve / 2 + halfSibBandWidth(-1) + gap + nodeW / 2,
+    reserve / 2 + halfSibBandWidth(1) + gap + nodeW / 2);
+
+  // Insert a focal parent's second-family SPOUSE just outward of that parent (gen 1). Only the
+  // bare spouse is added; that spouse's own ancestors (step-grandparents) are out of scope.
   const injectExtra = (cells, parentId, dir) => {
     for (const f of tree.families) {
       if (f.id === model.focalFamId || (f.husband !== parentId && f.wife !== parentId)) continue;
@@ -198,8 +215,6 @@ export function layoutHourglass(tree, focalId, opts = {}) {
       const INS = nodeW + gap;
       for (const c of cells) if (c.gen === 1 && c.id !== parentId && c.x * dir >= 0) c.x += dir * INS;
       cells.push({ id: sp, x: dir * (nodeW + gap), gen: 1 });
-      // Collect half-siblings to be placed at gen 0 on this side.
-      for (const hs of (f.children || [])) { if (vis(hs) && hs !== focalId) halfSibsByDir[String(dir)].push(hs); }
     }
   };
 
@@ -232,26 +247,19 @@ export function layoutHourglass(tree, focalId, opts = {}) {
   // Pin focal exactly between mom and dad.
   out.set(focalId, { x: fxParentsMidpoint, gen: 0 });
 
-  // Place half-siblings at gen 0 outward of the focal band on their respective side.
-  // Find the current rightmost/leftmost x of the focal band to anchor half-sibs outward.
-  let bandRightEdge = fxParentsMidpoint + nodeW / 2;
-  let bandLeftEdge = fxParentsMidpoint - nodeW / 2;
-  for (const [, v] of out) {
-    if (v.gen === 0) {
-      bandRightEdge = Math.max(bandRightEdge, v.x + nodeW / 2);
-      bandLeftEdge = Math.min(bandLeftEdge, v.x - nodeW / 2);
-    }
-  }
+  // Place half-siblings at gen 0 in the seam gap, anchored to the FOCAL BAND edge (reserve/2 from
+  // the focal) — never to other gen-0 nodes — so expanded collateral descendants can't push them out.
+  let rightCursor = fxParentsMidpoint + reserve / 2 + gap;
   for (const hs of halfSibsByDir['1']) {
     const s = layoutSubtree(hs, 0, model, lopts);
-    const hsX = bandRightEdge + gap + s.w / 2;
-    for (const cell of s.cells) out.set(cell.id, { x: bandRightEdge + gap + cell.x, gen: cell.gen });
-    bandRightEdge += gap + s.w;
+    for (const cell of s.cells) out.set(cell.id, { x: rightCursor + cell.x, gen: cell.gen });
+    rightCursor += s.w + gap;
   }
+  let leftCursor = fxParentsMidpoint - reserve / 2 - gap;
   for (const hs of halfSibsByDir['-1']) {
     const s = layoutSubtree(hs, 0, model, lopts);
-    for (const cell of s.cells) out.set(cell.id, { x: bandLeftEdge - gap - s.w + cell.x, gen: cell.gen });
-    bandLeftEdge -= gap + s.w;
+    for (const cell of s.cells) out.set(cell.id, { x: leftCursor - s.w + cell.x, gen: cell.gen });
+    leftCursor -= s.w + gap;
   }
 
   return finish();
