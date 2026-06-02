@@ -38,6 +38,45 @@
 
   function nameOf(ind) { return (ind.names.given + ' ' + ind.names.surnames.join(' ')).trim(); }
 
+  // Recursive-bifurcation ancestor layout (mirror of scripts/lib/ancestor-layout.js;
+  // kept in sync by tests/ancestor-layout-client-sync.test.js). Returns Map<id,{x,gen}>.
+  function layoutAncestors(tree, focalId, nodeW, gap, isHidden) {
+    const famById = new Map(tree.families.map(f => [f.id, f]));
+    const childToFamily = new Map();
+    for (const f of tree.families) {
+      for (const c of (f.children || [])) if (!childToFamily.has(c)) childToFamily.set(c, f.id);
+    }
+    const out = new Map();
+    if (!childToFamily.has(focalId)) { out.set(focalId, { x: 0, gen: 0 }); return out; }
+    function block(personId, gen) {
+      const fam = famById.get(childToFamily.get(personId));
+      const ups = [];
+      if (fam) {
+        if (fam.wife && !isHidden(fam.wife)) ups.push(fam.wife);
+        if (fam.husband && !isHidden(fam.husband)) ups.push(fam.husband);
+      }
+      if (ups.length === 0) {
+        return { width: nodeW, anchorX: nodeW / 2, cells: [{ id: personId, x: nodeW / 2, gen }] };
+      }
+      const cells = [];
+      const anchors = [];
+      let cursor = 0;
+      for (const pid of ups) {
+        const b = block(pid, gen + 1);
+        for (const c of b.cells) cells.push({ id: c.id, x: c.x + cursor, gen: c.gen });
+        anchors.push(cursor + b.anchorX);
+        cursor += b.width + gap;
+      }
+      const width = cursor - gap;
+      const selfX = (anchors[0] + anchors[anchors.length - 1]) / 2;
+      cells.push({ id: personId, x: selfX, gen });
+      return { width, anchorX: selfX, cells };
+    }
+    const root = block(focalId, 0);
+    for (const c of root.cells) out.set(c.id, { x: c.x, gen: c.gen });
+    return out;
+  }
+
   // Generation depth from the root (0). Ancestors walk upward (positive),
   // descendants below (negative); a family's children sit one below a placed
   // parent (or a placed sibling's level), a married-in spouse takes their level.
@@ -177,12 +216,19 @@
       // x-assignment: youngest generation first; center over placed children;
       // de-overlap left-to-right; keep adjacent same-side couples as a unit.
       const xpos = new Map();
+      // Ancestor spine (gen >= 0 along direct lineage) via recursive bifurcation.
+      const spine = layoutAncestors(tree, rootId, NODE_W, GAP, (id) => hidden.has(id));
+      const spineIds = new Set(spine.keys());
+      for (const [id, p] of spine) if (!hidden.has(id)) xpos.set(id, p.x);
       for (let g = gMin; g <= gMax; g++) {
         const ids = order[g]; if (!ids) continue;
         const avgKids = (id) => { const k = (kidsOf.get(id) || []).filter(c => xpos.has(c)); return k.length ? k.reduce((s, c) => s + xpos.get(c), 0) / k.length : null; };
         let prev = null, prevX = 0, i = 0;
         while (i < ids.length) {
           const id = ids[i], sp = coupleOf.get(id);
+          if (spineIds.has(id) && xpos.has(id)) {        // pinned by bifurcation — keep, advance
+            prev = id; prevX = xpos.get(id); i += 1; continue;
+          }
           if (sp && ids[i + 1] === sp && sideOf(id) === sideOf(sp)) {
             const kx = [].concat(kidsOf.get(id) || [], kidsOf.get(sp) || []).filter(c => xpos.has(c)).map(c => xpos.get(c));
             const desired = kx.length ? kx.reduce((s, v) => s + v, 0) / kx.length : null;
@@ -217,6 +263,7 @@
         }
         let prev = null, prevX = 0;
         for (const id of rowIds) {
+          if (spineIds.has(id)) { prev = id; prevX = xpos.get(id); continue; } // anchor: never shift
           let target = prov.has(id) ? prov.get(id) : xpos.get(id);
           if (prev != null) { const mn = prevX + spacing(prev, id); if (target < mn) target = mn; }
           const dx = target - (xpos.get(id) || 0);
