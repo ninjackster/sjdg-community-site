@@ -76,7 +76,15 @@ client `anchorOf`/collapse model, gate a married-in spouse of a NON-direct perso
 blood-relative partner (or a dedicated toggle); keep `injectExtraSpouses` / focal-parent
 spouses as-is. Verify the suggest-a-relative + couple connectors still read correctly.
 
-## Backlog — one-click "open whole subtree" (requested 2026-06-02)
+## ✅ SHIPPED 2026-06-02 — one-click "open whole subtree" (requested 2026-06-02)
+
+Done on branch `feature/subtree-expand` (merged to main `7b11245`). The expand toggle now calls
+`deepExpand`/`deepCollapse`, which cascade through the descendant + married-in-spouse direction
+(`inSubtreeDir` = gated id is the anchor's child or spouse) over the existing anchor model, so a
+relative's whole direct subtree opens/closes in one click. Sibling reveals stay single-level (a
+direct ancestor's collateral siblings are NOT auto-cascaded). Verified in-browser on preview:
+clicking Chuy revealed all 8 descendants across 3 generations, 0 overlaps; re-click removed the
+whole subtree; expanding grandpa José still revealed only his 6 siblings (no cascade). Original ask:
 
 When expanding a relative (e.g. Santos), open their ENTIRE direct subtree at once — spouse +
 children (+ grandchildren …) — instead of the current step-by-step (reveal spouse, then click
