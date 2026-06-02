@@ -408,6 +408,7 @@ import { computeStats, surnameColor } from '/family-stats.js';
     controls.appendChild(mkBtn('❋', lang === 'es' ? 'Abanico / árbol' : 'Fan / tree view', () => { mode = mode === 'tree' ? 'fan' : 'tree'; if (mode === 'fan') renderFan(); else { firstRender = true; render(); } }));
     controls.appendChild(mkBtn('🎨', lang === 'es' ? 'Colorear por apellido' : 'Color by surname', () => { colorOn = !colorOn; if (mode === 'tree') render(); }));
     controls.appendChild(mkBtn('📊', lang === 'es' ? 'Estadísticas' : 'Statistics', () => openStats()));
+    controls.appendChild(mkBtn('👥', lang === 'es' ? '¿Cómo se relacionan dos personas?' : 'How are two people related?', () => openRelCalc()));
     canvas.appendChild(controls);
 
     // Keyboard navigation between relatives: arrows move up (parent) / down
@@ -552,6 +553,51 @@ import { computeStats, surnameColor } from '/family-stats.js';
       '</div>';
     document.body.appendChild(o);
     o.querySelector('#ft-close').addEventListener('click', closeCard);
+  }
+
+  function openRelCalc() {
+    closeCard();
+    const es = lang === 'es';
+    const find = (id) => TREE.individuals.find(i => i.id === id);
+    const state = { a: FOCAL_ID, b: null };
+    const o = document.createElement('div');
+    o.id = 'ft-modal';
+    o.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(28,19,9,.45);z-index:60;padding:1rem;';
+    o.addEventListener('click', (e) => { if (e.target === o) closeCard(); });
+    const inp = 'width:100%;padding:.5rem .7rem;border:1px solid var(--mist,#EDE8DF);border-radius:8px;font:inherit;font-size:.85rem;box-sizing:border-box;';
+    const resBox = 'position:absolute;left:0;right:0;background:#fffdf8;border-radius:8px;box-shadow:0 4px 14px rgba(28,19,9,.18);z-index:2;display:none;max-height:34vh;overflow:auto;';
+    o.innerHTML =
+      '<div role="dialog" aria-modal="true" aria-label="' + (es ? 'Parentesco' : 'Relationship') + '" style="position:relative;background:#fffdf8;width:min(440px,94vw);border-radius:14px;box-shadow:0 14px 44px rgba(28,19,9,.30);padding:24px;">' +
+        '<button id="ft-close" aria-label="Close" style="position:absolute;top:10px;right:12px;border:none;background:none;font-size:1.6rem;cursor:pointer;color:rgba(28,19,9,.5);">×</button>' +
+        '<h2 style="font-family:\'Playfair Display\',serif;font-weight:400;font-size:1.3rem;margin:0 1.6rem 1rem 0;">' + (es ? '¿Cómo se relacionan?' : 'How are they related?') + '</h2>' +
+        '<label style="font-size:.8rem;">' + (es ? 'Persona A' : 'Person A') + '</label><div style="position:relative;"><input id="rc-a" autocomplete="off" style="' + inp + '" /><div id="rc-a-res" style="' + resBox + '"></div></div>' +
+        '<label style="font-size:.8rem;display:block;margin-top:.7rem;">' + (es ? 'Persona B' : 'Person B') + '</label><div style="position:relative;"><input id="rc-b" autocomplete="off" placeholder="' + (es ? 'Buscar…' : 'Search…') + '" style="' + inp + '" /><div id="rc-b-res" style="' + resBox + '"></div></div>' +
+        '<div id="rc-out" style="margin-top:1.1rem;padding:.8rem;background:#f7eecf;border-radius:8px;font-size:.95rem;line-height:1.4;min-height:1.2em;color:var(--ink,#1c1309);"></div>' +
+      '</div>';
+    document.body.appendChild(o);
+    o.querySelector('#ft-close').addEventListener('click', closeCard);
+    const out = o.querySelector('#rc-out');
+    const compute = () => {
+      if (!state.a || !state.b) { out.textContent = es ? 'Elige dos personas.' : 'Pick two people.'; return; }
+      if (state.a === state.b) { out.textContent = es ? 'Es la misma persona.' : 'Same person.'; return; }
+      const label = relationshipLabel(TREE, state.a, state.b, lang);
+      const low = label.charAt(0).toLowerCase() + label.slice(1);
+      const an = nameOf(find(state.a)), bn = nameOf(find(state.b));
+      out.innerHTML = es ? ('<strong>' + bn + '</strong> es <strong>' + low + '</strong> de ' + an + '.') : ('<strong>' + bn + '</strong> is ' + an + "'s <strong>" + low + '</strong>.');
+    };
+    const wire = (key, inputId, resId) => {
+      const input = o.querySelector('#' + inputId), res = o.querySelector('#' + resId);
+      input.addEventListener('input', () => {
+        const m = searchPeople(TREE, input.value);
+        if (!m.length) { res.style.display = 'none'; res.innerHTML = ''; return; }
+        res.innerHTML = m.map(x => '<button type="button" data-id="' + x.id + '" style="display:block;width:100%;text-align:left;padding:.4rem .7rem;border:none;border-bottom:1px solid var(--mist,#EDE8DF);background:none;cursor:pointer;font:inherit;font-size:.85rem;">' + nameOf(find(x.id)) + '</button>').join('');
+        res.style.display = 'block';
+      });
+      res.addEventListener('mousedown', (e) => { const b = e.target.closest('[data-id]'); if (!b) return; e.preventDefault(); state[key] = b.getAttribute('data-id'); input.value = nameOf(find(state[key])); res.style.display = 'none'; compute(); });
+    };
+    wire('a', 'rc-a', 'rc-a-res'); wire('b', 'rc-b', 'rc-b-res');
+    o.querySelector('#rc-a').value = nameOf(find(FOCAL_ID));
+    compute();
   }
 
   function closeCard() { const o = document.getElementById('ft-modal'); if (o) o.remove(); }

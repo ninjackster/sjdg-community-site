@@ -111,3 +111,13 @@ test('real tree: Chuy descendants are removed cousins', () => {
 test('real tree: Irma (I70) described via her child Alexis, not as a wife', () => {
   assert.equal(RL('I70'), 'Madre de tu media hermana Alexis');
 });
+
+test('between any two people (non-focal perspective)', () => {
+  const t = realTree();
+  // Mariana (I147) relative to her father Efraín (I145) => daughter.
+  assert.equal(relationshipLabel(t, 'I145', 'I147', 'es'), 'Hija');
+  // José (I4, grandpa) relative to Héctor (I2, his son) => father.
+  assert.equal(relationshipLabel(t, 'I2', 'I4', 'es'), 'Padre');
+  // Symmetry of direction: Héctor relative to José => son.
+  assert.equal(relationshipLabel(t, 'I4', 'I2', 'es'), 'Hijo');
+});
