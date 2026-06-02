@@ -1,4 +1,5 @@
 // family-tree.js — served statically, runs on /en/family and /es/familia
+import { layoutHourglass } from '/hourglass-layout.js';
 (function () {
   const login = document.getElementById('ft-login');
   const canvas = document.getElementById('ft-canvas');
@@ -38,119 +39,6 @@
 
   function nameOf(ind) { return (ind.names.given + ' ' + ind.names.surnames.join(' ')).trim(); }
 
-  // Recursive-bifurcation ancestor layout (mirror of scripts/lib/ancestor-layout.js;
-  // kept in sync by tests/ancestor-layout-client-sync.test.js). The direct spine hugs the
-  // centre: mom is the rightmost maternal (left) node, dad the leftmost paternal (right) node,
-  // focal between them; ancestors + collateral aunts/uncles fan OUTWARD, wife-left/husband-
-  // right, so lineages never cross. Returns Map<id,{x,gen}>; gen <= 0 placed by render().
-  function layoutAncestors(tree, focalId, nodeW, gap, isHidden) {
-    const coupleGap = gap, sideGap = gap;
-    const byId = new Map(tree.individuals.map(i => [i.id, i]));
-    const famById = new Map(tree.families.map(f => [f.id, f]));
-    const childToFamily = new Map();
-    const parentToFamily = new Map();
-    for (const f of tree.families) {
-      for (const c of (f.children || [])) if (!childToFamily.has(c)) childToFamily.set(c, f.id);
-      for (const p of [f.husband, f.wife]) if (p && !parentToFamily.has(p)) parentToFamily.set(p, f.id);
-    }
-    const vis = (id) => !!id && !isHidden(id);
-    const out = new Map();
-    const focalFamId = childToFamily.get(focalId);
-    if (focalFamId == null) { out.set(focalId, { x: 0, gen: 0 }); return out; }
-
-    function spouseOf(childId) {
-      const pf = parentToFamily.get(childId);
-      if (pf == null) return null;
-      const f = famById.get(pf);
-      const other = f.husband === childId ? f.wife : (f.wife === childId ? f.husband : null);
-      return vis(other) ? other : null;
-    }
-    function descWidth(childId) {
-      const pf = parentToFamily.get(childId);
-      if (pf == null) return nodeW;
-      const kids = (famById.get(pf).children || []).filter(vis);
-      if (!kids.length) return nodeW;
-      let w = 0;
-      for (const k of kids) w += slotWidth(k) + gap;
-      return Math.max(nodeW, w - gap);
-    }
-    function slotMembers(childId) {
-      const sp = spouseOf(childId);
-      if (!sp) return [childId];
-      const childFem = (byId.get(childId) || {}).sex === 'F';
-      return childFem ? [childId, sp] : [sp, childId];
-    }
-    function slotWidth(childId) {
-      const m = slotMembers(childId);
-      return Math.max(m.length * nodeW + (m.length - 1) * coupleGap, descWidth(childId));
-    }
-    function buildSlot(childId, gen) {
-      const m = slotMembers(childId);
-      const intrinsic = m.length * nodeW + (m.length - 1) * coupleGap;
-      const w = Math.max(intrinsic, descWidth(childId));
-      const cells = [];
-      let x = (w - intrinsic) / 2 + nodeW / 2;
-      for (const id of m) { cells.push({ id, x, gen }); x += nodeW + coupleGap; }
-      return { cells, w };
-    }
-    function block(spineId, gen, dir) {
-      const fam = childToFamily.has(spineId) ? famById.get(childToFamily.get(spineId)) : null;
-      const cells = [{ id: spineId, x: 0, gen }];
-      let edge = dir * (nodeW / 2);
-      const collats = fam ? (fam.children || []).filter(c => c !== spineId && vis(c)) : [];
-      for (const c of collats) {
-        const s = buildSlot(c, gen);
-        const start = dir < 0 ? (edge - gap - s.w) : (edge + gap);
-        for (const cell of s.cells) cells.push({ id: cell.id, x: start + cell.x, gen: cell.gen });
-        edge = dir < 0 ? start : start + s.w;
-      }
-      const wifeId = fam && vis(fam.wife) ? fam.wife : null;
-      const husbandId = fam && vis(fam.husband) ? fam.husband : null;
-      if (wifeId || husbandId) {
-        const innerId = dir < 0 ? (husbandId || wifeId) : (wifeId || husbandId);
-        const outerId = innerId === husbandId ? wifeId : husbandId;
-        const innerB = block(innerId, gen + 1, dir);
-        for (const c of innerB.cells) cells.push(c);
-        let curLo = innerB.lo, curHi = innerB.hi;
-        if (outerId) {
-          const outerB = block(outerId, gen + 1, dir);
-          const shift = dir < 0 ? (curLo - gap - outerB.hi) : (curHi + gap - outerB.lo);
-          for (const c of outerB.cells) cells.push({ id: c.id, x: c.x + shift, gen: c.gen });
-          curLo = Math.min(curLo, outerB.lo + shift);
-          curHi = Math.max(curHi, outerB.hi + shift);
-        }
-      }
-      let lo = Infinity, hi = -Infinity;
-      for (const c of cells) { lo = Math.min(lo, c.x - nodeW / 2); hi = Math.max(hi, c.x + nodeW / 2); }
-      return { cells, lo, hi };
-    }
-
-    const focalFam = famById.get(focalFamId);
-    const momId = vis(focalFam.wife) ? focalFam.wife : null;
-    const dadId = vis(focalFam.husband) ? focalFam.husband : null;
-    let focalReserve = 0;
-    for (const c of (focalFam.children || []).filter(vis)) focalReserve += slotWidth(c) + gap;
-    focalReserve = Math.max(nodeW, focalReserve - gap);
-    const half = focalReserve / 2 + gap / 2;
-    const injectExtraSpouses = (cells, parentId, dir) => {
-      for (const f of tree.families) {
-        if (f.id === focalFamId || (f.husband !== parentId && f.wife !== parentId)) continue;
-        const sp = f.husband === parentId ? f.wife : f.husband;
-        if (!vis(sp)) continue;
-        const INS = nodeW + gap;
-        for (const c of cells) if (c.gen === 1 && c.id !== parentId && Math.sign(c.x) === dir) c.x += dir * INS;
-        cells.push({ id: sp, x: dir * (nodeW + gap), gen: 1 });
-      }
-    };
-    const both = momId && dadId;
-    const momOff = both ? -half : 0, dadOff = both ? half : 0;
-    const all = [];
-    if (momId) { const mB = block(momId, 1, -1); injectExtraSpouses(mB.cells, momId, -1); for (const c of mB.cells) all.push({ id: c.id, x: c.x + momOff, gen: c.gen }); }
-    if (dadId) { const pB = block(dadId, 1, 1); injectExtraSpouses(pB.cells, dadId, 1); for (const c of pB.cells) all.push({ id: c.id, x: c.x + dadOff, gen: c.gen }); }
-    for (const c of all) out.set(c.id, { x: c.x, gen: c.gen });
-    out.set(focalId, { x: 0, gen: 0 });
-    return out;
-  }
 
   // Generation depth from the root (0). Ancestors walk upward (positive),
   // descendants below (negative); a family's children sit one below a placed
@@ -358,90 +246,21 @@
 
     function render() {
       const hidden = computeHidden();
+      // Single source of truth: the engine places every visible node (ancestors up,
+      // collaterals/descendants down) with non-overlapping, non-crossing geometry.
+      const placed = layoutHourglass(tree, rootId, { nodeW: NODE_W, gap: GAP, rowH: ROW_H, isHidden: (id) => hidden.has(id) });
+      // Sync generations to the engine output so rows/order/arrows agree with x/y.
+      for (const [id, p] of placed) gens.set(id, p.gen);
       const rows = {};
-      for (const [id, g] of gens) if (!hidden.has(id)) (rows[g] = rows[g] || []).push(id);
+      for (const [id, g] of gens) if (!hidden.has(id) && placed.has(id)) (rows[g] = rows[g] || []).push(id);
       const visGens = Object.keys(rows).map(Number);
       const gMin = Math.min.apply(null, visGens), gMax = Math.max.apply(null, visGens);
       const order = {};
       // Row order is spatial left-to-right: maternal (left) · centre · paternal (right).
-      // This matches the bifurcation orientation so the descendant de-overlap pass (which
-      // only pushes rightward) keeps each side's children on their own side.
       for (const g of visGens) order[g] = [].concat(bySide(rows[g], 'M'), bySide(rows[g], 'C'), bySide(rows[g], 'P'));
-
-      // x-assignment: youngest generation first; center over placed children;
-      // de-overlap left-to-right; keep adjacent same-side couples as a unit.
       const xpos = new Map();
-      // Ancestor spine (gen >= 0 along direct lineage) via recursive bifurcation.
-      const spine = layoutAncestors(tree, rootId, NODE_W, GAP, (id) => hidden.has(id));
-      const spineIds = new Set(spine.keys());
-      for (const [id, p] of spine) if (!hidden.has(id)) xpos.set(id, p.x);
-      for (let g = gMin; g <= gMax; g++) {
-        const ids = order[g]; if (!ids) continue;
-        const avgKids = (id) => { const k = (kidsOf.get(id) || []).filter(c => xpos.has(c)); return k.length ? k.reduce((s, c) => s + xpos.get(c), 0) / k.length : null; };
-        let prev = null, prevX = 0, i = 0;
-        while (i < ids.length) {
-          const id = ids[i], sp = coupleOf.get(id);
-          if (spineIds.has(id) && xpos.has(id)) {        // pinned by bifurcation — keep, advance
-            prev = id; prevX = xpos.get(id); i += 1; continue;
-          }
-          // Couple-unit placement — but never drag a spine-pinned partner (e.g. a focal
-          // parent who also has a second marriage in this row); leave it where the
-          // bifurcation put it and place this node on its own below.
-          if (sp && ids[i + 1] === sp && sideOf(id) === sideOf(sp) && !(spineIds.has(sp) && xpos.has(sp))) {
-            const kx = [].concat(kidsOf.get(id) || [], kidsOf.get(sp) || []).filter(c => xpos.has(c)).map(c => xpos.get(c));
-            const desired = kx.length ? kx.reduce((s, v) => s + v, 0) / kx.length : null;
-            const half = (NODE_W + GAP) / 2;
-            const lx = (prev === null) ? (desired != null ? desired - half : 0) : Math.max(desired != null ? desired - half : -1e9, prevX + spacing(prev, id));
-            xpos.set(id, lx); xpos.set(sp, lx + NODE_W + GAP); prev = sp; prevX = lx + NODE_W + GAP; i += 2;
-          } else {
-            const desired = avgKids(id);
-            const x = (prev === null) ? (desired != null ? desired : 0) : (desired != null ? Math.max(desired, prevX + spacing(prev, id)) : prevX + spacing(prev, id));
-            xpos.set(id, x); prev = id; prevX = x; i += 1;
-          }
-        }
-      }
-      // Top-down: center each family's children under their parent couple and
-      // shift each child's sub-branch with it, so descendants (cousins, your
-      // half-sister) sit under their real parents — not adrift in the row.
-      const shiftSub = (id, dx) => { const st = [id], seen = new Set(); while (st.length) { const n = st.pop(); if (seen.has(n)) continue; seen.add(n); if (xpos.has(n)) xpos.set(n, xpos.get(n) + dx); for (const c of (kidsOf.get(n) || [])) if (xpos.has(c)) st.push(c); } };
-      for (let g = gMax; g > gMin; g--) {
-        const childGen = g - 1;
-        const rowIds = order[childGen]; if (!rowIds || !rowIds.length) continue;
-        // Centre each family's NON-spine children under their parents. Covers your generation
-        // and below AND collateral grandchildren that land at an ancestor generation (e.g. a
-        // great-uncle's kids at gen 1); spine nodes are pinned by the bifurcation and never moved.
-        const prov = new Map(), famKids = new Map();
-        for (const id of rowIds) { const f = childToFamily.get(id); if (f) { if (!famKids.has(f)) famKids.set(f, []); famKids.get(f).push(id); } }
-        for (const [f, kids] of famKids) {
-          const fam = famById.get(f); const par = [fam.husband, fam.wife].filter(p => xpos.has(p));
-          if (!par.length) continue;
-          const mid = par.reduce((s, p) => s + xpos.get(p), 0) / par.length;
-          const ordered = rowIds.filter(k => kids.indexOf(k) >= 0);
-          const w = ordered.length * NODE_W + (ordered.length - 1) * GAP;
-          let x = mid - w / 2 + NODE_W / 2;
-          for (const k of ordered) { prov.set(k, x); x += NODE_W + GAP; }
-        }
-        // Resolve overlaps: spine nodes are fixed obstacles; place each non-spine child at
-        // its desired x, then push it OUTWARD (away from the focal) past any obstacle until
-        // it clears. This keeps children under their parent when there's room, and shoves a
-        // collateral's children (e.g. a great-uncle's kids whose gen-2 parent sits inside the
-        // gen-1 fan) out to the edge instead of overlapping pinned nodes.
-        const MIN = NODE_W + GAP;
-        const focalX = xpos.get(rootId) || 0;
-        const occ = [];
-        for (const id of rowIds) if (spineIds.has(id) && xpos.has(id)) occ.push(xpos.get(id));
-        const wantOf = (id) => prov.has(id) ? prov.get(id) : (xpos.get(id) || 0);
-        const movable = rowIds.filter(id => !(spineIds.has(id) && xpos.has(id)))
-          .sort((a, b) => Math.abs(wantOf(a) - focalX) - Math.abs(wantOf(b) - focalX));
-        for (const id of movable) {
-          const want = wantOf(id), dir = want >= focalX ? 1 : -1;
-          let x = want, moved = true, guard = 0;
-          while (moved && guard++ < 999) { moved = false; for (const o of occ) if (Math.abs(x - o) < MIN) { x = dir > 0 ? o + MIN : o - MIN; moved = true; } }
-          occ.push(x);
-          const dx = x - (xpos.get(id) || 0);
-          if (dx) shiftSub(id, dx);
-        }
-      }
+      for (const [id, p] of placed) if (!hidden.has(id)) xpos.set(id, p.x);
+
       let minX = Infinity, maxX = -Infinity;
       xpos.forEach(v => { if (v < minX) minX = v; if (v > maxX) maxX = v; });
       if (!isFinite(minX)) { minX = maxX = 0; }
@@ -453,7 +272,7 @@
 
       const elById = new Map();
       for (const [id, g] of gens) {
-        if (hidden.has(id)) continue;
+        if (hidden.has(id) || !xpos.has(id)) continue;
         const el = nodeEl(byId.get(id)); elById.set(id, el);
         el.style.position = 'absolute';
         el.style.left = (xpos.get(id) - minX + PAD) + 'px';
