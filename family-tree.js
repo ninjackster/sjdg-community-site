@@ -257,7 +257,7 @@ import { layoutHourglass } from '/hourglass-layout.js';
       const gMin = Math.min.apply(null, visGens), gMax = Math.max.apply(null, visGens);
       const order = {};
       // Row order is spatial left-to-right: maternal (left) · centre · paternal (right).
-      for (const g of visGens) order[g] = [].concat(bySide(rows[g], M), bySide(rows[g], C), bySide(rows[g], P));
+      for (const g of visGens) order[g] = [].concat(bySide(rows[g], 'M'), bySide(rows[g], 'C'), bySide(rows[g], 'P'));
       const xpos = new Map();
       for (const [id, p] of placed) if (!hidden.has(id)) xpos.set(id, p.x);
 
