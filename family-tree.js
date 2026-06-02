@@ -1,6 +1,7 @@
 // family-tree.js — served statically, runs on /en/family and /es/familia
 import { layoutHourglass } from '/hourglass-layout.js';
 import { relationshipLabel } from '/kinship.js';
+import { searchPeople } from '/family-search.js';
 (function () {
   const login = document.getElementById('ft-login');
   const canvas = document.getElementById('ft-canvas');
@@ -411,7 +412,7 @@ import { relationshipLabel } from '/kinship.js';
     let navId = rootId;
     const focusNode = (id) => {
       const el = meta.elById && meta.elById.get(id); if (!el) return;
-      navId = id; el.focus();
+      navId = id; el.focus({ preventScroll: true });
       const cx = parseFloat(el.style.left) || 0, cy = (parseFloat(el.style.top) || 0) + 31, s = vp.cur().scale;
       vp.set(cw / 2 - cx * s, ch / 2 - cy * s, s);
     };
@@ -427,6 +428,40 @@ import { relationshipLabel } from '/kinship.js';
       else { const row = (meta.order[gens.get(navId)] || []).filter(vis); const i = row.indexOf(navId); if (i >= 0) t = row[i + (e.key === 'ArrowLeft' ? -1 : 1)]; }
       if (t) focusNode(t);
     });
+
+    // Search / jump-to-person: reveal a (possibly collapsed) relative and pan to them.
+    // The layout is egocentric (rooted on the focal), so we don't re-root — we expand the
+    // anchor chain that gates the person, re-render, then centre + briefly highlight them.
+    const revealAndFocus = (id) => {
+      if (mode !== 'tree') { mode = 'tree'; firstRender = false; }
+      let cur = id, guard = 0;
+      while (guard++ < 60) { const a = anchorOf(cur); if (a == null) break; expanded.add(a); cur = a; }
+      render();
+      const el = meta.elById && meta.elById.get(id);
+      if (!el) return;
+      focusNode(id);
+      const prev = el.style.boxShadow;
+      el.style.transition = 'box-shadow .2s'; el.style.boxShadow = '0 0 0 4px var(--gold,#D4A843)';
+      setTimeout(() => { el.style.boxShadow = prev; }, 1600);
+    };
+    const search = document.createElement('div');
+    search.style.cssText = 'position:absolute;left:16px;top:16px;z-index:6;width:min(260px,60vw);';
+    search.innerHTML =
+      '<input id="ft-search" type="search" autocomplete="off" placeholder="' + (lang === 'es' ? 'Buscar familiar…' : 'Search relative…') + '" aria-label="' + (lang === 'es' ? 'Buscar familiar' : 'Search relative') + '" style="width:100%;padding:.5rem .7rem;border:1px solid var(--mist,#EDE8DF);border-radius:8px;font:inherit;font-size:.85rem;background:#fffdf8;box-shadow:0 1px 3px rgba(28,19,9,.12);box-sizing:border-box;" />' +
+      '<div id="ft-search-res" role="listbox" style="margin-top:4px;background:#fffdf8;border-radius:8px;box-shadow:0 4px 14px rgba(28,19,9,.18);overflow:hidden;display:none;max-height:50vh;overflow-y:auto;"></div>';
+    canvas.appendChild(search);
+    const sInput = search.querySelector('#ft-search');
+    const sRes = search.querySelector('#ft-search-res');
+    const hideRes = () => { sRes.style.display = 'none'; sRes.innerHTML = ''; };
+    const showRes = (matches) => {
+      if (!matches.length) return hideRes();
+      sRes.innerHTML = matches.map(m => '<button type="button" role="option" data-id="' + m.id + '" style="display:block;width:100%;text-align:left;padding:.45rem .7rem;border:none;border-bottom:1px solid var(--mist,#EDE8DF);background:none;cursor:pointer;font:inherit;font-size:.85rem;color:var(--ink,#1c1309);">' + nameOf(byId.get(m.id)) + '</button>').join('');
+      sRes.style.display = 'block';
+    };
+    sInput.addEventListener('input', () => showRes(searchPeople(tree, sInput.value)));
+    sRes.addEventListener('mousedown', (e) => { const b = e.target.closest('[data-id]'); if (!b) return; e.preventDefault(); revealAndFocus(b.getAttribute('data-id')); hideRes(); sInput.value = ''; });
+    sInput.addEventListener('keydown', (e) => { if (e.key === 'Escape') { hideRes(); sInput.value = ''; sInput.blur(); } });
+    canvas.addEventListener('pointerdown', (e) => { if (!search.contains(e.target)) hideRes(); });
 
     const legend = document.createElement('div');
     legend.innerHTML = (lang === 'es' ? '∗ adoptado · ◂▾▸ expandir · ? por confirmar' : '∗ adopted · ◂▾▸ expand · ? unconfirmed');
