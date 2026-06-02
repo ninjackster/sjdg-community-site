@@ -213,3 +213,23 @@ test('real tree: mom is the rightmost maternal node, dad the leftmost paternal n
   assert.equal(pos.get('I2').x, patMin, 'Héctor (dad) should be the leftmost paternal node');
   assert.ok(pos.get('I2').x - pos.get('I3').x <= 210 + 30 + 1e-6, 'mom and dad sit adjacent at the centre');
 });
+
+// ---- focal parent's second family (half-sibling's other parent) ----
+test('focal parent second spouse slots in beside that parent, on the outer side', () => {
+  const tree = {
+    individuals: [
+      indC('F','M'), indC('M','F'), indC('D','M'),
+      indC('M2','F'), indC('HS','F'),
+    ],
+    families: [
+      { id: 'f1', husband: 'D', wife: 'M', children: ['F'] },
+      { id: 'f2', husband: 'D', wife: 'M2', children: ['HS'] }, // dad's second family
+    ],
+  };
+  const pos = layoutAncestors(tree, 'F', { nodeW: 100, gap: 20 });
+  assert.ok(pos.has('M2'), 'second spouse is positioned by the module');
+  assert.equal(pos.get('M2').gen, 1);
+  assert.ok(pos.get('M2').x > pos.get('D').x, 'second spouse sits to the paternal (outer) side of dad');
+  assert.ok(pos.get('D').x > pos.get('F').x, 'dad still on the paternal side of the focal');
+  assert.ok(!pos.has('HS'), 'the half-sibling (gen 0) is left for the caller to place');
+});

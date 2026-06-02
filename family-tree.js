@@ -132,11 +132,21 @@
     for (const c of (focalFam.children || []).filter(vis)) focalReserve += slotWidth(c) + gap;
     focalReserve = Math.max(nodeW, focalReserve - gap);
     const half = focalReserve / 2 + gap / 2;
+    const injectExtraSpouses = (cells, parentId, dir) => {
+      for (const f of tree.families) {
+        if (f.id === focalFamId || (f.husband !== parentId && f.wife !== parentId)) continue;
+        const sp = f.husband === parentId ? f.wife : f.husband;
+        if (!vis(sp)) continue;
+        const INS = nodeW + gap;
+        for (const c of cells) if (c.gen === 1 && c.id !== parentId && Math.sign(c.x) === dir) c.x += dir * INS;
+        cells.push({ id: sp, x: dir * (nodeW + gap), gen: 1 });
+      }
+    };
     const both = momId && dadId;
     const momOff = both ? -half : 0, dadOff = both ? half : 0;
     const all = [];
-    if (momId) { const mB = block(momId, 1, -1); for (const c of mB.cells) all.push({ id: c.id, x: c.x + momOff, gen: c.gen }); }
-    if (dadId) { const pB = block(dadId, 1, 1); for (const c of pB.cells) all.push({ id: c.id, x: c.x + dadOff, gen: c.gen }); }
+    if (momId) { const mB = block(momId, 1, -1); injectExtraSpouses(mB.cells, momId, -1); for (const c of mB.cells) all.push({ id: c.id, x: c.x + momOff, gen: c.gen }); }
+    if (dadId) { const pB = block(dadId, 1, 1); injectExtraSpouses(pB.cells, dadId, 1); for (const c of pB.cells) all.push({ id: c.id, x: c.x + dadOff, gen: c.gen }); }
     for (const c of all) out.set(c.id, { x: c.x, gen: c.gen });
     out.set(focalId, { x: 0, gen: 0 });
     return out;
@@ -251,8 +261,16 @@
       if (fid == null) return null;
       return (famById.get(fid).children || []).find(c => isDir(c)) || null;
     };
+    // Your siblings and half-siblings (children of either of your parents) always show.
+    const focalSibs = new Set();
+    for (const p of [father, mother].filter(Boolean)) {
+      for (const f of tree.families) if (f.husband === p || f.wife === p) {
+        for (const c of (f.children || [])) if (c !== rootId) focalSibs.add(c);
+      }
+    }
     // The node whose expansion reveals `id` (null => shown by default).
     const anchorOf = (id) => {
+      if (focalSibs.has(id)) return null;               // your (half-)siblings are always visible
       const p = nonDirParent(id);
       if (p != null) return p;                          // descendant of a collateral (cousin…)
       if (!isDir(id) && (gens.get(id) || 0) >= 2) {      // great-aunt/uncle & beyond
