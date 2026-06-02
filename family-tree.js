@@ -260,20 +260,49 @@
       return s === 'P' ? nd.concat(dr) : dr.concat(nd);
     };
 
-    // ---- Collapse/expand: collateral branches (families with no direct-line
-    // parent) start collapsed so the dense cousin rows don't blow up the width.
-    const collapsible = new Set(tree.families.filter(f => (f.children || []).length && ![f.husband, f.wife].filter(Boolean).some(p => direct.has(p))).map(f => f.id));
-    const collapsed = new Set(collapsible);
+    // ---- Collapse/expand. Default view = the direct line + your own aunts/uncles
+    // (gen 1) + your siblings. Collapsed behind +N toggles: great-aunts/uncles
+    // (gen >= 2 collaterals, revealed by expanding their direct sibling) and the
+    // descendants of any collateral (cousins, revealed by expanding their parent).
+    const isDir = (id) => direct.has(id);
+    const nonDirParent = (id) => (childParents.get(id) || []).find(p => !isDir(p));
+    const directSibling = (id) => {
+      const fid = childToFamily.get(id);
+      if (fid == null) return null;
+      return (famById.get(fid).children || []).find(c => isDir(c)) || null;
+    };
+    // The node whose expansion reveals `id` (null => shown by default).
+    const anchorOf = (id) => {
+      const p = nonDirParent(id);
+      if (p != null) return p;                          // descendant of a collateral (cousin…)
+      if (!isDir(id) && (gens.get(id) || 0) >= 2) {      // great-aunt/uncle & beyond
+        const d = directSibling(id);
+        if (d != null) return d;                        // gated by its direct (ancestor) sibling
+        const sp = coupleOf.get(id);
+        if (sp != null) return anchorOf(sp);            // married-in spouse: follow partner
+      }
+      return null;
+    };
+    const expanded = new Set();
+    const gatedBy = new Map();                          // anchorId -> [ids it reveals]
+    const anchors = new Set();
+    for (const ind of tree.individuals) {
+      const a = anchorOf(ind.id);
+      if (a == null) continue;
+      anchors.add(a);
+      (gatedBy.get(a) || gatedBy.set(a, []).get(a)).push(ind.id);
+    }
     const computeHidden = () => {
       const hidden = new Set();
-      let changed = true;
-      while (changed) {
-        changed = false;
-        for (const fam of tree.families) {
-          const parentHidden = [fam.husband, fam.wife].filter(Boolean).some(p => hidden.has(p));
-          if (collapsed.has(fam.id) || parentHidden) for (const c of (fam.children || [])) if (!hidden.has(c)) { hidden.add(c); changed = true; }
-        }
-      }
+      const visMemo = new Map();
+      const vis = (id) => {
+        if (visMemo.has(id)) return visMemo.get(id);
+        const a = anchorOf(id);
+        const v = a == null ? true : (expanded.has(a) && vis(a));
+        visMemo.set(id, v);
+        return v;
+      };
+      for (const ind of tree.individuals) if (!vis(ind.id)) hidden.add(ind.id);
       return hidden;
     };
 
@@ -379,20 +408,21 @@
       const rootEl = elById.get(rootId);
       if (rootEl) { rootEl.style.border = '2px solid var(--gold,#D4A843)'; rootEl.style.boxShadow = '0 0 0 4px rgba(212,168,67,.22)'; }
 
-      // collapse/expand toggle on each collapsible family's visible anchor parent
-      for (const fam of tree.families) {
-        if (!collapsible.has(fam.id)) continue;
-        const anchor = [fam.wife, fam.husband].filter(Boolean).find(p => elById.has(p));
-        if (!anchor) continue;
-        const isC = collapsed.has(fam.id), n = (fam.children || []).length;
+      // collapse/expand toggle on each visible anchor that gates hidden relatives
+      for (const anchor of anchors) {
+        if (!elById.has(anchor)) continue;
+        const gated = gatedBy.get(anchor) || [];
+        const isExp = expanded.has(anchor);
+        const n = isExp ? gated.filter(id => !hidden.has(id)).length : gated.length;
+        if (!n) continue;
         const t = document.createElement('button');
         t.type = 'button';
-        t.textContent = isC ? ('+' + n) : '−';
-        t.title = isC ? (lang === 'es' ? 'Mostrar ' + n : 'Show ' + n) : (lang === 'es' ? 'Ocultar' : 'Hide');
+        t.textContent = isExp ? '−' : ('+' + n);
+        t.title = isExp ? (lang === 'es' ? 'Ocultar' : 'Hide') : (lang === 'es' ? 'Mostrar ' + n : 'Show ' + n);
         t.setAttribute('aria-label', t.title);
         t.style.cssText = 'position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);min-width:24px;height:20px;padding:0 5px;border:1px solid var(--earth,#8B5E3C);background:#fffdf8;color:var(--earth,#8B5E3C);border-radius:11px;font-size:.7rem;font-weight:600;line-height:1;cursor:pointer;z-index:3;box-shadow:0 1px 2px rgba(28,19,9,.2);';
         t.addEventListener('pointerdown', e => e.stopPropagation());
-        t.addEventListener('click', e => { e.stopPropagation(); if (collapsed.has(fam.id)) collapsed.delete(fam.id); else collapsed.add(fam.id); render(); });
+        t.addEventListener('click', e => { e.stopPropagation(); if (expanded.has(anchor)) expanded.delete(anchor); else expanded.add(anchor); render(); });
         elById.get(anchor).appendChild(t);
       }
 
@@ -478,8 +508,8 @@
     controls.appendChild(mkBtn('−', lang === 'es' ? 'Alejar' : 'Zoom out', () => vp.zoomBy(1 / 1.2)));
     controls.appendChild(mkBtn('⌖', lang === 'es' ? 'Centrarme' : 'Center on me', () => focusRoot(1)));
     controls.appendChild(mkBtn('⛶', lang === 'es' ? 'Ver todo' : 'Fit all', fitAll));
-    controls.appendChild(mkBtn('⊕', lang === 'es' ? 'Expandir todo' : 'Expand all', () => { collapsed.clear(); render(); }));
-    controls.appendChild(mkBtn('⊖', lang === 'es' ? 'Colapsar todo' : 'Collapse all', () => { collapsible.forEach(f => collapsed.add(f)); render(); }));
+    controls.appendChild(mkBtn('⊕', lang === 'es' ? 'Expandir todo' : 'Expand all', () => { anchors.forEach(a => expanded.add(a)); render(); }));
+    controls.appendChild(mkBtn('⊖', lang === 'es' ? 'Colapsar todo' : 'Collapse all', () => { expanded.clear(); render(); }));
     controls.appendChild(mkBtn('❋', lang === 'es' ? 'Abanico / árbol' : 'Fan / tree view', () => { mode = mode === 'tree' ? 'fan' : 'tree'; if (mode === 'fan') renderFan(); else { firstRender = true; render(); } }));
     canvas.appendChild(controls);
 
