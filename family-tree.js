@@ -543,7 +543,8 @@ import { searchPeople } from '/family-search.js';
         ((ind.death && ind.death.date) ? '<p style="margin:.2rem 0;"><strong>' + (lang === 'es' ? 'Falleció' : 'Died') + ':</strong> ' + ind.death.date + '</p>' : '') +
         (oo ? '<p style="background:#f7eecf;border-left:3px solid #c4785a;padding:8px 10px;border-radius:0 6px 6px 0;margin:.8rem 0;"><strong>' + (lang === 'es' ? 'Origen del apellido' : 'Surname origin') + ':</strong> ' + oo.text + ' <em>(' + oo.confidence + ')</em></p>' : '') +
         (recs ? '<h3 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;opacity:.6;margin:.9rem 0 .3rem;">' + (lang === 'es' ? 'Registros' : 'Records') + '</h3><ul style="margin:0;padding-left:1.1rem;">' + recs + '</ul>' : '') +
-        ((ind.notes && ind.notes[lang]) ? '<p style="margin:.8rem 0 0;color:rgba(28,19,9,.8);">' + ind.notes[lang] + '</p>' : '') +
+        ((ind.story && ind.story[lang]) ? '<p style="margin:.9rem 0 0;color:rgba(28,19,9,.9);line-height:1.55;white-space:pre-wrap;">' + ind.story[lang] + '</p>' : '') +
+        ((ind.notes && ind.notes[lang]) ? '<p style="margin:.8rem 0 0;font-size:.82rem;color:rgba(28,19,9,.55);">' + ind.notes[lang] + '</p>' : '') +
         '<button id="ft-suggest" style="margin-top:1rem;width:100%;padding:.6rem;border:1px dashed var(--clay,#C4785A);background:#fff;color:var(--clay,#C4785A);border-radius:8px;cursor:pointer;font:inherit;font-size:.85rem;">' + (lang === 'es' ? '＋ Sugerir un familiar' : '＋ Suggest a relative') + '</button>' +
         '<button id="ft-edit" style="margin-top:.5rem;width:100%;padding:.6rem;border:1px dashed var(--earth,#8B5E3C);background:#fff;color:var(--earth,#8B5E3C);border-radius:8px;cursor:pointer;font:inherit;font-size:.85rem;">' + (lang === 'es' ? '✎ Sugerir una corrección' : '✎ Suggest a correction') + '</button>' +
       '</div>';
@@ -567,6 +568,7 @@ import { searchPeople } from '/family-search.js';
     const birth = (ind.birth && ind.birth.date) || '';
     const death = (ind.death && ind.death.date) || '';
     const note = (ind.notes && ind.notes[lang]) || '';
+    const story = (ind.story && ind.story[lang]) || '';
     o.innerHTML =
       '<div role="dialog" aria-modal="true" style="position:relative;background:#fffdf8;width:min(420px,93vw);max-height:88vh;overflow:auto;border-radius:14px;box-shadow:0 14px 44px rgba(28,19,9,.30);padding:24px;">' +
         '<button id="ft-close" aria-label="Close" style="position:absolute;top:10px;right:12px;border:none;background:none;font-size:1.6rem;cursor:pointer;color:rgba(28,19,9,.5);">×</button>' +
@@ -575,7 +577,8 @@ import { searchPeople } from '/family-search.js';
         '<label style="font-size:.8rem;">' + (es ? 'Nombre(s)' : 'First name(s)') + '</label><input id="ed-given" value="' + esc(given) + '" style="' + inp + '" />' +
         '<label style="font-size:.8rem;">' + (es ? 'Apellidos' : 'Surnames') + '</label><input id="ed-sur" value="' + esc(sur) + '" placeholder="' + (es ? 'separados por espacio' : 'space-separated') + '" style="' + inp + '" />' +
         '<div style="display:flex;gap:.6rem;"><div style="flex:1;"><label style="font-size:.8rem;">' + (es ? 'Nació' : 'Born') + '</label><input id="ed-birth" value="' + esc(birth) + '" style="' + inp + '" /></div><div style="flex:1;"><label style="font-size:.8rem;">' + (es ? 'Falleció' : 'Died') + '</label><input id="ed-death" value="' + esc(death) + '" style="' + inp + '" /></div></div>' +
-        '<label style="font-size:.8rem;">' + (es ? 'Nota' : 'Note') + '</label><textarea id="ed-note" rows="2" style="' + inp + 'resize:vertical;">' + esc(note) + '</textarea>' +
+        '<label style="font-size:.8rem;">' + (es ? 'Historia / biografía' : 'Story / biography') + '</label><textarea id="ed-story" rows="4" placeholder="' + (es ? 'Anécdotas, vida, recuerdos…' : 'Anecdotes, life, memories…') + '" style="' + inp + 'resize:vertical;">' + esc(story) + '</textarea>' +
+        '<label style="font-size:.8rem;">' + (es ? 'Nota (fuentes / correcciones)' : 'Note (sources / corrections)') + '</label><textarea id="ed-note" rows="2" style="' + inp + 'resize:vertical;">' + esc(note) + '</textarea>' +
         '<label style="font-size:.8rem;">' + (es ? 'Foto (opcional)' : 'Photo (optional)') + '</label>' +
         '<div style="display:flex;align-items:center;gap:.6rem;margin:.25rem 0 .6rem;">' +
           (ind.photo ? '<img src="' + esc(ind.photo) + '" alt="" style="width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none;background:var(--mist,#EDE8DF);" />' : '<span style="font-size:.78rem;color:rgba(28,19,9,.5);">' + (es ? 'Sin foto aún' : 'No photo yet') + '</span>') +
@@ -595,7 +598,7 @@ import { searchPeople } from '/family-search.js';
       try {
         const res = await fetch('/api/family-suggest', {
           method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ kind: 'edit', targetId: ind.id, given: g, surnames: o.querySelector('#ed-sur').value, birth: o.querySelector('#ed-birth').value, death: o.querySelector('#ed-death').value, note: o.querySelector('#ed-note').value, photo: photo }),
+          body: JSON.stringify({ kind: 'edit', targetId: ind.id, given: g, surnames: o.querySelector('#ed-sur').value, birth: o.querySelector('#ed-birth').value, death: o.querySelector('#ed-death').value, note: o.querySelector('#ed-note').value, story: o.querySelector('#ed-story').value, photo: photo }),
         });
         if (res.ok) { msg.style.color = 'var(--sage,#7A8C6A)'; msg.textContent = es ? '¡Gracias! Enviado para revisión.' : 'Thanks! Sent for review.'; o.querySelector('#ed-send').disabled = true; }
         else { msg.style.color = '#b00'; msg.textContent = es ? 'Error al enviar.' : 'Submit failed.'; }
