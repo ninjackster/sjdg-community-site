@@ -75,3 +75,14 @@ partners (the bifurcation depends on each ancestor couple). Implementation sketc
 client `anchorOf`/collapse model, gate a married-in spouse of a NON-direct person behind its
 blood-relative partner (or a dedicated toggle); keep `injectExtraSpouses` / focal-parent
 spouses as-is. Verify the suggest-a-relative + couple connectors still read correctly.
+
+## Backlog — one-click "open whole subtree" (requested 2026-06-02)
+
+When expanding a relative (e.g. Santos), open their ENTIRE direct subtree at once — spouse +
+children (+ grandchildren …) — instead of the current step-by-step (reveal spouse, then click
+again to reveal kids). Implementation sketch: on an expand click, deep-expand — add the clicked
+anchor AND every anchor whose `anchorOf` chain passes through it to the `expanded` set (BFS over
+`anchors` where `anchorOf(sub) === a`); collapse removes the whole subtree likewise. Decide
+whether this should follow only the descendant/spouse direction (probably yes) or also cascade
+into collateral-sibling branches (e.g. clicking a grandparent opening every great-uncle's family
+— likely too much; gate the cascade to descendants+spouse, keep sibling reveals single-level).
