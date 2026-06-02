@@ -263,7 +263,8 @@
         }
         let prev = null, prevX = 0;
         for (const id of rowIds) {
-          if (spineIds.has(id)) { prev = id; prevX = xpos.get(id); continue; } // anchor: never shift
+          // Only fires for the focal node (gen 0); ancestors are fixed in the bottom-up pass.
+          if (spineIds.has(id) && xpos.has(id)) { prev = id; prevX = xpos.get(id); continue; } // anchor: never shift
           let target = prov.has(id) ? prov.get(id) : xpos.get(id);
           if (prev != null) { const mn = prevX + spacing(prev, id); if (target < mn) target = mn; }
           const dx = target - (xpos.get(id) || 0);
