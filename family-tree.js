@@ -38,6 +38,110 @@
 
   function nameOf(ind) { return (ind.names.given + ' ' + ind.names.surnames.join(' ')).trim(); }
 
+  // Recursive-bifurcation ancestor layout (mirror of scripts/lib/ancestor-layout.js;
+  // kept in sync by tests/ancestor-layout-client-sync.test.js). The direct spine hugs the
+  // centre: mom is the rightmost maternal (left) node, dad the leftmost paternal (right) node,
+  // focal between them; ancestors + collateral aunts/uncles fan OUTWARD, wife-left/husband-
+  // right, so lineages never cross. Returns Map<id,{x,gen}>; gen <= 0 placed by render().
+  function layoutAncestors(tree, focalId, nodeW, gap, isHidden) {
+    const coupleGap = gap, sideGap = gap;
+    const byId = new Map(tree.individuals.map(i => [i.id, i]));
+    const famById = new Map(tree.families.map(f => [f.id, f]));
+    const childToFamily = new Map();
+    const parentToFamily = new Map();
+    for (const f of tree.families) {
+      for (const c of (f.children || [])) if (!childToFamily.has(c)) childToFamily.set(c, f.id);
+      for (const p of [f.husband, f.wife]) if (p && !parentToFamily.has(p)) parentToFamily.set(p, f.id);
+    }
+    const vis = (id) => !!id && !isHidden(id);
+    const out = new Map();
+    const focalFamId = childToFamily.get(focalId);
+    if (focalFamId == null) { out.set(focalId, { x: 0, gen: 0 }); return out; }
+
+    function spouseOf(childId) {
+      const pf = parentToFamily.get(childId);
+      if (pf == null) return null;
+      const f = famById.get(pf);
+      const other = f.husband === childId ? f.wife : (f.wife === childId ? f.husband : null);
+      return vis(other) ? other : null;
+    }
+    function descWidth(childId) {
+      const pf = parentToFamily.get(childId);
+      if (pf == null) return nodeW;
+      const kids = (famById.get(pf).children || []).filter(vis);
+      if (!kids.length) return nodeW;
+      let w = 0;
+      for (const k of kids) w += slotWidth(k) + gap;
+      return Math.max(nodeW, w - gap);
+    }
+    function slotMembers(childId) {
+      const sp = spouseOf(childId);
+      if (!sp) return [childId];
+      const childFem = (byId.get(childId) || {}).sex === 'F';
+      return childFem ? [childId, sp] : [sp, childId];
+    }
+    function slotWidth(childId) {
+      const m = slotMembers(childId);
+      return Math.max(m.length * nodeW + (m.length - 1) * coupleGap, descWidth(childId));
+    }
+    function buildSlot(childId, gen) {
+      const m = slotMembers(childId);
+      const intrinsic = m.length * nodeW + (m.length - 1) * coupleGap;
+      const w = Math.max(intrinsic, descWidth(childId));
+      const cells = [];
+      let x = (w - intrinsic) / 2 + nodeW / 2;
+      for (const id of m) { cells.push({ id, x, gen }); x += nodeW + coupleGap; }
+      return { cells, w };
+    }
+    function block(spineId, gen, dir) {
+      const fam = childToFamily.has(spineId) ? famById.get(childToFamily.get(spineId)) : null;
+      const cells = [{ id: spineId, x: 0, gen }];
+      let edge = dir * (nodeW / 2);
+      const collats = fam ? (fam.children || []).filter(c => c !== spineId && vis(c)) : [];
+      for (const c of collats) {
+        const s = buildSlot(c, gen);
+        const start = dir < 0 ? (edge - gap - s.w) : (edge + gap);
+        for (const cell of s.cells) cells.push({ id: cell.id, x: start + cell.x, gen: cell.gen });
+        edge = dir < 0 ? start : start + s.w;
+      }
+      const wifeId = fam && vis(fam.wife) ? fam.wife : null;
+      const husbandId = fam && vis(fam.husband) ? fam.husband : null;
+      if (wifeId || husbandId) {
+        const innerId = dir < 0 ? (husbandId || wifeId) : (wifeId || husbandId);
+        const outerId = innerId === husbandId ? wifeId : husbandId;
+        const innerB = block(innerId, gen + 1, dir);
+        for (const c of innerB.cells) cells.push(c);
+        let curLo = innerB.lo, curHi = innerB.hi;
+        if (outerId) {
+          const outerB = block(outerId, gen + 1, dir);
+          const shift = dir < 0 ? (curLo - gap - outerB.hi) : (curHi + gap - outerB.lo);
+          for (const c of outerB.cells) cells.push({ id: c.id, x: c.x + shift, gen: c.gen });
+          curLo = Math.min(curLo, outerB.lo + shift);
+          curHi = Math.max(curHi, outerB.hi + shift);
+        }
+      }
+      let lo = Infinity, hi = -Infinity;
+      for (const c of cells) { lo = Math.min(lo, c.x - nodeW / 2); hi = Math.max(hi, c.x + nodeW / 2); }
+      return { cells, lo, hi };
+    }
+
+    const focalFam = famById.get(focalFamId);
+    const momId = vis(focalFam.wife) ? focalFam.wife : null;
+    const dadId = vis(focalFam.husband) ? focalFam.husband : null;
+    let focalReserve = 0;
+    for (const c of (focalFam.children || []).filter(vis)) focalReserve += slotWidth(c) + gap;
+    focalReserve = Math.max(nodeW, focalReserve - gap);
+    const half = focalReserve / 2 + gap / 2;
+    const both = momId && dadId;
+    const momOff = both ? -half : 0, dadOff = both ? half : 0;
+    const all = [];
+    if (momId) { const mB = block(momId, 1, -1); for (const c of mB.cells) all.push({ id: c.id, x: c.x + momOff, gen: c.gen }); }
+    if (dadId) { const pB = block(dadId, 1, 1); for (const c of pB.cells) all.push({ id: c.id, x: c.x + dadOff, gen: c.gen }); }
+    for (const c of all) out.set(c.id, { x: c.x, gen: c.gen });
+    out.set(focalId, { x: 0, gen: 0 });
+    return out;
+  }
+
   // Generation depth from the root (0). Ancestors walk upward (positive),
   // descendants below (negative); a family's children sit one below a placed
   // parent (or a placed sibling's level), a married-in spouse takes their level.
@@ -136,20 +240,49 @@
       return s === 'P' ? nd.concat(dr) : dr.concat(nd);
     };
 
-    // ---- Collapse/expand: collateral branches (families with no direct-line
-    // parent) start collapsed so the dense cousin rows don't blow up the width.
-    const collapsible = new Set(tree.families.filter(f => (f.children || []).length && ![f.husband, f.wife].filter(Boolean).some(p => direct.has(p))).map(f => f.id));
-    const collapsed = new Set(collapsible);
+    // ---- Collapse/expand. Default view = the direct line + your own aunts/uncles
+    // (gen 1) + your siblings. Collapsed behind +N toggles: great-aunts/uncles
+    // (gen >= 2 collaterals, revealed by expanding their direct sibling) and the
+    // descendants of any collateral (cousins, revealed by expanding their parent).
+    const isDir = (id) => direct.has(id);
+    const nonDirParent = (id) => (childParents.get(id) || []).find(p => !isDir(p));
+    const directSibling = (id) => {
+      const fid = childToFamily.get(id);
+      if (fid == null) return null;
+      return (famById.get(fid).children || []).find(c => isDir(c)) || null;
+    };
+    // The node whose expansion reveals `id` (null => shown by default).
+    const anchorOf = (id) => {
+      const p = nonDirParent(id);
+      if (p != null) return p;                          // descendant of a collateral (cousin…)
+      if (!isDir(id) && (gens.get(id) || 0) >= 2) {      // great-aunt/uncle & beyond
+        const d = directSibling(id);
+        if (d != null) return d;                        // gated by its direct (ancestor) sibling
+        const sp = coupleOf.get(id);
+        if (sp != null) return anchorOf(sp);            // married-in spouse: follow partner
+      }
+      return null;
+    };
+    const expanded = new Set();
+    const gatedBy = new Map();                          // anchorId -> [ids it reveals]
+    const anchors = new Set();
+    for (const ind of tree.individuals) {
+      const a = anchorOf(ind.id);
+      if (a == null) continue;
+      anchors.add(a);
+      (gatedBy.get(a) || gatedBy.set(a, []).get(a)).push(ind.id);
+    }
     const computeHidden = () => {
       const hidden = new Set();
-      let changed = true;
-      while (changed) {
-        changed = false;
-        for (const fam of tree.families) {
-          const parentHidden = [fam.husband, fam.wife].filter(Boolean).some(p => hidden.has(p));
-          if (collapsed.has(fam.id) || parentHidden) for (const c of (fam.children || [])) if (!hidden.has(c)) { hidden.add(c); changed = true; }
-        }
-      }
+      const visMemo = new Map();
+      const vis = (id) => {
+        if (visMemo.has(id)) return visMemo.get(id);
+        const a = anchorOf(id);
+        const v = a == null ? true : (expanded.has(a) && vis(a));
+        visMemo.set(id, v);
+        return v;
+      };
+      for (const ind of tree.individuals) if (!vis(ind.id)) hidden.add(ind.id);
       return hidden;
     };
 
@@ -177,13 +310,23 @@
       // x-assignment: youngest generation first; center over placed children;
       // de-overlap left-to-right; keep adjacent same-side couples as a unit.
       const xpos = new Map();
+      // Ancestor spine (gen >= 0 along direct lineage) via recursive bifurcation.
+      const spine = layoutAncestors(tree, rootId, NODE_W, GAP, (id) => hidden.has(id));
+      const spineIds = new Set(spine.keys());
+      for (const [id, p] of spine) if (!hidden.has(id)) xpos.set(id, p.x);
       for (let g = gMin; g <= gMax; g++) {
         const ids = order[g]; if (!ids) continue;
         const avgKids = (id) => { const k = (kidsOf.get(id) || []).filter(c => xpos.has(c)); return k.length ? k.reduce((s, c) => s + xpos.get(c), 0) / k.length : null; };
         let prev = null, prevX = 0, i = 0;
         while (i < ids.length) {
           const id = ids[i], sp = coupleOf.get(id);
-          if (sp && ids[i + 1] === sp && sideOf(id) === sideOf(sp)) {
+          if (spineIds.has(id) && xpos.has(id)) {        // pinned by bifurcation — keep, advance
+            prev = id; prevX = xpos.get(id); i += 1; continue;
+          }
+          // Couple-unit placement — but never drag a spine-pinned partner (e.g. a focal
+          // parent who also has a second marriage in this row); leave it where the
+          // bifurcation put it and place this node on its own below.
+          if (sp && ids[i + 1] === sp && sideOf(id) === sideOf(sp) && !(spineIds.has(sp) && xpos.has(sp))) {
             const kx = [].concat(kidsOf.get(id) || [], kidsOf.get(sp) || []).filter(c => xpos.has(c)).map(c => xpos.get(c));
             const desired = kx.length ? kx.reduce((s, v) => s + v, 0) / kx.length : null;
             const half = (NODE_W + GAP) / 2;
@@ -217,6 +360,8 @@
         }
         let prev = null, prevX = 0;
         for (const id of rowIds) {
+          // Only fires for the focal node (gen 0); ancestors are fixed in the bottom-up pass.
+          if (spineIds.has(id) && xpos.has(id)) { prev = id; prevX = xpos.get(id); continue; } // anchor: never shift
           let target = prov.has(id) ? prov.get(id) : xpos.get(id);
           if (prev != null) { const mn = prevX + spacing(prev, id); if (target < mn) target = mn; }
           const dx = target - (xpos.get(id) || 0);
@@ -246,20 +391,21 @@
       const rootEl = elById.get(rootId);
       if (rootEl) { rootEl.style.border = '2px solid var(--gold,#D4A843)'; rootEl.style.boxShadow = '0 0 0 4px rgba(212,168,67,.22)'; }
 
-      // collapse/expand toggle on each collapsible family's visible anchor parent
-      for (const fam of tree.families) {
-        if (!collapsible.has(fam.id)) continue;
-        const anchor = [fam.wife, fam.husband].filter(Boolean).find(p => elById.has(p));
-        if (!anchor) continue;
-        const isC = collapsed.has(fam.id), n = (fam.children || []).length;
+      // collapse/expand toggle on each visible anchor that gates hidden relatives
+      for (const anchor of anchors) {
+        if (!elById.has(anchor)) continue;
+        const gated = gatedBy.get(anchor) || [];
+        const isExp = expanded.has(anchor);
+        const n = isExp ? gated.filter(id => !hidden.has(id)).length : gated.length;
+        if (!n) continue;
         const t = document.createElement('button');
         t.type = 'button';
-        t.textContent = isC ? ('+' + n) : '−';
-        t.title = isC ? (lang === 'es' ? 'Mostrar ' + n : 'Show ' + n) : (lang === 'es' ? 'Ocultar' : 'Hide');
+        t.textContent = isExp ? '−' : ('+' + n);
+        t.title = isExp ? (lang === 'es' ? 'Ocultar' : 'Hide') : (lang === 'es' ? 'Mostrar ' + n : 'Show ' + n);
         t.setAttribute('aria-label', t.title);
         t.style.cssText = 'position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);min-width:24px;height:20px;padding:0 5px;border:1px solid var(--earth,#8B5E3C);background:#fffdf8;color:var(--earth,#8B5E3C);border-radius:11px;font-size:.7rem;font-weight:600;line-height:1;cursor:pointer;z-index:3;box-shadow:0 1px 2px rgba(28,19,9,.2);';
         t.addEventListener('pointerdown', e => e.stopPropagation());
-        t.addEventListener('click', e => { e.stopPropagation(); if (collapsed.has(fam.id)) collapsed.delete(fam.id); else collapsed.add(fam.id); render(); });
+        t.addEventListener('click', e => { e.stopPropagation(); if (expanded.has(anchor)) expanded.delete(anchor); else expanded.add(anchor); render(); });
         elById.get(anchor).appendChild(t);
       }
 
@@ -345,8 +491,8 @@
     controls.appendChild(mkBtn('−', lang === 'es' ? 'Alejar' : 'Zoom out', () => vp.zoomBy(1 / 1.2)));
     controls.appendChild(mkBtn('⌖', lang === 'es' ? 'Centrarme' : 'Center on me', () => focusRoot(1)));
     controls.appendChild(mkBtn('⛶', lang === 'es' ? 'Ver todo' : 'Fit all', fitAll));
-    controls.appendChild(mkBtn('⊕', lang === 'es' ? 'Expandir todo' : 'Expand all', () => { collapsed.clear(); render(); }));
-    controls.appendChild(mkBtn('⊖', lang === 'es' ? 'Colapsar todo' : 'Collapse all', () => { collapsible.forEach(f => collapsed.add(f)); render(); }));
+    controls.appendChild(mkBtn('⊕', lang === 'es' ? 'Expandir todo' : 'Expand all', () => { anchors.forEach(a => expanded.add(a)); render(); }));
+    controls.appendChild(mkBtn('⊖', lang === 'es' ? 'Colapsar todo' : 'Collapse all', () => { expanded.clear(); render(); }));
     controls.appendChild(mkBtn('❋', lang === 'es' ? 'Abanico / árbol' : 'Fan / tree view', () => { mode = mode === 'tree' ? 'fan' : 'tree'; if (mode === 'fan') renderFan(); else { firstRender = true; render(); } }));
     canvas.appendChild(controls);
 
