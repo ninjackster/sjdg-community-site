@@ -21,10 +21,11 @@ plan `docs/superpowers/plans/2026-06-01-family-tree-bifurcation.md`).
   its siblings; expanding a relative reveals their children. Verified in-browser.
 
 ### Still backlogged (scope B remainder)
-- Dedicated directional **▲ expand-up / ◀▶ expand-sideways** affordances distinct
-  from the unified `+N` toggle, and any further compaction of the focal-couple gap
-  (parents are pushed apart by the inner grandparents nesting between them — inherent
-  to a non-overlapping pedigree, acceptable but could be tuned).
+- Dedicated directional **▲ expand-up** affordance for deep ancestors beyond the
+  great-grandparents (the ◀▶ sideways + ▾ down arrows already shipped 2026-06-02).
+  **Target: Q4 2026** (deferred per Jaime 2026-06-02). Any further compaction of the
+  focal-couple gap (parents pushed apart by inner grandparents nesting — inherent to a
+  non-overlapping pedigree, acceptable but could be tuned) rides along with this.
 
 ## Problem (observed in production)
 
@@ -34,9 +35,26 @@ plan `docs/superpowers/plans/2026-06-01-family-tree-bifurcation.md`).
 
 Root cause: the current layout uses "direct line hugs center + family-gap" ordering with a bottom-up centering pass. It keeps the focal couple adjacent and centers children under parents, but it does **not** allocate each ancestor's two parental lineages as contiguous, non-overlapping subtrees — so collaterals (e.g. Francisco) and the great-grandparent couples drift to the wrong side and lines cross.
 
-## Desired design (best-in-class)
+## ✅ SHIPPED 2026-06-02 — full hourglass tidy-tree rewrite
 
-Implement the **union-node recursive layout** the research recommended (GoJS genogram + Reingold–Tilford):
+Done (merged to main `60dd1a0`; spec `docs/superpowers/specs/2026-06-02-family-tree-tidy-tree-rewrite-design.md`,
+plan `docs/superpowers/plans/2026-06-02-family-tree-tidy-tree-rewrite.md`). The layout engine is now a
+single dependency-free ES module **`/hourglass-layout.js`** (`layoutHourglass(tree, focalId, opts) →
+Map<id,{x,y,gen}>`), imported by both the client (`<script type="module">`) and the Node tests — the
+inlined mirror, the marker sync-test, and `scripts/lib/ancestor-layout.js` are all **retired**. It uses
+union-node **recursive variable-width subtree packing** (bottom-up width summation + centre-parent-over-
+children — same tidy aesthetics as threaded Buchheim, chosen for lower risk at n≈150) and places BOTH the
+ancestor pedigree (up) and every collateral/descendant subtree (down), replacing the old client-side
+"outward-push" heuristic. Verified in-browser on preview AND prod: focal centred, maternal-left/paternal-
+right, centre seam, **0 overlaps including the deepest 3-generation collateral branch (Chuy)**, half-sibling
+(Alexis) correct, deep expand/collapse intact. 107 tests pass; engine code-reviewed (approved). Two issues
+caught during execution: a filename collision with the existing `scripts/lib/family-layout.js`
+(`computeGenerations`) — hence the `hourglass-layout` name — and a real cross-generation overlap bug in
+collateral packing (`edgeHint`), now fixed.
+
+## Desired design (best-in-class) — as implemented above
+
+Implemented the **union-node recursive layout** the research recommended (GoJS genogram + Reingold–Tilford):
 
 - **Treat each couple as one layout unit** (a "union"). Lay out unions, not individuals.
 - **Recursive split at every couple:** each parent owns its *own* ancestral subtree; the wife's subtree is allocated entirely to the left, the husband's entirely to the right (Jaime's preference: grandma/wife left, grandpa/husband right). Recurse upward — so each lineage is a self-contained block that cannot interleave or cross.
