@@ -366,8 +366,10 @@
       const shiftSub = (id, dx) => { const st = [id], seen = new Set(); while (st.length) { const n = st.pop(); if (seen.has(n)) continue; seen.add(n); if (xpos.has(n)) xpos.set(n, xpos.get(n) + dx); for (const c of (kidsOf.get(n) || [])) if (xpos.has(c)) st.push(c); } };
       for (let g = gMax; g > gMin; g--) {
         const childGen = g - 1;
-        if (childGen > 0) continue; // correct descendants (your generation and below)
         const rowIds = order[childGen]; if (!rowIds || !rowIds.length) continue;
+        // Centre each family's NON-spine children under their parents. Covers your generation
+        // and below AND collateral grandchildren that land at an ancestor generation (e.g. a
+        // great-uncle's kids at gen 1); spine nodes are pinned by the bifurcation and never moved.
         const prov = new Map(), famKids = new Map();
         for (const id of rowIds) { const f = childToFamily.get(id); if (f) { if (!famKids.has(f)) famKids.set(f, []); famKids.get(f).push(id); } }
         for (const [f, kids] of famKids) {
@@ -379,15 +381,25 @@
           let x = mid - w / 2 + NODE_W / 2;
           for (const k of ordered) { prov.set(k, x); x += NODE_W + GAP; }
         }
-        let prev = null, prevX = 0;
-        for (const id of rowIds) {
-          // Only fires for the focal node (gen 0); ancestors are fixed in the bottom-up pass.
-          if (spineIds.has(id) && xpos.has(id)) { prev = id; prevX = xpos.get(id); continue; } // anchor: never shift
-          let target = prov.has(id) ? prov.get(id) : xpos.get(id);
-          if (prev != null) { const mn = prevX + spacing(prev, id); if (target < mn) target = mn; }
-          const dx = target - (xpos.get(id) || 0);
+        // Resolve overlaps: spine nodes are fixed obstacles; place each non-spine child at
+        // its desired x, then push it OUTWARD (away from the focal) past any obstacle until
+        // it clears. This keeps children under their parent when there's room, and shoves a
+        // collateral's children (e.g. a great-uncle's kids whose gen-2 parent sits inside the
+        // gen-1 fan) out to the edge instead of overlapping pinned nodes.
+        const MIN = NODE_W + GAP;
+        const focalX = xpos.get(rootId) || 0;
+        const occ = [];
+        for (const id of rowIds) if (spineIds.has(id) && xpos.has(id)) occ.push(xpos.get(id));
+        const wantOf = (id) => prov.has(id) ? prov.get(id) : (xpos.get(id) || 0);
+        const movable = rowIds.filter(id => !(spineIds.has(id) && xpos.has(id)))
+          .sort((a, b) => Math.abs(wantOf(a) - focalX) - Math.abs(wantOf(b) - focalX));
+        for (const id of movable) {
+          const want = wantOf(id), dir = want >= focalX ? 1 : -1;
+          let x = want, moved = true, guard = 0;
+          while (moved && guard++ < 999) { moved = false; for (const o of occ) if (Math.abs(x - o) < MIN) { x = dir > 0 ? o + MIN : o - MIN; moved = true; } }
+          occ.push(x);
+          const dx = x - (xpos.get(id) || 0);
           if (dx) shiftSub(id, dx);
-          prev = id; prevX = xpos.get(id);
         }
       }
       let minX = Infinity, maxX = -Infinity;
