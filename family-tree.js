@@ -3,6 +3,7 @@ import { layoutHourglass } from '/hourglass-layout.js';
 import { relationshipLabel } from '/kinship.js';
 import { searchPeople } from '/family-search.js';
 import { computeStats, surnameColor } from '/family-stats.js';
+import { toGedcom } from '/family-gedcom.js';
 (function () {
   const login = document.getElementById('ft-login');
   const canvas = document.getElementById('ft-canvas');
@@ -409,6 +410,14 @@ import { computeStats, surnameColor } from '/family-stats.js';
     controls.appendChild(mkBtn('🎨', lang === 'es' ? 'Colorear por apellido' : 'Color by surname', () => { colorOn = !colorOn; if (mode === 'tree') render(); }));
     controls.appendChild(mkBtn('📊', lang === 'es' ? 'Estadísticas' : 'Statistics', () => openStats()));
     controls.appendChild(mkBtn('👥', lang === 'es' ? '¿Cómo se relacionan dos personas?' : 'How are two people related?', () => openRelCalc()));
+    controls.appendChild(mkBtn('⬇', lang === 'es' ? 'Descargar GEDCOM' : 'Download GEDCOM', () => {
+      const blob = new Blob([toGedcom(TREE)], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'arbol-murillo-mena.ged';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }));
     canvas.appendChild(controls);
 
     // Keyboard navigation between relatives: arrows move up (parent) / down
