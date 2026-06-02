@@ -39,41 +39,126 @@
   function nameOf(ind) { return (ind.names.given + ' ' + ind.names.surnames.join(' ')).trim(); }
 
   // Recursive-bifurcation ancestor layout (mirror of scripts/lib/ancestor-layout.js;
-  // kept in sync by tests/ancestor-layout-client-sync.test.js). Returns Map<id,{x,gen}>.
+  // kept in sync by tests/ancestor-layout-client-sync.test.js). Owns gen >= 1 (direct
+  // ancestors + collateral aunts/uncles with spouses) plus the focal (gen 0); the wife's
+  // whole block is laid strictly left of the husband's so lineages never cross. Returns
+  // Map<id,{x,gen}>. Descendants below the focal (gen <= 0) are positioned by render().
   function layoutAncestors(tree, focalId, nodeW, gap, isHidden) {
+    const coupleGap = gap, sideGap = gap;
+    const byId = new Map(tree.individuals.map(i => [i.id, i]));
     const famById = new Map(tree.families.map(f => [f.id, f]));
     const childToFamily = new Map();
+    const parentToFamily = new Map();
     for (const f of tree.families) {
       for (const c of (f.children || [])) if (!childToFamily.has(c)) childToFamily.set(c, f.id);
+      for (const p of [f.husband, f.wife]) if (p && !parentToFamily.has(p)) parentToFamily.set(p, f.id);
     }
+    const vis = (id) => !!id && !isHidden(id);
     const out = new Map();
-    if (!childToFamily.has(focalId)) { out.set(focalId, { x: 0, gen: 0 }); return out; }
-    function block(personId, gen) {
-      const fam = famById.get(childToFamily.get(personId));
-      const ups = [];
-      if (fam) {
-        if (fam.wife && !isHidden(fam.wife)) ups.push(fam.wife);
-        if (fam.husband && !isHidden(fam.husband)) ups.push(fam.husband);
-      }
-      if (ups.length === 0) {
-        return { width: nodeW, anchorX: nodeW / 2, cells: [{ id: personId, x: nodeW / 2, gen }] };
-      }
-      const cells = [];
-      const anchors = [];
-      let cursor = 0;
-      for (const pid of ups) {
-        const b = block(pid, gen + 1);
-        for (const c of b.cells) cells.push({ id: c.id, x: c.x + cursor, gen: c.gen });
-        anchors.push(cursor + b.anchorX);
-        cursor += b.width + gap;
-      }
-      const width = cursor - gap;
-      const selfX = (anchors[0] + anchors[anchors.length - 1]) / 2;
-      cells.push({ id: personId, x: selfX, gen });
-      return { width, anchorX: selfX, cells };
+    const focalFamId = childToFamily.get(focalId);
+    if (focalFamId == null) { out.set(focalId, { x: 0, gen: 0 }); return out; }
+
+    function spouseOf(childId) {
+      const pf = parentToFamily.get(childId);
+      if (pf == null) return null;
+      const f = famById.get(pf);
+      const other = f.husband === childId ? f.wife : (f.wife === childId ? f.husband : null);
+      return vis(other) ? other : null;
     }
-    const root = block(focalId, 0);
-    for (const c of root.cells) out.set(c.id, { x: c.x, gen: c.gen });
+    function descWidth(childId) {
+      const pf = parentToFamily.get(childId);
+      if (pf == null) return nodeW;
+      const kids = (famById.get(pf).children || []).filter(vis);
+      if (!kids.length) return nodeW;
+      let w = 0;
+      for (const k of kids) w += slotWidth(k) + gap;
+      return Math.max(nodeW, w - gap);
+    }
+    function slotMembers(childId) {
+      const sp = spouseOf(childId);
+      if (!sp) return [childId];
+      const childFem = (byId.get(childId) || {}).sex === 'F';
+      return childFem ? [childId, sp] : [sp, childId];
+    }
+    function slotWidth(childId) {
+      const m = slotMembers(childId);
+      const intrinsic = m.length * nodeW + (m.length - 1) * coupleGap;
+      return Math.max(intrinsic, descWidth(childId));
+    }
+    function buildSlot(childId, gen, isSpine) {
+      const m = isSpine ? [childId] : slotMembers(childId);
+      const intrinsic = m.length * nodeW + (m.length - 1) * coupleGap;
+      const w = isSpine ? nodeW : Math.max(intrinsic, descWidth(childId));
+      const cells = [];
+      let x = (w - intrinsic) / 2 + nodeW / 2;
+      for (const id of m) { cells.push({ id, x, gen }); x += nodeW + coupleGap; }
+      return { cells, w };
+    }
+    function block(spineId, gen) {
+      const fam = childToFamily.has(spineId) ? famById.get(childToFamily.get(spineId)) : null;
+      const cells = [];
+      let parentMid = null;
+      const wifeId = fam && vis(fam.wife) ? fam.wife : null;
+      const husbandId = fam && vis(fam.husband) ? fam.husband : null;
+      if (wifeId || husbandId) {
+        const wB = wifeId ? block(wifeId, gen + 1) : null;
+        const hB = husbandId ? block(husbandId, gen + 1) : null;
+        if (wB && hB) {
+          const shift = (wB.hi + sideGap) - hB.lo;
+          for (const c of hB.cells) c.x += shift;
+          hB.connectX += shift;
+          cells.push.apply(cells, wB.cells); cells.push.apply(cells, hB.cells);
+          parentMid = (wB.connectX + hB.connectX) / 2;
+        } else {
+          const only = wB || hB;
+          cells.push.apply(cells, only.cells);
+          parentMid = only.connectX;
+        }
+      }
+      const spineX = parentMid != null ? parentMid : 0;
+      const band = [{ id: spineId, x: spineX, gen }];
+      const collats = fam ? (fam.children || []).filter(c => c !== spineId && vis(c)) : [];
+      const fanLeft = (byId.get(spineId) || {}).sex === 'F';
+      const dir = fanLeft ? -1 : 1;
+      let edge = spineX + dir * (nodeW / 2);
+      for (const c of collats) {
+        const s = buildSlot(c, gen, false);
+        let start;
+        if (dir < 0) { start = edge - gap - s.w; edge = start; }
+        else { start = edge + gap; edge = start + s.w; }
+        for (const cell of s.cells) band.push({ id: cell.id, x: start + cell.x, gen: cell.gen });
+      }
+      cells.push.apply(cells, band);
+      let lo = Infinity, hi = -Infinity;
+      for (const c of cells) { lo = Math.min(lo, c.x - nodeW / 2); hi = Math.max(hi, c.x + nodeW / 2); }
+      return { cells, lo, hi, connectX: spineX };
+    }
+
+    const focalFam = famById.get(focalFamId);
+    const momId = vis(focalFam.wife) ? focalFam.wife : null;
+    const dadId = vis(focalFam.husband) ? focalFam.husband : null;
+    const mB = momId ? block(momId, 1) : null;
+    const pB = dadId ? block(dadId, 1) : null;
+    let focalReserve = 0;
+    for (const c of (focalFam.children || []).filter(vis)) focalReserve += slotWidth(c) + gap;
+    focalReserve = Math.max(nodeW, focalReserve - gap);
+    let focalX = 0;
+    const all = [];
+    if (mB && pB) {
+      let shift = (mB.hi + sideGap) - pB.lo;
+      const gapC = (pB.connectX + shift) - mB.connectX;
+      if (gapC < focalReserve) shift += (focalReserve - gapC);
+      for (const c of pB.cells) c.x += shift;
+      pB.connectX += shift;
+      all.push.apply(all, mB.cells); all.push.apply(all, pB.cells);
+      focalX = (mB.connectX + pB.connectX) / 2;
+    } else if (mB || pB) {
+      const only = mB || pB;
+      all.push.apply(all, only.cells);
+      focalX = only.connectX;
+    }
+    for (const c of all) out.set(c.id, { x: c.x, gen: c.gen });
+    out.set(focalId, { x: focalX, gen: 0 });
     return out;
   }
 
