@@ -381,18 +381,25 @@
           let x = mid - w / 2 + NODE_W / 2;
           for (const k of ordered) { prov.set(k, x); x += NODE_W + GAP; }
         }
-        // De-overlap left-to-right in SPATIAL order (by desired x), so a child centred under a
-        // far parent never shoves a sibling that belongs further left onto existing nodes.
-        const targetOf = (id) => prov.has(id) ? prov.get(id) : (xpos.get(id) || 0);
-        const sorted = rowIds.slice().sort((a, b) => targetOf(a) - targetOf(b));
-        let prev = null, prevX = 0;
-        for (const id of sorted) {
-          if (spineIds.has(id) && xpos.has(id)) { prev = id; prevX = xpos.get(id); continue; } // anchor: never shift
-          let target = targetOf(id);
-          if (prev != null) { const mn = prevX + spacing(prev, id); if (target < mn) target = mn; }
-          const dx = target - (xpos.get(id) || 0);
+        // Resolve overlaps: spine nodes are fixed obstacles; place each non-spine child at
+        // its desired x, then push it OUTWARD (away from the focal) past any obstacle until
+        // it clears. This keeps children under their parent when there's room, and shoves a
+        // collateral's children (e.g. a great-uncle's kids whose gen-2 parent sits inside the
+        // gen-1 fan) out to the edge instead of overlapping pinned nodes.
+        const MIN = NODE_W + GAP;
+        const focalX = xpos.get(rootId) || 0;
+        const occ = [];
+        for (const id of rowIds) if (spineIds.has(id) && xpos.has(id)) occ.push(xpos.get(id));
+        const wantOf = (id) => prov.has(id) ? prov.get(id) : (xpos.get(id) || 0);
+        const movable = rowIds.filter(id => !(spineIds.has(id) && xpos.has(id)))
+          .sort((a, b) => Math.abs(wantOf(a) - focalX) - Math.abs(wantOf(b) - focalX));
+        for (const id of movable) {
+          const want = wantOf(id), dir = want >= focalX ? 1 : -1;
+          let x = want, moved = true, guard = 0;
+          while (moved && guard++ < 999) { moved = false; for (const o of occ) if (Math.abs(x - o) < MIN) { x = dir > 0 ? o + MIN : o - MIN; moved = true; } }
+          occ.push(x);
+          const dx = x - (xpos.get(id) || 0);
           if (dx) shiftSub(id, dx);
-          prev = id; prevX = xpos.get(id);
         }
       }
       let minX = Infinity, maxX = -Infinity;
