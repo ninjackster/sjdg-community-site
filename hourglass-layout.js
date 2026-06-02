@@ -162,3 +162,95 @@ export function layoutAncestorSide(spineId, model, opts) {
   }
   return block(spineId, dirOf(spineId));
 }
+
+export function layoutHourglass(tree, focalId, opts = {}) {
+  const nodeW = opts.nodeW != null ? opts.nodeW : 210;
+  const gap = opts.gap != null ? opts.gap : 30;
+  const rowH = opts.rowH != null ? opts.rowH : 132;
+  const isHidden = opts.isHidden || (() => false);
+  const vis = (id) => !!id && !isHidden(id);
+  const lopts = { nodeW, gap, coupleGap: gap, vis };
+
+  const model = buildModel(tree, focalId);
+  const out = new Map();
+  const finish = () => { for (const [, v] of out) v.y = v.gen === 0 ? 0 : -v.gen * rowH; return out; };
+
+  if (model.focalFamId == null) { out.set(focalId, { x: 0, y: 0, gen: 0 }); return finish(); }
+  const focalFam = model.famById.get(model.focalFamId);
+  const momId = vis(focalFam.wife) ? focalFam.wife : null;
+  const dadId = vis(focalFam.husband) ? focalFam.husband : null;
+
+  // Reserve width for the focal's own slot band (focal + siblings + their descendant subtrees).
+  const focalSibs = (focalFam.children || []).filter(vis);
+  let reserve = 0; for (const c of focalSibs) reserve += layoutSubtree(c, 0, model, lopts).w + gap;
+  reserve = Math.max(nodeW, reserve - gap);
+  const half = reserve / 2 + gap / 2;
+
+  // Collect half-siblings (children of a focal parent's other families) keyed by direction.
+  const halfSibsByDir = { '-1': [], '1': [] };
+  const injectExtra = (cells, parentId, dir) => {
+    for (const f of tree.families) {
+      if (f.id === model.focalFamId || (f.husband !== parentId && f.wife !== parentId)) continue;
+      const sp = f.husband === parentId ? f.wife : f.husband;
+      if (!vis(sp)) continue;
+      const INS = nodeW + gap;
+      for (const c of cells) if (c.gen === 1 && c.id !== parentId && Math.sign(c.x) === dir) c.x += dir * INS;
+      cells.push({ id: sp, x: dir * (nodeW + gap), gen: 1 });
+      // Collect half-siblings to be placed at gen 0 on this side.
+      for (const hs of (f.children || [])) { if (vis(hs) && hs !== focalId) halfSibsByDir[String(dir)].push(hs); }
+    }
+  };
+
+  const both = momId && dadId;
+  const momOff = both ? -half : 0, dadOff = both ? half : 0;
+  if (momId) { const b = layoutAncestorSide(momId, model, lopts); injectExtra(b.cells, momId, -1); for (const c of b.cells) out.set(c.id, { x: c.x + momOff, gen: c.gen }); }
+  if (dadId) { const b = layoutAncestorSide(dadId, model, lopts); injectExtra(b.cells, dadId, 1); for (const c of b.cells) out.set(c.id, { x: c.x + dadOff, gen: c.gen }); }
+
+  // Place the focal slot band (focal + siblings + descendants) centred at x=0.
+  // After placing, align the band so the focal's band slot lands on fx (parents' midpoint).
+  const fxParentsMidpoint = both ? (out.get(momId).x + out.get(dadId).x) / 2 : 0;
+
+  // Compute band placements into a temporary list.
+  const bandCells = [];
+  let cursor = 0;
+  for (const c of focalSibs) {
+    const s = layoutSubtree(c, 0, model, lopts);
+    for (const cell of s.cells) bandCells.push({ id: cell.id, x: cursor + cell.x, gen: cell.gen });
+    cursor += s.w + gap;
+  }
+
+  // Find focal's x in the band.
+  const focalBandCell = bandCells.find(c => c.id === focalId);
+  const focalBandX = focalBandCell ? focalBandCell.x : 0;
+
+  // Shift entire band so focal's band slot aligns with parents' midpoint.
+  const shift = fxParentsMidpoint - focalBandX;
+  for (const cell of bandCells) out.set(cell.id, { x: cell.x + shift, gen: cell.gen });
+
+  // Pin focal exactly between mom and dad.
+  out.set(focalId, { x: fxParentsMidpoint, gen: 0 });
+
+  // Place half-siblings at gen 0 outward of the focal band on their respective side.
+  // Find the current rightmost/leftmost x of the focal band to anchor half-sibs outward.
+  let bandRightEdge = fxParentsMidpoint + nodeW / 2;
+  let bandLeftEdge = fxParentsMidpoint - nodeW / 2;
+  for (const [, v] of out) {
+    if (v.gen === 0) {
+      bandRightEdge = Math.max(bandRightEdge, v.x + nodeW / 2);
+      bandLeftEdge = Math.min(bandLeftEdge, v.x - nodeW / 2);
+    }
+  }
+  for (const hs of halfSibsByDir['1']) {
+    const s = layoutSubtree(hs, 0, model, lopts);
+    const hsX = bandRightEdge + gap + s.w / 2;
+    for (const cell of s.cells) out.set(cell.id, { x: bandRightEdge + gap + cell.x, gen: cell.gen });
+    bandRightEdge += gap + s.w;
+  }
+  for (const hs of halfSibsByDir['-1']) {
+    const s = layoutSubtree(hs, 0, model, lopts);
+    for (const cell of s.cells) out.set(cell.id, { x: bandLeftEdge - gap - s.w + cell.x, gen: cell.gen });
+    bandLeftEdge -= gap + s.w;
+  }
+
+  return finish();
+}

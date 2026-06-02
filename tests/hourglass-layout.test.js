@@ -75,3 +75,53 @@ test('layoutAncestorSide: maternal aunt fans left of mom and carries her child b
   assert.ok(pos.get('MS').x < pos.get('M').x, 'aunt left of mom (fans outward on maternal side)');
   assert.ok(Math.abs(pos.get('AC').x - pos.get('MS').x) < 1e-6, 'cousin centred under lone aunt');
 });
+
+import { layoutHourglass } from '../hourglass-layout.js';
+
+const NODE = 100, GAP = 20, OPTS = { nodeW: NODE, gap: GAP, rowH: 130 };
+const maxXof = (pos, ids) => Math.max(...ids.map(i => pos.get(i).x));
+const minXof = (pos, ids) => Math.min(...ids.map(i => pos.get(i).x));
+
+test('hourglass: maternal < focal < paternal; focal at midpoint of parents; y from gen', () => {
+  const pos = layoutHourglass(synthetic(), 'F', OPTS);
+  const fx = pos.get('F').x;
+  assert.ok(maxXof(pos, ['M','MM','MD']) < fx);
+  assert.ok(fx < minXof(pos, ['D','DM','DD']));
+  assert.ok(Math.abs(fx - (pos.get('M').x + pos.get('D').x) / 2) < 1e-6);
+  assert.equal(pos.get('F').y, 0);
+  assert.equal(pos.get('M').y, -130);
+  assert.equal(pos.get('MM').y, -260);
+});
+
+test('hourglass: focal sibling sits beside focal at gen 0', () => {
+  const t = synthetic(); t.families[0].children = ['F','SIB']; t.individuals.push(ind('SIB','F'));
+  const pos = layoutHourglass(t, 'F', OPTS);
+  assert.equal(pos.get('SIB').gen, 0);
+  assert.ok(Math.abs(pos.get('SIB').x - pos.get('F').x) >= NODE - 1e-6, 'sibling does not overlap focal');
+});
+
+test('hourglass: hidden node omitted, others still placed', () => {
+  const pos = layoutHourglass(synthetic(), 'F', { ...OPTS, isHidden: (id) => id === 'DM' });
+  assert.ok(!pos.has('DM'));
+  assert.ok(pos.has('DD'));
+});
+
+test('hourglass: focal-parent second family — spouse outward, half-sib placed at gen 0', () => {
+  const tree = {
+    individuals: ['F','M','D','M2','HS'].map(id => ind(id, /^(M|M2|HS)$/.test(id) ? 'F' : 'M')),
+    families: [
+      { id: 'f1', husband: 'D', wife: 'M', children: ['F'] },
+      { id: 'f2', husband: 'D', wife: 'M2', children: ['HS'] },
+    ],
+  };
+  const pos = layoutHourglass(tree, 'F', OPTS);
+  assert.ok(pos.get('M2').x > pos.get('D').x, 'second spouse outward of dad (paternal side)');
+  assert.equal(pos.get('HS').gen, 0);
+  assert.ok(pos.get('HS').x > pos.get('F').x, 'half-sibling on the paternal side of focal');
+});
+
+test('hourglass: missing focal family returns focal only', () => {
+  const pos = layoutHourglass({ individuals: [ind('F','M')], families: [] }, 'F', OPTS);
+  assert.equal(pos.size, 1);
+  assert.deepEqual(pos.get('F'), { x: 0, y: 0, gen: 0 });
+});
