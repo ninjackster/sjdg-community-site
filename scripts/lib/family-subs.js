@@ -18,6 +18,7 @@ export function buildEditSubmission(body, id, ts) {
   const given = typeof b.given === 'string' ? b.given.trim().slice(0, 60) : '';
   if (!given) return { error: 'name required' };
   const note = typeof b.note === 'string' ? b.note.slice(0, 600) : '';
+  const photo = (typeof b.photo === 'string' && b.photo.startsWith('data:image/') && b.photo.length < 220000) ? b.photo : null;
   const sub = {
     id,
     kind: 'edit',
@@ -26,6 +27,7 @@ export function buildEditSubmission(body, id, ts) {
     names: { given, surnames: parseSurnames(b.surnames) },
     birth: dateField(b.birth),
     death: dateField(b.death),
+    photo,
     notes: { en: note, es: note },
     ts,
   };
