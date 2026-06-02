@@ -323,7 +323,10 @@
       const visGens = Object.keys(rows).map(Number);
       const gMin = Math.min.apply(null, visGens), gMax = Math.max.apply(null, visGens);
       const order = {};
-      for (const g of visGens) order[g] = [].concat(bySide(rows[g], 'P'), bySide(rows[g], 'C'), bySide(rows[g], 'M'));
+      // Row order is spatial left-to-right: maternal (left) · centre · paternal (right).
+      // This matches the bifurcation orientation so the descendant de-overlap pass (which
+      // only pushes rightward) keeps each side's children on their own side.
+      for (const g of visGens) order[g] = [].concat(bySide(rows[g], 'M'), bySide(rows[g], 'C'), bySide(rows[g], 'P'));
 
       // x-assignment: youngest generation first; center over placed children;
       // de-overlap left-to-right; keep adjacent same-side couples as a unit.
@@ -545,8 +548,11 @@
 
   function drawConnectors(wrap, tree, elById) {
     const NS = 'http://www.w3.org/2000/svg';
-    const wr = wrap.getBoundingClientRect();
-    const pos = (el) => { const r = el.getBoundingClientRect(); return { cx: r.left - wr.left + r.width / 2, cy: r.top - wr.top + r.height / 2, left: r.left - wr.left, right: r.left - wr.left + r.width, top: r.top - wr.top, bottom: r.top - wr.top + r.height }; };
+    // Use unscaled layout offsets (offsetLeft/Top/Width/Height), NOT getBoundingClientRect:
+    // the latter returns screen coords scaled by the current zoom, which would shrink the
+    // connectors toward the origin on any re-render at zoom != 1. Nodes use translateX(-50%),
+    // so the visual centre x equals offsetLeft.
+    const pos = (el) => { const w = el.offsetWidth, h = el.offsetHeight, cx = el.offsetLeft, top = el.offsetTop; return { cx, cy: top + h / 2, left: cx - w / 2, right: cx + w / 2, top, bottom: top + h }; };
     const svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('width', wrap.scrollWidth); svg.setAttribute('height', wrap.scrollHeight);
     svg.style.cssText = 'position:absolute;top:0;left:0;overflow:visible;pointer-events:none;z-index:0;';
