@@ -115,3 +115,50 @@ export function layoutSubtree(rootId, gen, model, opts) {
   for (const c of cells) c.x -= lo;
   return { cells, w };
 }
+
+// Lay out one direct-ancestor `spineId` at local x=0 (gen from model), plus its collateral
+// siblings (each carrying their descendant subtree via layoutSubtree) fanning in `dir`
+// (-1 maternal/left, +1 paternal/right), plus its parents recursing upward (wife-left).
+// Returns { cells:[{id,x,gen}], lo, hi } where lo/hi are signed outer edges of the spine row.
+export function layoutAncestorSide(spineId, model, opts) {
+  const nodeW = opts.nodeW, gap = opts.gap;
+  const { childToFamily, famById } = model;
+  const vis = opts.vis;
+  const dirOf = (id) => model.sideOf(id) === 'M' ? -1 : 1;
+
+  function block(spineId, dir) {
+    const g = model.gen.get(spineId);
+    const fam = childToFamily.has(spineId) ? famById.get(childToFamily.get(spineId)) : null;
+    const cells = [{ id: spineId, x: 0, gen: g }];
+    let edge = dir * (nodeW / 2);
+
+    const collats = fam ? (fam.children || []).filter(c => c !== spineId && vis(c)) : [];
+    for (const c of collats) {
+      const s = layoutSubtree(c, g, model, opts);   // carries c's descendants below
+      const start = dir < 0 ? (edge - gap - s.w) : (edge + gap);
+      for (const cell of s.cells) cells.push({ id: cell.id, x: start + cell.x, gen: cell.gen });
+      edge = dir < 0 ? start : start + s.w;
+    }
+
+    const wifeId = fam && vis(fam.wife) ? fam.wife : null;
+    const husbandId = fam && vis(fam.husband) ? fam.husband : null;
+    if (wifeId || husbandId) {
+      const innerId = dir < 0 ? (husbandId || wifeId) : (wifeId || husbandId);
+      const outerId = innerId === husbandId ? wifeId : husbandId;
+      const innerB = block(innerId, dir);
+      for (const c of innerB.cells) cells.push(c);
+      let curLo = innerB.lo, curHi = innerB.hi;
+      if (outerId) {
+        const outerB = block(outerId, dir);
+        const shift = dir < 0 ? (curLo - gap - outerB.hi) : (curHi + gap - outerB.lo);
+        for (const c of outerB.cells) cells.push({ id: c.id, x: c.x + shift, gen: c.gen });
+        curLo = Math.min(curLo, outerB.lo + shift);
+        curHi = Math.max(curHi, outerB.hi + shift);
+      }
+    }
+    let lo = Infinity, hi = -Infinity;
+    for (const c of cells) { lo = Math.min(lo, c.x - nodeW / 2); hi = Math.max(hi, c.x + nodeW / 2); }
+    return { cells, lo, hi };
+  }
+  return block(spineId, dirOf(spineId));
+}

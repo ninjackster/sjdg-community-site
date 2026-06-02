@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { buildModel } from '../hourglass-layout.js';
 import { layoutSubtree } from '../hourglass-layout.js';
+import { layoutAncestorSide } from '../hourglass-layout.js';
 
 const ind = (id, sex) => ({ id, names: { given: id, surnames: [] }, sex });
 const synthetic = () => ({
@@ -52,4 +53,25 @@ test('layoutSubtree: parent centred over its children span, no overlap', () => {
   // no two cells in the same gen overlap
   const byGen = {}; for (const c of cells) (byGen[c.gen] = byGen[c.gen] || []).push(c.x);
   for (const g of Object.keys(byGen)) { const xs = byGen[g].sort((a,b)=>a-b); for (let i=1;i<xs.length;i++) assert.ok(xs[i]-xs[i-1] >= 100 - 1e-6); }
+});
+
+// Mom M with sister MS (an aunt) who has a child AC (focal's cousin).
+const collatDesc = () => ({
+  individuals: ['F','M','D','MM','MD','MS','AC'].map(id => ind(id, /^(M|MM|MS)$/.test(id) ? 'F' : 'M')),
+  families: [
+    { id: 'f1', husband: 'D', wife: 'M', children: ['F'] },
+    { id: 'f3', husband: 'MD', wife: 'MM', children: ['M','MS'] },
+    { id: 'fa', husband: null, wife: 'MS', children: ['AC'] },
+  ],
+});
+
+test('layoutAncestorSide: maternal aunt fans left of mom and carries her child below', () => {
+  const m = buildModel(collatDesc(), 'F');
+  const { cells } = layoutAncestorSide('M', m, { nodeW: 100, gap: 20, vis: () => true });
+  const pos = new Map(cells.map(c => [c.id, c]));
+  assert.equal(pos.get('M').gen, 1);
+  assert.equal(pos.get('MS').gen, 1);
+  assert.equal(pos.get('AC').gen, 0);            // aunt's child one gen below the aunt
+  assert.ok(pos.get('MS').x < pos.get('M').x, 'aunt left of mom (fans outward on maternal side)');
+  assert.ok(Math.abs(pos.get('AC').x - pos.get('MS').x) < 1e-6, 'cousin centred under lone aunt');
 });
