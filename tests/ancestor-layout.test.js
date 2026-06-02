@@ -66,3 +66,52 @@ test('no overlap: nodes in the same generation are >= nodeW apart', () => {
     for (let i = 1; i < xs.length; i++) assert.ok(xs[i] - xs[i-1] >= NODE - 1e-6, `gen ${g} overlap`);
   }
 });
+
+const ind2 = (id, sex) => ({ id, names: { given: id, surnames: [] }, sex });
+
+test('single known parent: child centers under that parent', () => {
+  const tree = {
+    individuals: [ind2('F','M'), ind2('M','F')],
+    families: [{ id: 'f1', husband: null, wife: 'M', children: ['F'] }],
+  };
+  const pos = layoutAncestors(tree, 'F', { nodeW: 100, gap: 20 });
+  assert.equal(pos.get('M').gen, 1);
+  assert.ok(Math.abs(pos.get('F').x - pos.get('M').x) < 1e-6);
+});
+
+test('placeholder ancestors are positioned like normal leaves', () => {
+  const tree = {
+    individuals: [
+      ind2('F','M'), ind2('M','F'), ind2('D','M'),
+      { id: 'MM', names: { given: '¿?', surnames: [] }, placeholder: true },
+    ],
+    families: [
+      { id: 'f1', husband: 'D', wife: 'M', children: ['F'] },
+      { id: 'f3', husband: null, wife: 'MM', children: ['M'] },
+    ],
+  };
+  const pos = layoutAncestors(tree, 'F', { nodeW: 100, gap: 20 });
+  assert.equal(pos.get('MM').gen, 2);
+  assert.ok(pos.get('MM').x < pos.get('D').x); // maternal placeholder still on the left
+});
+
+test('missing focal family: returns focal only at x=0 gen 0, no throw', () => {
+  const tree = { individuals: [ind2('F','M')], families: [] };
+  const pos = layoutAncestors(tree, 'F', { nodeW: 100, gap: 20 });
+  assert.equal(pos.size, 1);
+  assert.deepEqual(pos.get('F'), { x: 0, gen: 0 });
+});
+
+test('hidden ancestor (isHidden) is omitted and does not break centering', () => {
+  const tree = {
+    individuals: [ind2('F','M'), ind2('M','F'), ind2('D','M'), ind2('DD','M'), ind2('DM','F')],
+    families: [
+      { id: 'f1', husband: 'D', wife: 'M', children: ['F'] },
+      { id: 'f2', husband: 'DD', wife: 'DM', children: ['D'] },
+    ],
+  };
+  const pos = layoutAncestors(tree, 'F', { nodeW: 100, gap: 20, isHidden: (id) => id === 'DM' });
+  assert.ok(!pos.has('DM'));
+  assert.ok(pos.has('DD'));
+  assert.ok(Math.abs(pos.get('D').x - pos.get('DD').x) < 1e-6); // D centers under lone DD
+});
