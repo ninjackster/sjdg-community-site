@@ -15,6 +15,21 @@
   .cr-section a { color: var(--clay); }
   .cr-sources { margin-top: 3rem; padding-top: 1.8rem; border-top: 1px solid var(--mist); font-size: .9rem; }
   .cr-sources ul { line-height: 1.7; }
+  .cr-flag { font-size: .8rem; color: rgba(28,19,9,.5); font-style: italic; }
+  .cr-timeline { margin: 0 0 2.8rem; }
+  .cr-timeline h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 1rem; color: var(--dark); }
+  ol.cr-tl { list-style: none; margin: 0; padding: 0 0 0 1.2rem; border-left: 2px solid var(--clay); }
+  ol.cr-tl li { position: relative; padding: 0 0 1rem 1rem; }
+  ol.cr-tl li::before { content: ""; position: absolute; left: -1.65rem; top: .4rem; width: 9px; height: 9px; border-radius: 50%; background: var(--clay); }
+  .cr-tl-year { font-weight: 600; color: var(--clay); margin-right: .6rem; }
+  .cr-tl-label { color: rgba(28,19,9,.82); }
+  .cr-historias { margin: 2.6rem 0; }
+  .cr-historias h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 1rem; color: var(--dark); }
+  .cr-stories { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .cr-story { border: 1px solid var(--mist); border-radius: 10px; padding: 1rem; }
+  .cr-story-kind { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--clay); }
+  .cr-story h3 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 1.1rem; margin: .3rem 0 .4rem; }
+  .cr-story p { font-size: .92rem; line-height: 1.6; color: rgba(28,19,9,.78); margin: 0; }
   .cr-cross { margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--mist); }
   .cr-cross ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 1rem; }
   .cr-cross a { color: var(--clay); text-decoration: none; }
@@ -26,6 +41,7 @@
     .cr-actions, .cr-cross { display: none; }
     .cr-section { page-break-inside: avoid; }
     .cr-section h2 { page-break-after: avoid; }
+    .cr-timeline, .cr-historias, .cr-story { page-break-inside: avoid; }
     /* Diagonal watermark + running footer */
     .cr-wrap::before { content: "Compilado por Jaime Murillo"; position: fixed; top: 45%; left: 50%; transform: translate(-50%,-50%) rotate(-30deg); font-size: 3rem; color: rgba(196,120,90,.10); white-space: nowrap; z-index: 0; }
     .cr-wrap::after { content: "La Crónica de San José de Gracia · sanjosedegracia.net"; position: fixed; bottom: .6cm; left: 0; right: 0; text-align: center; font-size: .7rem; color: rgba(28,19,9,.5); }
@@ -55,6 +71,8 @@
     <div class="cr-actions"><button class="cr-pdf" onclick="window.print()">{{pdf.label}}</button></div>
   </header>
 
+  <section class="cr-timeline" id="sec-timeline">{{timeline.body}}</section>
+
   <section class="cr-section" id="sec-place"><h2>{{sections.place.h2}}</h2>{{sections.place.body}}</section>
   <section class="cr-section" id="sec-origins"><h2>{{sections.origins.h2}}</h2>{{sections.origins.body}}</section>
   <section class="cr-section" id="sec-administrative"><h2>{{sections.administrative.h2}}</h2>{{sections.administrative.body}}</section>
@@ -64,6 +82,8 @@
   <section class="cr-section" id="sec-people"><h2>{{sections.people.h2}}</h2>{{sections.people.body}}</section>
   <section class="cr-section" id="sec-culture"><h2>{{sections.culture.h2}}</h2>{{sections.culture.body}}</section>
   <section class="cr-section" id="sec-book1897"><h2>{{sections.book1897.h2}}</h2>{{sections.book1897.body}}</section>
+
+  <section class="cr-historias" id="sec-historias">{{historias.body}}</section>
 
   <section class="cr-sources" id="sec-sources">
     <h2>{{sources.h2}}</h2>

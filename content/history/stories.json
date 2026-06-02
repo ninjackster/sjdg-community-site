@@ -1,0 +1,41 @@
+{
+  "heading": { "en": "Stories of the town", "es": "Historias del pueblo" },
+  "stories": [
+    {
+      "id": "el-bramido",
+      "kind": "place",
+      "title": { "en": "El Bramido & the founding", "es": "El Bramido y la fundación" },
+      "body": {
+        "en": "The town grew from the lands once called El Bramido, settled around the turn of the 19th century by four Hernández (Padilla) brothers. No founding document survives, so the often-cited year 1793 is best treated as approximate.",
+        "es": "El pueblo surgió de las tierras antes llamadas El Bramido, pobladas hacia inicios del siglo XIX por cuatro hermanos Hernández (Padilla). No se conserva documento fundacional, por lo que el año 1793, muy citado, conviene tomarlo como aproximado."
+      }
+    },
+    {
+      "id": "parroquia-san-jose",
+      "kind": "place",
+      "title": { "en": "The parish of San José", "es": "La parroquia de San José" },
+      "body": {
+        "en": "A chapel of 1822 preceded the temple of local red cantera begun on 19 March 1889; the parish was erected on 15 May 1910 under its first priest, Fermín Padilla. The patronal feast falls on the second Sunday of May.",
+        "es": "Una capilla de 1822 precedió al templo de cantera roja iniciado el 19 de marzo de 1889; la parroquia se erigió el 15 de mayo de 1910 con su primer párroco, Fermín Padilla. La fiesta patronal es el segundo domingo de mayo."
+      }
+    },
+    {
+      "id": "batalla-tepatitlan-1929",
+      "kind": "event",
+      "title": { "en": "The Battle of Tepatitlán, 1929", "es": "La Batalla de Tepatitlán, 1929" },
+      "body": {
+        "en": "On 18–19 April 1929, Cristeros under Father-General José Reyes Vega ambushed a far larger federal-agrarista force near Tepatitlán. It became a landmark Cristero victory of Los Altos — at the cost of Vega's own life.",
+        "es": "El 18 y 19 de abril de 1929, cristeros al mando del padre-general José Reyes Vega emboscaron a una fuerza federal-agrarista mucho mayor cerca de Tepatitlán. Fue una victoria cristera emblemática de Los Altos, al costo de la vida del propio Vega."
+      }
+    },
+    {
+      "id": "santo-toribio",
+      "kind": "person",
+      "title": { "en": "Santo Toribio, patron of migrants", "es": "Santo Toribio, patrono de los migrantes" },
+      "body": {
+        "en": "Across Los Altos, Santo Toribio Romo — canonized in 2000 — is venerated as the patron of migrants, said to aid those crossing to the United States. His devotion threads through the region's migration story.",
+        "es": "En todo Los Altos, Santo Toribio Romo —canonizado en 2000— es venerado como patrono de los migrantes, a quienes se atribuye que auxilia al cruzar a Estados Unidos. Su devoción atraviesa la historia migratoria de la región."
+      }
+    }
+  ]
+}
