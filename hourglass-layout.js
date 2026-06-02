@@ -10,7 +10,6 @@ export function buildModel(tree, focalId) {
   const childToFamily = new Map();   // child -> the family it is a child of
   const parentToFamily = new Map();  // parent -> the (first) family it parents
   const childParents = new Map();    // child -> [parents]
-  const kidsOf = new Map();          // parent -> [children]
   const coupleOf = new Map();        // spouse <-> spouse
   for (const f of tree.families) {
     const ps = [f.husband, f.wife].filter(Boolean);
@@ -20,13 +19,9 @@ export function buildModel(tree, focalId) {
     }
     for (const p of ps) {
       if (!parentToFamily.has(p)) parentToFamily.set(p, f.id);
-      (kidsOf.get(p) || kidsOf.set(p, []).get(p)).push(...(f.children || []));
     }
     if (ps.length === 2) { coupleOf.set(ps[0], ps[1]); coupleOf.set(ps[1], ps[0]); }
   }
-  // Direct line: focal + ancestors (upward closure).
-  const direct = new Set();
-  (function up(id){ if (direct.has(id)) return; direct.add(id); for (const p of (childParents.get(id)||[])) up(p); })(focalId);
   // Generations: focal=0, ancestors positive (BFS up), descendants negative (BFS down).
   const gen = new Map([[focalId, 0]]);
   (function climb(id){ for (const p of (childParents.get(id)||[])) if (!gen.has(p)) { gen.set(p, gen.get(id)+1); climb(p); } })(focalId);
@@ -47,8 +42,8 @@ export function buildModel(tree, focalId) {
   const flood = (start, tag) => { if(!start) return; const st=[start]; while(st.length){ const n=st.pop(); if(side.has(n)) continue; side.set(n,tag); for (const m of (adj.get(n)||[])) if (m!==focalId && !side.has(m)) st.push(m); } };
   flood(father, 'P'); flood(mother, 'M');
   return {
-    byId, famById, childToFamily, parentToFamily, childParents, kidsOf, coupleOf,
-    direct, gen, focalFamId, father, mother,
+    byId, famById, childToFamily, parentToFamily, childParents, coupleOf,
+    gen, focalFamId, father, mother,
     sideOf: (id) => side.get(id) || 'M',
   };
 }
@@ -193,13 +188,15 @@ export function layoutHourglass(tree, focalId, opts = {}) {
 
   // Collect half-siblings (children of a focal parent's other families) keyed by direction.
   const halfSibsByDir = { '-1': [], '1': [] };
+  // NOTE: we insert only the bare second-family spouse node here; that spouse's OWN ancestors
+  // (step-grandparents of the focal) are intentionally out of scope and not laid out.
   const injectExtra = (cells, parentId, dir) => {
     for (const f of tree.families) {
       if (f.id === model.focalFamId || (f.husband !== parentId && f.wife !== parentId)) continue;
       const sp = f.husband === parentId ? f.wife : f.husband;
       if (!vis(sp)) continue;
       const INS = nodeW + gap;
-      for (const c of cells) if (c.gen === 1 && c.id !== parentId && Math.sign(c.x) === dir) c.x += dir * INS;
+      for (const c of cells) if (c.gen === 1 && c.id !== parentId && c.x * dir >= 0) c.x += dir * INS;
       cells.push({ id: sp, x: dir * (nodeW + gap), gen: 1 });
       // Collect half-siblings to be placed at gen 0 on this side.
       for (const hs of (f.children || [])) { if (vis(hs) && hs !== focalId) halfSibsByDir[String(dir)].push(hs); }
