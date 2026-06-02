@@ -25,3 +25,21 @@ test('renderTimeline: localized + HTML-escaped labels', () => {
   assert.doesNotMatch(renderTimeline(timeline(), 'en'), /<b>region<\/b>/);
   assert.match(renderTimeline(timeline(), 'en'), /&lt;b&gt;region&lt;\/b&gt;/);
 });
+
+import { renderHistorias } from '../scripts/lib/history-render.js';
+
+const stories = () => ({
+  heading: { en: 'Stories', es: 'Historias' },
+  stories: [
+    { id: 's1', kind: 'event', title: { en: 'Battle', es: 'Batalla' }, body: { en: 'In 1929…', es: 'En 1929…' } },
+    { id: 's2', kind: 'person', title: { en: 'Toribio', es: 'Toribio' }, body: { en: 'Patron', es: 'Patrón' } },
+  ],
+});
+
+test('renderHistorias: heading + one card per story, localized, kind chip', () => {
+  const html = renderHistorias(stories(), 'es');
+  assert.match(html, /Historias/);
+  assert.equal((html.match(/class="cr-story"/g) || []).length, 2);
+  assert.match(html, /Batalla/);
+  assert.match(html, /person|event/);
+});

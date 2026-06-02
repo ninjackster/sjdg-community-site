@@ -15,3 +15,21 @@ export function renderTimeline(timeline, lang) {
   ).join('');
   return '<h2>' + esc(heading) + '</h2><ol class="cr-tl">' + items + '</ol>';
 }
+
+const KIND_LABEL = {
+  place: { en: 'Place', es: 'Lugar' }, person: { en: 'Person', es: 'Persona' },
+  object: { en: 'Object', es: 'Objeto' }, event: { en: 'Event', es: 'Suceso' },
+};
+
+export function renderHistorias(data, lang) {
+  const heading = (data.heading && data.heading[lang]) || '';
+  const cards = (data.stories || []).map(s => {
+    const kind = (KIND_LABEL[s.kind] && KIND_LABEL[s.kind][lang]) || esc(s.kind);
+    return '<article class="cr-story" data-kind="' + esc(s.kind) + '">' +
+      '<span class="cr-story-kind">' + esc(kind) + '</span>' +
+      '<h3>' + esc(s.title && s.title[lang]) + '</h3>' +
+      '<p>' + esc(s.body && s.body[lang]) + '</p>' +
+      '</article>';
+  }).join('');
+  return '<h2>' + esc(heading) + '</h2><div class="cr-stories">' + cards + '</div>';
+}
