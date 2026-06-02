@@ -439,19 +439,33 @@
       const rootEl = elById.get(rootId);
       if (rootEl) { rootEl.style.border = '2px solid var(--gold,#D4A843)'; rootEl.style.boxShadow = '0 0 0 4px rgba(212,168,67,.22)'; }
 
-      // collapse/expand toggle on each visible anchor that gates hidden relatives
+      // Directional expand/collapse toggle on each visible anchor that gates hidden relatives.
+      // The arrow points where the hidden kin will appear: ▾ children (down), ▲ ancestors (up),
+      // ◂/▸ siblings & spouses (outward — left on the maternal half, right on the paternal half).
+      const PILL = 'min-width:22px;height:20px;padding:0 5px;border:1px solid var(--earth,#8B5E3C);background:#fffdf8;color:var(--earth,#8B5E3C);border-radius:11px;font-size:.7rem;font-weight:600;line-height:1;cursor:pointer;z-index:3;box-shadow:0 1px 2px rgba(28,19,9,.2);';
       for (const anchor of anchors) {
         if (!elById.has(anchor)) continue;
         const gated = gatedBy.get(anchor) || [];
         const isExp = expanded.has(anchor);
         const n = isExp ? gated.filter(id => !hidden.has(id)).length : gated.length;
         if (!n) continue;
+        const ag = gens.get(anchor);
+        const dir = gated.some(id => (gens.get(id) != null ? gens.get(id) : ag) > ag) ? 'up'
+          : gated.some(id => (gens.get(id) != null ? gens.get(id) : ag) < ag) ? 'down'
+          : (sideOf(anchor) === 'M' ? 'left' : 'right');
+        const arrow = { up: '▲', down: '▾', left: '◂', right: '▸' }[dir];
+        const pos = {
+          up: 'left:50%;top:-12px;transform:translateX(-50%);',
+          down: 'left:50%;bottom:-12px;transform:translateX(-50%);',
+          left: 'left:-13px;top:50%;transform:translateY(-50%);',
+          right: 'right:-13px;top:50%;transform:translateY(-50%);',
+        }[dir];
         const t = document.createElement('button');
         t.type = 'button';
-        t.textContent = isExp ? '−' : ('+' + n);
+        t.textContent = isExp ? '−' : (arrow + n);
         t.title = isExp ? (lang === 'es' ? 'Ocultar' : 'Hide') : (lang === 'es' ? 'Mostrar ' + n : 'Show ' + n);
         t.setAttribute('aria-label', t.title);
-        t.style.cssText = 'position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);min-width:24px;height:20px;padding:0 5px;border:1px solid var(--earth,#8B5E3C);background:#fffdf8;color:var(--earth,#8B5E3C);border-radius:11px;font-size:.7rem;font-weight:600;line-height:1;cursor:pointer;z-index:3;box-shadow:0 1px 2px rgba(28,19,9,.2);';
+        t.style.cssText = 'position:absolute;' + pos + PILL;
         t.addEventListener('pointerdown', e => e.stopPropagation());
         t.addEventListener('click', e => { e.stopPropagation(); if (expanded.has(anchor)) expanded.delete(anchor); else expanded.add(anchor); render(); });
         elById.get(anchor).appendChild(t);
@@ -568,7 +582,7 @@
     });
 
     const legend = document.createElement('div');
-    legend.innerHTML = (lang === 'es' ? '∗ adoptado · +N expandir · ? por confirmar' : '∗ adopted · +N expand · ? unconfirmed');
+    legend.innerHTML = (lang === 'es' ? '∗ adoptado · ◂▾▸ expandir · ? por confirmar' : '∗ adopted · ◂▾▸ expand · ? unconfirmed');
     legend.style.cssText = 'position:absolute;left:16px;bottom:16px;font-size:.74rem;color:rgba(28,19,9,.55);background:rgba(255,253,248,.85);padding:4px 9px;border-radius:6px;z-index:5;';
     canvas.appendChild(legend);
   }
