@@ -323,7 +323,10 @@
           if (spineIds.has(id) && xpos.has(id)) {        // pinned by bifurcation — keep, advance
             prev = id; prevX = xpos.get(id); i += 1; continue;
           }
-          if (sp && ids[i + 1] === sp && sideOf(id) === sideOf(sp)) {
+          // Couple-unit placement — but never drag a spine-pinned partner (e.g. a focal
+          // parent who also has a second marriage in this row); leave it where the
+          // bifurcation put it and place this node on its own below.
+          if (sp && ids[i + 1] === sp && sideOf(id) === sideOf(sp) && !(spineIds.has(sp) && xpos.has(sp))) {
             const kx = [].concat(kidsOf.get(id) || [], kidsOf.get(sp) || []).filter(c => xpos.has(c)).map(c => xpos.get(c));
             const desired = kx.length ? kx.reduce((s, v) => s + v, 0) / kx.length : null;
             const half = (NODE_W + GAP) / 2;
