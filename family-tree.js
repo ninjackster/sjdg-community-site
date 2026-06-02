@@ -412,7 +412,7 @@ import { searchPeople } from '/family-search.js';
     let navId = rootId;
     const focusNode = (id) => {
       const el = meta.elById && meta.elById.get(id); if (!el) return;
-      navId = id; el.focus();
+      navId = id; el.focus({ preventScroll: true });
       const cx = parseFloat(el.style.left) || 0, cy = (parseFloat(el.style.top) || 0) + 31, s = vp.cur().scale;
       vp.set(cw / 2 - cx * s, ch / 2 - cy * s, s);
     };
