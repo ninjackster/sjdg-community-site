@@ -54,6 +54,15 @@ test('blank birth/death become null', () => {
   assert.equal(sub.death.date, null);
 });
 
+test('story: stored bilingually, clamped to 2000, absent -> empty', () => {
+  const s = buildEditSubmission({ ...base, story: 'Nació en el rancho y migró a EE. UU.' }, 'X', 1).sub;
+  assert.equal(s.story.en, 'Nació en el rancho y migró a EE. UU.');
+  assert.equal(s.story.es, 'Nació en el rancho y migró a EE. UU.');
+  const big = buildEditSubmission({ ...base, story: 'y'.repeat(2500) }, 'X', 1).sub;
+  assert.equal(big.story.en.length, 2000);
+  assert.equal(buildEditSubmission(base, 'X', 1).sub.story.en, '');
+});
+
 test('photo: valid data-URI kept; oversized, wrong-scheme, or absent become null', () => {
   const ok = buildEditSubmission({ ...base, photo: 'data:image/jpeg;base64,abc' }, 'X', 1).sub;
   assert.equal(ok.photo, 'data:image/jpeg;base64,abc');
