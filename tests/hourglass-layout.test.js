@@ -154,11 +154,13 @@ test('real tree: wife left of husband within grandparent unions', () => {
   assert.ok(pos.get('I7').x < pos.get('I6').x);
 });
 
-test('real tree: mom rightmost maternal, dad leftmost paternal (centre seam)', () => {
+test('real tree: mom rightmost maternal, dad leftmost paternal (centre seam, parents row)', () => {
   const pos = layoutHourglass(realTree(), 'I1', R);
   const fx = pos.get('I1').x;
+  // The seam is the PARENTS' row (gen 1): among gen-1 nodes, mom hugs the centre from the left,
+  // dad from the right. (A gen-0 half-sibling sitting beside the focal does not affect the seam.)
   let matMax = -Infinity, patMin = Infinity;
-  for (const [, p] of pos) { if (p.x < fx) matMax = Math.max(matMax, p.x); else if (p.x > fx) patMin = Math.min(patMin, p.x); }
+  for (const [, p] of pos) { if (p.gen !== 1) continue; if (p.x < fx) matMax = Math.max(matMax, p.x); else if (p.x > fx) patMin = Math.min(patMin, p.x); }
   assert.equal(pos.get('I3').x, matMax);
   assert.equal(pos.get('I2').x, patMin);
 });
@@ -174,4 +176,39 @@ test('real tree: Chuy 3-gen branch all present', () => {
   const ids = ['I133','I145','I146','I147','I148','I149','I150','I151','I152'];
   const pos = layoutHourglass(realTree(), 'I1', R);
   for (const id of ids) assert.ok(pos.has(id), `${id} present`);
+});
+
+// ---- regression: half-sibling must not be flung past expanded paternal collaterals ----
+test('half-sibling stays beside focal, not flung past a paternal collateral descendant', () => {
+  const tree = {
+    individuals: ['F','M','D','DD','DM','UNC','CUZ','M2','HS','HSK1','HSK2']
+      .map(id => ind(id, /^(M|DM|M2|HS)$/.test(id) ? 'F' : 'M')),
+    families: [
+      { id: 'f1', husband: 'D', wife: 'M', children: ['F'] },
+      { id: 'f2', husband: 'DD', wife: 'DM', children: ['D', 'UNC'] }, // UNC = dad's brother
+      { id: 'fu', husband: 'UNC', wife: null, children: ['CUZ'] },     // CUZ = paternal cousin (gen 0)
+      { id: 'f16', husband: 'D', wife: 'M2', children: ['HS'] },       // dad's 2nd family -> half-sib
+      { id: 'fh', husband: null, wife: 'HS', children: ['HSK1', 'HSK2'] }, // HS has her own kids
+    ],
+  };
+  const pos = layoutHourglass(tree, 'F', { nodeW: 100, gap: 20, rowH: 130 });
+  const fx = pos.get('F').x;
+  assert.equal(pos.get('HS').gen, 0);
+  assert.equal(pos.get('CUZ').gen, 0);
+  assert.ok(pos.get('HS').x > fx, 'half-sib on the paternal (right) side of focal');
+  assert.ok(pos.get('HS').x < pos.get('CUZ').x, "half-sib (dad's child) is INNER of the cousin (uncle's child), not flung past it");
+  const g0 = [...pos.values()].filter(v => v.gen === 0).map(v => v.x).sort((a, b) => a - b);
+  for (let i = 1; i < g0.length; i++) assert.ok(g0[i] - g0[i - 1] >= 100 - 1e-6, 'no gen-0 overlap');
+});
+
+test('real tree: Alexis (half-sister) sits near focal even with everything expanded', () => {
+  const pos = layoutHourglass(realTree(), 'I1', { ...R, isHidden: () => false });
+  const fx = pos.get('I1').x;
+  // Alexis must be far closer to focal than Chuy's branch (paternal great-uncle, far right).
+  assert.ok(Math.abs(pos.get('I71').x - fx) < Math.abs(pos.get('I133').x - fx),
+    'Alexis closer to focal than Chuy');
+  // Alexis is not the rightmost gen-0 node anymore.
+  const g0 = [...pos.entries()].filter(([, v]) => v.gen === 0);
+  const rightmost = g0.reduce((a, b) => b[1].x > a[1].x ? b : a);
+  assert.notEqual(rightmost[0], 'I71', 'Alexis should not be the rightmost gen-0 node');
 });
