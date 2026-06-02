@@ -2,6 +2,7 @@
 import { layoutHourglass } from '/hourglass-layout.js';
 import { relationshipLabel } from '/kinship.js';
 import { searchPeople } from '/family-search.js';
+import { computeStats, surnameColor } from '/family-stats.js';
 (function () {
   const login = document.getElementById('ft-login');
   const canvas = document.getElementById('ft-canvas');
@@ -12,6 +13,7 @@ import { searchPeople } from '/family-search.js';
   const lang = (canvas.getAttribute('data-lang') || 'en').slice(0, 2); // 'es-MX' -> 'es'
   let FOCAL_ID = null;
   let TREE = null;
+  let colorOn = false;   // tint nodes by surname/branch
 
   async function tryLoad() {
     const res = await fetch('/api/family-tree', { credentials: 'same-origin' });
@@ -404,6 +406,8 @@ import { searchPeople } from '/family-search.js';
     controls.appendChild(mkBtn('⊕', lang === 'es' ? 'Expandir todo' : 'Expand all', () => { anchors.forEach(a => expanded.add(a)); render(); }));
     controls.appendChild(mkBtn('⊖', lang === 'es' ? 'Colapsar todo' : 'Collapse all', () => { expanded.clear(); render(); }));
     controls.appendChild(mkBtn('❋', lang === 'es' ? 'Abanico / árbol' : 'Fan / tree view', () => { mode = mode === 'tree' ? 'fan' : 'tree'; if (mode === 'fan') renderFan(); else { firstRender = true; render(); } }));
+    controls.appendChild(mkBtn('🎨', lang === 'es' ? 'Colorear por apellido' : 'Color by surname', () => { colorOn = !colorOn; if (mode === 'tree') render(); }));
+    controls.appendChild(mkBtn('📊', lang === 'es' ? 'Estadísticas' : 'Statistics', () => openStats()));
     canvas.appendChild(controls);
 
     // Keyboard navigation between relatives: arrows move up (parent) / down
@@ -509,6 +513,7 @@ import { searchPeople } from '/family-search.js';
     el.dataset.id = ind.id;
     el.style.cssText = 'position:relative;z-index:1;box-sizing:border-box;width:210px;flex:none;display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--mist,#EDE8DF);border-radius:10px;padding:10px 14px;cursor:pointer;font:inherit;text-align:left;box-shadow:0 1px 3px rgba(28,19,9,.07);';
     if (ind.placeholder) { el.style.borderStyle = 'dashed'; el.style.opacity = '0.72'; el.style.background = '#faf6ef'; }
+    if (colorOn && !ind.placeholder && ind.names.surnames[0]) { el.style.borderLeft = '5px solid ' + surnameColor(ind.names.surnames[0]); }
     const initials = ind.placeholder ? '?' : (ind.names.given[0] || '') + (ind.names.surnames[0]?.[0] || '');
     const star = ind.adopted ? ' <span title="' + (lang === 'es' ? 'adoptado' : 'adopted') + '" style="color:var(--clay,#C4785A);font-weight:700;">∗</span>' : '';
     const avatar = ind.photo
@@ -519,6 +524,34 @@ import { searchPeople } from '/family-search.js';
     el.setAttribute('aria-label', nameOf(ind) + (ind.id === FOCAL_ID ? (lang === 'es' ? ' (tú)' : ' (you)') : '') + (ind.adopted ? (lang === 'es' ? ', adoptado' : ', adopted') : '') + (ind.placeholder ? (lang === 'es' ? ', por confirmar' : ', unconfirmed') : ''));
     el.addEventListener('click', () => openCard(ind));
     return el;
+  }
+
+  function openStats() {
+    closeCard();
+    const es = lang === 'es';
+    const s = computeStats(TREE);
+    const o = document.createElement('div');
+    o.id = 'ft-modal';
+    o.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(28,19,9,.45);z-index:60;padding:1rem;';
+    o.addEventListener('click', (e) => { if (e.target === o) closeCard(); });
+    const row = (label, val) => '<div style="display:flex;justify-content:space-between;gap:1rem;padding:.35rem 0;border-bottom:1px solid var(--mist,#EDE8DF);"><span style="color:rgba(28,19,9,.7);">' + label + '</span><strong>' + val + '</strong></div>';
+    const surnames = s.topSurnames.map(x => '<span style="display:inline-flex;align-items:center;gap:5px;margin:0 .6rem .4rem 0;"><span style="width:11px;height:11px;border-radius:3px;background:' + surnameColor(x.surname) + ';display:inline-block;"></span>' + x.surname + ' (' + x.count + ')</span>').join('');
+    o.innerHTML =
+      '<div role="dialog" aria-modal="true" aria-label="' + (es ? 'Estadísticas' : 'Statistics') + '" style="position:relative;background:#fffdf8;width:min(420px,93vw);max-height:85vh;overflow:auto;border-radius:14px;box-shadow:0 14px 44px rgba(28,19,9,.30);padding:24px;">' +
+        '<button id="ft-close" aria-label="Close" style="position:absolute;top:10px;right:12px;border:none;background:none;font-size:1.6rem;cursor:pointer;color:rgba(28,19,9,.5);">×</button>' +
+        '<h2 style="font-family:\'Playfair Display\',serif;font-weight:400;font-size:1.3rem;margin:0 1.6rem 1rem 0;">' + (es ? 'Estadísticas del árbol' : 'Tree statistics') + '</h2>' +
+        row(es ? 'Personas' : 'People', s.total) +
+        row(es ? 'Familias' : 'Families', s.families) +
+        row(es ? 'Con foto' : 'With a photo', s.withPhotos) +
+        row(es ? 'Por confirmar' : 'Unconfirmed', s.placeholders) +
+        row(es ? 'Fallecidos / vivos' : 'Deceased / living', s.deceased + ' / ' + s.living) +
+        (s.avgLifespan != null ? row(es ? 'Longevidad media' : 'Average lifespan', s.avgLifespan + (es ? ' años' : ' yrs')) : '') +
+        (s.largestFamily.count ? row(es ? 'Familia más grande' : 'Largest family', s.largestFamily.count + (es ? ' hijos' : ' children')) : '') +
+        '<h3 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;opacity:.6;margin:1rem 0 .5rem;">' + (es ? 'Apellidos principales' : 'Top surnames') + '</h3>' +
+        '<div style="font-size:.85rem;line-height:1.5;">' + surnames + '</div>' +
+      '</div>';
+    document.body.appendChild(o);
+    o.querySelector('#ft-close').addEventListener('click', closeCard);
   }
 
   function closeCard() { const o = document.getElementById('ft-modal'); if (o) o.remove(); }
