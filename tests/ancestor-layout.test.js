@@ -202,3 +202,14 @@ test('collaterals: no overlap within any generation', () => {
     for (let i = 1; i < xs.length; i++) assert.ok(xs[i] - xs[i-1] >= 100 - 1e-6, `gen ${g} overlap`);
   }
 });
+
+// ---- spine hugs the centre seam ----
+test('real tree: mom is the rightmost maternal node, dad the leftmost paternal node', () => {
+  const pos = layoutAncestors(realTree(), 'I1', { nodeW: 210, gap: 30 });
+  const fx = pos.get('I1').x;
+  let matMax = -Infinity, patMin = Infinity;
+  for (const [, p] of pos) { if (p.x < fx) matMax = Math.max(matMax, p.x); else if (p.x > fx) patMin = Math.min(patMin, p.x); }
+  assert.equal(pos.get('I3').x, matMax, 'Mercedes (mom) should be the rightmost maternal node');
+  assert.equal(pos.get('I2').x, patMin, 'Héctor (dad) should be the leftmost paternal node');
+  assert.ok(pos.get('I2').x - pos.get('I3').x <= 210 + 30 + 1e-6, 'mom and dad sit adjacent at the centre');
+});
