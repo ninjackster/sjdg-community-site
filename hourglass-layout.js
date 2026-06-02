@@ -126,11 +126,15 @@ export function layoutAncestorSide(spineId, model, opts) {
   const vis = opts.vis;
   const dirOf = (id) => model.sideOf(id) === 'M' ? -1 : 1;
 
-  function block(spineId, dir) {
+  // edgeHint: the minimum |x| the first collateral of this block must start beyond,
+  // passed down from a child block so ancestors' collateral subtrees never overlap
+  // with a descendant spine-level's collateral subtrees in the same generation.
+  function block(spineId, dir, edgeHint = dir * (nodeW / 2)) {
     const g = model.gen.get(spineId);
     const fam = childToFamily.has(spineId) ? famById.get(childToFamily.get(spineId)) : null;
     const cells = [{ id: spineId, x: 0, gen: g }];
-    let edge = dir * (nodeW / 2);
+    // Start edge from edgeHint so this block's collaterals clear any lower-gen collaterals.
+    let edge = dir < 0 ? Math.min(dir * (nodeW / 2), edgeHint) : Math.max(dir * (nodeW / 2), edgeHint);
 
     const collats = fam ? (fam.children || []).filter(c => c !== spineId && vis(c)) : [];
     for (const c of collats) {
@@ -145,11 +149,12 @@ export function layoutAncestorSide(spineId, model, opts) {
     if (wifeId || husbandId) {
       const innerId = dir < 0 ? (husbandId || wifeId) : (wifeId || husbandId);
       const outerId = innerId === husbandId ? wifeId : husbandId;
-      const innerB = block(innerId, dir);
+      // Pass current edge down so inner block's collaterals don't overlap ours.
+      const innerB = block(innerId, dir, edge);
       for (const c of innerB.cells) cells.push(c);
       let curLo = innerB.lo, curHi = innerB.hi;
       if (outerId) {
-        const outerB = block(outerId, dir);
+        const outerB = block(outerId, dir, edge);
         const shift = dir < 0 ? (curLo - gap - outerB.hi) : (curHi + gap - outerB.lo);
         for (const c of outerB.cells) cells.push({ id: c.id, x: c.x + shift, gen: c.gen });
         curLo = Math.min(curLo, outerB.lo + shift);

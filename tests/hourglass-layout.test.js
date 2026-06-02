@@ -125,3 +125,53 @@ test('hourglass: missing focal family returns focal only', () => {
   assert.equal(pos.size, 1);
   assert.deepEqual(pos.get('F'), { x: 0, y: 0, gen: 0 });
 });
+
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const realTree = () => JSON.parse(readFileSync(fileURLToPath(new URL('../content/family/tree.json', import.meta.url)), 'utf8'));
+const R = { nodeW: 210, gap: 30, rowH: 132 };
+
+test('real tree: gens for focal/parents/grandparents', () => {
+  const pos = layoutHourglass(realTree(), 'I1', R);
+  assert.equal(pos.get('I1').gen, 0);
+  assert.equal(pos.get('I2').gen, 1);
+  assert.equal(pos.get('I3').gen, 1);
+  assert.equal(pos.get('I4').gen, 2);
+  assert.equal(pos.get('I7').gen, 2);
+});
+
+test('real tree: maternal left, paternal right', () => {
+  const pos = layoutHourglass(realTree(), 'I1', R);
+  const fx = pos.get('I1').x;
+  assert.ok(pos.get('I3').x < fx && pos.get('I2').x > fx);
+  assert.ok(pos.get('I6').x < fx && pos.get('I7').x < fx);
+  assert.ok(pos.get('I4').x > fx && pos.get('I5').x > fx);
+});
+
+test('real tree: wife left of husband within grandparent unions', () => {
+  const pos = layoutHourglass(realTree(), 'I1', R);
+  assert.ok(pos.get('I5').x < pos.get('I4').x);
+  assert.ok(pos.get('I7').x < pos.get('I6').x);
+});
+
+test('real tree: mom rightmost maternal, dad leftmost paternal (centre seam)', () => {
+  const pos = layoutHourglass(realTree(), 'I1', R);
+  const fx = pos.get('I1').x;
+  let matMax = -Infinity, patMin = Infinity;
+  for (const [, p] of pos) { if (p.x < fx) matMax = Math.max(matMax, p.x); else if (p.x > fx) patMin = Math.min(patMin, p.x); }
+  assert.equal(pos.get('I3').x, matMax);
+  assert.equal(pos.get('I2').x, patMin);
+});
+
+test('real tree: no two nodes in a generation overlap', () => {
+  const pos = layoutHourglass(realTree(), 'I1', R);
+  const byGen = {};
+  for (const [, v] of pos) (byGen[v.gen] = byGen[v.gen] || []).push(v.x);
+  for (const g of Object.keys(byGen)) { const xs = byGen[g].sort((a,b)=>a-b); for (let i=1;i<xs.length;i++) assert.ok(xs[i]-xs[i-1] >= 210 - 1e-6, `gen ${g} overlap`); }
+});
+
+test('real tree: Chuy 3-gen branch all present', () => {
+  const ids = ['I133','I145','I146','I147','I148','I149','I150','I151','I152'];
+  const pos = layoutHourglass(realTree(), 'I1', R);
+  for (const id of ids) assert.ok(pos.has(id), `${id} present`);
+});
