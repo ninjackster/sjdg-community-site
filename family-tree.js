@@ -206,6 +206,17 @@
     const famById = new Map(tree.families.map(f => [f.id, f]));
     const direct = new Set();
     (function up(id) { if (direct.has(id)) return; direct.add(id); for (const p of (childParents.get(id) || [])) up(p); })(rootId);
+    // Blood relatives = the focal, their ancestors, and every descendant of those ancestors
+    // (siblings, aunts/uncles, cousins…). Anyone NOT in this set joined the tree by marriage.
+    const blood = new Set(direct);
+    let bch = true;
+    while (bch) {
+      bch = false;
+      for (const fam of tree.families) {
+        if (![fam.husband, fam.wife].filter(Boolean).some(p => blood.has(p))) continue;
+        for (const c of (fam.children || [])) if (!blood.has(c)) { blood.add(c); bch = true; }
+      }
+    }
     const gens = buildGenerations(tree);
 
     // ---- Sides: paternal (left) / maternal (right). Flood a kin graph that
@@ -271,6 +282,10 @@
     // The node whose expansion reveals `id` (null => shown by default).
     const anchorOf = (id) => {
       if (focalSibs.has(id)) return null;               // your (half-)siblings are always visible
+      // A married-in spouse of a COLLATERAL (non-direct) blood relative is collapsed by default
+      // and revealed by expanding that blood partner — keeps the default view clean. Spouses of
+      // direct-line ancestors stay visible (the bifurcation needs both halves of each couple).
+      if (!blood.has(id)) { const sp = coupleOf.get(id); if (sp != null && !isDir(sp)) return sp; }
       const p = nonDirParent(id);
       if (p != null) return p;                          // descendant of a collateral (cousin…)
       if (!isDir(id) && (gens.get(id) || 0) >= 2) {      // great-aunt/uncle & beyond
