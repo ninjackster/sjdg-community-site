@@ -36,6 +36,8 @@ test('history content is corrected, bylined, and sourced', async () => {
 });
 
 import { buildPage } from '../scripts/lib/build-page.js';
+import { renderTimeline, renderHistorias } from '../scripts/lib/history-render.js';
+import { validateStories } from '../scripts/lib/history-stories.js';
 
 async function buildHistory(lang) {
   const layout = await readFile(join(ROOT, 'templates/layouts/base.html'), 'utf8');
@@ -47,6 +49,12 @@ async function buildHistory(lang) {
     common: await loadContent(join(ROOT, 'content/shared/common.json')),
   };
   const pageSlugs = await loadContent(join(ROOT, 'content/shared/page-slugs.json'));
+  // Mirror the history augmentation in scripts/build.js (no template loops).
+  const stories = await loadContent(join(ROOT, 'content/history/stories.json'));
+  const v = validateStories(stories);
+  if (!v.valid) throw new Error('invalid stories.json: ' + v.errors.join('; '));
+  content.timeline.body = { en: renderTimeline(content.timeline, 'en'), es: renderTimeline(content.timeline, 'es') };
+  content.historias = { body: { en: renderHistorias(stories, 'en'), es: renderHistorias(stories, 'es') } };
   return buildPage({ lang, layout, pageTemplate: tpl, content, shared, siteUrl: 'https://sanjosedegracia.net', pageSlugs });
 }
 
@@ -60,4 +68,17 @@ test('history page renders long-form with print affordances and no unresolved to
     assert.match(html, new RegExp(`id="sec-${id}"`), `missing #sec-${id}`);
   }
   assert.match(html, /Descargar PDF/);                      // es pdf label
+});
+
+test('built history page renders timeline, historias, Battle, and ≥6 sources', async () => {
+  for (const lang of ['en', 'es']) {
+    const html = await buildHistory(lang);
+    assert.doesNotMatch(html, /\{\{.*?\}\}/, `unresolved token in ${lang}`);
+    assert.match(html, /class="cr-timeline"/);
+    assert.match(html, /ol class="cr-tl"/);
+    assert.ok((html.match(/<li/g) || []).length >= 15, 'timeline + sources list items present');
+    assert.match(html, /id="sec-historias"/);
+    assert.ok((html.match(/class="cr-story"/g) || []).length >= 4, 'four seed stories');
+    assert.match(html, lang === 'es' ? /Batalla de Tepatitlán/ : /Battle of Tepatitlán/);
+  }
 });
