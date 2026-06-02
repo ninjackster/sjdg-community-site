@@ -155,3 +155,50 @@ test('real tree: no two direct ancestors in a generation overlap', () => {
     for (let i = 1; i < xs.length; i++) assert.ok(xs[i] - xs[i-1] >= 210 - 1e-6, `gen ${g} overlap`);
   }
 });
+
+// ---- collateral siblings (aunts/uncles) ----
+const indC = (id, sex) => ({ id, names: { given: id, surnames: [] }, sex });
+// focal F; parents M(wife,F)+D(husband,M); M has sister MS; D has brother DS; MS married to MSP.
+const withCollaterals = () => ({
+  individuals: [
+    indC('F','M'), indC('M','F'), indC('D','M'),
+    indC('MM','F'), indC('MD','M'), indC('DM','F'), indC('DD','M'),
+    indC('MS','F'), indC('DS','M'), indC('MSP','M'),
+  ],
+  families: [
+    { id: 'f1', husband: 'D', wife: 'M', children: ['F'] },
+    { id: 'f2', husband: 'DD', wife: 'DM', children: ['D', 'DS'] },
+    { id: 'f3', husband: 'MD', wife: 'MM', children: ['M', 'MS'] },
+    { id: 'f4', husband: 'MSP', wife: 'MS', children: [] },
+  ],
+});
+
+test('collaterals: maternal aunt fans left of mom, paternal uncle fans right of dad', () => {
+  const pos = layoutAncestors(withCollaterals(), 'F', { nodeW: 100, gap: 20 });
+  assert.ok(pos.get('MS').x < pos.get('M').x, 'maternal aunt left of mom');
+  assert.ok(pos.get('DS').x > pos.get('D').x, 'paternal uncle right of dad');
+});
+
+test('collaterals: every maternal-side node left of focal, every paternal-side node right', () => {
+  const pos = layoutAncestors(withCollaterals(), 'F', { nodeW: 100, gap: 20 });
+  const fx = pos.get('F').x;
+  for (const id of ['M', 'MS', 'MM', 'MD', 'MSP']) assert.ok(pos.get(id).x < fx, `${id} should be left of focal`);
+  for (const id of ['D', 'DS', 'DM', 'DD']) assert.ok(pos.get(id).x > fx, `${id} should be right of focal`);
+});
+
+test('collaterals: married-in spouse placed adjacent, wife left of husband', () => {
+  const pos = layoutAncestors(withCollaterals(), 'F', { nodeW: 100, gap: 20 });
+  // MS (wife) should be left of her husband MSP
+  assert.ok(pos.get('MS').x < pos.get('MSP').x, 'aunt (wife) left of her husband');
+  assert.ok(Math.abs((pos.get('MSP').x - pos.get('MS').x)) <= 100 + 20 + 1e-6, 'spouse adjacent within a slot');
+});
+
+test('collaterals: no overlap within any generation', () => {
+  const pos = layoutAncestors(withCollaterals(), 'F', { nodeW: 100, gap: 20 });
+  const byGen = {};
+  for (const [, v] of pos) (byGen[v.gen] = byGen[v.gen] || []).push(v.x);
+  for (const g of Object.keys(byGen)) {
+    const xs = byGen[g].sort((a, b) => a - b);
+    for (let i = 1; i < xs.length; i++) assert.ok(xs[i] - xs[i-1] >= 100 - 1e-6, `gen ${g} overlap`);
+  }
+});
