@@ -9,7 +9,7 @@ const PASSTHROUGH_EXTENSIONS = new Set([
   '.txt', '.xml', '.js', '.css', '.json', '.woff', '.woff2',
 ]);
 
-const PASSTHROUGH_DIRS = new Set(['api']);
+const PASSTHROUGH_DIRS = new Set(['api', 'family-photos']);
 
 const EXCLUDE_FILES = new Set([
   'package.json', 'package-lock.json', '.gitignore', 'vercel.json',

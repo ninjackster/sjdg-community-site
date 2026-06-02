@@ -53,3 +53,13 @@ test('blank birth/death become null', () => {
   assert.equal(sub.birth.date, null);
   assert.equal(sub.death.date, null);
 });
+
+test('photo: valid data-URI kept; oversized, wrong-scheme, or absent become null', () => {
+  const ok = buildEditSubmission({ ...base, photo: 'data:image/jpeg;base64,abc' }, 'X', 1).sub;
+  assert.equal(ok.photo, 'data:image/jpeg;base64,abc');
+  const big = buildEditSubmission({ ...base, photo: 'data:image/jpeg;base64,' + 'a'.repeat(220001) }, 'X', 1).sub;
+  assert.equal(big.photo, null);
+  const bad = buildEditSubmission({ ...base, photo: 'http://x/y.jpg' }, 'X', 1).sub;
+  assert.equal(bad.photo, null);
+  assert.equal(buildEditSubmission(base, 'X', 1).sub.photo, null);
+});

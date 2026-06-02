@@ -535,6 +535,7 @@ import { searchPeople } from '/family-search.js';
     o.innerHTML =
       '<div role="dialog" aria-modal="true" aria-label="' + nameOf(ind) + '" style="position:relative;background:#fffdf8;width:min(440px,92vw);max-height:80vh;overflow:auto;border-radius:14px;box-shadow:0 14px 44px rgba(28,19,9,.30);padding:26px 24px 22px;">' +
         '<button id="ft-close" aria-label="Close" style="position:absolute;top:10px;right:12px;border:none;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:rgba(28,19,9,.5);">×</button>' +
+        (ind.photo ? '<img src="' + ind.photo + '" alt="" style="display:block;width:88px;height:88px;border-radius:50%;object-fit:cover;margin:0 0 .7rem;background:var(--mist,#EDE8DF);" />' : '') +
         '<h2 style="font-family:\'Playfair Display\',serif;font-weight:400;font-size:1.4rem;margin:0 1.6rem .25rem 0;">' + nameOf(ind) + '</h2>' +
         (rel ? '<p style="margin:0 0 .6rem;color:var(--clay,#C4785A);font-size:.84rem;font-weight:500;">' + rel + '</p>' : '') +
         (ind.adopted ? '<p style="display:inline-block;font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;background:rgba(196,120,90,.15);color:var(--clay,#C4785A);padding:2px 9px;border-radius:99px;margin:0 0 .6rem;">' + (lang === 'es' ? 'Adoptado' : 'Adopted') + '</p>' : '') +
@@ -575,6 +576,11 @@ import { searchPeople } from '/family-search.js';
         '<label style="font-size:.8rem;">' + (es ? 'Apellidos' : 'Surnames') + '</label><input id="ed-sur" value="' + esc(sur) + '" placeholder="' + (es ? 'separados por espacio' : 'space-separated') + '" style="' + inp + '" />' +
         '<div style="display:flex;gap:.6rem;"><div style="flex:1;"><label style="font-size:.8rem;">' + (es ? 'Nació' : 'Born') + '</label><input id="ed-birth" value="' + esc(birth) + '" style="' + inp + '" /></div><div style="flex:1;"><label style="font-size:.8rem;">' + (es ? 'Falleció' : 'Died') + '</label><input id="ed-death" value="' + esc(death) + '" style="' + inp + '" /></div></div>' +
         '<label style="font-size:.8rem;">' + (es ? 'Nota' : 'Note') + '</label><textarea id="ed-note" rows="2" style="' + inp + 'resize:vertical;">' + esc(note) + '</textarea>' +
+        '<label style="font-size:.8rem;">' + (es ? 'Foto (opcional)' : 'Photo (optional)') + '</label>' +
+        '<div style="display:flex;align-items:center;gap:.6rem;margin:.25rem 0 .6rem;">' +
+          (ind.photo ? '<img src="' + esc(ind.photo) + '" alt="" style="width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none;background:var(--mist,#EDE8DF);" />' : '<span style="font-size:.78rem;color:rgba(28,19,9,.5);">' + (es ? 'Sin foto aún' : 'No photo yet') + '</span>') +
+          '<input id="ed-photo" type="file" accept="image/*" style="flex:1;font:inherit;font-size:.8rem;min-width:0;" />' +
+        '</div>' +
         '<div id="ed-msg" style="font-size:.8rem;min-height:1.1em;margin:.2rem 0;"></div>' +
         '<button id="ed-send" style="width:100%;padding:.6rem;border:none;border-radius:8px;background:var(--earth,#8B5E3C);color:#fff;cursor:pointer;font:inherit;">' + (es ? 'Enviar para revisión' : 'Submit for review') + '</button>' +
       '</div>';
@@ -585,10 +591,11 @@ import { searchPeople } from '/family-search.js';
       const g = o.querySelector('#ed-given').value.trim();
       if (!g) { msg.style.color = '#b00'; msg.textContent = es ? 'Falta el nombre.' : 'Name required.'; return; }
       msg.style.color = 'rgba(28,19,9,.6)'; msg.textContent = es ? 'Enviando…' : 'Sending…';
+      const photo = await resizePhoto(o.querySelector('#ed-photo').files[0]);
       try {
         const res = await fetch('/api/family-suggest', {
           method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ kind: 'edit', targetId: ind.id, given: g, surnames: o.querySelector('#ed-sur').value, birth: o.querySelector('#ed-birth').value, death: o.querySelector('#ed-death').value, note: o.querySelector('#ed-note').value }),
+          body: JSON.stringify({ kind: 'edit', targetId: ind.id, given: g, surnames: o.querySelector('#ed-sur').value, birth: o.querySelector('#ed-birth').value, death: o.querySelector('#ed-death').value, note: o.querySelector('#ed-note').value, photo: photo }),
         });
         if (res.ok) { msg.style.color = 'var(--sage,#7A8C6A)'; msg.textContent = es ? '¡Gracias! Enviado para revisión.' : 'Thanks! Sent for review.'; o.querySelector('#ed-send').disabled = true; }
         else { msg.style.color = '#b00'; msg.textContent = es ? 'Error al enviar.' : 'Submit failed.'; }
