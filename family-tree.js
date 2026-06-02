@@ -366,8 +366,10 @@
       const shiftSub = (id, dx) => { const st = [id], seen = new Set(); while (st.length) { const n = st.pop(); if (seen.has(n)) continue; seen.add(n); if (xpos.has(n)) xpos.set(n, xpos.get(n) + dx); for (const c of (kidsOf.get(n) || [])) if (xpos.has(c)) st.push(c); } };
       for (let g = gMax; g > gMin; g--) {
         const childGen = g - 1;
-        if (childGen > 0) continue; // correct descendants (your generation and below)
         const rowIds = order[childGen]; if (!rowIds || !rowIds.length) continue;
+        // Centre each family's NON-spine children under their parents. Covers your generation
+        // and below AND collateral grandchildren that land at an ancestor generation (e.g. a
+        // great-uncle's kids at gen 1); spine nodes are pinned by the bifurcation and never moved.
         const prov = new Map(), famKids = new Map();
         for (const id of rowIds) { const f = childToFamily.get(id); if (f) { if (!famKids.has(f)) famKids.set(f, []); famKids.get(f).push(id); } }
         for (const [f, kids] of famKids) {
@@ -379,11 +381,14 @@
           let x = mid - w / 2 + NODE_W / 2;
           for (const k of ordered) { prov.set(k, x); x += NODE_W + GAP; }
         }
+        // De-overlap left-to-right in SPATIAL order (by desired x), so a child centred under a
+        // far parent never shoves a sibling that belongs further left onto existing nodes.
+        const targetOf = (id) => prov.has(id) ? prov.get(id) : (xpos.get(id) || 0);
+        const sorted = rowIds.slice().sort((a, b) => targetOf(a) - targetOf(b));
         let prev = null, prevX = 0;
-        for (const id of rowIds) {
-          // Only fires for the focal node (gen 0); ancestors are fixed in the bottom-up pass.
+        for (const id of sorted) {
           if (spineIds.has(id) && xpos.has(id)) { prev = id; prevX = xpos.get(id); continue; } // anchor: never shift
-          let target = prov.has(id) ? prov.get(id) : xpos.get(id);
+          let target = targetOf(id);
           if (prev != null) { const mn = prevX + spacing(prev, id); if (target < mn) target = mn; }
           const dx = target - (xpos.get(id) || 0);
           if (dx) shiftSub(id, dx);
