@@ -63,3 +63,15 @@ Mirror the existing downward **+N** collapse/expand, but **directionally**, for 
 ## Estimate / notes
 
 Substantial — it's a layout-engine rewrite (union model + recursive subtree packing + directional toggles). Best done as its own focused session with browser verification. Lower-risk increment first: fix the ancestor crossing via recursive bifurcation; add directional expand/contract second.
+
+## Backlog — collapse collateral spouses by default (requested 2026-06-02)
+
+For a cleaner default view, **collapse/hide the married-in spouses of everyone EXCEPT the
+direct roll-up** (you, parents, grandparents, great-grandparents …). I.e. a collateral's
+married-in partner (Chepa's Pedro Vásquez, Olga's Baudelio, the ¿? placeholders, Abel de la
+Torre, Tonguelo, Antonio Herrera, etc.) would be hidden by default, showing only the blood
+relative, with an affordance to reveal the spouse on demand. Direct-line ancestors keep both
+partners (the bifurcation depends on each ancestor couple). Implementation sketch: in the
+client `anchorOf`/collapse model, gate a married-in spouse of a NON-direct person behind its
+blood-relative partner (or a dedicated toggle); keep `injectExtraSpouses` / focal-parent
+spouses as-is. Verify the suggest-a-relative + couple connectors still read correctly.
