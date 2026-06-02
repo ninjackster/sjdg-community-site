@@ -305,6 +305,31 @@
       anchors.add(a);
       (gatedBy.get(a) || gatedBy.set(a, []).get(a)).push(ind.id);
     }
+    // One-click subtree expand: opening an anchor cascades through its descendant +
+    // married-in-spouse direction (children, their children, spouses), so a relative's
+    // whole direct subtree appears in a single click. Sibling reveals stay single-level
+    // (a direct ancestor's collateral siblings are NOT auto-cascaded — only opened nodes).
+    const inSubtreeDir = (gatedId, anchor) =>
+      (childParents.get(gatedId) || []).indexOf(anchor) !== -1   // gatedId is anchor's child
+      || coupleOf.get(gatedId) === anchor;                       // gatedId is anchor's spouse
+    const deepExpand = (anchor) => {
+      const st = [anchor];
+      while (st.length) {
+        const a = st.pop();
+        if (expanded.has(a)) continue;
+        expanded.add(a);
+        for (const g of (gatedBy.get(a) || [])) if (inSubtreeDir(g, a) && anchors.has(g)) st.push(g);
+      }
+    };
+    const deepCollapse = (anchor) => {
+      const st = [anchor];
+      while (st.length) {
+        const a = st.pop();
+        if (!expanded.has(a)) continue;
+        expanded.delete(a);
+        for (const g of (gatedBy.get(a) || [])) if (inSubtreeDir(g, a) && anchors.has(g)) st.push(g);
+      }
+    };
     const computeHidden = () => {
       const hidden = new Set();
       const visMemo = new Map();
@@ -467,7 +492,7 @@
         t.setAttribute('aria-label', t.title);
         t.style.cssText = 'position:absolute;' + pos + PILL;
         t.addEventListener('pointerdown', e => e.stopPropagation());
-        t.addEventListener('click', e => { e.stopPropagation(); if (expanded.has(anchor)) expanded.delete(anchor); else expanded.add(anchor); render(); });
+        t.addEventListener('click', e => { e.stopPropagation(); if (expanded.has(anchor)) deepCollapse(anchor); else deepExpand(anchor); render(); });
         elById.get(anchor).appendChild(t);
       }
 
