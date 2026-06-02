@@ -1,6 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { layoutAncestors } from '../scripts/lib/ancestor-layout.js';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 // Synthetic tree: focal F with parents (mom M, dad D); each grandparent known.
 //   F1: husband=D, wife=M, children=[F]
@@ -114,4 +116,42 @@ test('hidden ancestor (isHidden) is omitted and does not break centering', () =>
   assert.ok(!pos.has('DM'));
   assert.ok(pos.has('DD'));
   assert.ok(Math.abs(pos.get('D').x - pos.get('DD').x) < 1e-6); // D centers under lone DD
+});
+
+const realTree = () => JSON.parse(readFileSync(
+  fileURLToPath(new URL('../content/family/tree.json', import.meta.url)), 'utf8'));
+
+test('real tree: focal I1 positioned, parents/grandparents at expected gens', () => {
+  const pos = layoutAncestors(realTree(), 'I1', { nodeW: 210, gap: 30 });
+  assert.equal(pos.get('I1').gen, 0);
+  assert.equal(pos.get('I2').gen, 1); // Héctor (dad)
+  assert.equal(pos.get('I3').gen, 1); // Mercedes (mom)
+  assert.equal(pos.get('I4').gen, 2); // José (paternal grandfather)
+  assert.equal(pos.get('I7').gen, 2); // María del Refugio (maternal grandmother)
+});
+
+test('real tree: maternal side (Mom I3) left of focal, paternal side (Dad I2) right', () => {
+  const pos = layoutAncestors(realTree(), 'I1', { nodeW: 210, gap: 30 });
+  const fx = pos.get('I1').x;
+  assert.ok(pos.get('I3').x < fx, 'mom left of focal');
+  assert.ok(pos.get('I2').x > fx, 'dad right of focal');
+  // maternal grandparents both left of focal, paternal both right
+  assert.ok(pos.get('I6').x < fx && pos.get('I7').x < fx, 'maternal grandparents left');
+  assert.ok(pos.get('I4').x > fx && pos.get('I5').x > fx, 'paternal grandparents right');
+});
+
+test('real tree: within each grandparent union, wife is left of husband', () => {
+  const pos = layoutAncestors(realTree(), 'I1', { nodeW: 210, gap: 30 });
+  assert.ok(pos.get('I5').x < pos.get('I4').x, 'Teresa (wife) left of José (husband)');
+  assert.ok(pos.get('I7').x < pos.get('I6').x, 'Cuca (wife) left of Benjamín (husband)');
+});
+
+test('real tree: no two direct ancestors in a generation overlap', () => {
+  const pos = layoutAncestors(realTree(), 'I1', { nodeW: 210, gap: 30 });
+  const byGen = {};
+  for (const [, v] of pos) (byGen[v.gen] = byGen[v.gen] || []).push(v.x);
+  for (const g of Object.keys(byGen)) {
+    const xs = byGen[g].sort((a, b) => a - b);
+    for (let i = 1; i < xs.length; i++) assert.ok(xs[i] - xs[i-1] >= 210 - 1e-6, `gen ${g} overlap`);
+  }
 });
