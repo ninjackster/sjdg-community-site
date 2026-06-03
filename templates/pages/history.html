@@ -49,6 +49,21 @@
   .cr-juxta-range { position: absolute; bottom: 8px; left: 8px; right: 8px; width: calc(100% - 16px); }
   .cr-colabora-cta { margin-top: 1rem; }
 
+  /* Phase 4 — Contents jump-index, guide steps, créditos */
+  .cr-index { margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; background: rgba(196,120,90,.06); border-radius: 10px; }
+  .cr-index h2 { margin: 0 0 .5rem; font-size: 1.1rem; }
+  .cr-index-filter { width: 100%; max-width: 320px; padding: .4rem .6rem; margin-bottom: .6rem; border: 1px solid #cbb89a; border-radius: 6px; font: inherit; background: #fff; }
+  .cr-index-list { list-style: none; padding: 0; margin: 0; column-width: 220px; column-gap: 1.5rem; }
+  .cr-index-item { margin: .15rem 0; break-inside: avoid; }
+  .cr-index-item a { text-decoration: none; }
+  .cr-index-item a:hover { text-decoration: underline; }
+  .cr-steps { margin: .8rem 0; padding-left: 1.3rem; }
+  .cr-steps li { margin: .3rem 0; }
+  .cr-credits-list { list-style: none; padding: 0; margin: .6rem 0; }
+  .cr-credit { margin: .35rem 0; }
+  .cr-credit-role { font-weight: 600; }
+  .cr-credits-invite { font-style: italic; color: #6b5b43; }
+
   /* Maps (build-time static SVG) */
   .cr-map { margin: 1rem 0 1.4rem; }
   .cr-map-svg { display: block; width: 100%; height: auto; }
@@ -85,6 +100,8 @@
     .cr-timeline, .cr-historias, .cr-story { page-break-inside: avoid; }
     .cr-voces, .cr-fotos, .cr-colabora, .cr-voz, .cr-juxta-fig { page-break-inside: avoid; }
     .cr-mapa, .cr-diaspora, .cr-map { page-break-inside: avoid; }
+    .cr-index { display: none; }
+    .cr-creditos { page-break-inside: avoid; }
     /* Diagonal watermark + running footer */
     .cr-wrap::before { content: "Compilado por Jaime Murillo"; position: fixed; top: 45%; left: 50%; transform: translate(-50%,-50%) rotate(-30deg); font-size: 3rem; color: rgba(196,120,90,.10); white-space: nowrap; z-index: 0; }
     .cr-wrap::after { content: "La Crónica de San José de Gracia · sanjosedegracia.net"; position: fixed; bottom: .6cm; left: 0; right: 0; text-align: center; font-size: .7rem; color: rgba(28,19,9,.5); }
@@ -114,6 +131,8 @@
     <div class="cr-actions"><button class="cr-pdf" onclick="window.print()">{{pdf.label}}</button></div>
   </header>
 
+  <nav class="cr-index" id="sec-index" aria-label="Contents">{{indice.body}}</nav>
+
   <section class="cr-timeline" id="sec-timeline">{{timeline.body}}</section>
 
   <section class="cr-section cr-raices" id="sec-raices"><h2>{{sections.raices.h2}}</h2>{{sections.raices.body}}</section>
@@ -141,6 +160,8 @@
     <p class="cr-colabora-cta"><a class="cr-pdf" href="{{colabora.whatsapp_url}}">{{colabora.whatsapp_label}}</a></p>
   </section>
 
+  <section class="cr-section cr-creditos" id="sec-creditos">{{creditos.body}}</section>
+
   <section class="cr-sources" id="sec-sources">
     <h2>{{sources.h2}}</h2>
     <p>{{sources.note}}</p>
@@ -166,4 +187,18 @@
     function apply() { var p = range.value; then.style.width = p + '%'; if (img) img.style.width = (10000 / Math.max(p, 1)) + '%'; }
     range.addEventListener('input', apply); apply();
   });
+
+  // Dependency-free Contents live filter (accent-insensitive).
+  (function () {
+    var box = document.querySelector('.cr-index-filter');
+    if (!box) return;
+    var items = Array.prototype.slice.call(document.querySelectorAll('.cr-index-item'));
+    var norm = function (s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); };
+    box.addEventListener('input', function () {
+      var q = norm(box.value.trim());
+      items.forEach(function (li) {
+        li.style.display = (!q || norm(li.textContent).indexOf(q) !== -1) ? '' : 'none';
+      });
+    });
+  })();
 </script>

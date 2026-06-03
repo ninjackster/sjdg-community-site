@@ -36,7 +36,7 @@ test('history content is corrected, bylined, and sourced', async () => {
 });
 
 import { buildPage } from '../scripts/lib/build-page.js';
-import { renderTimeline, renderHistorias, renderVoces, renderFotos } from '../scripts/lib/history-render.js';
+import { renderTimeline, renderHistorias, renderVoces, renderFotos, renderIndex, renderCreditos } from '../scripts/lib/history-render.js';
 import { validateStories } from '../scripts/lib/history-stories.js';
 import { validateVoces, validateFotos } from '../scripts/lib/history-media.js';
 import { renderLocatorMap, renderDiasporaMap } from '../scripts/lib/render-maps.js';
@@ -75,6 +75,10 @@ async function buildHistory(lang) {
   const diaspora = await loadContent(join(ROOT, 'content/maps/diaspora.json'));
   content.mapa = { body: { en: renderLocatorMap({ mexico, content: locator }, 'en'), es: renderLocatorMap({ mexico, content: locator }, 'es') } };
   content.diaspora_map = { body: { en: renderDiasporaMap({ usStates, content: diaspora }, 'en'), es: renderDiasporaMap({ usStates, content: diaspora }, 'es') } };
+  const indiceData = content.indice;
+  content.indice = { body: { en: renderIndex(indiceData, 'en'), es: renderIndex(indiceData, 'es') } };
+  const creditos = await loadContent(join(ROOT, 'content/history/creditos.json'));
+  content.creditos = { body: { en: renderCreditos(creditos, 'en'), es: renderCreditos(creditos, 'es') } };
   return buildPage({ lang, layout, pageTemplate: tpl, content, shared, siteUrl: 'https://sanjosedegracia.net', pageSlugs });
 }
 
@@ -152,5 +156,36 @@ test('built history page renders Voces, Fotos, and Colabora with empty states an
     // bilingual headings
     assert.match(html, lang === 'es' ? /Voces/ : /Voices/);
     assert.match(html, lang === 'es' ? /Comparte una memoria/ : /Share a memory/);
+  }
+});
+
+test('Phase 4: Contents jump-index with filter renders, both langs', async () => {
+  for (const lang of ['en', 'es']) {
+    const html = await buildHistory(lang);
+    assert.doesNotMatch(html, /\{\{.*?\}\}/, `unresolved token in ${lang}`);
+    assert.match(html, /id="sec-index"/);
+    assert.match(html, /class="cr-index-filter"/);
+    assert.match(html, /href="#sec-cristero"/);
+    assert.match(html, /href="#sec-creditos"/);
+    assert.match(html, /cr-index-filter/); // filter wired
+  }
+});
+
+test('Phase 4: Colabora shows recording steps + WhatsApp CTA', async () => {
+  for (const lang of ['en', 'es']) {
+    const html = await buildHistory(lang);
+    assert.match(html, /class="cr-steps"/);
+    assert.match(html, lang === 'es' ? /Abre la grabadora de voz/ : /Open your phone's voice recorder/);
+    assert.match(html, /href="https:\/\/wa\.me\/523316963003"/);
+  }
+});
+
+test('Phase 4: seeded Créditos section renders', async () => {
+  for (const lang of ['en', 'es']) {
+    const html = await buildHistory(lang);
+    assert.match(html, /id="sec-creditos"/);
+    assert.match(html, /Taurino Arámbula Vázquez/);
+    assert.match(html, /Jaime Murillo Mena/);
+    assert.match(html, lang === 'es' ? /Créditos y colaboradores/ : /Credits &amp; contributors/);
   }
 });

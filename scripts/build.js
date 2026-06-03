@@ -6,7 +6,7 @@ import { loadContent } from './lib/content.js';
 import { buildPage } from './lib/build-page.js';
 import { passthrough } from './lib/passthrough.js';
 import { renderBusinessPage } from './lib/business-page.js';
-import { renderTimeline, renderHistorias, renderVoces, renderFotos } from './lib/history-render.js';
+import { renderTimeline, renderHistorias, renderVoces, renderFotos, renderIndex, renderCreditos } from './lib/history-render.js';
 import { validateStories } from './lib/history-stories.js';
 import { validateVoces, validateFotos } from './lib/history-media.js';
 import { renderLocatorMap, renderDiasporaMap } from './lib/render-maps.js';
@@ -116,6 +116,12 @@ async function buildOnePage({ pageName, pageSlugs, shared, layout }) {
     const diaspora = await loadContent(join(ROOT, 'content/maps/diaspora.json'));
     content.mapa = { body: { en: renderLocatorMap({ mexico, content: locator }, 'en'), es: renderLocatorMap({ mexico, content: locator }, 'es') } };
     content.diaspora_map = { body: { en: renderDiasporaMap({ usStates, content: diaspora }, 'en'), es: renderDiasporaMap({ usStates, content: diaspora }, 'es') } };
+    // Contents jump-index (capture authored fields before overwriting with rendered body).
+    const indiceData = content.indice;
+    content.indice = { body: { en: renderIndex(indiceData, 'en'), es: renderIndex(indiceData, 'es') } };
+    // Créditos / contributors wall.
+    const creditos = await loadContent(join(ROOT, 'content/history/creditos.json'));
+    content.creditos = { body: { en: renderCreditos(creditos, 'en'), es: renderCreditos(creditos, 'es') } };
   }
 
   for (const lang of LANGS) {
