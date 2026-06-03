@@ -6,8 +6,9 @@ import { loadContent } from './lib/content.js';
 import { buildPage } from './lib/build-page.js';
 import { passthrough } from './lib/passthrough.js';
 import { renderBusinessPage } from './lib/business-page.js';
-import { renderTimeline, renderHistorias } from './lib/history-render.js';
+import { renderTimeline, renderHistorias, renderVoces, renderFotos } from './lib/history-render.js';
 import { validateStories } from './lib/history-stories.js';
+import { validateVoces, validateFotos } from './lib/history-media.js';
 import { getSnapshot } from './lib/snapshot-store.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -96,6 +97,12 @@ async function buildOnePage({ pageName, pageSlugs, shared, layout }) {
     if (!v.valid) throw new Error('invalid stories.json: ' + v.errors.join('; '));
     content.timeline.body = { en: renderTimeline(content.timeline, 'en'), es: renderTimeline(content.timeline, 'es') };
     content.historias = { body: { en: renderHistorias(stories, 'en'), es: renderHistorias(stories, 'es') } };
+    const voces = await loadContent(join(ROOT, 'content/history/voces.json'));
+    const fotos = await loadContent(join(ROOT, 'content/history/fotos.json'));
+    const vv = validateVoces(voces); if (!vv.valid) throw new Error('invalid voces.json: ' + vv.errors.join('; '));
+    const vf = validateFotos(fotos); if (!vf.valid) throw new Error('invalid fotos.json: ' + vf.errors.join('; '));
+    content.voces = { body: { en: renderVoces(voces, 'en'), es: renderVoces(voces, 'es') } };
+    content.fotos = { body: { en: renderFotos(fotos, 'en'), es: renderFotos(fotos, 'es') } };
   }
 
   for (const lang of LANGS) {
