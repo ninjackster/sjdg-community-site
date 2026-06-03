@@ -1,6 +1,7 @@
 {
   "heading": { "en": "Where it sits", "es": "Dónde se encuentra" },
   "intro": { "en": "San José de Gracia in Los Altos de Jalisco, west-central Mexico.", "es": "San José de Gracia en Los Altos de Jalisco, en el occidente de México." },
+  "bbox": [[-106.2, 19.6], [-101.2, 23.4]],
   "points": [
     { "kind": "town", "lng": -102.58, "lat": 20.73, "label": { "en": "San José de Gracia", "es": "San José de Gracia" } },
     { "kind": "city", "lng": -102.764, "lat": 20.817, "label": { "en": "Tepatitlán de Morelos", "es": "Tepatitlán de Morelos" } },

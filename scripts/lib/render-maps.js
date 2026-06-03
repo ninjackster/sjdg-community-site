@@ -43,7 +43,20 @@ export function renderLocatorMap({ mexico, content }, lang) {
   const intro = (content.intro && content.intro[lang]) || '';
   const titleText = heading || (lang === 'es' ? 'Mapa de ubicación' : 'Locator map');
 
-  const projection = geoMercator().fitSize([W, H], mexico);
+  // Fit to a regional bounding box (so the cluster of nearby points spreads
+  // across the frame) rather than to all of Mexico (which collapses them to a
+  // dot). The Mexico land path is still drawn and is clipped to the viewBox.
+  // content.bbox = [[west, south], [east, north]] in lon/lat.
+  // Use a MultiPoint of the bbox corners to fit — a Polygon ring is subject to
+  // d3-geo's spherical winding-order rule (a "wrong"-way ring is read as the
+  // whole-globe complement, collapsing the scale); a MultiPoint has no such
+  // ambiguity. content.bbox = [[west, south], [east, north]] in lon/lat.
+  let fitTarget = mexico;
+  if (Array.isArray(content.bbox) && content.bbox.length === 2) {
+    const [[w, s], [e, nth]] = content.bbox;
+    fitTarget = { type: 'MultiPoint', coordinates: [[w, s], [e, nth]] };
+  }
+  const projection = geoMercator().fitSize([W, H], fitTarget);
   const path = geoPath(projection);
   const landD = path(mexico) || '';
 
