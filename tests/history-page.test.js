@@ -36,8 +36,9 @@ test('history content is corrected, bylined, and sourced', async () => {
 });
 
 import { buildPage } from '../scripts/lib/build-page.js';
-import { renderTimeline, renderHistorias } from '../scripts/lib/history-render.js';
+import { renderTimeline, renderHistorias, renderVoces, renderFotos } from '../scripts/lib/history-render.js';
 import { validateStories } from '../scripts/lib/history-stories.js';
+import { validateVoces, validateFotos } from '../scripts/lib/history-media.js';
 
 async function buildHistory(lang) {
   const layout = await readFile(join(ROOT, 'templates/layouts/base.html'), 'utf8');
@@ -55,6 +56,14 @@ async function buildHistory(lang) {
   if (!v.valid) throw new Error('invalid stories.json: ' + v.errors.join('; '));
   content.timeline.body = { en: renderTimeline(content.timeline, 'en'), es: renderTimeline(content.timeline, 'es') };
   content.historias = { body: { en: renderHistorias(stories, 'en'), es: renderHistorias(stories, 'es') } };
+  const voces = await loadContent(join(ROOT, 'content/history/voces.json'));
+  const fotos = await loadContent(join(ROOT, 'content/history/fotos.json'));
+  const vv = validateVoces(voces);
+  if (!vv.valid) throw new Error('invalid voces.json: ' + vv.errors.join('; '));
+  const vf = validateFotos(fotos);
+  if (!vf.valid) throw new Error('invalid fotos.json: ' + vf.errors.join('; '));
+  content.voces = { body: { en: renderVoces(voces, 'en'), es: renderVoces(voces, 'es') } };
+  content.fotos = { body: { en: renderFotos(fotos, 'en'), es: renderFotos(fotos, 'es') } };
   return buildPage({ lang, layout, pageTemplate: tpl, content, shared, siteUrl: 'https://sanjosedegracia.net', pageSlugs });
 }
 
@@ -80,5 +89,23 @@ test('built history page renders timeline, historias, Battle, and ≥6 sources',
     assert.match(html, /id="sec-historias"/);
     assert.ok((html.match(/class="cr-story"/g) || []).length >= 4, 'four seed stories');
     assert.match(html, lang === 'es' ? /Batalla de Tepatitlán/ : /Battle of Tepatitlán/);
+  }
+});
+
+test('built history page renders Voces, Fotos, and Colabora with empty states and WhatsApp CTA', async () => {
+  for (const lang of ['en', 'es']) {
+    const html = await buildHistory(lang);
+    assert.doesNotMatch(html, /\{\{.*?\}\}/, `unresolved token in ${lang}`);
+    // three new sections present
+    assert.match(html, /id="sec-voces"/);
+    assert.match(html, /id="sec-fotos"/);
+    assert.match(html, /id="sec-colabora"/);
+    // empty-state placeholders rendered (no seed media yet)
+    assert.ok((html.match(/class="cr-empty"/g) || []).length >= 2, 'voces + fotos empty states');
+    // Colabora WhatsApp contribution link
+    assert.match(html, /href="https:\/\/wa\.me\/523316963003"/);
+    // bilingual headings
+    assert.match(html, lang === 'es' ? /Voces/ : /Voices/);
+    assert.match(html, lang === 'es' ? /Comparte una memoria/ : /Share a memory/);
   }
 });

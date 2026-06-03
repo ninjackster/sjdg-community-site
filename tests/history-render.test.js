@@ -43,3 +43,43 @@ test('renderHistorias: heading + one card per story, localized, kind chip', () =
   assert.match(html, /Batalla/);
   assert.match(html, /person|event/);
 });
+
+import { renderVoces } from '../scripts/lib/history-render.js';
+
+test('renderVoces: empty -> CTA; items -> audio + transcript; file vs embed', () => {
+  const empty = renderVoces({ heading: { en: 'Voices', es: 'Voces' }, intro: { en: '', es: '' }, empty: { en: 'Share one', es: 'Comparte una' }, items: [] }, 'es');
+  assert.match(empty, /Voces/);
+  assert.match(empty, /Comparte una/);
+  assert.doesNotMatch(empty, /<audio|<iframe/);
+
+  const data = {
+    heading: { en: 'Voices', es: 'Voces' }, intro: { en: '', es: '' }, empty: { en: '', es: '' },
+    items: [
+      { id: 'v1', kind: 'file', audioSrc: '/voces/v1.mp3', speaker: { en: 'Doña Ana', es: 'Doña Ana' }, transcript: { en: 'I remember…', es: 'Recuerdo…' } },
+      { id: 'v2', kind: 'embed', audioSrc: 'https://archive.org/embed/x', speaker: { en: 'Don José', es: 'Don José' }, transcript: { en: 'In 1950…', es: 'En 1950…' } },
+    ],
+  };
+  const html = renderVoces(data, 'es');
+  assert.match(html, /<audio[^>]+src="\/voces\/v1\.mp3"/);
+  assert.match(html, /<iframe[^>]+src="https:\/\/archive\.org\/embed\/x"/);
+  assert.match(html, /Recuerdo…/);
+  assert.equal((html.match(/class="cr-voz"/g) || []).length, 2);
+});
+
+import { renderFotos } from '../scripts/lib/history-render.js';
+
+test('renderFotos: empty -> CTA; pair -> juxta slider markup + captions', () => {
+  const empty = renderFotos({ heading: { en: 'Then & now', es: 'Antes y ahora' }, intro: { en: '', es: '' }, empty: { en: 'Send a photo', es: 'Envía una foto' }, pairs: [] }, 'es');
+  assert.match(empty, /Antes y ahora/);
+  assert.match(empty, /Envía una foto/);
+  assert.doesNotMatch(empty, /cr-juxta/);
+
+  const data = { heading: { en: 'T', es: 'T' }, intro: { en: '', es: '' }, empty: { en: '', es: '' },
+    pairs: [{ id: 'p1', then: { src: '/family-photos/plaza-1950.jpg', year: '1950', caption: { en: 'Plaza', es: 'La plaza' } }, now: { src: '/family-photos/plaza-now.jpg', caption: { en: 'Today', es: 'Hoy' } } }] };
+  const html = renderFotos(data, 'es');
+  assert.match(html, /class="cr-juxta"/);
+  assert.match(html, /plaza-1950\.jpg/);
+  assert.match(html, /plaza-now\.jpg/);
+  assert.match(html, /La plaza/);
+  assert.match(html, /type="range"/);
+});

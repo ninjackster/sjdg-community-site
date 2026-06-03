@@ -107,6 +107,15 @@
       { "year": "2021", "label": { "en": "The town's Cultural Center opens", "es": "Abre el Centro Cultural del pueblo" } }
     ]
   },
+  "colabora": {
+    "h2": { "en": "Share a memory", "es": "Comparte una memoria" },
+    "body": {
+      "en": "<p>This chronicle grows with the community. If you have <strong>old photos</strong>, <strong>documents</strong>, or <strong>stories</strong> — especially elders' memories — they belong here.</p><p><strong>Record an elder on a phone:</strong> sit together with a box of old photos, open your phone's voice recorder, and just let them talk. Five minutes is plenty. Then send the audio or photos and we'll add them, with credit.</p>",
+      "es": "<p>Esta crónica crece con la comunidad. Si tienes <strong>fotos antiguas</strong>, <strong>documentos</strong> o <strong>historias</strong> — sobre todo recuerdos de los mayores — aquí tienen su lugar.</p><p><strong>Graba a un abuelo con el teléfono:</strong> siéntate con una caja de fotos viejas, abre la grabadora de voz del teléfono y deja que hable. Cinco minutos bastan. Luego envía el audio o las fotos y las agregamos, con su crédito.</p>"
+    },
+    "whatsapp_url": { "en": "https://wa.me/523316963003", "es": "https://wa.me/523316963003" },
+    "whatsapp_label": { "en": "Send by WhatsApp", "es": "Enviar por WhatsApp" }
+  },
   "sources": {
     "h2": { "en": "Sources &amp; method", "es": "Fuentes y método" },
     "note": {

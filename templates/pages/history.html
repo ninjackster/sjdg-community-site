@@ -33,6 +33,21 @@
   .cr-cross { margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--mist); }
   .cr-cross ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 1rem; }
   .cr-cross a { color: var(--clay); text-decoration: none; }
+  .cr-voces, .cr-fotos, .cr-colabora { margin: 2.6rem 0; }
+  .cr-voces h2, .cr-fotos h2, .cr-colabora h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: .8rem; color: var(--dark); }
+  .cr-empty { color: rgba(28,19,9,.6); font-style: italic; background: #faf6ef; border-radius: 8px; padding: 1rem; }
+  .cr-voz { margin: 0 0 1.4rem; }
+  .cr-voz-by { font-weight: 600; color: var(--clay); margin-bottom: .35rem; }
+  .cr-voz-audio { width: 100%; }
+  .cr-voz-embed { width: 100%; height: 80px; border: 0; }
+  .cr-voz-tr { margin-top: .4rem; font-size: .92rem; }
+  .cr-juxta-fig { margin: 0 0 1.4rem; }
+  .cr-juxta { position: relative; max-width: 640px; aspect-ratio: 3/2; overflow: hidden; border-radius: 10px; }
+  .cr-juxta img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cr-juxta-then { position: absolute; inset: 0; width: 50%; overflow: hidden; border-right: 2px solid #fff; }
+  .cr-juxta-then img { width: 200%; max-width: none; }
+  .cr-juxta-range { position: absolute; bottom: 8px; left: 8px; right: 8px; width: calc(100% - 16px); }
+  .cr-colabora-cta { margin-top: 1rem; }
 
   @media print {
     body * { visibility: hidden; }
@@ -42,6 +57,7 @@
     .cr-section { page-break-inside: avoid; }
     .cr-section h2 { page-break-after: avoid; }
     .cr-timeline, .cr-historias, .cr-story { page-break-inside: avoid; }
+    .cr-voces, .cr-fotos, .cr-colabora, .cr-voz, .cr-juxta-fig { page-break-inside: avoid; }
     /* Diagonal watermark + running footer */
     .cr-wrap::before { content: "Compilado por Jaime Murillo"; position: fixed; top: 45%; left: 50%; transform: translate(-50%,-50%) rotate(-30deg); font-size: 3rem; color: rgba(196,120,90,.10); white-space: nowrap; z-index: 0; }
     .cr-wrap::after { content: "La Crónica de San José de Gracia · sanjosedegracia.net"; position: fixed; bottom: .6cm; left: 0; right: 0; text-align: center; font-size: .7rem; color: rgba(28,19,9,.5); }
@@ -85,6 +101,14 @@
 
   <section class="cr-historias" id="sec-historias">{{historias.body}}</section>
 
+  <section class="cr-voces" id="sec-voces">{{voces.body}}</section>
+  <section class="cr-fotos" id="sec-fotos">{{fotos.body}}</section>
+  <section class="cr-colabora" id="sec-colabora">
+    <h2>{{colabora.h2}}</h2>
+    {{colabora.body}}
+    <p class="cr-colabora-cta"><a class="cr-pdf" href="{{colabora.whatsapp_url}}">{{colabora.whatsapp_label}}</a></p>
+  </section>
+
   <section class="cr-sources" id="sec-sources">
     <h2>{{sources.h2}}</h2>
     <p>{{sources.note}}</p>
@@ -99,3 +123,15 @@
     </ul>
   </nav>
 </div>
+
+<script>
+  // Dependency-free "then & now" slider: drag to reveal the older photo.
+  document.querySelectorAll('.cr-juxta').forEach(function (j) {
+    var range = j.querySelector('.cr-juxta-range');
+    var then = j.querySelector('.cr-juxta-then');
+    var img = then && then.querySelector('img');
+    if (!range || !then) return;
+    function apply() { var p = range.value; then.style.width = p + '%'; if (img) img.style.width = (10000 / Math.max(p, 1)) + '%'; }
+    range.addEventListener('input', apply); apply();
+  });
+</script>
