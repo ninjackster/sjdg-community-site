@@ -83,3 +83,41 @@ test('renderFotos: empty -> CTA; pair -> juxta slider markup + captions', () => 
   assert.match(html, /La plaza/);
   assert.match(html, /type="range"/);
 });
+
+import { renderIndex, renderCreditos } from '../scripts/lib/history-render.js';
+
+test('renderIndex: anchor jump-links + filter input, bilingual', () => {
+  const DATA = {
+    heading: { en: 'Contents', es: 'Índice' },
+    filter: { en: 'Filter…', es: 'Filtrar…' },
+    entries: [
+      { id: 'sec-raices', label: { en: 'Ancient roots', es: 'Raíces antiguas' } },
+      { id: 'sec-cristero', label: { en: 'The Cristero era', es: 'La Cristiada' } },
+    ],
+  };
+  const es = renderIndex(DATA, 'es');
+  assert.match(es, /<h2>Índice<\/h2>/);
+  assert.match(es, /href="#sec-raices"/);
+  assert.match(es, /La Cristiada/);
+  assert.match(es, /placeholder="Filtrar…"/);
+  assert.match(es, /class="cr-index-filter"/);
+  assert.doesNotMatch(es, /\{\{/);
+  assert.match(renderIndex(DATA, 'en'), /Ancient roots/);
+  assert.match(renderIndex(DATA, 'en'), /href="#sec-cristero"/);
+});
+
+test('renderCreditos: grouped roles + names, bilingual', () => {
+  const data = {
+    heading: { en: 'Credits', es: 'Créditos' },
+    intro: { en: 'Built by many hands.', es: 'Hecho por muchas manos.' },
+    groups: [{ role: { en: 'Chronicler', es: 'Cronista' }, names: ['Don Taurino Arámbula Vázquez'] }],
+    invite: { en: 'Add your name by contributing.', es: 'Suma tu nombre colaborando.' },
+  };
+  const es = renderCreditos(data, 'es');
+  assert.match(es, /<h2>Créditos<\/h2>/);
+  assert.match(es, /Cronista/);
+  assert.match(es, /Don Taurino Arámbula Vázquez/);
+  assert.match(es, /Suma tu nombre/);
+  assert.doesNotMatch(es, /\{\{/);
+  assert.match(renderCreditos(data, 'en'), /Chronicler/);
+});

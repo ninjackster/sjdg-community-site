@@ -1,0 +1,12 @@
+{
+  "heading": { "en": "Credits & contributors", "es": "Créditos y colaboradores" },
+  "intro": { "en": "This chronicle stands on the work of many — the people and institutions who gathered, preserved, and shared the town's memory.", "es": "Esta crónica se apoya en el trabajo de muchos — las personas e instituciones que reunieron, conservaron y compartieron la memoria del pueblo." },
+  "groups": [
+    { "role": { "en": "Town chronicler", "es": "Cronista del pueblo" }, "names": ["Don Taurino Arámbula Vázquez (†)"] },
+    { "role": { "en": "Oral informant", "es": "Informante oral" }, "names": ["Don Porfirio Hernández Valle"] },
+    { "role": { "en": "Biography & link", "es": "Semblanza y enlace" }, "names": ["Juan Ramón Ramírez Andrade — Museo Nacional Humanista, Atotonilco el Alto"] },
+    { "role": { "en": "Cited institutions", "es": "Instituciones citadas" }, "names": ["IIEG Jalisco", "INEGI", "Archivo Histórico Municipal de Tepatitlán", "Diócesis de San Juan de los Lagos", "Arquidiócesis de Guadalajara", "Secretaría de Cultura de Jalisco"] },
+    { "role": { "en": "Compiled by", "es": "Compilación" }, "names": ["Jaime Murillo Mena"] }
+  ],
+  "invite": { "en": "This list grows with the town. Share a memory, a photo, or a name — and join it.", "es": "Esta lista crece con el pueblo. Comparte una memoria, una foto o un nombre — y súmate." }
+}

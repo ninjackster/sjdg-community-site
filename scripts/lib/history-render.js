@@ -83,3 +83,30 @@ export function renderFotos(data, lang) {
   }
   return '<h2>' + esc(heading) + '</h2>' + (intro ? '<p>' + esc(intro) + '</p>' : '') + '<div class="cr-fotos-list">' + inner + '</div>';
 }
+
+export function renderIndex(data, lang) {
+  const heading = (data.heading && data.heading[lang]) || '';
+  const ph = esc((data.filter && data.filter[lang]) || '');
+  const items = (data.entries || []).map((e) =>
+    '<li class="cr-index-item"><a href="#' + esc(e.id) + '">' +
+    esc(e.label && e.label[lang]) + '</a></li>'
+  ).join('');
+  const aria = lang === 'es' ? 'Filtrar el índice' : 'Filter the contents';
+  return '<h2>' + esc(heading) + '</h2>' +
+    '<input class="cr-index-filter" type="text" placeholder="' + ph + '" aria-label="' + aria + '" />' +
+    '<ul class="cr-index-list">' + items + '</ul>';
+}
+
+export function renderCreditos(data, lang) {
+  const heading = (data.heading && data.heading[lang]) || '';
+  const intro = (data.intro && data.intro[lang]) || '';
+  const groups = (data.groups || []).map((g) =>
+    '<li class="cr-credit"><span class="cr-credit-role">' + esc(g.role && g.role[lang]) + ':</span> ' +
+    (g.names || []).map(esc).join(', ') + '</li>'
+  ).join('');
+  const invite = (data.invite && data.invite[lang]) || '';
+  return '<h2>' + esc(heading) + '</h2>' +
+    (intro ? '<p>' + esc(intro) + '</p>' : '') +
+    '<ul class="cr-credits-list">' + groups + '</ul>' +
+    (invite ? '<p class="cr-credits-invite">' + esc(invite) + '</p>' : '');
+}
