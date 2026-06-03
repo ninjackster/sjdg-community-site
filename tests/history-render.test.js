@@ -65,3 +65,21 @@ test('renderVoces: empty -> CTA; items -> audio + transcript; file vs embed', ()
   assert.match(html, /Recuerdo…/);
   assert.equal((html.match(/class="cr-voz"/g) || []).length, 2);
 });
+
+import { renderFotos } from '../scripts/lib/history-render.js';
+
+test('renderFotos: empty -> CTA; pair -> juxta slider markup + captions', () => {
+  const empty = renderFotos({ heading: { en: 'Then & now', es: 'Antes y ahora' }, intro: { en: '', es: '' }, empty: { en: 'Send a photo', es: 'Envía una foto' }, pairs: [] }, 'es');
+  assert.match(empty, /Antes y ahora/);
+  assert.match(empty, /Envía una foto/);
+  assert.doesNotMatch(empty, /cr-juxta/);
+
+  const data = { heading: { en: 'T', es: 'T' }, intro: { en: '', es: '' }, empty: { en: '', es: '' },
+    pairs: [{ id: 'p1', then: { src: '/family-photos/plaza-1950.jpg', year: '1950', caption: { en: 'Plaza', es: 'La plaza' } }, now: { src: '/family-photos/plaza-now.jpg', caption: { en: 'Today', es: 'Hoy' } } }] };
+  const html = renderFotos(data, 'es');
+  assert.match(html, /class="cr-juxta"/);
+  assert.match(html, /plaza-1950\.jpg/);
+  assert.match(html, /plaza-now\.jpg/);
+  assert.match(html, /La plaza/);
+  assert.match(html, /type="range"/);
+});

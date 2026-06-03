@@ -57,3 +57,28 @@ export function renderVoces(data, lang) {
   }
   return '<h2>' + esc(heading) + '</h2>' + (intro ? '<p>' + esc(intro) + '</p>' : '') + '<div class="cr-voces-list">' + inner + '</div>';
 }
+
+export function renderFotos(data, lang) {
+  const heading = (data.heading && data.heading[lang]) || '';
+  const intro = (data.intro && data.intro[lang]) || '';
+  const pairs = data.pairs || [];
+  let inner;
+  if (!pairs.length) {
+    inner = '<p class="cr-empty">' + esc((data.empty && data.empty[lang]) || '') + '</p>';
+  } else {
+    inner = pairs.map(p => {
+      const thenCap = esc((p.then.caption && p.then.caption[lang]) || '');
+      const nowCap = esc((p.now.caption && p.now.caption[lang]) || '');
+      const year = esc(p.then.year || '');
+      return '<figure class="cr-juxta-fig">' +
+        '<div class="cr-juxta" role="group" aria-label="' + thenCap + '">' +
+          '<img class="cr-juxta-now" src="' + esc(p.now.src) + '" alt="' + nowCap + '" />' +
+          '<div class="cr-juxta-then"><img src="' + esc(p.then.src) + '" alt="' + thenCap + '" /></div>' +
+          '<input class="cr-juxta-range" type="range" min="0" max="100" value="50" aria-label="' + (lang === 'es' ? 'Comparar antes y ahora' : 'Compare then and now') + '" />' +
+        '</div>' +
+        '<figcaption>' + (year ? '<strong>' + year + '</strong> · ' : '') + thenCap + (nowCap ? ' → ' + nowCap : '') + '</figcaption>' +
+        '</figure>';
+    }).join('');
+  }
+  return '<h2>' + esc(heading) + '</h2>' + (intro ? '<p>' + esc(intro) + '</p>' : '') + '<div class="cr-fotos-list">' + inner + '</div>';
+}
