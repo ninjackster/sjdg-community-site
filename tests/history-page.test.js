@@ -84,7 +84,7 @@ test('history page renders long-form with print affordances and no unresolved to
   assert.match(html, /Compilado por Jaime Murillo/);        // byline
   assert.match(html, /@media print/);                       // print stylesheet
   assert.match(html, /window\.print\(\)/);                  // download-pdf trigger
-  for (const id of ['raices','place','origins','administrative','faith','cristero','economy','people','culture','book1897','cronista','sources']) {
+  for (const id of ['raices','place','origins','administrative','faith','cristero','economy','people','culture','book1897','cronista','notables','sources']) {
     assert.match(html, new RegExp(`id="sec-${id}"`), `missing #sec-${id}`);
   }
   assert.match(html, /Descargar PDF/);                      // es pdf label
