@@ -1,0 +1,14 @@
+{
+  "heading": { "en": "Where it sits", "es": "Dónde se encuentra" },
+  "intro": { "en": "San José de Gracia in Los Altos de Jalisco, west-central Mexico.", "es": "San José de Gracia en Los Altos de Jalisco, en el occidente de México." },
+  "points": [
+    { "kind": "town", "lng": -102.58, "lat": 20.73, "label": { "en": "San José de Gracia", "es": "San José de Gracia" } },
+    { "kind": "city", "lng": -102.764, "lat": 20.817, "label": { "en": "Tepatitlán de Morelos", "es": "Tepatitlán de Morelos" } },
+    { "kind": "city", "lng": -103.347, "lat": 20.677, "label": { "en": "Guadalajara", "es": "Guadalajara" } },
+    { "kind": "historic", "lng": -103.84, "lat": 20.69, "label": { "en": "Teuchitlán (guachimontones)", "es": "Teuchitlán (guachimontones)" } },
+    { "kind": "historic", "lng": -102.85, "lat": 21.36, "label": { "en": "Nochistlán (Mixtón War)", "es": "Nochistlán (Guerra del Mixtón)" } },
+    { "kind": "historic", "lng": -102.58, "lat": 22.77, "label": { "en": "Zacatecas", "es": "Zacatecas" } }
+  ],
+  "osm": { "url": "https://www.openstreetmap.org/?mlat=20.73&mlon=-102.58#map=13/20.73/-102.58",
+           "label": { "en": "Open in OpenStreetMap", "es": "Abrir en OpenStreetMap" } }
+}
