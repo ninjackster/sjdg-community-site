@@ -1,0 +1,12 @@
+{
+  "heading": { "en": "Where the diaspora settled", "es": "Dónde se asentó la diáspora" },
+  "intro": { "en": "Where Jaliscienses in the United States live (approx. shares, 2018).", "es": "Dónde viven los jaliscienses en Estados Unidos (proporciones aprox., 2018)." },
+  "origin": { "label": { "en": "Jalisco", "es": "Jalisco" } },
+  "destinations": [
+    { "state": "California", "share": 58, "label": { "en": "California ~58%", "es": "California ~58%" } },
+    { "state": "Colorado", "share": 10, "label": { "en": "Colorado ~10%", "es": "Colorado ~10%" } },
+    { "state": "Arizona", "share": 7, "label": { "en": "Arizona ~7%", "es": "Arizona ~7%" } },
+    { "state": "Texas", "share": 6, "label": { "en": "Texas ~6%", "es": "Texas ~6%" } }
+  ],
+  "legend": { "en": "Circle size = share of Jaliscienses in the U.S.", "es": "Tamaño del círculo = proporción de jaliscienses en EE. UU." }
+}

@@ -49,6 +49,32 @@
   .cr-juxta-range { position: absolute; bottom: 8px; left: 8px; right: 8px; width: calc(100% - 16px); }
   .cr-colabora-cta { margin-top: 1rem; }
 
+  /* Maps (build-time static SVG) */
+  .cr-map { margin: 1rem 0 1.4rem; }
+  .cr-map-svg { display: block; width: 100%; height: auto; }
+  .cr-map-locator .cr-map-svg { max-width: 560px; }
+  .cr-map-diaspora .cr-map-svg { max-width: 760px; }
+  .cr-map-land { fill: #efe6d6; stroke: #cbb89a; stroke-width: .6; }
+  .cr-map-pt { fill: #9aa0a6; }
+  .cr-map-pt-town { fill: #c4785a; stroke: #fff; stroke-width: 1.2; }
+  .cr-map-pt-city { fill: #7a6a55; }
+  .cr-map-pt-historic { fill: #b89a6a; }
+  .cr-map-lbl { font-size: 13px; fill: #1c1309; font-family: inherit; }
+  .cr-map-marker-town .cr-map-lbl { font-weight: 600; }
+  .cr-map-lbl-historic { font-size: 11px; fill: #6b5b43; font-style: italic; }
+  .cr-map-osm { display: inline-block; margin-top: .3rem; font-size: .85rem; }
+  .cr-map-state { fill: #efe9df; stroke: #fff; stroke-width: .7; }
+  .cr-map-state-dest { fill: #e7c9ba; }
+  .cr-map-state-rank-0 { fill: #c4785a; }
+  .cr-map-state-rank-1 { fill: #d49a80; }
+  .cr-map-state-rank-2 { fill: #e0b39e; }
+  .cr-map-state-rank-3 { fill: #ebc9bb; }
+  .cr-map-circle { fill: rgba(160,70,40,.45); stroke: #8a3f28; stroke-width: 1; }
+  .cr-map-flow { stroke: rgba(138,63,40,.4); stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; }
+  .cr-map-origin-pt { fill: #1c1309; }
+  .cr-map-origin-lbl { font-weight: 600; }
+  .cr-map-legend { font-size: 12px; fill: #6b5b43; }
+
   @media print {
     body * { visibility: hidden; }
     .cr-wrap, .cr-wrap * { visibility: visible; }
@@ -58,6 +84,7 @@
     .cr-section h2 { page-break-after: avoid; }
     .cr-timeline, .cr-historias, .cr-story { page-break-inside: avoid; }
     .cr-voces, .cr-fotos, .cr-colabora, .cr-voz, .cr-juxta-fig { page-break-inside: avoid; }
+    .cr-mapa, .cr-diaspora, .cr-map { page-break-inside: avoid; }
     /* Diagonal watermark + running footer */
     .cr-wrap::before { content: "Compilado por Jaime Murillo"; position: fixed; top: 45%; left: 50%; transform: translate(-50%,-50%) rotate(-30deg); font-size: 3rem; color: rgba(196,120,90,.10); white-space: nowrap; z-index: 0; }
     .cr-wrap::after { content: "La Crónica de San José de Gracia · sanjosedegracia.net"; position: fixed; bottom: .6cm; left: 0; right: 0; text-align: center; font-size: .7rem; color: rgba(28,19,9,.5); }
@@ -89,13 +116,16 @@
 
   <section class="cr-timeline" id="sec-timeline">{{timeline.body}}</section>
 
+  <section class="cr-section cr-raices" id="sec-raices"><h2>{{sections.raices.h2}}</h2>{{sections.raices.body}}</section>
   <section class="cr-section" id="sec-place"><h2>{{sections.place.h2}}</h2>{{sections.place.body}}</section>
+  <section class="cr-section cr-mapa" id="sec-mapa">{{mapa.body}}</section>
   <section class="cr-section" id="sec-origins"><h2>{{sections.origins.h2}}</h2>{{sections.origins.body}}</section>
   <section class="cr-section" id="sec-administrative"><h2>{{sections.administrative.h2}}</h2>{{sections.administrative.body}}</section>
   <section class="cr-section" id="sec-faith"><h2>{{sections.faith.h2}}</h2>{{sections.faith.body}}</section>
   <section class="cr-section" id="sec-cristero"><h2>{{sections.cristero.h2}}</h2>{{sections.cristero.body}}</section>
   <section class="cr-section" id="sec-economy"><h2>{{sections.economy.h2}}</h2>{{sections.economy.body}}</section>
   <section class="cr-section" id="sec-people"><h2>{{sections.people.h2}}</h2>{{sections.people.body}}</section>
+  <section class="cr-section cr-diaspora" id="sec-diaspora"><h2>{{diaspora.h2}}</h2>{{diaspora.body}}{{diaspora_map.body}}</section>
   <section class="cr-section" id="sec-culture"><h2>{{sections.culture.h2}}</h2>{{sections.culture.body}}</section>
   <section class="cr-section" id="sec-book1897"><h2>{{sections.book1897.h2}}</h2>{{sections.book1897.body}}</section>
 

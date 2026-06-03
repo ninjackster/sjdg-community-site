@@ -9,10 +9,11 @@ export function esc(s) {
 
 export function renderTimeline(timeline, lang) {
   const heading = (timeline.heading && timeline.heading[lang]) || '';
-  const items = (timeline.entries || []).map(e =>
-    '<li><span class="cr-tl-year">' + esc(e.year) + '</span>' +
-    '<span class="cr-tl-label">' + esc(e.label && e.label[lang]) + '</span></li>'
-  ).join('');
+  const items = (timeline.entries || []).map(e => {
+    const year = e.year && typeof e.year === 'object' ? e.year[lang] : e.year;
+    return '<li><span class="cr-tl-year">' + esc(year) + '</span>' +
+      '<span class="cr-tl-label">' + esc(e.label && e.label[lang]) + '</span></li>';
+  }).join('');
   return '<h2>' + esc(heading) + '</h2><ol class="cr-tl">' + items + '</ol>';
 }
 
