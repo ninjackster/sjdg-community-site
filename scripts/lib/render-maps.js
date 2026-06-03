@@ -73,8 +73,15 @@ export function renderLocatorMap({ mexico, content }, lang) {
     const lblClass = kind === 'historic' ? 'cr-map-lbl cr-map-lbl-historic' : 'cr-map-lbl';
     const dot =
       '<circle class="cr-map-pt cr-map-pt-' + esc(kind) + '" cx="' + x + '" cy="' + y + '" r="' + r + '" />';
+    // Per-point label placement avoids collisions where points cluster.
+    // pos: 'r' (right, default) | 'l' (left) | 't' (above) | 'b' (below).
+    const pos = pt.pos || 'r';
+    let lx = n(x + r + 3), ly = n(y + 3), anchor = 'start';
+    if (pos === 'l') { lx = n(x - r - 3); anchor = 'end'; }
+    else if (pos === 't') { lx = x; ly = n(y - r - 5); anchor = 'middle'; }
+    else if (pos === 'b') { lx = x; ly = n(y + r + 13); anchor = 'middle'; }
     const text = label
-      ? '<text class="' + lblClass + '" x="' + n(x + r + 3) + '" y="' + n(y + 3) + '">' + label + '</text>'
+      ? '<text class="' + lblClass + '" x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '">' + label + '</text>'
       : '';
     return '<g class="cr-map-marker cr-map-marker-' + esc(kind) + '">' + dot + text + '</g>';
   }).join('');
