@@ -118,15 +118,15 @@
       overflow-x: hidden;
     }
 
-    /* ── NAV ── */
-    nav {
+    /* ── NAV ── (scoped to #nav so content <nav> elements aren't hijacked) */
+    #nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.4rem 3rem;
       background: transparent;
       transition: background .4s, backdrop-filter .4s;
     }
-    nav.scrolled {
+    #nav.scrolled {
       background: rgba(245,239,230,.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(196,120,90,.2);
@@ -140,13 +140,13 @@
       transition: color .3s;
       display: flex; align-items: center; gap: .55rem;
     }
-    nav.scrolled .nav-logo { color: var(--dark); }
+    #nav.scrolled .nav-logo { color: var(--dark); }
     .nav-logo img {
       height: 4.4rem;
       width: auto;
       transition: height .35s ease;
     }
-    nav.scrolled .nav-logo img {
+    #nav.scrolled .nav-logo img {
       height: 1.5rem;
     }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
@@ -158,7 +158,7 @@
       text-decoration: none;
       transition: color .3s;
     }
-    nav.scrolled .nav-links a { color: var(--earth); }
+    #nav.scrolled .nav-links a { color: var(--earth); }
     .nav-links a:hover { color: var(--gold); }
 
     /* ── LANG TOGGLE ── */
@@ -178,10 +178,10 @@
     .lang-opt.active { color: var(--gold); font-weight: 500; }
     .lang-opt:hover:not(.active) { color: rgba(245,239,230,.75); }
     .lang-sep { color: rgba(245,239,230,.2); }
-    nav.scrolled .lang-opt { color: rgba(139,94,60,.4); }
-    nav.scrolled .lang-opt.active { color: var(--clay); }
-    nav.scrolled .lang-opt:hover:not(.active) { color: var(--earth); }
-    nav.scrolled .lang-sep { color: rgba(139,94,60,.2); }
+    #nav.scrolled .lang-opt { color: rgba(139,94,60,.4); }
+    #nav.scrolled .lang-opt.active { color: var(--clay); }
+    #nav.scrolled .lang-opt:hover:not(.active) { color: var(--earth); }
+    #nav.scrolled .lang-sep { color: rgba(139,94,60,.2); }
 
     /* ── HERO ── */
     .hero {
@@ -716,7 +716,7 @@
       border-radius: 2px;
       transition: transform .3s, opacity .3s, background .3s;
     }
-    nav.scrolled .hamburger span { background: var(--dark); }
+    #nav.scrolled .hamburger span { background: var(--dark); }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -753,7 +753,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav { padding: 1.2rem 1.5rem; }
+      #nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .about-strip { flex-direction: column; }
@@ -1097,10 +1097,21 @@
     })();
 
     // ── NAV SCROLL ──
+    // The nav is transparent (light text) over the home page's dark hero, and
+    // turns solid (cream bar, dark text) on scroll. Pages without a hero have a
+    // light background, so force the solid state from first paint or the nav
+    // would be invisible (cream-on-cream) until the user scrolls.
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
+    // Dark full-width top sections the transparent nav is designed to sit over.
+    // Light-top pages (history, directory, topic pages…) get the solid nav from
+    // the start so it isn't invisible cream-on-cream. New dark-hero pages can
+    // opt in with class "hero"/"faq-hero" or a [data-hero] attribute.
+    const hasDarkHero = !!document.querySelector('.hero, .faq-hero, [data-hero]');
+    function updateNav() {
+      nav.classList.toggle('scrolled', !hasDarkHero || window.scrollY > 60);
+    }
+    window.addEventListener('scroll', updateNav);
+    updateNav();
 
     // ── MOBILE MENU ──
     const hamburger = document.getElementById('hamburger');
