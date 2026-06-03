@@ -73,10 +73,25 @@ test('history page renders long-form with print affordances and no unresolved to
   assert.match(html, /Compilado por Jaime Murillo/);        // byline
   assert.match(html, /@media print/);                       // print stylesheet
   assert.match(html, /window\.print\(\)/);                  // download-pdf trigger
-  for (const id of ['place','origins','administrative','faith','cristero','economy','people','culture','book1897','sources']) {
+  for (const id of ['raices','place','origins','administrative','faith','cristero','economy','people','culture','book1897','sources']) {
     assert.match(html, new RegExp(`id="sec-${id}"`), `missing #sec-${id}`);
   }
   assert.match(html, /Descargar PDF/);                      // es pdf label
+});
+
+test('built history page renders Raíces deep-history + extended timeline anchors', async () => {
+  for (const lang of ['en', 'es']) {
+    const html = await buildHistory(lang);
+    assert.doesNotMatch(html, /\{\{.*?\}\}/, `unresolved token in ${lang}`);
+    assert.match(html, /id="sec-raices"/);
+    // deep-history peoples + conquest arc present
+    assert.match(html, lang === 'es' ? /tecuexes/i : /Tecuexes/);
+    assert.match(html, lang === 'es' ? /Guerra del Mixtón/ : /Mixtón War/);
+    assert.match(html, /Teuchitlán/);
+    // timeline extended backward: a BCE/CE anchor + Tecuexes contact entry
+    assert.match(html, lang === 'es' ? /a\.C\.–500 d\.C\./ : /BCE–500 CE/);
+    assert.match(html, lang === 'es' ? /Al contacto/ : /At contact/);
+  }
 });
 
 test('built history page renders timeline, historias, Battle, and ≥6 sources', async () => {
