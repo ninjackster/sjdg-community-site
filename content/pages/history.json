@@ -118,6 +118,13 @@
       { "year": "2021", "label": { "en": "The town's Cultural Center opens", "es": "Abre el Centro Cultural del pueblo" } }
     ]
   },
+  "diaspora": {
+    "h2": { "en": "The diaspora", "es": "La diáspora" },
+    "body": {
+      "en": "<p>Like much of Los Altos, San José de Gracia is a town with one foot in the United States. The migration is old: it began in the late nineteenth century along the new Porfirian railroads, deepened with the upheavals of the Revolution and the Cristero War, and was cemented by the <strong>Bracero era (1942–1964)</strong>, which wove lasting networks between the Altos and the American West.</p><p>The reasons are structural — a dispersed dairy-and-ranchero economy of small private <em>ranchos</em>, large households, and a tradition of small enterprise, all of which favor chain migration. Jalisco is Mexico's second-largest remittance-receiving state, and the Altos are among its most migration-shaped corners. By 2018 the great majority of Jaliscienses in the United States lived in <strong>California</strong>, with smaller communities in Colorado, Arizona, and Texas. Watching over them is <strong>Santo Toribio Romo</strong>, the Jalisco priest canonized in 2000 and venerated as the patron of migrants. (These are regional patterns; locality-specific figures for San José de Gracia remain to be documented.)</p>",
+      "es": "<p>Como gran parte de los Altos, San José de Gracia es un pueblo con un pie en Estados Unidos. La migración es antigua: comenzó a fines del siglo XIX por los nuevos ferrocarriles porfirianos, se profundizó con los trastornos de la Revolución y la Guerra Cristera, y quedó cimentada por la <strong>era de los braceros (1942–1964)</strong>, que tejió redes duraderas entre los Altos y el oeste estadounidense.</p><p>Las razones son estructurales — una economía dispersa de ganadería lechera y rancho, de pequeños <em>ranchos</em> privados, hogares numerosos y una tradición de pequeña empresa, todo lo cual favorece la migración en cadena. Jalisco es el segundo estado de México que más remesas recibe, y los Altos están entre sus rincones más marcados por la migración. Hacia 2018 la gran mayoría de los jaliscienses en Estados Unidos vivía en <strong>California</strong>, con comunidades menores en Colorado, Arizona y Texas. Los vela <strong>Santo Toribio Romo</strong>, el sacerdote jalisciense canonizado en 2000 y venerado como patrono de los migrantes. (Son patrones regionales; las cifras específicas de San José de Gracia están aún por documentarse.)</p>"
+    }
+  },
   "colabora": {
     "h2": { "en": "Share a memory", "es": "Comparte una memoria" },
     "body": {

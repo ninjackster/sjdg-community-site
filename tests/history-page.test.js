@@ -39,6 +39,8 @@ import { buildPage } from '../scripts/lib/build-page.js';
 import { renderTimeline, renderHistorias, renderVoces, renderFotos } from '../scripts/lib/history-render.js';
 import { validateStories } from '../scripts/lib/history-stories.js';
 import { validateVoces, validateFotos } from '../scripts/lib/history-media.js';
+import { renderLocatorMap, renderDiasporaMap } from '../scripts/lib/render-maps.js';
+import { feature } from 'topojson-client';
 
 async function buildHistory(lang) {
   const layout = await readFile(join(ROOT, 'templates/layouts/base.html'), 'utf8');
@@ -64,6 +66,15 @@ async function buildHistory(lang) {
   if (!vf.valid) throw new Error('invalid fotos.json: ' + vf.errors.join('; '));
   content.voces = { body: { en: renderVoces(voces, 'en'), es: renderVoces(voces, 'es') } };
   content.fotos = { body: { en: renderFotos(fotos, 'en'), es: renderFotos(fotos, 'es') } };
+  // Mirror the map injection in scripts/build.js.
+  const countriesTopo = JSON.parse(await readFile(join(ROOT, 'data/geo/countries-50m.json'), 'utf8'));
+  const usTopo = JSON.parse(await readFile(join(ROOT, 'data/geo/us-states-10m.json'), 'utf8'));
+  const mexico = feature(countriesTopo, countriesTopo.objects.countries).features.find((f) => String(f.id) === '484');
+  const usStates = feature(usTopo, usTopo.objects.states);
+  const locator = await loadContent(join(ROOT, 'content/maps/locator.json'));
+  const diaspora = await loadContent(join(ROOT, 'content/maps/diaspora.json'));
+  content.mapa = { body: { en: renderLocatorMap({ mexico, content: locator }, 'en'), es: renderLocatorMap({ mexico, content: locator }, 'es') } };
+  content.diaspora_map = { body: { en: renderDiasporaMap({ usStates, content: diaspora }, 'en'), es: renderDiasporaMap({ usStates, content: diaspora }, 'es') } };
   return buildPage({ lang, layout, pageTemplate: tpl, content, shared, siteUrl: 'https://sanjosedegracia.net', pageSlugs });
 }
 
@@ -77,6 +88,25 @@ test('history page renders long-form with print affordances and no unresolved to
     assert.match(html, new RegExp(`id="sec-${id}"`), `missing #sec-${id}`);
   }
   assert.match(html, /Descargar PDF/);                      // es pdf label
+});
+
+test('built history page renders Mapa (locator) + Diáspora (map + narrative)', async () => {
+  for (const lang of ['en', 'es']) {
+    const html = await buildHistory(lang);
+    assert.doesNotMatch(html, /\{\{.*?\}\}/, `unresolved token in ${lang}`);
+    assert.match(html, /id="sec-mapa"/);
+    assert.match(html, /id="sec-diaspora"/);
+    // both maps emit inline SVG, no leaked NaN coordinates
+    assert.ok((html.match(/<svg/g) || []).length >= 2, 'two map svgs');
+    assert.doesNotMatch(html, /NaN/);
+    // locator: town label + OSM link
+    assert.match(html, /San José de Gracia/);
+    assert.match(html, /href="https:\/\/www\.openstreetmap\.org/);
+    // diaspora: destinations + narrative + Santo Toribio
+    assert.match(html, /California ~58%/);
+    assert.match(html, lang === 'es' ? /Santo Toribio Romo/ : /Santo Toribio Romo/);
+    assert.match(html, lang === 'es' ? /era de los braceros/ : /Bracero era/);
+  }
 });
 
 test('built history page renders Raíces deep-history + extended timeline anchors', async () => {

@@ -9,6 +9,8 @@ import { renderBusinessPage } from './lib/business-page.js';
 import { renderTimeline, renderHistorias, renderVoces, renderFotos } from './lib/history-render.js';
 import { validateStories } from './lib/history-stories.js';
 import { validateVoces, validateFotos } from './lib/history-media.js';
+import { renderLocatorMap, renderDiasporaMap } from './lib/render-maps.js';
+import { feature } from 'topojson-client';
 import { getSnapshot } from './lib/snapshot-store.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -103,6 +105,17 @@ async function buildOnePage({ pageName, pageSlugs, shared, layout }) {
     const vf = validateFotos(fotos); if (!vf.valid) throw new Error('invalid fotos.json: ' + vf.errors.join('; '));
     content.voces = { body: { en: renderVoces(voces, 'en'), es: renderVoces(voces, 'es') } };
     content.fotos = { body: { en: renderFotos(fotos, 'en'), es: renderFotos(fotos, 'es') } };
+    // Maps: build-time static SVG (d3-geo/topojson run only here, never shipped).
+    const countriesTopo = JSON.parse(await readFile(join(ROOT, 'data/geo/countries-50m.json'), 'utf8'));
+    const usTopo = JSON.parse(await readFile(join(ROOT, 'data/geo/us-states-10m.json'), 'utf8'));
+    const countries = feature(countriesTopo, countriesTopo.objects.countries);
+    const mexico = countries.features.find((f) => String(f.id) === '484');
+    if (!mexico) throw new Error('Mexico feature (id 484) not found in countries-50m.json');
+    const usStates = feature(usTopo, usTopo.objects.states);
+    const locator = await loadContent(join(ROOT, 'content/maps/locator.json'));
+    const diaspora = await loadContent(join(ROOT, 'content/maps/diaspora.json'));
+    content.mapa = { body: { en: renderLocatorMap({ mexico, content: locator }, 'en'), es: renderLocatorMap({ mexico, content: locator }, 'es') } };
+    content.diaspora_map = { body: { en: renderDiasporaMap({ usStates, content: diaspora }, 'en'), es: renderDiasporaMap({ usStates, content: diaspora }, 'es') } };
   }
 
   for (const lang of LANGS) {
