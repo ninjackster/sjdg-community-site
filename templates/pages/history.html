@@ -50,7 +50,7 @@
   .cr-colabora-cta { margin-top: 1rem; }
 
   /* Phase 4 — Contents jump-index, guide steps, créditos */
-  .cr-index { margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; background: rgba(196,120,90,.06); border-radius: 10px; }
+  .cr-index { display: block; margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; background: rgba(196,120,90,.06); border-radius: 10px; }
   .cr-index h2 { margin: 0 0 .5rem; font-size: 1.1rem; }
   .cr-index-filter { width: 100%; max-width: 320px; padding: .4rem .6rem; margin-bottom: .6rem; border: 1px solid #cbb89a; border-radius: 6px; font: inherit; background: #fff; }
   .cr-index-list { list-style: none; padding: 0; margin: 0; column-width: 220px; column-gap: 1.5rem; }
@@ -131,7 +131,7 @@
     <div class="cr-actions"><button class="cr-pdf" onclick="window.print()">{{pdf.label}}</button></div>
   </header>
 
-  <nav class="cr-index" id="sec-index" aria-label="Contents">{{indice.body}}</nav>
+  <section class="cr-index" id="sec-index" aria-label="Contents">{{indice.body}}</section>
 
   <section class="cr-timeline" id="sec-timeline">{{timeline.body}}</section>
 
