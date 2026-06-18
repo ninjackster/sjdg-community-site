@@ -12,6 +12,7 @@ import { validateVoces, validateFotos } from './lib/history-media.js';
 import { renderLocatorMap, renderDiasporaMap } from './lib/render-maps.js';
 import { feature } from 'topojson-client';
 import { getSnapshot } from './lib/snapshot-store.js';
+import { generateSitemap } from './lib/sitemap.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -157,7 +158,15 @@ async function main() {
     await buildOnePage({ pageName, pageSlugs, shared, layout });
   }
 
-  await buildBusinessPages({ shared, layout, pageSlugs });
+  const snapshot = await buildBusinessPages({ shared, layout, pageSlugs });
+
+  // Sitemap — generated from the same page-slugs + snapshot used to build pages,
+  // so it can never list a URL the build didn't emit.
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const sitemap = generateSitemap({ pageSlugs, snapshot, siteUrl: SITE_URL, lastmod });
+  await writeFile(join(DIST, 'sitemap.xml'), sitemap, 'utf8');
+  const urlCount = (sitemap.match(/<loc>/g) || []).length;
+  console.log(`✓ wrote dist/sitemap.xml (${urlCount} URLs)`);
 
   console.log('\nBuild complete.');
 }
@@ -180,7 +189,7 @@ async function buildBusinessPages({ shared, layout, pageSlugs }) {
   const snapshot = await resolveSnapshot();
   if (!snapshot) {
     console.log('⊘ skipping per-business pages (no snapshot in Upstash or local file — run npm run fetch-businesses)');
-    return;
+    return null;
   }
   console.log(`✓ loaded snapshot (${snapshot.count} businesses, fetched ${snapshot.fetchedAt})`);
   const detailContent = await loadContent(join(ROOT, 'content/pages/business-detail.json'));
@@ -206,6 +215,7 @@ async function buildBusinessPages({ shared, layout, pageSlugs }) {
     }
   }
   console.log(`✓ wrote ${written} per-business pages (${snapshot.businesses.length} businesses × 2 langs)`);
+  return snapshot;
 }
 
 main().catch(err => {

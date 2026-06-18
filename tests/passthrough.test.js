@@ -10,7 +10,6 @@ before(() => {
 const LEGACY_FILES = [
   'admin-businesses.html',
   'robots.txt',
-  'sitemap.xml',
   'favicon-32.png',
   'favicon-48.png',
   'favicon-192.png',
