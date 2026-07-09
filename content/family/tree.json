@@ -3903,7 +3903,7 @@
       },
       "sex": "M",
       "birth": {
-        "date": null,
+        "date": "c. 1710",
         "place": null
       },
       "death": {
@@ -3911,16 +3911,23 @@
         "place": null
       },
       "photo": null,
-      "surnameOrigin": null,
+      "surnameOrigin": {
+        "text": "Murillo — apellido toponímico español (del latín murellus, «pequeña muralla»), de Navarra/La Rioja, norte de España. La familia entró a Nueva España durante la colonización de Los Altos de Jalisco (s. XVI–XVII); el emigrante original queda antes de este punto, sin documentar.",
+        "confidence": "medium"
+      },
       "recordLinks": [
         {
           "label": "Obituario, San Francisco de Asís, p.31",
           "url": null
+        },
+        {
+          "label": "FamilySearch shared tree (FamilySearch P9W4-GBW)",
+          "url": "https://www.familysearch.org/tree/person/details/P9W4-GBW"
         }
       ],
       "notes": {
-        "en": "Documented Murillo trunk of San Francisco de Asís (Obituario, Juan Murillo Angulo, 2026).",
-        "es": "Tronco Murillo documentado de San Francisco de Asís (Obituario, Juan Murillo Angulo, 2026)."
+        "en": "Oldest documented ancestor of the Murillo line. Born ~1710; his family’s colonial parish was San Diego de Alejandría, Los Altos de Jalisco. This is the FRONTIER: neither the Obituario nor the FamilySearch shared tree (person P9W4-GBW, 0 sources) records his parents. The original Spanish immigrant ancestor lies beyond, in 17th-century colonial records, currently unfound. Surname origin: Navarra/La Rioja, Spain.",
+        "es": "Ancestro documentado más antiguo de la línea Murillo. Nació ~1710; la parroquia colonial de la familia fue San Diego de Alejandría, Los Altos de Jalisco. Esta es la FRONTERA: ni el Obituario ni el árbol colaborativo de FamilySearch (persona P9W4-GBW, 0 fuentes) registran a sus padres. El emigrante español original queda más atrás, en registros coloniales del s. XVII, aún sin localizar. Origen del apellido: Navarra/La Rioja, España."
       },
       "source": "book+memory"
     },
@@ -3948,6 +3955,10 @@
         {
           "label": "Obituario, San Francisco de Asís, p.31",
           "url": null
+        },
+        {
+          "label": "FamilySearch shared tree (FamilySearch P9W4-2LZ)",
+          "url": "https://www.familysearch.org/tree/person/details/P9W4-2LZ"
         }
       ],
       "notes": {
@@ -3971,8 +3982,8 @@
         "place": null
       },
       "death": {
-        "date": null,
-        "place": null
+        "date": "1795",
+        "place": "San Diego de Alejandría, Jalisco"
       },
       "photo": null,
       "surnameOrigin": null,
@@ -3980,11 +3991,15 @@
         {
           "label": "Obituario, San Francisco de Asís, p.31",
           "url": null
+        },
+        {
+          "label": "FamilySearch shared tree (FamilySearch GGFK-VV3)",
+          "url": "https://www.familysearch.org/tree/person/details/GGFK-VV3"
         }
       ],
       "notes": {
-        "en": "Documented Murillo trunk of San Francisco de Asís (Obituario, Juan Murillo Angulo, 2026).",
-        "es": "Tronco Murillo documentado de San Francisco de Asís (Obituario, Juan Murillo Angulo, 2026)."
+        "en": "Documented Murillo trunk of San Francisco de Asís (Obituario, Juan Murillo Angulo, 2026). Buried 27 April 1795 in San Diego de Alejandría, Jalisco. Well documented on FamilySearch (16 sources).",
+        "es": "Tronco Murillo documentado de San Francisco de Asís (Obituario, Juan Murillo Angulo, 2026). Sepultado el 27 de abril de 1795 en San Diego de Alejandría, Jalisco. Bien documentado en FamilySearch (16 fuentes)."
       },
       "source": "book+memory"
     },
@@ -4007,7 +4022,12 @@
       },
       "photo": null,
       "surnameOrigin": null,
-      "recordLinks": [],
+      "recordLinks": [
+        {
+          "label": "FamilySearch shared tree (FamilySearch MTVF-BCY)",
+          "url": "https://www.familysearch.org/tree/person/details/MTVF-BCY"
+        }
+      ],
       "notes": {
         "en": "Documented Murillo trunk of San Francisco de Asís (Obituario, Juan Murillo Angulo, 2026).",
         "es": "Tronco Murillo documentado de San Francisco de Asís (Obituario, Juan Murillo Angulo, 2026)."
@@ -4037,11 +4057,15 @@
         {
           "label": "Obituario, San Francisco de Asís, p.31",
           "url": null
+        },
+        {
+          "label": "FamilySearch shared tree (FamilySearch MVW7-G3S)",
+          "url": "https://www.familysearch.org/tree/person/details/MVW7-G3S"
         }
       ],
       "notes": {
-        "en": "Documented patriarch of the Murillo trunk: registered fifteen children between 1792 and 1819 (Obituario). The whole family descends from him.",
-        "es": "Patriarca documentado del tronco Murillo: registró quince hijos entre 1792 y 1819 (Obituario). Toda la familia desciende de él."
+        "en": "Documented patriarch of the Murillo trunk: registered fifteen children between 1792 and 1819 (Obituario). The whole family descends from him. FamilySearch places his birth (~30 Apr 1769) in San Pedro Piedragorda, Guanajuato — the family straddled the Jalisco–Guanajuato border of Los Altos.",
+        "es": "Patriarca documentado del tronco Murillo: registró quince hijos entre 1792 y 1819 (Obituario). Toda la familia desciende de él. FamilySearch ubica su nacimiento (~30 abr 1769) en San Pedro Piedragorda, Guanajuato — la familia vivía en la frontera Jalisco–Guanajuato de Los Altos."
       },
       "source": "book+memory"
     },
@@ -4069,6 +4093,10 @@
         {
           "label": "Obituario, San Francisco de Asís, p.32",
           "url": null
+        },
+        {
+          "label": "FamilySearch shared tree (FamilySearch MTV4-PXJ)",
+          "url": "https://www.familysearch.org/tree/person/details/MTV4-PXJ"
         }
       ],
       "notes": {
