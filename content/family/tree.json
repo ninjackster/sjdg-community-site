@@ -63,8 +63,8 @@
       },
       "sex": "F",
       "birth": {
-        "date": null,
-        "place": null
+        "date": "1969-09-07",
+        "place": "Guadalajara, Jalisco"
       },
       "death": {
         "date": null,
@@ -72,10 +72,15 @@
       },
       "photo": null,
       "surnameOrigin": null,
-      "recordLinks": [],
+      "recordLinks": [
+        {
+          "label": "Acta de Nacimiento — Registro Civil de Guadalajara, Jalisco; Oficialía 0005, Libro 8, Acta 3047, registrada 17 sep 1969 (copia certificada 2024).",
+          "url": null
+        }
+      ],
       "notes": {
-        "en": "",
-        "es": ""
+        "en": "Jaime’s mother. Born 7 September 1969 in Guadalajara, Jalisco; living. Daughter of Benjamín Mena Sánchez and Ma. Refugio \"Cuca\" Ruiz Hernández. Confirmed by her civil birth certificate. Maternal (Mena/Ruiz) line, Los Altos de Jalisco roots; family resides in San José de Gracia.",
+        "es": "Madre de Jaime. Nació el 7 de septiembre de 1969 en Guadalajara, Jalisco; vive. Hija de Benjamín Mena Sánchez y Ma. Refugio «Cuca» Ruiz Hernández. Confirmado por su acta de nacimiento. Línea materna (Mena/Ruiz), raíces en Los Altos de Jalisco; la familia reside en San José de Gracia."
       }
     },
     {
