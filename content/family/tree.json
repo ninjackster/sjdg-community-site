@@ -112,8 +112,8 @@
         }
       ],
       "notes": {
-        "en": "Paternal grandfather. Born 16 March 1947 in San José de Gracia; living. Son of Sebastián Murillo Díaz and Ma. Soledad Villalobos Gutiérrez (documented in the Obituario, p.79). Murillo line of San José de Gracia.",
-        "es": "Abuelo paterno. Nació el 16 de marzo de 1947 en San José de Gracia; vive. Hijo de Sebastián Murillo Díaz y Ma. Soledad Villalobos Gutiérrez (documentado en el Obituario, p.79). Línea Murillo de San José de Gracia."
+        "en": "Paternal grandfather. Born 16 March 1947 in San José de Gracia; living. Son of Sebastián Murillo Díaz and Ma. Soledad Villalobos Gutiérrez — confirmed by family (photos of the great-grandparents at home) and corroborated by a 1961 Atotonilco el Alto civil death record naming that couple as parents of his infant sister. Murillo line of San José de Gracia.",
+        "es": "Abuelo paterno. Nació el 16 de marzo de 1947 en San José de Gracia; vive. Hijo de Sebastián Murillo Díaz y Ma. Soledad Villalobos Gutiérrez — confirmado por la familia (fotos de los bisabuelos en casa) y corroborado por un acta de defunción de Atotonilco el Alto (1961) que nombra a esa pareja como padres de su hermana de infancia. Línea Murillo de San José de Gracia."
       },
       "source": "book+memory"
     },
@@ -1337,11 +1337,15 @@
         {
           "label": "Obituario, San Francisco de Asís, p.79",
           "url": null
+        },
+        {
+          "label": "Atotonilco el Alto, Jalisco — Registro Civil, Defunciones 1961, Acta 28 (FamilySearch ARK 61903/3:1:33S7-9PKK-QZP, DGS 004845164, img 19/26)",
+          "url": "https://www.familysearch.org/ark:/61903/3:1:33S7-9PKK-QZP"
         }
       ],
       "notes": {
-        "en": "Paternal great-grandfather. Head of the \"Familia Murillo Villalobos\" in the Obituario (p.79); died 2001, age 87. Son of Trinidad Murillo Vásquez. NOTE: the book’s lineage registry read his birth as 1906; his own memorial gives 1914 (consistent with age 87).",
-        "es": "Bisabuelo paterno. Encabeza la «Familia Murillo Villalobos» en el Obituario (p.79); falleció en 2001, 87 años. Hijo de Trinidad Murillo Vásquez. NOTA: el registro genealógico del libro leyó su nacimiento como 1906; su propio memorial da 1914 (coherente con 87 años)."
+        "en": "Paternal great-grandfather. Head of the \"Familia Murillo Villalobos\" in the Obituario (p.79); died 2001, age 87. Son of Trinidad Murillo Vásquez. NOTE: the book’s lineage registry read his birth as 1906; his own memorial gives 1914 (consistent with age 87). Corroborated as father in the 1961 Atotonilco el Alto civil death register (Acta 28); his brother Biviano Murillo Díaz was the declarant.",
+        "es": "Bisabuelo paterno. Encabeza la «Familia Murillo Villalobos» en el Obituario (p.79); falleció en 2001, 87 años. Hijo de Trinidad Murillo Vásquez. NOTA: el registro genealógico del libro leyó su nacimiento como 1906; su propio memorial da 1914 (coherente con 87 años). Corroborado como padre en el acta de defunción de Atotonilco el Alto (1961, Acta 28); su hermano Biviano Murillo Díaz fue el declarante."
       },
       "source": "book+memory"
     },
@@ -1369,11 +1373,15 @@
         {
           "label": "Obituario, San Francisco de Asís, p.79",
           "url": null
+        },
+        {
+          "label": "Atotonilco el Alto, Jalisco — Registro Civil, Defunciones 1961, Acta 28 (FamilySearch ARK 61903/3:1:33S7-9PKK-QZP, DGS 004845164, img 19/26)",
+          "url": "https://www.familysearch.org/ark:/61903/3:1:33S7-9PKK-QZP"
         }
       ],
       "notes": {
-        "en": "Paternal great-grandmother; wife of Sebastián Murillo Díaz. Born 1929, died 1983 (age 54). Obituario p.79.",
-        "es": "Bisabuela paterna; esposa de Sebastián Murillo Díaz. Nació en 1929, falleció en 1983 (54 años). Obituario p.79."
+        "en": "Paternal great-grandmother; wife of Sebastián Murillo Díaz. Born 1929, died 1983 (age 54). Obituario p.79. Corroborated by the 1961 Atotonilco el Alto civil death register of their infant daughter (age given as 35 there, ≈b.1926, vs the Obituario’s 1929).",
+        "es": "Bisabuela paterna; esposa de Sebastián Murillo Díaz. Nació en 1929, falleció en 1983 (54 años). Obituario p.79. Corroborada por el acta de defunción de su hija en Atotonilco el Alto (1961), donde se le da 35 años (≈1926) frente a 1929 del Obituario."
       },
       "source": "book+memory"
     },
@@ -13164,6 +13172,38 @@
         "en": "From the Obituario of San Francisco de Asís (p.138). Birthplace inferred as the town the book documents.",
         "es": "Del Obituario de San Francisco de Asís (p.138). Lugar de nacimiento inferido: el pueblo que documenta el libro."
       }
+    },
+    {
+      "id": "I443",
+      "names": {
+        "given": "María Soledad",
+        "surnames": [
+          "Murillo",
+          "Villalobos"
+        ]
+      },
+      "sex": "F",
+      "birth": {
+        "date": "c. 1960",
+        "place": null
+      },
+      "death": {
+        "date": "1961",
+        "place": "Atotonilco el Alto, Jalisco"
+      },
+      "photo": null,
+      "surnameOrigin": null,
+      "recordLinks": [
+        {
+          "label": "Atotonilco el Alto, Jalisco — Registro Civil, Defunciones 1961, Acta 28 (FamilySearch ARK 61903/3:1:33S7-9PKK-QZP, DGS 004845164, img 19/26)",
+          "url": "https://www.familysearch.org/ark:/61903/3:1:33S7-9PKK-QZP"
+        }
+      ],
+      "source": "record",
+      "notes": {
+        "en": "Infant sister of grandfather José Murillo Villalobos; died in infancy (~age 1) of measles, registered 1961. Daughter of Sebastián Murillo Díaz and María Soledad Villalobos per the Atotonilco el Alto civil death register (Acta 28). Not in the Obituario.",
+        "es": "Hermana de infancia del abuelo José Murillo Villalobos; falleció de sarampión siendo bebé (~1 año), registrada en 1961. Hija de Sebastián Murillo Díaz y María Soledad Villalobos según el acta de defunción del Registro Civil de Atotonilco el Alto (Acta 28). No aparece en el Obituario."
+      }
     }
   ],
   "families": [
@@ -13258,7 +13298,8 @@
         "I133",
         "I134",
         "I165",
-        "I166"
+        "I166",
+        "I443"
       ]
     },
     {
