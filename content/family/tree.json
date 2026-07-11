@@ -4035,6 +4035,10 @@
         {
           "label": "FamilySearch shared tree (FamilySearch MTVF-BCY)",
           "url": "https://www.familysearch.org/tree/person/details/MTVF-BCY"
+        },
+        {
+          "label": "Obituario, San Francisco de Asís, p.31",
+          "url": null
         }
       ],
       "notes": {
@@ -4165,7 +4169,12 @@
       },
       "photo": null,
       "surnameOrigin": null,
-      "recordLinks": [],
+      "recordLinks": [
+        {
+          "label": "Obituario, San Francisco de Asís, p.33",
+          "url": null
+        }
+      ],
       "notes": {
         "en": "Documented Murillo trunk of San Francisco de Asís (Obituario, Juan Murillo Angulo, 2026).",
         "es": "Tronco Murillo documentado de San Francisco de Asís (Obituario, Juan Murillo Angulo, 2026)."
@@ -4556,8 +4565,7 @@
         "given": "José Miguel Gerónimo",
         "surnames": [
           "Murillo",
-          "de",
-          "Ávila"
+          "de Ávila"
         ]
       },
       "sex": null,
@@ -4629,39 +4637,6 @@
       "sex": null,
       "birth": {
         "date": "1780",
-        "place": "San Francisco de Asís, Los Altos, Jalisco"
-      },
-      "death": {
-        "date": null,
-        "place": null
-      },
-      "photo": null,
-      "surnameOrigin": null,
-      "recordLinks": [
-        {
-          "label": "Obituario, San Francisco de Asís, p.31",
-          "url": null
-        }
-      ],
-      "source": "book",
-      "notes": {
-        "en": "From the Obituario of San Francisco de Asís (p.31). Birthplace inferred as the town the book documents.",
-        "es": "Del Obituario de San Francisco de Asís (p.31). Lugar de nacimiento inferido: el pueblo que documenta el libro."
-      }
-    },
-    {
-      "id": "I176",
-      "names": {
-        "given": "María",
-        "surnames": [
-          "Prudenciana",
-          "de",
-          "Ávila"
-        ]
-      },
-      "sex": "F",
-      "birth": {
-        "date": null,
         "place": "San Francisco de Asís, Los Altos, Jalisco"
       },
       "death": {
@@ -4784,7 +4759,7 @@
         "given": "Juan José Crisóstomo",
         "surnames": [
           "Murillo",
-          "Hedez."
+          "Hernández"
         ]
       },
       "sex": null,
@@ -5037,11 +5012,10 @@
     {
       "id": "I188",
       "names": {
-        "given": "José Desiderio De la",
+        "given": "José Desiderio de la Trinidad",
         "surnames": [
-          "Trinidad",
           "Murillo",
-          "H."
+          "Hernández"
         ]
       },
       "sex": "F",
@@ -5111,39 +5085,6 @@
       "sex": null,
       "birth": {
         "date": "1805",
-        "place": "San Francisco de Asís, Los Altos, Jalisco"
-      },
-      "death": {
-        "date": null,
-        "place": null
-      },
-      "photo": null,
-      "surnameOrigin": null,
-      "recordLinks": [
-        {
-          "label": "Obituario, San Francisco de Asís, p.33",
-          "url": null
-        }
-      ],
-      "source": "book",
-      "notes": {
-        "en": "From the Obituario of San Francisco de Asís (p.33). Birthplace inferred as the town the book documents.",
-        "es": "Del Obituario de San Francisco de Asís (p.33). Lugar de nacimiento inferido: el pueblo que documenta el libro."
-      }
-    },
-    {
-      "id": "I191",
-      "names": {
-        "given": "María de",
-        "surnames": [
-          "las",
-          "Nieves",
-          "Guerrero"
-        ]
-      },
-      "sex": "F",
-      "birth": {
-        "date": null,
         "place": "San Francisco de Asís, Los Altos, Jalisco"
       },
       "death": {
@@ -7442,11 +7383,10 @@
     {
       "id": "I263",
       "names": {
-        "given": "Josefina Morales",
+        "given": "Josefina",
         "surnames": [
-          "de",
-          "las",
-          "Cerda"
+          "Morales",
+          "de las Cerda"
         ]
       },
       "sex": "F",
@@ -11701,11 +11641,10 @@
     {
       "id": "I396",
       "names": {
-        "given": "Axel Gael Hernández",
+        "given": "Axel Gael",
         "surnames": [
-          "de",
-          "la",
-          "Cruz"
+          "Hernández",
+          "de la Cruz"
         ]
       },
       "sex": null,
@@ -11734,11 +11673,10 @@
     {
       "id": "I397",
       "names": {
-        "given": "Ian Yael Hernández",
+        "given": "Ian Yael",
         "surnames": [
-          "de",
-          "la",
-          "Cruz"
+          "Hernández",
+          "de la Cruz"
         ]
       },
       "sex": null,
@@ -11769,9 +11707,7 @@
       "names": {
         "given": "María del Carmen",
         "surnames": [
-          "de",
-          "la",
-          "Cruz",
+          "de la Cruz",
           "Herrera"
         ]
       },
@@ -13084,10 +13020,8 @@
     {
       "id": "I439",
       "names": {
-        "given": "Ma.",
+        "given": "Ma. del Carmen",
         "surnames": [
-          "Del",
-          "Carmen",
           "Fonseca"
         ]
       },
@@ -13825,7 +13759,7 @@
     {
       "id": "F53",
       "husband": "I155",
-      "wife": "I176",
+      "wife": "I156",
       "children": [
         "I171",
         "I172",
@@ -13837,7 +13771,7 @@
     {
       "id": "F54",
       "husband": "I190",
-      "wife": "I191",
+      "wife": "I160",
       "children": [
         "I239",
         "I240",
