@@ -22,8 +22,8 @@
       "surnameOrigin": null,
       "recordLinks": [],
       "notes": {
-        "en": "",
-        "es": ""
+        "en": "DNA (23andMe + GEDmatch, kit on file in KB): 63.6% European (mostly Andalusian/Castilian Spanish), 33.4% Indigenous American, ~2% Sub-Saharan African — a Jalisco mestizo profile. Direct-line haplogroups are BOTH Indigenous American: paternal Y-DNA Q-M3 (the unbroken father-to-son Murillo line) and maternal mtDNA D1 (the all-female line). The Spanish surnames sit on an Indigenous Mesoamerican spine.",
+        "es": "ADN (23andMe + GEDmatch, kit en el KB): 63.6% europeo (mayormente español andaluz/castellano), 33.4% indígena americano, ~2% africano subsahariano — perfil mestizo de Jalisco. Los haplogrupos de línea directa son AMBOS indígenas americanos: paterno Y-ADN Q-M3 (la línea Murillo padre-a-hijo ininterrumpida) y materno ADNmt D1 (la línea toda femenina). Los apellidos españoles descansan sobre una espina indígena mesoamericana."
       }
     },
     {
@@ -37,8 +37,8 @@
       },
       "sex": "M",
       "birth": {
-        "date": null,
-        "place": null
+        "date": "1968",
+        "place": "Guadalajara, Jalisco"
       },
       "death": {
         "date": null,
@@ -48,8 +48,8 @@
       "surnameOrigin": null,
       "recordLinks": [],
       "notes": {
-        "en": "",
-        "es": ""
+        "en": "Jaime’s father. Born 1968 in Guadalajara, Jalisco; living. Son of José Murillo Villalobos and Teresa Patiño Gutiérrez.",
+        "es": "Padre de Jaime. Nació en 1968 en Guadalajara, Jalisco; vive. Hijo de José Murillo Villalobos y Teresa Patiño Gutiérrez."
       }
     },
     {
@@ -3935,8 +3935,8 @@
         }
       ],
       "notes": {
-        "en": "Oldest documented ancestor of the Murillo line. Born ~1710; his family’s colonial parish was San Diego de Alejandría, Los Altos de Jalisco. This is the FRONTIER: neither the Obituario nor the FamilySearch shared tree (person P9W4-GBW, 0 sources) records his parents. The original Spanish immigrant ancestor lies beyond, in 17th-century colonial records, currently unfound. Surname origin: Navarra/La Rioja, Spain.",
-        "es": "Ancestro documentado más antiguo de la línea Murillo. Nació ~1710; la parroquia colonial de la familia fue San Diego de Alejandría, Los Altos de Jalisco. Esta es la FRONTERA: ni el Obituario ni el árbol colaborativo de FamilySearch (persona P9W4-GBW, 0 fuentes) registran a sus padres. El emigrante español original queda más atrás, en registros coloniales del s. XVII, aún sin localizar. Origen del apellido: Navarra/La Rioja, España."
+        "en": "Oldest documented ancestor of the Murillo line. Born ~1710; his family’s colonial parish was San Diego de Alejandría, Los Altos de Jalisco. This is the FRONTIER: neither the Obituario nor the FamilySearch shared tree (person P9W4-GBW, 0 sources) records his parents. The original Spanish immigrant ancestor lies beyond, in 17th-century colonial records, currently unfound. Surname origin: Navarra/La Rioja, Spain. NOTE (DNA): Jaime’s paternal Y-DNA is Q-M3 (Indigenous American), so the unbroken male Murillo line is Indigenous — the surname «Murillo» was adopted into a Native line in the colonial period. There is likely NO Spanish immigrant at the top of this direct male line; the deep paternal ancestry is Indigenous Mesoamerican (Jalisco). European ancestry entered through other branches.",
+        "es": "Ancestro documentado más antiguo de la línea Murillo. Nació ~1710; la parroquia colonial de la familia fue San Diego de Alejandría, Los Altos de Jalisco. Esta es la FRONTERA: ni el Obituario ni el árbol colaborativo de FamilySearch (persona P9W4-GBW, 0 fuentes) registran a sus padres. El emigrante español original queda más atrás, en registros coloniales del s. XVII, aún sin localizar. Origen del apellido: Navarra/La Rioja, España. NOTA (ADN): el Y-ADN paterno de Jaime es Q-M3 (indígena americano), así que la línea masculina Murillo ininterrumpida es indígena — el apellido «Murillo» se adoptó en una línea nativa en la época colonial. Probablemente NO hay un inmigrante español en la cima de esta línea masculina directa; la ascendencia paterna profunda es indígena mesoamericana (Jalisco). La ascendencia europea entró por otras ramas."
       },
       "source": "book+memory"
     },
@@ -13241,6 +13241,33 @@
         "en": "Infant sister of grandfather José Murillo Villalobos; died in infancy (~age 1) of measles, registered 1961. Daughter of Sebastián Murillo Díaz and María Soledad Villalobos per the Atotonilco el Alto civil death register (Acta 28). Not in the Obituario.",
         "es": "Hermana de infancia del abuelo José Murillo Villalobos; falleció de sarampión siendo bebé (~1 año), registrada en 1961. Hija de Sebastián Murillo Díaz y María Soledad Villalobos según el acta de defunción del Registro Civil de Atotonilco el Alto (Acta 28). No aparece en el Obituario."
       }
+    },
+    {
+      "id": "I444",
+      "names": {
+        "given": "Oscar",
+        "surnames": [
+          "de la Torre",
+          "Mena"
+        ]
+      },
+      "sex": "M",
+      "birth": {
+        "date": null,
+        "place": null
+      },
+      "death": {
+        "date": null,
+        "place": null
+      },
+      "photo": null,
+      "surnameOrigin": null,
+      "recordLinks": [],
+      "source": "dna",
+      "notes": {
+        "en": "Son of Santos Mena Ruiz and Abel de la Torre; Jaime’s first cousin. DNA-confirmed relative (23andMe).",
+        "es": "Hijo de Santos Mena Ruiz y Abel de la Torre; primo hermano de Jaime. Pariente confirmado por ADN (23andMe)."
+      }
     }
   ],
   "families": [
@@ -13370,7 +13397,8 @@
         "I46",
         "I47",
         "I48",
-        "I49"
+        "I49",
+        "I444"
       ]
     },
     {
